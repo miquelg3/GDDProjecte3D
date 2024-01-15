@@ -1,7 +1,0 @@
-Fuente Arial
-Texto justificado
-interlineado de 1.5
-
-Titulo 26
-
-Cuerpo 12
