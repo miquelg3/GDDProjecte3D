@@ -29,10 +29,15 @@ public class PlayerMovement : MonoBehaviour
     private int score = 0;
     public float distanceDetector = 5.0f;
 
+    public GameState gameState = new GameState(GameState.StateGame.inGame);
+
+    public GameObject Pausa;
+
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Pausa.SetActive(false);
         rb = GetComponent<Rigidbody>();
         // Cuando queramos que haya deslizamiento, cambiamos esta variable
         // rb.drag = 0;
@@ -44,12 +49,35 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (gameState.game == GameState.StateGame.inGame)
+            MovimientoPersonaje();
+        
+
+        // Configuración de pausa
+        if (Input.GetKeyDown(KeyCode.Escape) && gameState.game == GameState.StateGame.inGame)
+        {
+            gameState.PauseGame();
+            Pausa.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && gameState.game == GameState.StateGame.pause)
+        {
+            gameState.ResumeGame();
+            Pausa.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+
+    }
+
+    void MovimientoPersonaje()
+    {
         float xMovement = Input.GetAxis("Horizontal");
         float zMovement = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(xMovement, 0.0f, zMovement) * speed * Time.deltaTime;
-
-        Debug.Log(xMovement + " " + zMovement);
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -96,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
 
             // Detectar el objeto y mostrar su nombre si estás lo suficientemente cerca
-            if(distance <= distanceDetector)
+            if (distance <= distanceDetector)
             {
                 if (hit.transform.gameObject != currentObject)
                 {
@@ -113,7 +141,8 @@ public class PlayerMovement : MonoBehaviour
                     score++;
                     Debug.Log("Score: " + score);
                 }
-            }else
+            }
+            else
                 objectNameText.text = "";
         }
         else
@@ -122,6 +151,14 @@ public class PlayerMovement : MonoBehaviour
             objectNameText.text = "";
             currentObject = null;
         }
-
     }
+
+    public void ResumeGame()
+    {
+        gameState.ResumeGame();
+        Pausa.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
 }
