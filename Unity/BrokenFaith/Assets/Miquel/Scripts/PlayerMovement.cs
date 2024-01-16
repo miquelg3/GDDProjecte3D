@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,6 +23,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraTransform;
 
     private Rigidbody rb;
+
+    public TextMeshProUGUI objectNameText;
+    private GameObject currentObject;
+    private int score = 0;
+    public float distanceDetector = 5.0f;
 
     void Start()
     {
@@ -77,6 +85,42 @@ public class PlayerMovement : MonoBehaviour
         {
             timer = 0;
             cameraTransform.localPosition = new Vector3(cameraTransform.localPosition.x, Mathf.Lerp(cameraTransform.localPosition.y, midpoint, Time.deltaTime * bobbingSpeed), cameraTransform.localPosition.z);
+        }
+
+        // Apuntar
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            float distance = Vector3.Distance(Camera.main.transform.position, hit.transform.position);
+
+
+            // Detectar el objeto y mostrar su nombre si estás lo suficientemente cerca
+            if(distance <= distanceDetector)
+            {
+                if (hit.transform.gameObject != currentObject)
+                {
+                    currentObject = hit.transform.gameObject;
+                    if (currentObject.name == "Objeto")
+                        objectNameText.text = $"Usar {currentObject.name}";
+                    else
+                        objectNameText.text = "";
+                }
+
+                // Incrementar la variable al hacer clic
+                if (Input.GetMouseButtonDown(0))
+                {
+                    score++;
+                    Debug.Log("Score: " + score);
+                }
+            }else
+                objectNameText.text = "";
+        }
+        else
+        {
+            // No hay objeto detectado, limpiar el texto
+            objectNameText.text = "";
+            currentObject = null;
         }
 
     }
