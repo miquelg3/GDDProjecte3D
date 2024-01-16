@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Brazos : Salud
-{
+{    // La variable fuerza sera lo que determina la fuerza de el ataque, multiplicando este por el daño del arma
     private float fuerza { get; set; }
     public Brazos(NivelSalud nivelSalud, int vidaActual,float fuerza) : base(nivelSalud, vidaActual)
     {

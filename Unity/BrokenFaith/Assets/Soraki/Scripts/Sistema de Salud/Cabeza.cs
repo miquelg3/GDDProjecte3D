@@ -6,23 +6,22 @@ using UnityEngine.Rendering.Universal;
 
 public class Cabeza : Salud
 {
-
+    // Vol se encargara de poder pintar el circulo negro en la pantalla como que nos estamos quedando ciegos
     public Volume vol;
     private Vignette vig;
+    // Vision es la variable que controla la intensidad del viñeteado usado para que el personaje se quede ciego cuando recibe heridas en la cabeza
+    private float vision { get; set; }
     public Cabeza(NivelSalud nivelSalud, int vidaActual, float Vision) : base(nivelSalud, vidaActual)
     {
         this.vision = Vision;
-        this.saludActual = vidaActual;
         vol.profile.TryGet<Vignette>(out vig);
     }
     public Cabeza(NivelSalud nivelSalud, int vidaActual) : base(nivelSalud, vidaActual)
     {
-        this.saludActual = vidaActual;
         vol.profile.TryGet<Vignette>(out vig);
     }
-    private int saludActual { get; set; }
 
-    private float vision { get; set; }
+   
 
     public override void Herida()
     {

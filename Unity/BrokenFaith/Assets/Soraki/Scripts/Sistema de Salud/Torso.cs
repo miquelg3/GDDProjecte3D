@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Torso : Salud
 {
+    // La variable integridad del cuerpo controla cuanto porcentaje de vida total tendran las otras partes del cuerpo, si resulta herido cambiara la vida maxima de las otras partes
     public float IntegridadCuerpo { get; private set; }
     public Torso(NivelSalud nivelSalud, int vidaActual) : base(nivelSalud, vidaActual)
     {
