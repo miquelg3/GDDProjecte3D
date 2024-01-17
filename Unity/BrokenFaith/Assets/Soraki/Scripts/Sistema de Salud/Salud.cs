@@ -55,7 +55,7 @@ public abstract class Salud
             parte.VidaActual = 0;
             RepartirGolpe(danyo);
         }
-        else
+        else if ((parte is Cabeza || parte is Torso) )
         {
             parte.VidaActual -= danyo;
         }
@@ -75,9 +75,8 @@ public abstract class Salud
         if (PartesOpcionales == false)
         {
             float DanyoSobrante = 0;
-            bool repetir = true;
             int AUno = 0;
-            while (repetir)
+            while (true)
             {
                 foreach (var parte in Cuerpo)
                 {
@@ -97,16 +96,24 @@ public abstract class Salud
                 }
                 if(DanyoSobrante == 0)
                 {
-                    repetir = false;
+                    return;
                 }
                 else if(DanyoSobrante > 0 && AUno == 2)
                 {
                     Muerto = true;
-                    repetir = false;
+                    return;
 
                 }
             }
         }
+    }
+    public void RecibirGolpeParteFundamental(Salud parte,float danyo)
+    {
+        
+    }
+    public void RecibirGolpeParte(Salud parte, float danyo)
+    {
+
     }
 }
 public enum NivelSalud
