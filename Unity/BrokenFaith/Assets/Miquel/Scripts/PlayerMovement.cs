@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = new Vector3(xMovement, 0.0f, zMovement) * speed * Time.deltaTime;
 
-        Debug.Log(xMovement + " " + zMovement);
+    
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
