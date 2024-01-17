@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Piezas : Item
+public class Piezas : Item,ICantidad
 {
-    public int Cantidad {  get; private set; }
     public TipoPiezas TipoPiezas { get; private set; }
+    public int Cantidad { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     public Piezas(string id, string nombre) : base(id, nombre)
     {
     }
@@ -20,5 +21,6 @@ public enum TipoPiezas
     Filo,
     Guardas,
     Empuñadura,
-    Cuerda
+    Cuerda,
+    Palas
 }
