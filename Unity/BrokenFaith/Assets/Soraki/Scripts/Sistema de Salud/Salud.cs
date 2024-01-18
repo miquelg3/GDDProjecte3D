@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -11,19 +12,19 @@ public abstract class Salud
     public float VidaActual { get; private set; }
     public bool Sangrado { get; private set; }
     public bool Muerto { get; private set; }
-    protected Salud(NivelSalud nivelSalud, bool infectado, int vidaActual, bool sangrado)
+    public Salud(NivelSalud nivelSalud, bool infectado, int vidaActual, bool sangrado)
     {
         this.NivelSalud = nivelSalud;
         this.Infectado = infectado;
         VidaActual = vidaActual;
         this.Sangrado = sangrado;
     }
-    protected Salud(NivelSalud nivelSalud, int vidaActual)
+    public Salud(NivelSalud nivelSalud, int vidaActual)
     {
         this.NivelSalud = nivelSalud;
         VidaActual = vidaActual;
     }
-    protected Salud() 
+    public Salud() 
     {
         Cuerpo = new List<Salud>();
     }
