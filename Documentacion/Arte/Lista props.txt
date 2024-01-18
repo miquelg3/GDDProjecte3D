@@ -1,0 +1,41 @@
+Enviro:
+-Modulo Pared YxY
+-Modulo Pared YxZ
+-Modulo Suelo YxY
+-Modulo Techo ermita YxY
+-Modulo Techo tunel YxY
+-Vigas Madera
+-Arcos ermita
+
+Props para set dressing:
+-Banco iglesia done
+-Cajas A done
+-Cajas B
+-Barril done
+-Aplique Antorcha done
+-Antorcha done
+-Mesa A done
+-Mesa B done
+-Silla Done
+-Cama Done
+-Armario
+-Estanteria
+-Relleno estanteria A
+-Relleno estanteria B
+-Libros
+-Botellas
+-Nota
+-Candelabro Colgante
+-Llave
+-Puerta A
+-Puerta Doble
+-Puerta Reja A
+
+
+Hero props:
+-Espada
+-Arco
+-Llave(VR)
+-Nota(VR)
+
+
