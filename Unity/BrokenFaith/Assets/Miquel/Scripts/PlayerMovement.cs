@@ -33,12 +33,17 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject Pausa;
 
+    private float lerpTime = 0f;
+
+    private Vector3 altura;
+
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Pausa.SetActive(false);
         rb = GetComponent<Rigidbody>();
+        altura = transform.localScale;
         // Cuando queramos que haya deslizamiento, cambiamos esta variable
         // rb.drag = 0;
         if (cameraTransform != null)
@@ -79,9 +84,23 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = new Vector3(xMovement, 0.0f, zMovement) * speed * Time.deltaTime;
 
+        // Esprintar
         if (Input.GetKey(KeyCode.LeftShift))
         {
             movement *= sprintMultiplier;
+        }
+        // Agacharse
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            movement /= sprintMultiplier;
+            lerpTime += Time.deltaTime / 0.5f;
+            //cameraTransform.position = Vector3.Lerp(altura, altura / 2, lerpTime);
+            transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
+        }
+        else
+        {
+            lerpTime = 0f;
+            transform.localScale = altura;
         }
 
         transform.Translate(movement);
