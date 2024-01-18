@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private float timer = 0;
 
     public Transform cameraTransform;
+    public Transform espada;
 
     private Rigidbody rb;
 
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        espada.parent = cameraTransform;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Pausa.SetActive(false);
@@ -50,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
         {
             midpoint = cameraTransform.localPosition.y;
         }
+        // Llenar inventario
+        LlenarInventario();
     }
 
     void Update()
@@ -96,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
             lerpTime += Time.deltaTime / 0.5f;
             //cameraTransform.position = Vector3.Lerp(altura, altura / 2, lerpTime);
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
+            espada.transform.localScale = altura;
         }
         else
         {
@@ -178,6 +184,21 @@ public class PlayerMovement : MonoBehaviour
         Pausa.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void LlenarInventario ()
+    {
+        Municion flechas = new Municion("1", "Flechas", 3, TipoMunicion.Piedra, 5);
+        Equipo arco = new Equipo("1", "Arco", TipoArma.Arco, flechas, 5);
+
+        Equipo espada = new Equipo("2", "Espada", TipoArma.Espada, 5);
+
+        Inventario inventario = new Inventario();
+        inventario.AgregarItem(arco);
+        inventario.AgregarItem(espada);
+
+        inventario.MostrarInventario();
+
     }
 
 }

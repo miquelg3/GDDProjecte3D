@@ -1667,6 +1667,7 @@ MonoBehaviour:
   SpeedH: 3
   SpeedV: 3
   cameraTransform: {fileID: 1102323105}
+  espada: {fileID: 218243623}
   objectNameText: {fileID: 805055086}
   distanceDetector: 5
   Pausa: {fileID: 1146684878}
