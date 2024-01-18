@@ -13,11 +13,11 @@ Props para set dressing:
 -Cajas B
 -Barril done
 -Aplique Antorcha done
--Antorcha
--Mesa A
--Mesa B
--Silla
--Cama
+-Antorcha done
+-Mesa A done
+-Mesa B done
+-Silla Done
+-Cama Done
 -Armario
 -Estanteria
 -Relleno estanteria A
