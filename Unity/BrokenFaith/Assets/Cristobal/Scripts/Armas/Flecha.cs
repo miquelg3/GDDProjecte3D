@@ -4,24 +4,37 @@ using UnityEngine;
 
 public class Flecha : MonoBehaviour
 {
-    private float velocidad = 1;
 
-    public delegate void HudTexto(float fuerza);
-    public static event HudTexto cambiarFuerza;
+    private float danyo = 10f;
+    
 
-    void Start()
+    private Rigidbody rigidbody;
+
+    public void Lanzar(Vector3 fuerza)
     {
+        rigidbody = GetComponent<Rigidbody>();
+
+        rigidbody.isKinematic = false;
+        rigidbody.AddForce(fuerza, ForceMode.Impulse);
+        transform.SetParent(null);
+    }
+
+    public void Cargar()
+    {
+        Vector3 posicionOriginal = transform.position;
+        transform.position = posicionOriginal + transform.forward * -0.2f;
+    }
+
+    private void OnTriggerEnter(Collider enemigo)
+    {
+        if (enemigo.tag == "Enemigo")
+            Debug.Log(enemigo.name);
+
         
+        rigidbody.isKinematic = true;
+        rigidbody.velocity = Vector3.zero;
+        transform.SetParent(enemigo.transform);
     }
 
-    void Update()
-    {
-        
-    }
-
-    public void Volar()
-    {
-
-    }
 
 }

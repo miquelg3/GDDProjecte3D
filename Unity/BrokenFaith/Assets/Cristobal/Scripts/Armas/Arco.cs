@@ -5,14 +5,22 @@ using UnityEngine;
 public class Arco : MonoBehaviour
 {
     [SerializeField] private Transform spawnFlechas;
-    [SerializeField] private GameObject flechaPrefab;
+    [SerializeField] private Flecha flechaPrefab;
 
-    private GameObject flechaActual;
+    private Flecha flechaActual;
 
-    private int cantidadFlechas = 10;
+    [SerializeField] private int cantidadFlechas = 10;
 
-    public delegate void HudTexto(int cantidad);
-    public static event HudTexto cantidadDeFlechas;
+    [SerializeField] private float fuerzaMaxima = 70;
+    private float fuerzaActual = 0;
+
+    private bool cargando;
+
+    public delegate void CambiarCantidad(int cantidad);
+    public static event CambiarCantidad cantidadDeFlechas;
+
+    public delegate void CambiarFuerza(float fuerza);
+    public static event CambiarFuerza cambiarFuerza;
 
 
     void Start()
@@ -24,19 +32,42 @@ public class Arco : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && cantidadFlechas > 0)
-            Disparar();
+        if (Input.GetMouseButtonDown(0) && cantidadFlechas > 0)
+        {
+            cargando = true;
+            flechaActual.Cargar();
+        }
+           
+        if(cargando && fuerzaActual < fuerzaMaxima)
+        {
+            fuerzaActual += Time.deltaTime * 50f;
+            cambiarFuerza?.Invoke(fuerzaActual);
+        }
+            
+        if (cargando && Input.GetMouseButtonUp(0))
+        {
+            Disparar(fuerzaActual * 2);
+            cargando = false;
+            fuerzaActual = 0;
+        }           
     }
 
-    private void Disparar()
+    private void Disparar(float fuerza)
     {
-        cantidadDeFlechas?.Invoke(--cantidadFlechas);
+        Vector3 fuerzaLanzada = spawnFlechas.TransformDirection(Vector3.forward * fuerza);
+        flechaActual.Lanzar(fuerzaLanzada);
+
+        if(cantidadFlechas > 0)
+        {
+            cantidadDeFlechas?.Invoke(--cantidadFlechas);
+            CrearFlecha();
+        }
+            
     }
 
     private void CrearFlecha()
     {
             flechaActual = Instantiate(flechaPrefab, spawnFlechas);
-            flechaActual.transform.rotation = spawnFlechas.transform.localRotation;
             flechaActual.transform.localPosition = Vector3.zero; 
     }
 }
