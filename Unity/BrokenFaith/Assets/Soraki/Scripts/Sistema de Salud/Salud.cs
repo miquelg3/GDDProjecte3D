@@ -11,19 +11,19 @@ public abstract class Salud
     public float VidaActual { get; private set; }
     public bool Sangrado { get; private set; }
     public bool Muerto { get; private set; }
-    protected Salud(NivelSalud nivelSalud, bool infectado, int vidaActual, bool sangrado)
+    public Salud(NivelSalud nivelSalud, bool infectado, int vidaActual, bool sangrado)
     {
         this.NivelSalud = nivelSalud;
         this.Infectado = infectado;
         VidaActual = vidaActual;
         this.Sangrado = sangrado;
     }
-    protected Salud(NivelSalud nivelSalud, int vidaActual)
+    public Salud(NivelSalud nivelSalud, int vidaActual)
     {
         this.NivelSalud = nivelSalud;
         VidaActual = vidaActual;
     }
-    protected Salud() 
+    public Salud() 
     {
         Cuerpo = new List<Salud>();
     }
@@ -51,13 +51,11 @@ public abstract class Salud
         
         if (parte.VidaActual - danyo <= 0) 
         {
-            danyo -= parte.VidaActual;
-            parte.VidaActual = 0;
-            RepartirGolpe(danyo);
+            RecibirGolpeParte(parte, danyo);
         }
-        else
+        else if ((parte is Cabeza || parte is Torso) )
         {
-            parte.VidaActual -= danyo;
+            RecibirGolpeParteFundamental(parte, danyo);
         }
     }
 
@@ -74,38 +72,57 @@ public abstract class Salud
         }
         if (PartesOpcionales == false)
         {
-            float DanyoSobrante = 0;
-            bool repetir = true;
             int AUno = 0;
-            while (repetir)
+            while (true)
             {
                 foreach (var parte in Cuerpo)
                 {
                     if (parte.VidaActual > 1 && (parte is Cabeza || parte is Torso))
                     {
-                        if (parte.VidaActual - danyo <= 0)
-                        {
-                            DanyoSobrante = danyo - (parte.VidaActual - 1);
-                            parte.VidaActual = 1;
-                            AUno++;
-                        }
-                        else
-                        {
-                            RecibirGolpe(danyo, parte);
-                        }
+
+                        RecibirGolpe(danyo,parte);
+                    }else if (parte.VidaActual > 1 && (parte is Cabeza || parte is Torso))
+                    {
+                        AUno++;
                     }
                 }
-                if(DanyoSobrante == 0)
-                {
-                    repetir = false;
-                }
-                else if(DanyoSobrante > 0 && AUno == 2)
+                if (danyo > 0 && AUno == 2)
                 {
                     Muerto = true;
-                    repetir = false;
-
+                    break;
+                }
+                else if (danyo == 0)
+                {
+                    break;
                 }
             }
+        }
+    }
+    public void RecibirGolpeParteFundamental(Salud parte,float danyo)
+    {
+        if (parte.VidaActual - danyo <= 0)
+        {
+            danyo -= parte.VidaActual -1;
+            parte.VidaActual = 1;
+            RepartirGolpe(danyo);
+        }
+        else
+        {
+            parte.VidaActual -= danyo;
+        }
+    }
+
+    public void RecibirGolpeParte(Salud parte, float danyo)
+    {
+        if (parte.VidaActual - danyo <= 0)
+        {
+            danyo -= parte.VidaActual;
+            parte.VidaActual = 0;
+            RepartirGolpe(danyo);
+        }
+        else
+        {
+            parte.VidaActual -= danyo;
         }
     }
 }
