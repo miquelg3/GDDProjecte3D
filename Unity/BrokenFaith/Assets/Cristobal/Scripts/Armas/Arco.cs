@@ -25,6 +25,9 @@ public class Arco : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked; 
+
         cantidadDeFlechas?.Invoke(cantidadFlechas);
         if (cantidadFlechas > 0)
             CrearFlecha();
@@ -49,19 +52,21 @@ public class Arco : MonoBehaviour
             Disparar(fuerzaActual * 2);
             cargando = false;
             fuerzaActual = 0;
+            cambiarFuerza?.Invoke(fuerzaActual);
         }           
     }
 
     private void Disparar(float fuerza)
     {
+        flechaActual.enabled = true;
+
         Vector3 fuerzaLanzada = spawnFlechas.TransformDirection(Vector3.forward * fuerza);
         flechaActual.Lanzar(fuerzaLanzada);
+        cantidadFlechas--;
+        cantidadDeFlechas?.Invoke(cantidadFlechas);
 
-        if(cantidadFlechas > 0)
-        {
-            cantidadDeFlechas?.Invoke(--cantidadFlechas);
+        if (cantidadFlechas > 0)
             CrearFlecha();
-        }
             
     }
 
@@ -69,5 +74,6 @@ public class Arco : MonoBehaviour
     {
             flechaActual = Instantiate(flechaPrefab, spawnFlechas);
             flechaActual.transform.localPosition = Vector3.zero; 
+            flechaActual.enabled = false;
     }
 }

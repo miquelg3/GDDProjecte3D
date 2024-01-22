@@ -58,11 +58,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2697629844698948061, guid: 104d94181381287478b4d85e1fbb876b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0053f2f08c496eb43b13dd7f33c3a8ea, type: 2}
     - target: {fileID: 919132149155446097, guid: 104d94181381287478b4d85e1fbb876b,
         type: 3}
       propertyPath: m_Name
       value: EspadaEsculpido
       objectReference: {fileID: 0}
+    - target: {fileID: 1391431957764647803, guid: 104d94181381287478b4d85e1fbb876b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fd29a31f97da8c4ca53558d8e68f0e7, type: 2}
+    - target: {fileID: 5065854492318003635, guid: 104d94181381287478b4d85e1fbb876b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c31a1ea497d6f7c4bacadd9e43cb0685, type: 2}
+    - target: {fileID: 8260913185594467244, guid: 104d94181381287478b4d85e1fbb876b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fd29a31f97da8c4ca53558d8e68f0e7, type: 2}
+    - target: {fileID: 8860565323606478315, guid: 104d94181381287478b4d85e1fbb876b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0053f2f08c496eb43b13dd7f33c3a8ea, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

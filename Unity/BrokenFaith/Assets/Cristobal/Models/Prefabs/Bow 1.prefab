@@ -104,6 +104,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9566e41d8038f1c42986ffe245fe5f1f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0053f2f08c496eb43b13dd7f33c3a8ea, type: 2}
     - target: {fileID: 919132149155446097, guid: 9566e41d8038f1c42986ffe245fe5f1f,
         type: 3}
       propertyPath: m_Name
@@ -147,4 +152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnFlechas: {fileID: 4680583222435365414}
-  flecha: {fileID: 3152919383552293321, guid: 87be24b1178fbc54ba393848e5cdf904, type: 3}
+  flechaPrefab: {fileID: 0}
+  cantidadFlechas: 10
+  fuerzaMaxima: 70

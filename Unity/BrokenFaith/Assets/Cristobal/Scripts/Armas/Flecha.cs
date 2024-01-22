@@ -6,16 +6,15 @@ public class Flecha : MonoBehaviour
 {
 
     private float danyo = 10f;
-    
 
-    private Rigidbody rigidbody;
+    [SerializeField]private Rigidbody rigidbody;
 
     public void Lanzar(Vector3 fuerza)
     {
-        rigidbody = GetComponent<Rigidbody>();
 
         rigidbody.isKinematic = false;
         rigidbody.AddForce(fuerza, ForceMode.Impulse);
+        rigidbody.AddTorque(transform.right * 5f);
         transform.SetParent(null);
     }
 
@@ -25,16 +24,14 @@ public class Flecha : MonoBehaviour
         transform.position = posicionOriginal + transform.forward * -0.2f;
     }
 
-    private void OnTriggerEnter(Collider enemigo)
+    private void OnTriggerEnter(Collider objeto)
     {
-        if (enemigo.tag == "Enemigo")
-            Debug.Log(enemigo.name);
+        if (objeto.CompareTag("Enemigo"))
+            Debug.Log(objeto.name);
 
-        
         rigidbody.isKinematic = true;
-        rigidbody.velocity = Vector3.zero;
-        transform.SetParent(enemigo.transform);
+        transform.SetParent(objeto.transform);
+        this.enabled = false;
     }
-
 
 }
