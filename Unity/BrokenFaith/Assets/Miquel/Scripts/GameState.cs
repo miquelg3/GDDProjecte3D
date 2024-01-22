@@ -8,7 +8,8 @@ public class GameState
         menu,
         inGame,
         pause,
-        gameOver
+        gameOver,
+        inInventory
     }
 
     public StateGame game { get; set; }
@@ -27,6 +28,11 @@ public class GameState
     {
         game = StateGame.inGame;
         Time.timeScale = 1;
+    }
+    public void InventoryGame()
+    {
+        game = StateGame.inInventory;
+        Time.timeScale = 0;
     }
 
 

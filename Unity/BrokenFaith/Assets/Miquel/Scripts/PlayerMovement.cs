@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     private float timer = 0;
 
     public Transform cameraTransform;
-    public Transform espada;
 
     private Rigidbody rb;
 
@@ -34,17 +33,22 @@ public class PlayerMovement : MonoBehaviour
     public GameState gameState = new GameState(GameState.StateGame.inGame);
 
     public GameObject Pausa;
+    public GameObject InventarioMenu;
 
     private float lerpTime = 0f;
 
     private Vector3 altura;
 
+    public Inventario inventario = new Inventario();
+
+    private bool pistaEncontrada;
+
     void Start()
     {
-        espada.parent = cameraTransform;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Pausa.SetActive(false);
+        InventarioMenu.SetActive(false);
         rb = GetComponent<Rigidbody>();
         altura = transform.localScale;
         // Cuando queramos que haya deslizamiento, cambiamos esta variable
@@ -79,6 +83,15 @@ public class PlayerMovement : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
+        // Mostrar inventario
+        if (Input.GetKeyDown(KeyCode.Tab) && gameState.game == GameState.StateGame.inGame)
+        {
+            gameState.InventoryGame();
+            InventarioMenu.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
 
     }
 
@@ -101,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
             lerpTime += Time.deltaTime / 0.5f;
             //cameraTransform.position = Vector3.Lerp(altura, altura / 2, lerpTime);
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
-            espada.transform.localScale = altura;
         }
         else
         {
@@ -146,8 +158,6 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             float distance = Vector3.Distance(Camera.main.transform.position, hit.transform.position);
-
-
             // Detectar el objeto y mostrar su nombre si estás lo suficientemente cerca
             if (distance <= distanceDetector)
             {
@@ -155,9 +165,20 @@ public class PlayerMovement : MonoBehaviour
                 {
                     currentObject = hit.transform.gameObject;
                     if (currentObject.name == "Objeto")
+                    {
                         objectNameText.text = $"Usar {currentObject.name}";
+                        pistaEncontrada = false;
+                    }
+                    else if (currentObject.name == "Pista")
+                    {
+                        objectNameText.text = $"Usar {currentObject.name}";
+                        pistaEncontrada = true;
+                    }
                     else
+                    {
                         objectNameText.text = "";
+                        pistaEncontrada = false;
+                    }
                 }
 
                 // Incrementar la variable al hacer clic
@@ -165,6 +186,17 @@ public class PlayerMovement : MonoBehaviour
                 {
                     score++;
                     Debug.Log("Score: " + score);
+                    Debug.Log("PistaEncontrada " + pistaEncontrada);
+                }
+                if (pistaEncontrada && Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("Encontrado");
+                    bool pistaGuardada = GuardarPista();
+                    if (pistaGuardada)
+                    {
+                        inventario.MostrarInventario();
+                        Destroy(currentObject);
+                    }
                 }
             }
             else
@@ -193,12 +225,18 @@ public class PlayerMovement : MonoBehaviour
 
         Equipo espada = new Equipo("2", "Espada", TipoArma.Espada, 5);
 
-        Inventario inventario = new Inventario();
         inventario.AgregarItem(arco);
         inventario.AgregarItem(espada);
 
         inventario.MostrarInventario();
 
+    }
+
+    bool GuardarPista()
+    {
+        Pista pista = new Pista("1", "Primera pista", "I think human consciousnes was a tragic mistep in evolution. We became too self-aware; nature created an aspect of nature separte from itself: we are creatures that should not exist by natural law");
+        inventario.AgregarItem(pista);
+        return true;
     }
 
 }

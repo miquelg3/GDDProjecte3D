@@ -29,6 +29,7 @@ public class Inventario : IInventario
         {
             Debug.Log($"Nombre del item: {item.Nombre}\n");
         }
-        Debug.Log("No hay nada en el inventario");
+        if ( Items.Count == 0 )
+            Debug.Log("No hay nada en el inventario");
     }
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Espada : MonoBehaviour
 {
-
-    private float danyo = 10f;
     private Animator animator;
+    private Vector3 originalScale;
 
     void Start()
     {
-        animator = GetComponent<Animator>(); 
+        originalScale = transform.localScale;
+        animator = GetComponent<Animator>();
     }
 
     
@@ -20,5 +20,6 @@ public class Espada : MonoBehaviour
         {
             animator.SetTrigger("Atacar");
         }
+        transform.localScale = originalScale;
     }
 }
