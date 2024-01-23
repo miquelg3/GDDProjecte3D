@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +10,12 @@ public class Inventario : IInventario
     {
         Items = new HashSet<Item>();
     }
-    public void AgregarItem(Item ObjetoAAnyadir)
+    public void AgregarItem(Item ObjetoAAñadir)
     {
-        if (ObjetoAAnyadir is ICantidad )
+        /*if (ObjetoAAñadir is ICantidad )
         {
-        }
+        }*/
+        Items.Add(ObjetoAAñadir);
     }
 
     public void EliminarItem(Item ObjetoAEliminar)
@@ -23,6 +25,11 @@ public class Inventario : IInventario
 
     public void MostrarInventario()
     {
-        throw new System.NotImplementedException();
+        foreach (var item in Items)
+        {
+            Debug.Log($"Nombre del item: {item.Nombre}\n");
+        }
+        if ( Items.Count == 0 )
+            Debug.Log("No hay nada en el inventario");
     }
 }

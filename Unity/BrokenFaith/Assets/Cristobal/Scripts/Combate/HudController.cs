@@ -9,14 +9,14 @@ public class HudController : MonoBehaviour
 
     void OnEnable()
     {
-        Arco.cantidadDeFlechas += CantidadDeFlechas;
-        Arco.cambiarFuerza += CambiarFuerza;
+        Arco34.cantidadDeFlechas += CantidadDeFlechas;
+        Arco34.cambiarFuerza += CambiarFuerza;
     }
 
     void OnDisable()
     {
-        Arco.cantidadDeFlechas -= CantidadDeFlechas;
-        Arco.cambiarFuerza -= CambiarFuerza;
+        Arco34.cantidadDeFlechas -= CantidadDeFlechas;
+        Arco34.cambiarFuerza -= CambiarFuerza;
     }
 
     public void CantidadDeFlechas(int cantidad)

@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 102784782}
   - component: {fileID: 102784781}
   - component: {fileID: 102784784}
+  - component: {fileID: 102784785}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -439,9 +440,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   sprintMultiplier: 2
+  yaw: 0
+  pitch: 0
   SpeedH: 3
   SpeedV: 3
+  bobbingSpeed: 10
+  bobbingAmount: 0.1
+  midpoint: 0.5
+  timer: 0
   cameraTransform: {fileID: 1348856882}
+  rb: {fileID: 0}
+--- !u!114 &102784785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102784779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33d56cb2737c7049ba8ac9b6322c1b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &307728759
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,12 +933,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6507595317148287390}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1020421155 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4680583222435365414, guid: 212dee1454c67a04d86c76fcc4b60d1d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6507595317148287390}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1152543377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,7 +1070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a738e627499b3d4abce9ebc315a1cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnFlechas: {fileID: 1020421155}
+  spawnFlechas: {fileID: 0}
   flechaPrefab: {fileID: 3000046849295852847, guid: 87be24b1178fbc54ba393848e5cdf904,
     type: 3}
   cantidadFlechas: 10

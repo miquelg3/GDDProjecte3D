@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arco : MonoBehaviour
+public class Arco34 : MonoBehaviour
 {
     [SerializeField] private Transform spawnFlechas;
     [SerializeField] private Flecha flechaPrefab;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Espada : MonoBehaviour
+public class Espada34 : MonoBehaviour
 {
 
     private float danyo = 10f;  
