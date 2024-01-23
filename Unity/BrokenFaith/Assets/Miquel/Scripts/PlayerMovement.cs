@@ -43,6 +43,13 @@ public class PlayerMovement : MonoBehaviour
 
     private bool pistaEncontrada;
 
+    public Sprite espadaImg;
+    public Sprite arcoImg;
+    public Sprite pistaImg;
+
+    private int contInventario;
+    private Transform panelInventory;
+
     void Start()
     {
         Cursor.visible = false;
@@ -57,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
         {
             midpoint = cameraTransform.localPosition.y;
         }
+        // PanelInventory GameObject
+        panelInventory = GameObject.Find("Canvas").transform.Find("Inventario").transform.Find("PanelInventory");
         // Llenar inventario
         LlenarInventario();
     }
@@ -90,6 +99,13 @@ public class PlayerMovement : MonoBehaviour
             InventarioMenu.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+        }
+        else if (Input.GetKeyDown(KeyCode.Tab) && gameState.game == GameState.StateGame.inInventory)
+        {
+            gameState.ResumeGame();
+            InventarioMenu.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
 
@@ -220,6 +236,7 @@ public class PlayerMovement : MonoBehaviour
 
     void LlenarInventario ()
     {
+        // Aquí cargaremos los objetos que tendrá el jugador en el inventario al principio del todo
         Municion flechas = new Municion("1", "Flechas", 3, TipoMunicion.Piedra, 5);
         Equipo arco = new Equipo("1", "Arco", TipoArma.Arco, flechas, 5);
 
@@ -229,14 +246,56 @@ public class PlayerMovement : MonoBehaviour
         inventario.AgregarItem(espada);
 
         inventario.MostrarInventario();
-
+        LlenarPanelInventory();
     }
 
     bool GuardarPista()
     {
-        Pista pista = new Pista("1", "Primera pista", "I think human consciousnes was a tragic mistep in evolution. We became too self-aware; nature created an aspect of nature separte from itself: we are creatures that should not exist by natural law");
+        Pista pista = new Pista("1", "Pista", "I think human consciousnes was a tragic mistep in evolution. We became too self-aware; nature created an aspect of nature separte from itself: we are creatures that should not exist by natural law");
         inventario.AgregarItem(pista);
+        Transform slotTranform = panelInventory.Find($"Slot ({contInventario})");
+        GameObject slot = slotTranform.gameObject;
+        if (slot != null)
+        {
+            slot.GetComponent<Image>().type = Image.Type.Simple;
+            slot.GetComponent<Image>().sprite = pistaImg;
+        }
         return true;
+    }
+
+    void LlenarPanelInventory()
+    {
+        HashSet<Item> items = inventario.GetItems();
+        Transform slotTranform;
+        GameObject slot;
+
+        foreach (Item item in items)
+        {
+            slotTranform = panelInventory.Find($"Slot ({contInventario})");
+            slot = slotTranform.gameObject;
+            if (slot != null)
+            {
+                Debug.Log("Slot encontrado " + contInventario);
+                slot.GetComponent<Image>().type = Image.Type.Simple;
+                if (item.Nombre == "Espada")
+                {
+                    slot.GetComponent<Image>().sprite = espadaImg;
+                }
+                else if (item.Nombre == "Arco")
+                {
+                    slot.GetComponent<Image>().sprite = arcoImg;
+                }
+                else if (item.Nombre == "Pista")
+                {
+                    slot.GetComponent<Image>().sprite = pistaImg;
+                }
+                contInventario++;
+            }
+            else
+            {
+                Debug.Log($"Slot no encontrado: Slot ({contInventario})");
+            }
+        }
     }
 
 }
