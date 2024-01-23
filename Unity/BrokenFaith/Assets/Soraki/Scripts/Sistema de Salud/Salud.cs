@@ -66,56 +66,73 @@ public abstract class Salud
 
     public void RepartirGolpe(float danyo)
     {
+        Debug.Log(danyo);
         bool PartesOpcionales = false;
-        float residual = danyo;
         int aleatorizador = Random.Range(0, Lista.Count);
         //Controlar Bucle Infinito que produce este while
-        while ((Lista[aleatorizador] is Cabeza || Lista[aleatorizador] is Torso) && Lista[aleatorizador].VidaActual == 0)
+        Debug.Log(Lista[aleatorizador]);
+        Debug.Log(aleatorizador);
+        while (!PuedeGolpearExtremidades(aleatorizador) && HayExtremidadesSanas())
         {
             aleatorizador = Random.Range(0, Lista.Count);
+            Debug.Log(Lista[aleatorizador]);
+            Debug.Log(aleatorizador);
         }
-     
-            Salud Parte = Lista[aleatorizador];
-            if (residual > 0)
-            {
-                RecibirGolpe(danyo, Parte);
-                residual -= Parte.VidaActual;
-                PartesOpcionales = true;
 
-            }
-        
+        Salud Parte = Lista[aleatorizador];
+        if (PuedeGolpearExtremidades(aleatorizador) && HayExtremidadesSanas())
+        {
+            RecibirGolpe(danyo, Parte);
+            PartesOpcionales = true;
+
+        }
+
         if (PartesOpcionales == false)
         {
+            Debug.Log("Entro a la manduca");
+            Debug.Log(danyo);
+            Debug.Log(Lista[1].VidaActual);
             int AUno = 0;
-            while (!PartesOpcionales)
+            while (true)
             {
-                foreach (var parte in Lista)
+                float residual = danyo;
+
+                if (Lista[0].VidaActual > 1)
                 {
-                    if (parte.VidaActual > 1 && (parte is Cabeza || parte is Torso))
-                    { 
-                        RecibirGolpe(danyo,parte);
-                    }else if (parte.VidaActual == 1 && (parte is Cabeza || parte is Torso))
+
+                    RecibirGolpe(danyo, Lista[0]);
+                    residual -= Lista[0].VidaActual - 1;
+                    if (Lista[0].VidaActual - danyo > 1)
                     {
-                        AUno++;
+                        break;
                     }
                 }
-                if (danyo > 0 && AUno == 2)
+                else AUno++;
+                if (Lista[1].VidaActual > 1)
+                {
+                    RecibirGolpe(danyo, Lista[1]);
+                    residual -= Lista[1].VidaActual - 1;
+                    if (Lista[1].VidaActual - danyo > 1)
+                    {
+                        break;
+                    }
+                }
+                else AUno++;
+
+                if (residual > 0 && AUno == 2)
                 {
                     Muerto = true;
-                    PartesOpcionales= true;
-                }
-                else if (danyo == 0)
-                {
-                    PartesOpcionales = true;
+                    break;
                 }
             }
         }
     }
-    public void RecibirGolpeParteFundamental(Salud parte,float danyo)
+    public void RecibirGolpeParteFundamental(Salud parte, float danyo)
     {
+
         if (parte.VidaActual - danyo <= 0 && parte.VidaActual > 1)
         {
-            danyo -= parte.VidaActual -1;
+            danyo -= parte.VidaActual - 1;
             parte.VidaActual = 1;
             RepartirGolpe(danyo);
         }
@@ -134,14 +151,14 @@ public abstract class Salud
             parte.VidaActual = 0;
             RepartirGolpe(danyo);
         }
-        else if(parte.VidaActual - danyo >= 0)
+        else if (parte.VidaActual - danyo >= 0)
         {
             parte.VidaActual -= danyo;
         }
         CambiarNivelSalud(parte);
     }
     public void RecuperarGolpeParte(Salud parte)
-    {   
+    {
         parte.VidaActual = parte.VIDA_MAX;
         CambiarNivelSalud(parte);
     }
@@ -149,8 +166,8 @@ public abstract class Salud
     {
         foreach (var parte in Lista)
         {
-            RecuperarGolpeParte (parte);
-            CambiarNivelSalud (parte);
+            RecuperarGolpeParte(parte);
+            CambiarNivelSalud(parte);
         }
     }
     public void AnyadirParte(Salud Parte)
@@ -164,7 +181,7 @@ public abstract class Salud
     {
         foreach (var parte in Lista)
         {
-            if(parte == Parte)
+            if (parte == Parte)
             {
                 Lista.Remove(Parte);
             }
@@ -174,7 +191,7 @@ public abstract class Salud
     {
         foreach (var parte in Lista)
         {
-            if ((parte is Cabeza && Parte is Cabeza )||(parte is Torso && Parte is Torso))
+            if ((parte is Cabeza && Parte is Cabeza) || (parte is Torso && Parte is Torso))
             {
                 return false;
             }
@@ -194,15 +211,16 @@ public abstract class Salud
         int CuentaBrazos = 0;
         foreach (var parte in Lista)
         {
-           if(parte is Brazos && Parte is Brazos)
+            if (parte is Brazos && Parte is Brazos)
             {
                 CuentaBrazos++;
-            } else if(parte is Piernas && Parte is Piernas)
+            }
+            else if (parte is Piernas && Parte is Piernas)
             {
                 CuentaPiernas++;
             }
         }
-        if((Parte is Piernas && CuentaPiernas == 2) || (Parte is Brazos && CuentaBrazos == 2))
+        if ((Parte is Piernas && CuentaPiernas == 2) || (Parte is Brazos && CuentaBrazos == 2))
         {
             return false;
         }
@@ -212,7 +230,7 @@ public abstract class Salud
     {
         float setenta = (Parte.VIDA_MAX * 70) / 100;
         float cincuenta = (Parte.VIDA_MAX * 50) / 100;
-        float veinte = (Parte.VIDA_MAX *20) / 100;
+        float veinte = (Parte.VIDA_MAX * 20) / 100;
         if (Parte.VidaActual < setenta && Parte.VidaActual > cincuenta)
         {
             Parte.NivelSalud = NivelSalud.Herido;
@@ -225,13 +243,35 @@ public abstract class Salud
         {
             Parte.NivelSalud = NivelSalud.Destruido;
         }
-        else 
+        else
         {
             Parte.NivelSalud = NivelSalud.Sano;
         }
         Parte.Herida();
     }
-    
+    public bool PuedeGolpearExtremidades(int index)
+    {
+        if (Lista[index].VidaActual > 0 && Lista[index] is not Cabeza && Lista[index] is not Torso)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool HayExtremidadesSanas()
+    {
+        foreach (var Extremidad in Lista)
+        {
+            if (Extremidad.VidaActual > 0 && Extremidad is not Cabeza && Extremidad is not Torso)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
 public enum NivelSalud

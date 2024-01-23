@@ -14,7 +14,7 @@ public class PruebaVida : MonoBehaviour
         {
            if(Parte is Cabeza)
             {
-                Personaje.RecibirGolpe(200f,Parte);
+                Personaje.RecibirGolpe(600f,Parte);
                 Cabeza cabeza = (Cabeza)Parte;
                 Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.vision}");
             } 
@@ -36,6 +36,15 @@ public class PruebaVida : MonoBehaviour
                 Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
             }
         }
+       /** foreach (var Parte in Personaje.Lista)
+        {
+            if (Parte is Cabeza)
+            {
+                Personaje.RecuperarGolpeParte(Parte);
+                Cabeza cabeza = (Cabeza)Parte;
+                Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.vision}");
+            }
+        }**/
     }
 
     // Update is called once per frame
