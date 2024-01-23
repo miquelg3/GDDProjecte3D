@@ -13,6 +13,11 @@ public class Equipo : Item
         TipoArma = tipoArma;
         Daño = daño;
     }
+    public Equipo(string id, string nombre, TipoArma tipoArma, Municion municion) : base(id, nombre)
+    {
+        TipoArma = tipoArma;
+        Municion = municion;
+    }
     public Equipo(string id, string nombre, TipoArma tipoArma, Municion municion, float daño) : base(id, nombre)
     {
         TipoArma = tipoArma;
