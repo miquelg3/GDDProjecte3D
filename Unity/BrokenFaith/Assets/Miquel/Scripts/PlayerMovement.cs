@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             midpoint = cameraTransform.localPosition.y;
         }
         // Llenar inventario
-        LlenarInventario();
+        //LlenarInventario();
     }
 
     void Update()

@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Flecha : MonoBehaviour
 {
-
     private float danyo = 10f;
+
 
     [SerializeField]private Rigidbody rigidbody;
 
     public void Lanzar(Vector3 fuerza)
     {
-
         rigidbody.isKinematic = false;
         rigidbody.AddForce(fuerza, ForceMode.Impulse);
         rigidbody.AddTorque(transform.right * 5f);

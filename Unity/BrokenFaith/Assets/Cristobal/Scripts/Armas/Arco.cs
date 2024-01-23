@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arco34 : MonoBehaviour
+public class Arco : MonoBehaviour
 {
     [SerializeField] private Transform spawnFlechas;
     [SerializeField] private Flecha flechaPrefab;
 
+    [SerializeField]private float fuerzaBase = 2;
     private Flecha flechaActual;
 
     [SerializeField] private int cantidadFlechas = 10;
@@ -25,9 +26,6 @@ public class Arco34 : MonoBehaviour
 
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked; 
-
         cantidadDeFlechas?.Invoke(cantidadFlechas);
         if (cantidadFlechas > 0)
             CrearFlecha();
@@ -49,7 +47,7 @@ public class Arco34 : MonoBehaviour
             
         if (cargando && Input.GetMouseButtonUp(0))
         {
-            Disparar(fuerzaActual * 2);
+            Disparar(fuerzaActual * fuerzaBase);
             cargando = false;
             fuerzaActual = 0;
             cambiarFuerza?.Invoke(fuerzaActual);
