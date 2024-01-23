@@ -18,8 +18,8 @@ Props para set dressing:
 -Mesa B done
 -Silla Done
 -Cama Done
--Armario
--Estanteria
+-Armario Done
+-Estanteria Done
 -Relleno estanteria A
 -Relleno estanteria B
 -Libros
