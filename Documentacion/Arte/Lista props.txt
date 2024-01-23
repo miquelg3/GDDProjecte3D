@@ -26,9 +26,9 @@ Props para set dressing:
 -Botellas
 -Nota
 -Candelabro Colgante
--Llave
--Puerta A
--Puerta Doble
+-Llave done
+-Puerta A Victor
+-Puerta Doble Victor
 -Puerta Reja A
 
 
