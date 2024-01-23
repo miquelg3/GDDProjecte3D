@@ -8,6 +8,7 @@ public class Torso : Salud
     public float IntegridadCuerpo { get; private set; }
     public Torso(int vidaActual) : base(vidaActual)
     {
+        IntegridadCuerpo = 1f;
     }
     public Torso(int vidaActual, float Integridad) : base(vidaActual)
     {
@@ -35,4 +36,5 @@ public class Torso : Salud
     {
         IntegridadCuerpo += 0.1f;
     }
+   
 }

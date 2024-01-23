@@ -8,10 +8,10 @@ public abstract class Salud
     public List<Salud> Lista { get; set; }
     public NivelSalud NivelSalud { get; set; }
     public bool Infectado { get; private set; }
-    public float VidaActual { get; private set; }
+    public float VidaActual { get; set; }
     public bool Sangrado { get; private set; }
     public bool Muerto { get; private set; }
-    public float VIDA_MAX { get; private set; }
+    public float VIDA_MAX { get; set; }
     public Salud(NivelSalud nivelSalud, bool infectado, int vidaActual, bool sangrado, int vIDA_MAX)
     {
         Lista = new List<Salud>();
@@ -69,14 +69,9 @@ public abstract class Salud
         Debug.Log(danyo);
         bool PartesOpcionales = false;
         int aleatorizador = Random.Range(0, Lista.Count);
-        //Controlar Bucle Infinito que produce este while
-        Debug.Log(Lista[aleatorizador]);
-        Debug.Log(aleatorizador);
         while (!PuedeGolpearExtremidades(aleatorizador) && HayExtremidadesSanas())
         {
             aleatorizador = Random.Range(0, Lista.Count);
-            Debug.Log(Lista[aleatorizador]);
-            Debug.Log(aleatorizador);
         }
 
         Salud Parte = Lista[aleatorizador];
@@ -89,9 +84,6 @@ public abstract class Salud
 
         if (PartesOpcionales == false)
         {
-            Debug.Log("Entro a la manduca");
-            Debug.Log(danyo);
-            Debug.Log(Lista[1].VidaActual);
             int AUno = 0;
             while (true)
             {
@@ -99,15 +91,13 @@ public abstract class Salud
 
                 if (Lista[0].VidaActual > 1)
                 {
-
                     RecibirGolpe(danyo, Lista[0]);
                     residual -= Lista[0].VidaActual - 1;
                     if (Lista[0].VidaActual - danyo > 1)
                     {
                         break;
                     }
-                }
-                else AUno++;
+                }else AUno++;
                 if (Lista[1].VidaActual > 1)
                 {
                     RecibirGolpe(danyo, Lista[1]);
@@ -116,8 +106,7 @@ public abstract class Salud
                     {
                         break;
                     }
-                }
-                else AUno++;
+                } else AUno++;
 
                 if (residual > 0 && AUno == 2)
                 {
@@ -271,9 +260,25 @@ public abstract class Salud
         }
         return false;
     }
+    public void CambiarMaximoSaludPartes()
+    {
+        Torso pecho = (Torso)Lista[1];
+        foreach (var parte in Lista)
+        {
+            Debug.Log("entro");
+            if (parte is not Torso)
+            { }
+                parte.VIDA_MAX *= pecho.IntegridadCuerpo;
+                if (parte.VIDA_MAX < parte.VidaActual)
+                {
+                    parte.VidaActual = parte.VIDA_MAX;
+                }
+            }
+        }
+    }
 
 
-}
+
 public enum NivelSalud
 {
     Sano,

@@ -12,22 +12,25 @@ public class PruebaVida : MonoBehaviour
         Personaje = new Cuerpo();
         foreach (var Parte in Personaje.Lista)
         {
-           if(Parte is Cabeza)
+            if (Parte is Torso)
             {
-                Personaje.RecibirGolpe(600f,Parte);
-                Cabeza cabeza = (Cabeza)Parte;
-                Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.vision}");
-            } 
+                Personaje.RecibirGolpe(70f, Parte);
+                Torso cabeza = (Torso) Parte;
+                Personaje.CambiarMaximoSaludPartes();
+                Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.IntegridadCuerpo}");
+            }
         }
         foreach (var Parte in Personaje.Lista)
         {
             if (Parte is Cabeza)
             {
                 Debug.Log($"La vida Actual de la cabeza es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
-            }else if (Parte is Brazos) 
+            }
+            else if (Parte is Brazos)
             {
                 Debug.Log($"La vida Actual de el brazo es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
-            }else if(Parte is Torso) 
+            }
+            else if (Parte is Torso)
             {
                 Debug.Log($"La vida Actual de el torso es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
             }
@@ -36,13 +39,24 @@ public class PruebaVida : MonoBehaviour
                 Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
             }
         }
-       /** foreach (var Parte in Personaje.Lista)
+        /**Personaje.RecuperarGolpesTotales();
+        foreach (var Parte in Personaje.Lista)
         {
             if (Parte is Cabeza)
             {
-                Personaje.RecuperarGolpeParte(Parte);
-                Cabeza cabeza = (Cabeza)Parte;
-                Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.vision}");
+                Debug.Log($"La vida Actual de la cabeza es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
+            }
+            else if (Parte is Brazos)
+            {
+                Debug.Log($"La vida Actual de el brazo es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
+            }
+            else if (Parte is Torso)
+            {
+                Debug.Log($"La vida Actual de el torso es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
+            }
+            else
+            {
+                Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
             }
         }**/
     }
