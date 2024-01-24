@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -50,12 +51,27 @@ public class PlayerMovement : MonoBehaviour
     private int contInventario;
     private Transform panelInventory;
 
+    private float velocidadPeek = 40f;
+    private float anguloMaximo = 20f;
+    private float inclinacionActual = 0f;
+    private bool estaInclinando = false;
+
     void Start()
     {
+        // PanelInventory GameObject
+        panelInventory = GameObject.Find("Canvas").transform.Find("Inventario").transform.Find("PanelInventory");
+        // Asignamos el script de poder soltar a todos los slots
+        Transform slotTransform;
+        for (int i = 0; i < 90; i++)
+        {
+            slotTransform = panelInventory.Find($"Slot ({i})");
+            slotTransform.AddComponent<DropSlot>();
+        }
+
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Pausa.SetActive(false);
-        InventarioMenu.SetActive(false);
         rb = GetComponent<Rigidbody>();
         altura = transform.localScale;
         // Cuando queramos que haya deslizamiento, cambiamos esta variable
@@ -64,8 +80,6 @@ public class PlayerMovement : MonoBehaviour
         {
             midpoint = cameraTransform.localPosition.y;
         }
-        // PanelInventory GameObject
-        panelInventory = GameObject.Find("Canvas").transform.Find("Inventario").transform.Find("PanelInventory");
         // Llenar inventario
         LlenarInventario();
     }
@@ -74,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (gameState.game == GameState.StateGame.inGame)
             MovimientoPersonaje();
-        
 
         // Configuración de pausa
         if (Input.GetKeyDown(KeyCode.Escape) && gameState.game == GameState.StateGame.inGame)
@@ -107,7 +120,6 @@ public class PlayerMovement : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
-
 
     }
 
@@ -224,6 +236,35 @@ public class PlayerMovement : MonoBehaviour
             objectNameText.text = "";
             currentObject = null;
         }
+
+        // Inclinarse
+        if (Input.GetKey(KeyCode.Q))
+        {
+            estaInclinando = true;
+            inclinacionActual += Time.deltaTime * velocidadPeek; // Aumenta la inclinación gradualmente
+            inclinacionActual = Mathf.Min(inclinacionActual, anguloMaximo); // Limita la inclinación al máximo
+        }
+        // Inclinarse hacia el otro lado con E
+        else if (Input.GetKey(KeyCode.E))
+        {
+            estaInclinando = true;
+            inclinacionActual -= Time.deltaTime * velocidadPeek; // Aumenta la inclinación gradualmente
+            inclinacionActual = Mathf.Max(inclinacionActual, -anguloMaximo); // Limita la inclinación al máximo en la otra dirección
+        }
+        // Al soltar la tecla, vuelve gradualmente a la posición original
+        else if (estaInclinando)
+        {
+            inclinacionActual = Mathf.MoveTowards(inclinacionActual, 0f, Time.deltaTime * velocidadPeek);
+            if (inclinacionActual == 0f)
+            {
+                estaInclinando = false;
+            }
+        }
+
+        // Aplica la rotación
+        Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
+        transform.localRotation = targetRotation;
+
     }
 
     public void ResumeGame()
@@ -268,7 +309,6 @@ public class PlayerMovement : MonoBehaviour
         HashSet<Item> items = inventario.GetItems();
         Transform slotTranform;
         GameObject slot;
-
         foreach (Item item in items)
         {
             slotTranform = panelInventory.Find($"Slot ({contInventario})");
@@ -289,6 +329,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     slot.GetComponent<Image>().sprite = pistaImg;
                 }
+                slot.AddComponent<Draggable>();
                 contInventario++;
             }
             else
@@ -296,6 +337,7 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log($"Slot no encontrado: Slot ({contInventario})");
             }
         }
+        InventarioMenu.SetActive(false);
     }
 
 }
