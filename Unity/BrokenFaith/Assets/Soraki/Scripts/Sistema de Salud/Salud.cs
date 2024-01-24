@@ -66,7 +66,6 @@ public abstract class Salud
 
     public void RepartirGolpe(float danyo)
     {
-        Debug.Log(danyo);
         bool PartesOpcionales = false;
         int aleatorizador = Random.Range(0, Lista.Count);
         while (!PuedeGolpearExtremidades(aleatorizador) && HayExtremidadesSanas())
@@ -85,7 +84,7 @@ public abstract class Salud
         if (PartesOpcionales == false)
         {
             int AUno = 0;
-            while (true)
+            while (!ComprobarMuerto(danyo))
             {
                 float residual = danyo;
 
@@ -108,7 +107,7 @@ public abstract class Salud
                     }
                 } else AUno++;
 
-                if (residual > 0 && AUno == 2)
+                if (AUno == 2)
                 {
                     Muerto = true;
                     break;
@@ -265,7 +264,6 @@ public abstract class Salud
         Torso pecho = (Torso)Lista[1];
         foreach (var parte in Lista)
         {
-            Debug.Log("entro");
             if (parte is not Torso)
             { }
                 parte.VIDA_MAX *= pecho.IntegridadCuerpo;
@@ -275,7 +273,26 @@ public abstract class Salud
                 }
             }
         }
+    public bool ComprobarMuerto(float danyo) 
+    {
+        float Vida = 0f;
+        foreach (var item in Lista)
+        {
+            Vida += item.VidaActual;
+        }
+        if(danyo > Vida)
+        {
+            Muerto = true;
+            return true;
+        }
+        else { return false; }
     }
+    public void CargarEstadoPartes(List<Salud> pj)
+    {
+        Lista = pj;
+    }
+}
+
 
 
 

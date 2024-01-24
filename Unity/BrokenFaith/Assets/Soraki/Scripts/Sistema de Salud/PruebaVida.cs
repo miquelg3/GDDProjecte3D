@@ -5,16 +5,19 @@ using UnityEngine;
 public class PruebaVida : MonoBehaviour
 {
     Salud Personaje;
+    Progreso Progreso;
 
     // Start is called before the first frame update
     void Start()
     {
         Personaje = new Cuerpo();
+        Progreso = new Progreso();
+        Progreso.GuardarPartida(Personaje.Lista);
         foreach (var Parte in Personaje.Lista)
         {
             if (Parte is Torso)
             {
-                Personaje.RecibirGolpe(70f, Parte);
+                Personaje.RecibirGolpe(300f, Parte);
                 Torso cabeza = (Torso) Parte;
                 Personaje.CambiarMaximoSaludPartes();
                 Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.IntegridadCuerpo}");
@@ -59,6 +62,7 @@ public class PruebaVida : MonoBehaviour
                 Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
             }
         }**/
+        Progreso.CargarPartida();
     }
 
     // Update is called once per frame
