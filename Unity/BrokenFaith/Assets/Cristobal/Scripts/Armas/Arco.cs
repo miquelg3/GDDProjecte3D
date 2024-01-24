@@ -56,22 +56,18 @@ public class Arco : MonoBehaviour
 
     private void Disparar(float fuerza)
     {
-        flechaActual.enabled = true;
-
         Vector3 fuerzaLanzada = spawnFlechas.TransformDirection(Vector3.forward * fuerza);
         flechaActual.Lanzar(fuerzaLanzada);
         cantidadFlechas--;
         cantidadDeFlechas?.Invoke(cantidadFlechas);
 
         if (cantidadFlechas > 0)
-            CrearFlecha();
-            
+            CrearFlecha();            
     }
 
     private void CrearFlecha()
     {
-            flechaActual = Instantiate(flechaPrefab, spawnFlechas);
-            flechaActual.transform.localPosition = Vector3.zero; 
-            flechaActual.enabled = false;
+        flechaActual = Instantiate(flechaPrefab, spawnFlechas);
+        flechaActual.transform.localPosition = Vector3.zero;
     }
 }

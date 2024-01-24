@@ -4,33 +4,42 @@ using UnityEngine;
 
 public class Flecha : MonoBehaviour
 {
-    private float danyo = 10f;
+    [SerializeField] private float danyo = 10f;
+    [SerializeField] private float carga = -0.2f;
+    [SerializeField] private float torque = 5f;
 
 
     [SerializeField]private Rigidbody rigidbody;
+    private FixedJoint joint;
 
     public void Lanzar(Vector3 fuerza)
     {
+        rigidbody = GetComponent<Rigidbody>();
         rigidbody.isKinematic = false;
         rigidbody.AddForce(fuerza, ForceMode.Impulse);
-        rigidbody.AddTorque(transform.right * 5f);
+        rigidbody.AddTorque(transform.right * torque);
         transform.SetParent(null);
     }
 
     public void Cargar()
-    {
-        Vector3 posicionOriginal = transform.position;
-        transform.position = posicionOriginal + transform.forward * -0.2f;
+    {       
+        transform.position += transform.forward * carga;
     }
 
     private void OnTriggerEnter(Collider objeto)
     {
-        if (objeto.CompareTag("Enemigo"))
-            Debug.Log(objeto.name);
+        joint = gameObject.AddComponent<FixedJoint>();
 
-        rigidbody.isKinematic = true;
-        transform.SetParent(objeto.transform);
-        this.enabled = false;
+        if (objeto.CompareTag("Enemigo"))
+        {
+            Debug.Log(objeto.name);
+        }
+             
+        joint.connectedBody = objeto.GetComponent<Rigidbody>();
+        joint.breakForce = Mathf.Infinity;
+        joint.breakTorque = Mathf.Infinity;
+
+        rigidbody.useGravity = false;
     }
 
 }

@@ -72,7 +72,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9566e41d8038f1c42986ffe245fe5f1f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6883546
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9566e41d8038f1c42986ffe245fe5f1f,
         type: 3}
@@ -82,7 +82,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9566e41d8038f1c42986ffe245fe5f1f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.72537434
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9566e41d8038f1c42986ffe245fe5f1f,
         type: 3}
@@ -97,7 +97,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9566e41d8038f1c42986ffe245fe5f1f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -93
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9566e41d8038f1c42986ffe245fe5f1f,
         type: 3}
@@ -148,6 +148,7 @@ MonoBehaviour:
   spawnFlechas: {fileID: 1374497778373072037}
   flechaPrefab: {fileID: 3000046849295852847, guid: 87be24b1178fbc54ba393848e5cdf904,
     type: 3}
+  fuerzaBase: 2
   cantidadFlechas: 10
   fuerzaMaxima: 70
 --- !u!4 &3038086508521556014 stripped
