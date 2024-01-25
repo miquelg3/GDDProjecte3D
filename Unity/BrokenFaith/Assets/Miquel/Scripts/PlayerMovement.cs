@@ -310,7 +310,6 @@ public class PlayerMovement : MonoBehaviour
         HashSet<Item> items = inventario.GetItems();
         Transform slotTranform;
         GameObject slot;
-        Transform newSlot = null;
         if (modo == 1)
         {
             foreach (Item item in items)
@@ -319,7 +318,7 @@ public class PlayerMovement : MonoBehaviour
                 slot = slotTranform.gameObject;
                 if (slot != null)
                 {
-                    newSlot = Instantiate(slotTranform, slotTranform.parent);
+                    Transform newSlot = Instantiate(slotTranform, slotTranform.parent);
                     newSlot.name = $"Slot ({90 + contInventario})";
                     Debug.Log("Slot encontrado " + contInventario);
                     newSlot.GetComponent<Image>().type = Image.Type.Simple;
@@ -335,6 +334,9 @@ public class PlayerMovement : MonoBehaviour
                     {
                         newSlot.GetComponent<Image>().sprite = pistaImg;
                     }
+                    newSlot.AddComponent<Draggable>();
+                    newSlots.Add(newSlot);
+                    StartCoroutine(SlotParent(newSlot, modo));
                     contInventario++;
                 }
                 else
@@ -345,11 +347,12 @@ public class PlayerMovement : MonoBehaviour
         }else if (modo == 2)
         {
             Item item = items.Last();
-            slotTranform = panelInventory.Find($"Slot ({contInventario})");
+            slotTranform = SlotSinHijo();
             slot = slotTranform.gameObject;
             if (slot != null)
             {
-                newSlot = Instantiate(slotTranform, slotTranform.parent);
+                Debug.Log($"Apunto de instanciar como padre el Slot ({contInventario})");
+                Transform newSlot = Instantiate(slotTranform, panelInventory);
                 newSlot.name = $"Slot ({90 + contInventario})";
                 Debug.Log("Slot encontrado " + contInventario);
                 newSlot.GetComponent<Image>().type = Image.Type.Simple;
@@ -365,6 +368,9 @@ public class PlayerMovement : MonoBehaviour
                 {
                     newSlot.GetComponent<Image>().sprite = pistaImg;
                 }
+                newSlot.AddComponent<Draggable>();
+                newSlots.Add(newSlot);
+                StartCoroutine(SlotParent(newSlot, modo));
                 contInventario++;
             }
             else
@@ -372,11 +378,9 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log($"Slot no encontrado: Slot ({contInventario})");
             }
         }
-        newSlot.AddComponent<Draggable>();
-        newSlots.Add(newSlot);
-        StartCoroutine(SlotParent(newSlot, modo));
     }
 
+    // Es una corrutina porque con la ui hay que tener paciencia
     IEnumerator SlotParent(Transform slot, int modo)
     {
         yield return null;
@@ -386,19 +390,27 @@ public class PlayerMovement : MonoBehaviour
             slotParent = panelInventory.Find($"Slot ({newSlots.IndexOf(slot)})");
         }else if (modo == 2)
         {
-            for (int i = 0; i < 89; i++)
-            {
-                Transform slotParentComprobar = panelInventory.Find($"Slot ({i})");
-                Debug.Log($"Slot ({i}) \nChild count: {slotParentComprobar.childCount}");
-                if (slotParentComprobar.childCount == 0)
-                {
-                    slotParent = slotParentComprobar;
-                    break;
-                }
-            }
+            slotParent = SlotSinHijo();
         }
         slot.SetParent(slotParent);
         slot.position = slotParent.position;
+    }
+
+    // Buscamos algún slot que no tenga hijo
+    Transform SlotSinHijo()
+    {
+        Transform slotParent = null;
+        for (int i = 0; i < 89; i++)
+        {
+            Transform slotParentComprobar = panelInventory.Find($"Slot ({i})");
+            Debug.Log($"Slot ({i}) \nChild count: {slotParentComprobar.childCount}");
+            if (slotParentComprobar.childCount == 0)
+            {
+                slotParent = slotParentComprobar;
+                break;
+            }
+        }
+        return slotParent;
     }
 
 }
