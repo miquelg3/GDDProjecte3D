@@ -18,17 +18,17 @@ Props para set dressing:
 -Mesa B done
 -Silla Done
 -Cama Done
--Armario
--Estanteria
+-Armario Done
+-Estanteria Done
 -Relleno estanteria A
 -Relleno estanteria B
 -Libros
 -Botellas
 -Nota
 -Candelabro Colgante
--Llave
--Puerta A
--Puerta Doble
+-Llave done
+-Puerta A Victor
+-Puerta Doble Victor
 -Puerta Reja A
 
 
