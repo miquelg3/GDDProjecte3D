@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using TMPro;
 using Unity.VisualScripting;
@@ -9,6 +10,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -55,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     private float anguloMaximo = 20f;
     private float inclinacionActual = 0f;
     private bool estaInclinando = false;
+    private List<Transform> newSlots = new List<Transform>();
 
     void Start()
     {
@@ -81,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
             midpoint = cameraTransform.localPosition.y;
         }
         // Llenar inventario
+        InventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
         LlenarInventario();
     }
 
@@ -96,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
             Pausa.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            InventarioMenu.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && gameState.game == GameState.StateGame.pause)
         {
@@ -103,20 +108,21 @@ public class PlayerMovement : MonoBehaviour
             Pausa.SetActive(false);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            InventarioMenu.SetActive(true);
         }
 
         // Mostrar inventario
         if (Input.GetKeyDown(KeyCode.Tab) && gameState.game == GameState.StateGame.inGame)
         {
             gameState.InventoryGame();
-            InventarioMenu.SetActive(true);
+            InventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 100;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && gameState.game == GameState.StateGame.inInventory)
         {
             gameState.ResumeGame();
-            InventarioMenu.SetActive(false);
+            InventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -287,49 +293,86 @@ public class PlayerMovement : MonoBehaviour
         inventario.AgregarItem(espada);
 
         inventario.MostrarInventario();
-        LlenarPanelInventory();
+        LlenarPanelInventory(1);
     }
 
     bool GuardarPista()
     {
         Pista pista = new Pista("1", "Pista", "I think human consciousnes was a tragic mistep in evolution. We became too self-aware; nature created an aspect of nature separte from itself: we are creatures that should not exist by natural law");
         inventario.AgregarItem(pista);
-        Transform slotTranform = panelInventory.Find($"Slot ({contInventario})");
-        GameObject slot = slotTranform.gameObject;
-        if (slot != null)
-        {
-            slot.GetComponent<Image>().type = Image.Type.Simple;
-            slot.GetComponent<Image>().sprite = pistaImg;
-        }
+        Transform slotTransform = panelInventory.Find($"Slot ({contInventario})");
+        newSlots.Add(slotTransform);
+        LlenarPanelInventory(2);
         return true;
     }
 
-    void LlenarPanelInventory()
+    // 1 = Primera vez que se ejecuta el código
+    // 2 = Para guardar un nuevo objeto en el inventario
+    void LlenarPanelInventory(int modo)
     {
         HashSet<Item> items = inventario.GetItems();
         Transform slotTranform;
         GameObject slot;
-        foreach (Item item in items)
+        if (modo == 1)
         {
+            foreach (Item item in items)
+            {
+                slotTranform = panelInventory.Find($"Slot ({contInventario})");
+                slot = slotTranform.gameObject;
+                if (slot != null)
+                {
+                    Transform newSlot = Instantiate(slotTranform, slotTranform.parent);
+                    newSlot.name = $"Slot ({90 + contInventario})";
+                    Debug.Log("Slot encontrado " + contInventario);
+                    newSlot.GetComponent<Image>().type = Image.Type.Simple;
+                    if (item.Nombre == "Espada")
+                    {
+                        newSlot.GetComponent<Image>().sprite = espadaImg;
+                    }
+                    else if (item.Nombre == "Arco")
+                    {
+                        newSlot.GetComponent<Image>().sprite = arcoImg;
+                    }
+                    else if (item.Nombre == "Pista")
+                    {
+                        newSlot.GetComponent<Image>().sprite = pistaImg;
+                    }
+                    newSlot.AddComponent<Draggable>();
+                    newSlots.Add(newSlot);
+                    StartCoroutine(SlotParent(newSlot, modo));
+                    contInventario++;
+                }
+                else
+                {
+                    Debug.Log($"Slot no encontrado: Slot ({contInventario})");
+                }
+            }
+        }else if (modo == 2)
+        {
+            Item item = items.Last();
             slotTranform = panelInventory.Find($"Slot ({contInventario})");
             slot = slotTranform.gameObject;
             if (slot != null)
             {
+                Transform newSlot = Instantiate(slotTranform, slotTranform.parent);
+                newSlot.name = $"Slot ({90 + contInventario})";
                 Debug.Log("Slot encontrado " + contInventario);
-                slot.GetComponent<Image>().type = Image.Type.Simple;
+                newSlot.GetComponent<Image>().type = Image.Type.Simple;
                 if (item.Nombre == "Espada")
                 {
-                    slot.GetComponent<Image>().sprite = espadaImg;
+                    newSlot.GetComponent<Image>().sprite = espadaImg;
                 }
                 else if (item.Nombre == "Arco")
                 {
-                    slot.GetComponent<Image>().sprite = arcoImg;
+                    newSlot.GetComponent<Image>().sprite = arcoImg;
                 }
                 else if (item.Nombre == "Pista")
                 {
-                    slot.GetComponent<Image>().sprite = pistaImg;
+                    newSlot.GetComponent<Image>().sprite = pistaImg;
                 }
-                slot.AddComponent<Draggable>();
+                newSlot.AddComponent<Draggable>();
+                newSlots.Add(newSlot);
+                StartCoroutine(SlotParent(newSlot, modo));
                 contInventario++;
             }
             else
@@ -337,7 +380,30 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log($"Slot no encontrado: Slot ({contInventario})");
             }
         }
-        InventarioMenu.SetActive(false);
+    }
+
+    IEnumerator SlotParent(Transform slot, int modo)
+    {
+        yield return null;
+        Transform slotParent = null;
+        if (modo == 1)
+        {
+            slotParent = panelInventory.Find($"Slot ({newSlots.IndexOf(slot)})");
+        }else if (modo == 2)
+        {
+            for (int i = 0; i < 89; i++)
+            {
+                Transform slotParentComprobar = panelInventory.Find($"Slot ({i})");
+                Debug.Log($"Slot ({i}) \nChild count: {slotParentComprobar.childCount}");
+                if (slotParentComprobar.childCount == 0)
+                {
+                    slotParent = slotParentComprobar;
+                    break;
+                }
+            }
+        }
+        slot.SetParent(slotParent);
+        slot.position = slotParent.position;
     }
 
 }

@@ -6,29 +6,37 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Canvas canvas;
+    private Vector3 startPosition;
+    private Transform startParent;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = gameObject.AddComponent<CanvasGroup>();
-        canvas = FindObjectOfType<Canvas>(); // Asegúrate de que solo haya un Canvas en la escena o referencia el correcto
+        canvas = FindObjectOfType<Canvas>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        canvasGroup.alpha = 0.6f; // Hacer el objeto más transparente mientras se arrastra
-        canvasGroup.blocksRaycasts = false; // Permite que el evento de drop se registre en otros objetos
+        canvasGroup.alpha = 0.6f;
+        canvasGroup.blocksRaycasts = false;
+        startPosition = transform.position;
+        startParent = transform.parent;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor; // Mueve el objeto
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        canvasGroup.alpha = 1f; // Restaurar la transparencia
-        canvasGroup.blocksRaycasts = true; // Restaurar el bloqueo de raycasts
+        if (transform.parent == startParent)
+        {
+            transform.position = startPosition;
+        }
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
     }
 }
 

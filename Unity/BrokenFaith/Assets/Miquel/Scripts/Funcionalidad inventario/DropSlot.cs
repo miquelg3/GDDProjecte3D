@@ -11,13 +11,13 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
         if (!RectTransformUtility.RectangleContainsScreenPoint(dropRectTransform, eventData.position, eventData.pressEventCamera))
         {
-            return; // Si la imagen no se suelta sobre el slot, no hacer nada
+            return;
         }
 
         // Mover la imagen al slot
         var image = eventData.pointerDrag.GetComponent<RectTransform>();
         image.position = dropRectTransform.position;
-        image.SetParent(dropRectTransform); // Opcional: establecer el slot como padre para mantener la jerarquía
+        image.SetParent(dropRectTransform);
     }
 }
 
