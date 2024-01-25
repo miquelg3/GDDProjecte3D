@@ -8,10 +8,12 @@ public class Espada : MonoBehaviour
     [SerializeField ]private float danyo = 2f;  
     private Animator animator;
     private bool puedeAtacar;
+    private bool atacando;
  
     void Start()
     {
         puedeAtacar = true;
+        atacando = false;
         animator = GetComponent<Animator>(); 
     }
 
@@ -26,16 +28,15 @@ public class Espada : MonoBehaviour
 
     public void Atacar()
     {
+        atacando = true;
         puedeAtacar = false;
         animator.SetTrigger("Atacar");
     }
 
     private void OnTriggerEnter(Collider objeto)
     {
-        Debug.Log("Entra al collider.");
-        if (objeto.CompareTag("Enemigo"))
+        if (objeto.CompareTag("Enemigo") && atacando)
         {
-            Debug.Log("Colisión con enemigo detectada.");
             objeto.GetComponent<SaludEnemigoController>().RecibirDanyo(danyo);
         }
     }
@@ -43,6 +44,7 @@ public class Espada : MonoBehaviour
     public void ResetAtaque()
     {
         puedeAtacar = true;
+        atacando = false;
     }
 
 }

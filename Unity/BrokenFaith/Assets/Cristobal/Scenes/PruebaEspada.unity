@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 102784781}
   - component: {fileID: 102784780}
   - component: {fileID: 102784784}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1008,6 +1008,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1348856882}
     m_Modifications:
+    - target: {fileID: 1966471097137754115, guid: 72dd1e4928d50c140a8f82a0b7d38ebe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2212812720227967732, guid: 72dd1e4928d50c140a8f82a0b7d38ebe,
         type: 3}
       propertyPath: danyo
@@ -1018,6 +1023,21 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4119836818922686447, guid: 72dd1e4928d50c140a8f82a0b7d38ebe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012274679786149573, guid: 72dd1e4928d50c140a8f82a0b7d38ebe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430271958160655201, guid: 72dd1e4928d50c140a8f82a0b7d38ebe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6941773208539596095, guid: 72dd1e4928d50c140a8f82a0b7d38ebe,
         type: 3}
       propertyPath: m_CollisionDetection
@@ -1027,6 +1047,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EspadaEsculpido
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475319376307531822, guid: 72dd1e4928d50c140a8f82a0b7d38ebe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776739235862576541, guid: 72dd1e4928d50c140a8f82a0b7d38ebe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9139407543980518036, guid: 72dd1e4928d50c140a8f82a0b7d38ebe,
         type: 3}
@@ -5691,7 +5721,7 @@ GameObject:
   - component: {fileID: 1348856881}
   - component: {fileID: 1348856880}
   - component: {fileID: 1348856883}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}

@@ -9,6 +9,8 @@ public class SaludEnemigoController : MonoBehaviour
     private Animator animator;
     private CapsuleCollider collider;
 
+    private Ia_BasicController ia_controller;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -24,6 +26,7 @@ public class SaludEnemigoController : MonoBehaviour
     public void Muerte()
     {
         collider.enabled = false;
+        ia_controller.enabled = false;
         animator.SetTrigger("Muerto");
     }
 }

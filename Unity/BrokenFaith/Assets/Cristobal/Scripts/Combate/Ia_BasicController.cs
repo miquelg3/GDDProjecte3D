@@ -4,49 +4,68 @@ using UnityEngine;
 
 public class Ia_BasicController : MonoBehaviour
 {
+    [Header("Vision")]
+    [SerializeField] private float rangoMaximo = 10f;
+    [SerializeField] private float anguloVision = 45f;
+    private LayerMask layermaskJugador;
+
+    [Header("MoviemientoYAcciones")]
+    [SerializeField] private float velocidadMovimiento = 10f;
+    [SerializeField] private float distanciaSeguimiento = 0f;
+    [SerializeField] private float distanciaAtaque = 0f;
 
     private GameObject jugador;
 
-    [SerializeField] private float velocidadMoviemiento;
-    [SerializeField] private float distanciaSeguimiento;
-    [SerializeField] private float distanciaAtaque;
+    private Animator animator;
 
     private bool atacando;
-    private float velActual;
-
-    private Animator animator;
 
     void Start()
     {
-        jugador = GameObject.FindGameObjectWithTag("Player");
-        animator = GetComponent<Animator>();
-        velActual = velocidadMoviemiento;
         atacando = false;
+        jugador = GameObject.FindGameObjectWithTag("Player").gameObject;
+        layermaskJugador = jugador.layer;
     }
 
     void Update()
     {
-        float distanciaObjetivo = Vector3.Distance(jugador.transform.position, transform.position);
+        if (RangoDeVision())
+        {
+            Debug.Log("JugadorDetectado");
+        }
 
-        if (distanciaObjetivo < distanciaSeguimiento) SeguirJugador();
-
-        if (distanciaObjetivo < distanciaAtaque) Atacar();
+        
     }
 
-    public void SeguirJugador()
+    private bool RangoDeVision()
     {
-        velocidadMoviemiento = velActual;
-        Vector3 pos = transform.position;
-        transform.position = 
-            Vector3.MoveTowards(pos, pos - jugador.transform.position, velocidadMoviemiento * Time.deltaTime );
-        atacando = false;
+        Vector3 direccionJugador = jugador.transform.position - transform.position;
+        float anguloEnemigoJugador = Vector3.Angle(transform.forward, direccionJugador);
+
+        if(anguloEnemigoJugador < anguloVision * 0.5f)
+        {
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, direccionJugador.normalized, out hit, rangoMaximo, layermaskJugador))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public void Atacar()
+    private void OnDrawGizmos()
     {
-        atacando = true;
-        velocidadMoviemiento= 0;
-        animator.SetBool("Atacando", atacando);
+        Gizmos.color = Color.red;
+
+        float halfFOV = anguloVision * 0.5f;
+        Vector3 principio = Quaternion.Euler(0, -halfFOV, 0) * transform.forward * rangoMaximo;
+        Vector3 final = Quaternion.Euler(0, halfFOV, 0) * transform.forward * rangoMaximo;
+
+        Gizmos.DrawLine(transform.position, transform.position + principio);
+        Gizmos.DrawLine(transform.position, transform.position + final);
+
+        Gizmos.DrawLine(transform.position + principio, transform.position + final);
     }
 
 }
