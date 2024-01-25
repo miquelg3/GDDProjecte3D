@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,11 @@ public class Progreso
         string ruta = Path.Combine(Application.dataPath, "Guardado.json");
         Estado = new EstadoJugador();
         ObtenerDatos(pj);
-        string datosJson = JsonUtility.ToJson(Estado);
+        ContenedorDeSalud contenedor = new ContenedorDeSalud
+        {
+            Salud = Estado
+        };
+        string datosJson = JsonUtility.ToJson(contenedor);
         File.WriteAllText(ruta, datosJson);
         Debug.Log(datosJson);
 
@@ -50,4 +55,10 @@ public class Progreso
         return pj;
     }
 
+}
+
+[Serializable]
+public class ContenedorDeSalud
+{
+    public EstadoJugador Salud;
 }
