@@ -292,11 +292,9 @@ public abstract class Salud
     }
     public void CargarEstadoPartes(List<Salud> pj)
     {
-        ActualizarVidaMaxima((Torso)pj[1]);
-
         ActualizarNivelSalud();
+        ActualizarVidaMaxima((Torso)pj[1]);
         CambiarMaximoSaludPartes();
-        Lista[1].Herida();
         CargarLista(pj);
     }
     public void ActualizarNivelSalud()
@@ -310,6 +308,7 @@ public abstract class Salud
     }
     public void ActualizarVidaMaxima(Torso Pecho)
     {
+        
         foreach (var parte in Lista)
         {
             if (parte is not Torso)
@@ -366,7 +365,7 @@ public abstract class Salud
     {
         for (int i = 0; i < 6; i++)
         {
-            pj[i].VidaActual = Lista[i].VidaActual;
+            Lista[i].VidaActual = pj[i].VidaActual; 
         }
     }
 }
