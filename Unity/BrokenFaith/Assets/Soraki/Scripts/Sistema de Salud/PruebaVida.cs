@@ -23,25 +23,7 @@ public class PruebaVida : MonoBehaviour
                 Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.IntegridadCuerpo}");
             }
         }
-        foreach (var Parte in Personaje.Lista)
-        {
-            if (Parte is Cabeza)
-            {
-                Debug.Log($"La vida Actual de la cabeza es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
-            }
-            else if (Parte is Brazos)
-            {
-                Debug.Log($"La vida Actual de el brazo es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
-            }
-            else if (Parte is Torso)
-            {
-                Debug.Log($"La vida Actual de el torso es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
-            }
-            else
-            {
-                Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
-            }
-        }
+       
         /**Personaje.RecuperarGolpesTotales();
         foreach (var Parte in Personaje.Lista)
         {
@@ -62,7 +44,26 @@ public class PruebaVida : MonoBehaviour
                 Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
             }
         }**/
-        Progreso.CargarPartida();
+        Personaje.CargarEstadoPartes(Progreso.SacarDatos(Personaje.Lista,Progreso.CargarPartida()));
+        foreach (var Parte in Personaje.Lista)
+        {
+            if (Parte is Cabeza)
+            {
+                Debug.Log($"La vida Actual de la cabeza es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
+            }
+            else if (Parte is Brazos)
+            {
+                Debug.Log($"La vida Actual de el brazo es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
+            }
+            else if (Parte is Torso)
+            {
+                Debug.Log($"La vida Actual de el torso es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
+            }
+            else
+            {
+                Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
+            }
+        }
     }
 
     // Update is called once per frame

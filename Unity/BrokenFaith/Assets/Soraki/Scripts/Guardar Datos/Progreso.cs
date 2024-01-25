@@ -23,13 +23,13 @@ public class Progreso
         Debug.Log(datosJson);
 
     }
-    public EstadoJugador CargarPartida()
+    public ContenedorDeSalud CargarPartida()
     {
         string ruta = Path.Combine(Application.dataPath, "Guardado.json");
         if (File.Exists(ruta))
         {
             string datosGuardados = File.ReadAllText(ruta);
-            EstadoJugador progresoCargado = JsonUtility.FromJson<EstadoJugador>(datosGuardados);
+            ContenedorDeSalud progresoCargado = JsonUtility.FromJson<ContenedorDeSalud>(datosGuardados);
             string datosJson = JsonUtility.ToJson(progresoCargado);
             return progresoCargado;
         }
@@ -44,14 +44,14 @@ public class Progreso
         Estado.PD = pj[4].VidaActual;
         Estado.PI = pj[5].VidaActual;
     }
-    public List<Salud> SacarDatos(List<Salud> pj, EstadoJugador cargado)
+    public List<Salud> SacarDatos(List<Salud> pj, ContenedorDeSalud cont)
     {
-        pj[0].VidaActual = cargado.C;
-        pj[1].VidaActual = cargado.T;
-        pj[2].VidaActual = cargado.BI;
-        pj[3].VidaActual = cargado.BD;
-        pj[4].VidaActual = cargado.PD;
-        pj[5].VidaActual = cargado.PI;
+        pj[0].VidaActual = cont.Salud.C;
+        pj[1].VidaActual = cont.Salud.T;
+        pj[2].VidaActual = cont.Salud.BI;
+        pj[3].VidaActual = cont.Salud.BD;
+        pj[4].VidaActual = cont.Salud.PD;
+        pj[5].VidaActual = cont.Salud.PI;
         return pj;
     }
 

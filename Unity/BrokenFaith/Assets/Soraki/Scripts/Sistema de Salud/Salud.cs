@@ -96,7 +96,8 @@ public abstract class Salud
                     {
                         break;
                     }
-                }else AUno++;
+                }
+                else AUno++;
                 if (Lista[1].VidaActual > 1)
                 {
                     RecibirGolpe(danyo, Lista[1]);
@@ -105,7 +106,8 @@ public abstract class Salud
                     {
                         break;
                     }
-                } else AUno++;
+                }
+                else AUno++;
 
                 if (AUno == 2)
                 {
@@ -265,7 +267,7 @@ public abstract class Salud
         foreach (var parte in Lista)
         {
             if (parte is not Torso)
-            { }
+            {
                 parte.VIDA_MAX *= pecho.IntegridadCuerpo;
                 if (parte.VIDA_MAX < parte.VidaActual)
                 {
@@ -273,14 +275,15 @@ public abstract class Salud
                 }
             }
         }
-    public bool ComprobarMuerto(float danyo) 
+    }
+    public bool ComprobarMuerto(float danyo)
     {
         float Vida = 0f;
         foreach (var item in Lista)
         {
             Vida += item.VidaActual;
         }
-        if(danyo > Vida)
+        if (danyo > Vida)
         {
             Muerto = true;
             return true;
@@ -289,7 +292,82 @@ public abstract class Salud
     }
     public void CargarEstadoPartes(List<Salud> pj)
     {
-        Lista = pj;
+        ActualizarVidaMaxima((Torso)pj[1]);
+
+        ActualizarNivelSalud();
+        CambiarMaximoSaludPartes();
+        Lista[1].Herida();
+        CargarLista(pj);
+    }
+    public void ActualizarNivelSalud()
+    {
+        CambiarNivelSalud(Lista[0]);
+        CambiarNivelSalud(Lista[1]);
+        CambiarNivelSalud(Lista[2]);
+        CambiarNivelSalud(Lista[3]);
+        CambiarNivelSalud(Lista[4]);
+        CambiarNivelSalud(Lista[5]);
+    }
+    public void ActualizarVidaMaxima(Torso Pecho)
+    {
+        foreach (var parte in Lista)
+        {
+            if (parte is not Torso)
+            {
+                if (Pecho.NivelSalud == NivelSalud.Sano)
+                {
+
+                    if (parte is Cabeza)
+                    {
+                        parte.VIDA_MAX = 200f;
+                    }
+                    else
+                    {
+                        parte.VIDA_MAX = 100f;
+                    }
+                }
+                if(Pecho.NivelSalud == NivelSalud.Herido)
+                {
+                    if (parte is Cabeza)
+                    {
+                        parte.VIDA_MAX = 150f;
+                    }
+                    else
+                    {
+                        parte.VIDA_MAX = 75f;
+                    }
+                }
+                if (Pecho.NivelSalud == NivelSalud.Roto)
+                {
+                    if (parte is Cabeza)
+                    {
+                        parte.VIDA_MAX = 100f;
+                    }
+                    else
+                    {
+                        parte.VIDA_MAX = 50f;
+                    }
+                }
+                if (Pecho.NivelSalud == NivelSalud.Destruido)
+                {
+                    if (parte is Cabeza)
+                    {
+                        parte.VIDA_MAX = 70f;
+                    }
+                    else
+                    {
+                        parte.VIDA_MAX = 35f;
+                    }
+                }
+            }
+        }
+    }
+    public void CargarLista(List<Salud> pj)
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            pj[i].VidaActual = Lista[i].VidaActual;
+        }
     }
 }
 
