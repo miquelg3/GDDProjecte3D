@@ -6,11 +6,7 @@ using System.Net;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -279,6 +275,7 @@ public class PlayerMovement : MonoBehaviour
         Pausa.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        InventarioMenu.SetActive(true);
     }
 
     void LlenarInventario ()
@@ -313,6 +310,7 @@ public class PlayerMovement : MonoBehaviour
         HashSet<Item> items = inventario.GetItems();
         Transform slotTranform;
         GameObject slot;
+        Transform newSlot = null;
         if (modo == 1)
         {
             foreach (Item item in items)
@@ -321,7 +319,7 @@ public class PlayerMovement : MonoBehaviour
                 slot = slotTranform.gameObject;
                 if (slot != null)
                 {
-                    Transform newSlot = Instantiate(slotTranform, slotTranform.parent);
+                    newSlot = Instantiate(slotTranform, slotTranform.parent);
                     newSlot.name = $"Slot ({90 + contInventario})";
                     Debug.Log("Slot encontrado " + contInventario);
                     newSlot.GetComponent<Image>().type = Image.Type.Simple;
@@ -337,9 +335,6 @@ public class PlayerMovement : MonoBehaviour
                     {
                         newSlot.GetComponent<Image>().sprite = pistaImg;
                     }
-                    newSlot.AddComponent<Draggable>();
-                    newSlots.Add(newSlot);
-                    StartCoroutine(SlotParent(newSlot, modo));
                     contInventario++;
                 }
                 else
@@ -354,7 +349,7 @@ public class PlayerMovement : MonoBehaviour
             slot = slotTranform.gameObject;
             if (slot != null)
             {
-                Transform newSlot = Instantiate(slotTranform, slotTranform.parent);
+                newSlot = Instantiate(slotTranform, slotTranform.parent);
                 newSlot.name = $"Slot ({90 + contInventario})";
                 Debug.Log("Slot encontrado " + contInventario);
                 newSlot.GetComponent<Image>().type = Image.Type.Simple;
@@ -370,9 +365,6 @@ public class PlayerMovement : MonoBehaviour
                 {
                     newSlot.GetComponent<Image>().sprite = pistaImg;
                 }
-                newSlot.AddComponent<Draggable>();
-                newSlots.Add(newSlot);
-                StartCoroutine(SlotParent(newSlot, modo));
                 contInventario++;
             }
             else
@@ -380,6 +372,9 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log($"Slot no encontrado: Slot ({contInventario})");
             }
         }
+        newSlot.AddComponent<Draggable>();
+        newSlots.Add(newSlot);
+        StartCoroutine(SlotParent(newSlot, modo));
     }
 
     IEnumerator SlotParent(Transform slot, int modo)
