@@ -169,6 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421248459e1cb0048a466837d40eab69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danyo: 1
+  carga: -0.2
+  torque: 0
   rigidbody: {fileID: -2202018979353268132}
 --- !u!54 &-2202018979353268132
 Rigidbody:

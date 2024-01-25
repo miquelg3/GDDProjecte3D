@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Flecha : MonoBehaviour
 {
-    [SerializeField] private float danyo = 10f;
+    [SerializeField] private float danyo = 1f;
     [SerializeField] private float carga = -0.2f;
     [SerializeField] private float torque = 5f;
 
@@ -32,14 +32,16 @@ public class Flecha : MonoBehaviour
 
         if (objeto.CompareTag("Enemigo"))
         {
-            Debug.Log(objeto.name);
+            objeto.GetComponent<SaludEnemigoController>().RecibirDanyo(danyo);
+        } 
+        else 
+        {
+            joint.connectedBody = objeto.GetComponent<Rigidbody>();
+            joint.breakForce = Mathf.Infinity;
+            joint.breakTorque = Mathf.Infinity;
+            rigidbody.useGravity = false;
         }
-             
-        joint.connectedBody = objeto.GetComponent<Rigidbody>();
-        joint.breakForce = Mathf.Infinity;
-        joint.breakTorque = Mathf.Infinity;
 
-        rigidbody.useGravity = false;
     }
 
 }

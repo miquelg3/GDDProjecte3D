@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Espada34 : MonoBehaviour
+public class Espada : MonoBehaviour
 {
 
-    private float danyo = 10f;  
+    [SerializeField ]private float danyo = 2f;  
     private Animator animator;
     private bool puedeAtacar;
  
@@ -28,6 +28,16 @@ public class Espada34 : MonoBehaviour
     {
         puedeAtacar = false;
         animator.SetTrigger("Atacar");
+    }
+
+    private void OnTriggerEnter(Collider objeto)
+    {
+        Debug.Log("Entra al collider.");
+        if (objeto.CompareTag("Enemigo"))
+        {
+            Debug.Log("Colisión con enemigo detectada.");
+            objeto.GetComponent<SaludEnemigoController>().RecibirDanyo(danyo);
+        }
     }
 
     public void ResetAtaque()
