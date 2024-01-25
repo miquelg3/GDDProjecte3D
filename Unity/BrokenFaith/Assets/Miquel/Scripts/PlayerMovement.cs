@@ -218,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
                     Debug.Log("Score: " + score);
                     Debug.Log("PistaEncontrada " + pistaEncontrada);
                 }
-                if (pistaEncontrada && Input.GetKeyDown(KeyCode.E))
+                if (pistaEncontrada && Input.GetKeyDown(KeyCode.F))
                 {
                     Debug.Log("Encontrado");
                     bool pistaGuardada = GuardarPista();
@@ -281,7 +281,7 @@ public class PlayerMovement : MonoBehaviour
     void LlenarInventario ()
     {
         // Aquí cargaremos los objetos que tendrá el jugador en el inventario al principio del todo
-        Municion flechas = new Municion("1", "Flechas", 3, TipoMunicion.Piedra, 5);
+        Municion flechas = new Municion("1", "Flechas", true, 3, TipoMunicion.Piedra, 5);
         Equipo arco = new Equipo("1", "Arco", TipoArma.Arco, flechas, 5);
 
         Equipo espada = new Equipo("2", "Espada", TipoArma.Espada, 5);
