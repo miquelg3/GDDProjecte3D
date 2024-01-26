@@ -5,17 +5,15 @@ using UnityEngine;
 public class Espada : MonoBehaviour
 {
 
-    private float danyo = 10f;  
+    [SerializeField ]private float danyo = 2f;  
     private Animator animator;
     private bool puedeAtacar;
-    private float tiempoAtacar;
-
-
-
+    private bool atacando;
+ 
     void Start()
     {
-        tiempoAtacar = 1f;
         puedeAtacar = true;
+        atacando = false;
         animator = GetComponent<Animator>(); 
     }
 
@@ -30,19 +28,23 @@ public class Espada : MonoBehaviour
 
     public void Atacar()
     {
+        atacando = true;
         puedeAtacar = false;
         animator.SetTrigger("Atacar");
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider objeto)
     {
-        Debug.Log("SI");
+        if (objeto.CompareTag("Enemigo") && atacando)
+        {
+            objeto.GetComponent<SaludEnemigoController>().RecibirDanyo(danyo);
+        }
     }
-
 
     public void ResetAtaque()
     {
         puedeAtacar = true;
+        atacando = false;
     }
 
 }
