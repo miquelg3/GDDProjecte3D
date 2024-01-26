@@ -10,8 +10,10 @@ public class PruebaVida : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        #region Variables
         Personaje = new Cuerpo();
         Progreso = new Progreso();
+        #endregion
         Progreso.GuardarPartida(Personaje.Lista);
         foreach (var Parte in Personaje.Lista)
         {
