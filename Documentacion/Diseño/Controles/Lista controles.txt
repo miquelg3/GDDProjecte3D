@@ -1,0 +1,6 @@
+Personaje:
+	- WASD = Movimiento
+	- C = Agacharte
+	- QE = Asomarte
+	- Shift Izq.(Mantenido) = Correr
+	- 
