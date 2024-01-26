@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Brazos : Salud
 {    // La variable fuerza sera lo que determina la fuerza de el ataque, multiplicando este por el daño del arma
-    private float Fuerza { get; set; }
-    public Brazos(NivelSalud nivelSalud, int vidaActual,float fuerza) : base(nivelSalud, vidaActual)
+    public float Fuerza { get; private set; }
+    public Brazos(int vidaActual,float fuerza) : base(vidaActual)
     {
         this.Fuerza = fuerza;
     }
-    public Brazos(NivelSalud nivelSalud, int vidaActual) : base(nivelSalud, vidaActual)
+    public Brazos(int vidaActual) : base( vidaActual)
     {
+        Fuerza = 1;
     }
-     
+    
     public override void Herida()
     {
         Fuerza = NivelSalud switch

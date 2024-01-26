@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class Cabeza : Salud
 {
@@ -10,14 +11,17 @@ public class Cabeza : Salud
     public Volume vol;
     private Vignette vig;
     // Vision es la variable que controla la intensidad del viñeteado usado para que el personaje se quede ciego cuando recibe heridas en la cabeza
-    private float vision { get; set; }
-    public Cabeza(NivelSalud nivelSalud, int vidaActual, float Vision) : base(nivelSalud, vidaActual)
+    public float Vision { get; private set; }
+    public Cabeza(int vidaActual, float Vision) : base(vidaActual)
     {
-        this.vision = Vision;
+        vol = Camera.main.GetComponent<Volume>();
+        this.Vision = Vision;
         vol.profile.TryGet<Vignette>(out vig);
     }
-    public Cabeza(NivelSalud nivelSalud, int vidaActual) : base(nivelSalud, vidaActual)
+    public Cabeza(int vidaActual) : base(vidaActual)
     {
+        Vision = 0.25f;
+        vol = Camera.main.GetComponent<Volume>();
         vol.profile.TryGet<Vignette>(out vig);
     }
 
@@ -25,7 +29,7 @@ public class Cabeza : Salud
 
     public override void Herida()
     {
-        vision = NivelSalud switch
+        Vision = NivelSalud switch
         {
             NivelSalud.Sano => 0.25f,
             NivelSalud.Herido => 0.5f,
@@ -33,21 +37,21 @@ public class Cabeza : Salud
             NivelSalud.Destruido => 1f,
             _ => 0.25f,
         };
-        vig.intensity.value = vision;
+        vig.intensity.value = Vision;
 
 
     }
 
     public override void Infeccion()
     {
-        vision += 0.1f;
-        vig.intensity.value = vision;
+        Vision += 0.1f;
+        vig.intensity.value = Vision;
     }
 
     public override void Curado()
     {
-        vision -= 0.1f;
-        vig.intensity.value = vision;
+        Vision -= 0.1f;
+        vig.intensity.value = Vision;
     }
 }
 
