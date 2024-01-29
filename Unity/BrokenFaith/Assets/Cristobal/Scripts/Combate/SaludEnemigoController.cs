@@ -34,7 +34,7 @@ public class SaludEnemigoController : MonoBehaviour
     {
         muerto = true;
         collider.enabled = false;
-        ia_controller.enabled = false;
+        //ia_controller.enabled = false;
         animator.SetTrigger("Muerto");
     }
 }

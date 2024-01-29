@@ -32,7 +32,6 @@ public class Ia_BasicController : MonoBehaviour
     {
         if (RangoDeVision())
         {
-            PerseguirJugador();
             Debug.Log("JugadorDetectado");
         } 
         else
@@ -49,9 +48,9 @@ public class Ia_BasicController : MonoBehaviour
 
         if(anguloEnemigoJugador < anguloVision * 0.5f && direccionJugador.magnitude <= rangoMaximo)
         {
-            RaycastHit hit;
+            RaycastHit hit; 
             if(Physics.Raycast(transform.position, direccionJugador.normalized, out hit, rangoMaximo, layermaskJugador)  &&
-            !Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, objetosMask))
+                !Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, objetosMask))
             {
                 return true;
             }
