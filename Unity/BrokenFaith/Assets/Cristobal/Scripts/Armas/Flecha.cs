@@ -29,7 +29,6 @@ public class Flecha : MonoBehaviour
     private void OnTriggerEnter(Collider objeto)
     {
         joint = gameObject.AddComponent<FixedJoint>();
-
         if (objeto.CompareTag("Enemigo"))
         {
             objeto.GetComponent<SaludEnemigoController>().RecibirDanyo(danyo);
