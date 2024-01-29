@@ -178,8 +178,10 @@ public abstract class Salud
     {
         if (parte is Torso)
         {
-            parte.VidaActual += parte.VIDA_MAX;
+            parte.VidaActual = parte.VIDA_MAX;
+            CambiarNivelSalud(parte);
             ActualizarVidaMaxima((Torso)parte);
+
         }
         else
         {
@@ -194,7 +196,6 @@ public abstract class Salud
     {
         Torso pecho = (Torso)Lista[1];
         RecuperarGolpeParte((Torso)pecho);
-        ActualizarVidaMaxima(pecho);
         foreach (var parte in Lista)
         {
             if (parte is not Torso)
@@ -304,6 +305,7 @@ public abstract class Salud
             Parte.NivelSalud = NivelSalud.Sano;
         }
         Parte.Herida();
+        CambiarMaximoSaludPartes();
     }
     /// <summary>
     /// Este metodo es para comprobar si el numero del aleatorizador del repartir golpe ha cogido una extremidad de la lista, y que esta pueda recibir el golpe
