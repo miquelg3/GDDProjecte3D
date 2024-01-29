@@ -31,9 +31,15 @@ public class Ia_BasicController : MonoBehaviour
     void Update()
     {
         if (RangoDeVision())
+        {
+            PerseguirJugador();
             Debug.Log("JugadorDetectado");
+        } 
         else
+        {
             Debug.Log("No lo Detecta");
+        }
+            
     }
 
     private bool RangoDeVision()
@@ -52,6 +58,11 @@ public class Ia_BasicController : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void PerseguirJugador()
+    {
+
     }
 
     private void OnDrawGizmos()
