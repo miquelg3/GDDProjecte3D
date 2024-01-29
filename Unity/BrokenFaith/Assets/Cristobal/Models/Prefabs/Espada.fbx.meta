@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Unity/BrokenFaith/Assets/Ezterothz/Models/3DModel/5_10_scaleman.FBX.meta
 guid: 4a06b1b9b501bf647941b6d306488636
+========
+guid: e744d17fe72f0274ca7ad65e0480fd2b
+>>>>>>>> Feature/cristobal:Unity/BrokenFaith/Assets/Cristobal/Models/Prefabs/Espada.fbx.meta
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
