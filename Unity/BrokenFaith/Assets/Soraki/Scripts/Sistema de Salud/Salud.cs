@@ -12,12 +12,10 @@ public abstract class Salud
     public float VidaActual { get; set; }
     public bool Sangrado { get; private set; }
     public bool Muerto { get; private set; }
-<<<<<<< HEAD
+
     public float VIDA_MAX { get; set; }
     public Salud(NivelSalud nivelSalud, bool infectado, int vidaActual, bool sangrado, int vIDA_MAX)
-=======
-    public Salud(NivelSalud nivelSalud, bool infectado, int vidaActual, bool sangrado)
->>>>>>> Feature/cristobal
+
     {
         Lista = new List<Salud>();
         this.NivelSalud = nivelSalud;
@@ -26,21 +24,17 @@ public abstract class Salud
         this.Sangrado = sangrado;
         VIDA_MAX = vIDA_MAX;
     }
-<<<<<<< HEAD
+
     public Salud(float vIDA_MAX)
-=======
-    public Salud(NivelSalud nivelSalud, int vidaActual)
->>>>>>> Feature/cristobal
+
     {
         Lista = new List<Salud>();
         VidaActual = vIDA_MAX;
         VIDA_MAX = vIDA_MAX;
     }
-<<<<<<< HEAD
+
     public Salud()
-=======
-    public Salud() 
->>>>>>> Feature/cristobal
+
     {
         Lista = new List<Salud>();
     }
