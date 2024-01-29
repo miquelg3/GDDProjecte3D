@@ -6,6 +6,7 @@ using UnityEngine.Video;
 
 public abstract class Salud
 {
+    #region variables
     public List<Salud> Lista { get; set; }
     public NivelSalud NivelSalud { get; set; }
     public bool Infectado { get; private set; }
@@ -14,6 +15,8 @@ public abstract class Salud
     public bool Muerto { get; private set; }
 
     public float VIDA_MAX { get; set; }
+    #endregion
+    #region constructores
     public Salud(NivelSalud nivelSalud, bool infectado, int vidaActual, bool sangrado, int vIDA_MAX)
 
     {
@@ -38,7 +41,8 @@ public abstract class Salud
     {
         Lista = new List<Salud>();
     }
-
+    #endregion
+    #region Metodos Abstractos
     /// <summary>
     /// Este metodo te quita caracteristicas dependiendo del estado de la parte del cuerpo a la que este dirigido el ataque, si pasa de un estado a otro se aplicara una disminución de las caracteristicas
     /// </summary>
@@ -58,6 +62,13 @@ public abstract class Salud
     ///Este metodo restaura los valores de caracteristicas quitadas por el metodo infectado
     /// </summary>
     public abstract void Curado();
+    #endregion
+    #region Metodos
+    /// <summary>
+    /// En este metodo identificamos el metodo que vamos a usar para recibir el golpe dependiendo si la parte a la que le han pegado es fundamental o no luego llama al metodo correspondiente
+    /// </summary>
+    /// <param name="danyo">El daño que se le inflige a la parte pasada por parametro</param>
+    /// <param name="parte">La parte golpeada</param>
     public void RecibirGolpe(float danyo, Salud parte)
     {
 
@@ -70,7 +81,10 @@ public abstract class Salud
             RecibirGolpeParte(parte, danyo);
         }
     }
-
+    /// <summary>
+    /// Si el golpe ha destrozado la parte a la que iba dirigida, se llama a este metodo para repartir el golpe en las partes sanas priorizando las extremidades
+    /// </summary>
+    /// <param name="danyo">El daño que no ha podido mitigar la parte</param>
     public void RepartirGolpe(float danyo)
     {
         bool PartesOpcionales = false;
@@ -124,6 +138,11 @@ public abstract class Salud
             }
         }
     }
+    /// <summary>
+    /// Este metodo controla el golpe recibido en la cabeza o el torso no pudiendo superar 200 ya que su vida es 200 si supera 200 se llama al metodo repartir golpe
+    /// </summary>
+    /// <param name="parte">La Parte que recibe el daño</param>
+    /// <param name="danyo">Daño ha inflingir a dicha parte</param>
     public void RecibirGolpeParteFundamental(Salud parte, float danyo)
     {
 
@@ -139,7 +158,11 @@ public abstract class Salud
         }
         CambiarNivelSalud(parte);
     }
-
+    /// <summary>
+    /// Este metodo controla el golpe recibido en las extremidades no puede ser superior de 100 ya que superaria la vida maxima y entonces llamaria al metodo repartirgolpe
+    /// </summary>
+    /// <param name="parte">La parte que recibe el daño</param>
+    /// <param name="danyo">El daño a recibir</param>
     public void RecibirGolpeParte(Salud parte, float danyo)
     {
         if (parte.VidaActual - danyo <= 0 && parte.VidaActual > 0)
@@ -154,19 +177,44 @@ public abstract class Salud
         }
         CambiarNivelSalud(parte);
     }
+    /// <summary>
+    /// Este metodo recupera la vida total de una parte y la iguala a su vida maxima
+    /// </summary>
+    /// <param name="parte">Parte la cual recibira la cura</param>
     public void RecuperarGolpeParte(Salud parte)
     {
-        parte.VidaActual = parte.VIDA_MAX;
-        CambiarNivelSalud(parte);
-    }
-    public void RecuperarGolpesTotales()
-    {
-        foreach (var parte in Lista)
+        if (parte is Torso)
         {
-            RecuperarGolpeParte(parte);
+            parte.VidaActual += parte.VIDA_MAX;
+            ActualizarVidaMaxima((Torso)parte);
+        }
+        else
+        {
+            parte.VidaActual = parte.VIDA_MAX;
             CambiarNivelSalud(parte);
         }
     }
+    /// <summary>
+    /// Recupera los golpes totales de todas las partes, pero recupera primero la del torso para actualizar la vida maxima de dichas partes
+    /// </summary>
+    public void RecuperarGolpesTotales()
+    {
+        Torso pecho = (Torso)Lista[1];
+        RecuperarGolpeParte((Torso)pecho);
+        ActualizarVidaMaxima(pecho);
+        foreach (var parte in Lista)
+        {
+            if (parte is not Torso)
+            {
+                RecuperarGolpeParte(parte);
+                CambiarNivelSalud(parte);
+            }
+        }
+    }
+    /// <summary>
+    /// Metodo que añade una parte a el List<>
+    /// </summary>
+    /// <param name="Parte">La parte a añadir</param>
     public void AnyadirParte(Salud Parte)
     {
         if (ComprobarParte(Parte))
@@ -174,6 +222,10 @@ public abstract class Salud
             Lista.Add(Parte);
         }
     }
+    /// <summary>
+    /// Metodo que elimina una parte del List<>
+    /// </summary>
+    /// <param name="Parte">La parte a eliminar</param>
     public void EliminarParte(Salud Parte)
     {
         foreach (var parte in Lista)
@@ -184,6 +236,11 @@ public abstract class Salud
             }
         }
     }
+    /// <summary>
+    /// Comprobar si la parte se puede añadir ya que solo puede tener 1 cabeza y 1 torso 2 brazos y 2 piernas
+    /// </summary>
+    /// <param name="Parte">La parte a comprobar</param>
+    /// <returns></returns>
     public bool ComprobarParte(Salud Parte)
     {
         foreach (var parte in Lista)
@@ -202,6 +259,11 @@ public abstract class Salud
             return false;
         }
     }
+    /// <summary>
+    /// Comprueba que las extremidades no superen el limite de 2 de brazos o piernas, y si lo supera devuelve false
+    /// </summary>
+    /// <param name="Parte">Extremidad a comprobar</param>
+    /// <returns></returns>
     public bool ComprobarExtremidades(Salud Parte)
     {
         int CuentaPiernas = 0;
@@ -223,16 +285,20 @@ public abstract class Salud
         }
         else { return true; }
     }
+    /// <summary>
+    /// Metodo que actualiza el estado de vida de la parte pasada por parametro dependiendo el porcentaje de vida restante
+    /// </summary>
+    /// <param name="Parte">Parte a cambiar el estado de salud</param>
     public void CambiarNivelSalud(Salud Parte)
     {
         float setenta = (Parte.VIDA_MAX * 70) / 100;
         float cincuenta = (Parte.VIDA_MAX * 50) / 100;
         float veinte = (Parte.VIDA_MAX * 20) / 100;
-        if (Parte.VidaActual < setenta && Parte.VidaActual > cincuenta)
+        if (Parte.VidaActual < setenta && Parte.VidaActual >= cincuenta)
         {
             Parte.NivelSalud = NivelSalud.Herido;
         }
-        else if (Parte.VidaActual < cincuenta && Parte.VidaActual > veinte)
+        else if (Parte.VidaActual < cincuenta && Parte.VidaActual >= veinte)
         {
             Parte.NivelSalud = NivelSalud.Roto;
         }
@@ -246,6 +312,11 @@ public abstract class Salud
         }
         Parte.Herida();
     }
+    /// <summary>
+    /// Este metodo es para comprobar si el numero del aleatorizador del repartir golpe ha cogido una extremidad de la lista, y que esta pueda recibir el golpe
+    /// </summary>
+    /// <param name="index">Numero de la parte en la lista</param>
+    /// <returns></returns>
     public bool PuedeGolpearExtremidades(int index)
     {
         if (Lista[index].VidaActual > 0 && Lista[index] is not Cabeza && Lista[index] is not Torso)
@@ -257,6 +328,10 @@ public abstract class Salud
             return false;
         }
     }
+    /// <summary>
+    /// Comprueba si se puede golpear extremidades, de lo contrario devuelve false y empezara el repartir golpe a las partes fundamentales
+    /// </summary>
+    /// <returns></returns>
     public bool HayExtremidadesSanas()
     {
         foreach (var Extremidad in Lista)
@@ -268,6 +343,9 @@ public abstract class Salud
         }
         return false;
     }
+    /// <summary>
+    /// Metodo que actualiza la vida maxima de cada parte dependiendo el nivel de salud del pecho, multiplicando la vida maxima de cada parte por la integridad del torso
+    /// </summary>
     public void CambiarMaximoSaludPartes()
     {
         Torso pecho = (Torso)Lista[1];
@@ -283,6 +361,11 @@ public abstract class Salud
             }
         }
     }
+    /// <summary>
+    /// Este metodo comprueba si el personaje ha muerto  comprobando si el daño restante es mayor a la vida de la totalidad de las partes, devuelve true si ha muerto
+    /// </summary>
+    /// <param name="danyo">El daño a evaluar</param>
+    /// <returns></returns>
     public bool ComprobarMuerto(float danyo)
     {
         float Vida = 0f;
@@ -297,6 +380,10 @@ public abstract class Salud
         }
         else { return false; }
     }
+    /// <summary>
+    /// Metodo que nos permite recuperar el estado del cuerpo a traves del fichero de guardado Json
+    /// </summary>
+    /// <param name="pj">La lista de partes extraidas del archivo de guardado</param>
     public void CargarEstadoPartes(List<Salud> pj)
     {
         ActualizarNivelSalud();
@@ -304,6 +391,9 @@ public abstract class Salud
         CambiarMaximoSaludPartes();
         CargarLista(pj);
     }
+    /// <summary>
+    /// Este metodo Actualiza el estado de todas las partes despues del cargado
+    /// </summary>
     public void ActualizarNivelSalud()
     {
         CambiarNivelSalud(Lista[0]);
@@ -313,9 +403,13 @@ public abstract class Salud
         CambiarNivelSalud(Lista[4]);
         CambiarNivelSalud(Lista[5]);
     }
+    /// <summary>
+    /// Metodo para actualizar la vida maxima despues de que el Torso haya sido curado o cargado
+    /// </summary>
+    /// <param name="Pecho">El torso a evaluar el estado de salud</param>
     public void ActualizarVidaMaxima(Torso Pecho)
     {
-        
+
         foreach (var parte in Lista)
         {
             if (parte is not Torso)
@@ -332,7 +426,7 @@ public abstract class Salud
                         parte.VIDA_MAX = 100f;
                     }
                 }
-                if(Pecho.NivelSalud == NivelSalud.Herido)
+                if (Pecho.NivelSalud == NivelSalud.Herido)
                 {
                     if (parte is Cabeza)
                     {
@@ -368,13 +462,18 @@ public abstract class Salud
             }
         }
     }
+    /// <summary>
+    /// Metodo que sobreescribe la lista por la lista extraida del fichero de guardado
+    /// </summary>
+    /// <param name="pj">Lista de partes extraida del fichero Json</param>
     public void CargarLista(List<Salud> pj)
     {
         for (int i = 0; i < 6; i++)
         {
-            Lista[i].VidaActual = pj[i].VidaActual; 
+            Lista[i].VidaActual = pj[i].VidaActual;
         }
     }
+    #endregion
 }
 
 
