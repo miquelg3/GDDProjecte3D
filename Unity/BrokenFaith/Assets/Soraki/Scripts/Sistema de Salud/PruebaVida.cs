@@ -15,7 +15,7 @@ public class PruebaVida : MonoBehaviour
         Progreso = new Progreso();
         #endregion
         Progreso.GuardarPartida(Personaje.Lista);
-        foreach (var Parte in Personaje.Lista)
+        /**foreach (var Parte in Personaje.Lista)
         {
             if (Parte is Torso)
             {
@@ -23,7 +23,7 @@ public class PruebaVida : MonoBehaviour
                 Torso cabeza = (Torso) Parte;
                 Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.IntegridadCuerpo}");
             }
-        }
+        }*/
        
         foreach (var Parte in Personaje.Lista)
         {
@@ -44,7 +44,7 @@ public class PruebaVida : MonoBehaviour
                 Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
             }
         }
-        Personaje.RecuperarGolpesTotales();
+        /**Personaje.RecuperarGolpesTotales();
         foreach (var Parte in Personaje.Lista)
         {
             if (Parte is Cabeza)
@@ -63,7 +63,7 @@ public class PruebaVida : MonoBehaviour
             {
                 Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
             }
-        }
+        }*/
         /** Personaje.CargarEstadoPartes(Progreso.SacarDatos(Personaje.Lista,Progreso.CargarPartida()));
          foreach (var Parte in Personaje.Lista)
          {
