@@ -21,15 +21,15 @@ public class PruebaVida : MonoBehaviour
         {
               Personaje.CargarEstadoPartes(Progreso.SacarDatos(Personaje.Lista,Progreso.CargarPartida()));
         }
-        foreach (var Parte in Personaje.Lista)
+        /**foreach (var Parte in Personaje.Lista)
         {
-            if (Parte is Torso)
+            if (Parte is Cabeza)
             {
                 Personaje.RecibirGolpe(130f, Parte);
-                Torso cabeza = (Torso) Parte;
-                Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.IntegridadCuerpo}");
+                Cabeza cabeza = (Cabeza) Parte;
+                Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.Vision}");
             }
-        }
+        }*/
        
         foreach (var Parte in Personaje.Lista)
         {

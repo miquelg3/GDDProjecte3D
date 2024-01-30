@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -285,6 +286,7 @@ public abstract class Salud
     /// <param name="Parte">Parte a cambiar el estado de salud</param>
     public void CambiarNivelSalud(Salud Parte)
     {
+        int p = PlayerPrefs.GetInt("Cargar");
         float setenta = (Parte.VIDA_MAX * 70) / 100;
         float cincuenta = (Parte.VIDA_MAX * 50) / 100;
         float veinte = (Parte.VIDA_MAX * 20) / 100;
@@ -304,7 +306,14 @@ public abstract class Salud
         {
             Parte.NivelSalud = NivelSalud.Sano;
         }
-        Parte.Herida();
+        if (p == 1 && Parte is not Torso)
+        {
+            Parte.Herida();
+        }
+        else if(p == 0) 
+        {
+            Parte.Herida();
+        }
         CambiarMaximoSaludPartes();
     }
     /// <summary>
@@ -381,10 +390,13 @@ public abstract class Salud
     /// <param name="pj">La lista de partes extraidas del archivo de guardado</param>
     public void CargarEstadoPartes(List<Salud> pj)
     {
+
+        VidaMaximaCargado(pj);
         ActualizarNivelSalud();
+        CargarLista(pj);
         ActualizarVidaMaxima((Torso)pj[1]);
         CambiarMaximoSaludPartes();
-        CargarLista(pj);
+
     }
     /// <summary>
     /// Este metodo Actualiza el estado de todas las partes despues del cargado
@@ -467,6 +479,20 @@ public abstract class Salud
         {
             Lista[i].VidaActual = pj[i].VidaActual;
         }
+        VidaMaximaCargado(pj);
+    }
+    /// <summary>
+    /// Añadirle a la lista que pasamos por parametro la salud maxima
+    /// </summary>
+    /// <param name="s">la lista del cargado</param>
+    public void VidaMaximaCargado(List<Salud> s)
+    {
+        Lista[0].VIDA_MAX = 200f;
+        Lista[1].VIDA_MAX = 200f;
+        Lista[2].VIDA_MAX = 100f;
+        Lista[3].VIDA_MAX = 100f;
+        Lista[4].VIDA_MAX = 100f;
+        Lista[5].VIDA_MAX = 100f;
     }
     #endregion
 }
