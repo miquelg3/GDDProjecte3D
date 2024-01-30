@@ -20,10 +20,17 @@ public class ControladorInicio : MonoBehaviour
     public Slider SliderV;
     public int Vida;
     public int Cargado;
+    public AudioSource Intro;
+    public Slider SliderA;
+    public TextMeshProUGUI TextoAudio;
+    public float Volumen;
+
     // Start is called before the first frame update
     void Start()
     {
         TextoVida.SetText("200"); Vida = 200;
+        TextoAudio.SetText("100");Volumen = 100;
+        SliderA.value = 100;
         CInicio.gameObject.SetActive(true);
         COpciones.gameObject.SetActive(false);
         string ruta = Path.Combine(Application.dataPath, "Guardado.json");
@@ -40,6 +47,7 @@ public class ControladorInicio : MonoBehaviour
         SliderV.onValueChanged.AddListener(CambiarTextoVida);
         Empezar.onClick.AddListener(CambiarEscena);
         Cargar.onClick.AddListener(CargarEscena);
+        SliderA.onValueChanged.AddListener(CambiarTextoVolumen);
     }
     
     // Update is called once per frame
@@ -84,5 +92,18 @@ public class ControladorInicio : MonoBehaviour
         PlayerPrefs.SetInt("Cargar", Cargado);
         SceneManager.LoadScene("Salud");
     }
+    void CambiarTextoVolumen (float Actual)
+    {
+        float Valor = Actual/100;
+        int texto = (int)Actual;
+        TextoAudio.SetText($"{texto}");
+        Volumen = Valor;
+        CambiarVolumen();
 
+    }
+
+    public void CambiarVolumen()
+    {
+        Intro.volume = Volumen;
+    }
 }

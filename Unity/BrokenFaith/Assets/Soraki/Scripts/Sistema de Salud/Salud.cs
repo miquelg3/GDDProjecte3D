@@ -416,6 +416,12 @@ public abstract class Salud
     /// <param name="Pecho">El torso a evaluar el estado de salud</param>
     public void ActualizarVidaMaxima(Torso Pecho)
     {
+        if(Pecho.VidaActual > 200f)
+        {
+            Lista[1].VIDA_MAX = 200f;
+            Lista[1].VidaActual = 200f;
+
+        }
 
         foreach (var parte in Lista)
         {
