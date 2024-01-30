@@ -19,6 +19,7 @@ public class ControladorInicio : MonoBehaviour
     public TextMeshProUGUI TextoVida;
     public Slider SliderV;
     public int Vida;
+    public int Cargado;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,15 +35,17 @@ public class ControladorInicio : MonoBehaviour
         {
             Cargar.interactable = false;
         }
+        Opciones.onClick.AddListener(MostrarOpciones);
+        Volver.onClick.AddListener(QuitarOpciones);
+        SliderV.onValueChanged.AddListener(CambiarTextoVida);
+        Empezar.onClick.AddListener(CambiarEscena);
+        Cargar.onClick.AddListener(CargarEscena);
     }
     
     // Update is called once per frame
     void Update()
     {
-        Opciones.onClick.AddListener(MostrarOpciones);
-        Volver.onClick.AddListener(QuitarOpciones);
-        SliderV.onValueChanged.AddListener(CambiarTextoVida);
-        Empezar.onClick.AddListener(CambiarEscena);
+       
     }
 
     void MostrarOpciones()
@@ -69,7 +72,17 @@ public class ControladorInicio : MonoBehaviour
     }
     public void CambiarEscena()
     {
-        SceneManager.LoadScene(1);
+        Cargado = 0;
+        PlayerPrefs.SetInt("Vida",Vida);
+        PlayerPrefs.SetInt("Cargar", Cargado);
+        SceneManager.LoadScene("Salud");
+    }
+    public void CargarEscena()
+    {
+        Cargado = 1;
+        PlayerPrefs.SetInt("Vida", Vida);
+        PlayerPrefs.SetInt("Cargar", Cargado);
+        SceneManager.LoadScene("Salud");
     }
 
 }

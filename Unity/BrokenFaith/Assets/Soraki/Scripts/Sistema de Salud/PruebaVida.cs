@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PruebaVida : MonoBehaviour
@@ -14,8 +15,13 @@ public class PruebaVida : MonoBehaviour
         Personaje = new Cuerpo();
         Progreso = new Progreso();
         #endregion
-        Progreso.GuardarPartida(Personaje.Lista);
-        /**foreach (var Parte in Personaje.Lista)
+        string ruta = Path.Combine(Application.dataPath, "Guardado.json");
+        int cargar = PlayerPrefs.GetInt("Cargar");
+        if (File.Exists(ruta) && cargar == 1)
+        {
+              Personaje.CargarEstadoPartes(Progreso.SacarDatos(Personaje.Lista,Progreso.CargarPartida()));
+        }
+        foreach (var Parte in Personaje.Lista)
         {
             if (Parte is Torso)
             {
@@ -23,7 +29,7 @@ public class PruebaVida : MonoBehaviour
                 Torso cabeza = (Torso) Parte;
                 Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.IntegridadCuerpo}");
             }
-        }*/
+        }
        
         foreach (var Parte in Personaje.Lista)
         {
@@ -44,6 +50,7 @@ public class PruebaVida : MonoBehaviour
                 Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
             }
         }
+        Progreso.GuardarPartida(Personaje.Lista);
         /**Personaje.RecuperarGolpesTotales();
         foreach (var Parte in Personaje.Lista)
         {
