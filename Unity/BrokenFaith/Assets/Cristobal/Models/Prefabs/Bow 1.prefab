@@ -153,5 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnFlechas: {fileID: 4680583222435365414}
   flechaPrefab: {fileID: 0}
+  fuerzaBase: 2
   cantidadFlechas: 10
   fuerzaMaxima: 70
+  audioLanzar: {fileID: 8300000, guid: 24cb9010ffd1c7d47b74d400566bad56, type: 3}
+  audioCargar: {fileID: 8300000, guid: d98afcf66392c8349b42a92b17964409, type: 3}

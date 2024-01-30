@@ -15,6 +15,11 @@ public class Arco : MonoBehaviour
     [SerializeField] private float fuerzaMaxima = 70;
     private float fuerzaActual = 0;
 
+    [SerializeField] private AudioClip audioLanzar;
+    [SerializeField] private AudioClip audioCargar;
+
+    private AudioSource audioSource;
+
     private bool cargando;
 
     public delegate void CambiarCantidad(int cantidad);
@@ -26,6 +31,8 @@ public class Arco : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         cantidadDeFlechas?.Invoke(cantidadFlechas);
         if (cantidadFlechas > 0)
             CrearFlecha();
@@ -37,6 +44,8 @@ public class Arco : MonoBehaviour
         {
             cargando = true;
             flechaActual.Cargar();
+            audioSource.clip = audioCargar;
+            audioSource.Play(); 
         }
            
         if(cargando && fuerzaActual < fuerzaMaxima)
@@ -47,6 +56,7 @@ public class Arco : MonoBehaviour
             
         if (cargando && Input.GetMouseButtonUp(0))
         {
+            audioSource.Stop();
             Disparar(fuerzaActual * fuerzaBase);
             cargando = false;
             fuerzaActual = 0;
@@ -58,6 +68,10 @@ public class Arco : MonoBehaviour
     {
         Vector3 fuerzaLanzada = spawnFlechas.TransformDirection(Vector3.forward * fuerza);
         flechaActual.Lanzar(fuerzaLanzada);
+
+        audioSource.clip = audioLanzar;
+        audioSource.Play();
+
         cantidadFlechas--;
         cantidadDeFlechas?.Invoke(cantidadFlechas);
 
