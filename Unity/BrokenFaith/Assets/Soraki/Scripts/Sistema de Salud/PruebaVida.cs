@@ -21,6 +21,7 @@ public class PruebaVida : MonoBehaviour
         {
               Personaje.CargarEstadoPartes(Progreso.SacarDatos(Personaje.Lista,Progreso.CargarPartida()));
         }
+        //Ejemplo cabeza
         /**foreach (var Parte in Personaje.Lista)
         {
             if (Parte is Cabeza)
@@ -30,7 +31,56 @@ public class PruebaVida : MonoBehaviour
                 Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.Vision}");
             }
         }*/
-       
+        // Ejemplo Torso
+        /**foreach (var Parte in Personaje.Lista)
+       {
+           if (Parte is Torso)
+           {
+               Personaje.RecibirGolpe(130f, Parte);
+               Torso cabeza = (Torso) Parte;
+               Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su integridad es {cabeza.IntegridadCuerpo}");
+           }
+       }*/
+        //Ejemplo Brazos
+        /**foreach (var Parte in Personaje.Lista)
+       {
+           if (Parte is Brazos)
+           {
+               Personaje.RecibirGolpe(130f, Parte);
+               Brazos cabeza = (Brazos) Parte;
+               Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su fuerza es {cabeza.Fuerza}");
+           }
+       }*/
+        //Ejemplo Piernas
+        /**foreach (var Parte in Personaje.Lista)
+       {
+           if (Parte is Cabeza)
+           {
+               Personaje.RecibirGolpe(130f, Parte);
+               Piernas cabeza = (Piernas) Parte;
+               Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su velocidad es {cabeza.Velocidad}");
+           }
+       }*/
+        // Ejemplo Repartir Golpe
+        /**foreach (var Parte in Personaje.Lista)
+       {
+           if (Parte is Cabeza)
+           {
+               Personaje.RecibirGolpe(600f, Parte);
+               Cabeza cabeza = (Cabeza) Parte;
+               Debug.Log($"La vida Actual de la parte es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud} y su vision es {cabeza.Vision}");
+           }
+       }*/
+        // Curar Golpe Por parte
+        /**foreach (var Parte in Personaje.Lista)
+        {
+
+            Personaje.RecuperarGolpeParte(Parte);
+          }*/
+        // Curar golpes de todas las partes a la vez
+        //Personaje.RecuperarGolpesTotales();
+
+
         foreach (var Parte in Personaje.Lista)
         {
             if (Parte is Cabeza)
@@ -50,7 +100,7 @@ public class PruebaVida : MonoBehaviour
                 Debug.Log($"La vida Actual de la pierna es: {Parte.VidaActual} y el nivel de salud es: {Parte.NivelSalud}");
             }
         }
-        Progreso.GuardarPartida(Personaje.Lista);
+        //Progreso.GuardarPartida(Personaje.Lista);
         /**Personaje.RecuperarGolpesTotales();
         foreach (var Parte in Personaje.Lista)
         {

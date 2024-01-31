@@ -10,11 +10,9 @@ public class Cuerpo : Salud
     private int v, ve;
     Progreso Partida;
     public Cuerpo()
-    {
-
+    { 
             v = PlayerPrefs.GetInt("Vida");
             ve = v / 2;
-
             Partes = new List<Salud>();
             /** Salud Cabeza = new Cabeza(200);
              Salud Torso = new Torso(200);
