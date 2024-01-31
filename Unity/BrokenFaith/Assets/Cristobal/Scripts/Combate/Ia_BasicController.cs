@@ -29,6 +29,7 @@ public class Ia_BasicController : MonoBehaviour
 
     void Update()
     {
+
         if (RangoDeVision())
             detectado = true;
         else
@@ -48,8 +49,9 @@ public class Ia_BasicController : MonoBehaviour
         if(anguloEnemigoJugador < anguloVision * 0.5f && direccionJugador.magnitude <= rangoMaximo)
         {
             RaycastHit hit; 
+
             if(Physics.Raycast(transform.position, direccionJugador.normalized, out hit, rangoMaximo, layermaskJugador)  &&
-                !Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, objetosMask))
+                !Physics.Raycast(transform.position, direccionJugador.normalized,out hit, rangoMaximo, objetosMask))
             {
                 Debug.Log("Jugador en rango de visión");
                 return true;
