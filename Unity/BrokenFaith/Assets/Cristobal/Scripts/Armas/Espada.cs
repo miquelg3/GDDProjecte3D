@@ -5,13 +5,22 @@ using UnityEngine;
 public class Espada : MonoBehaviour
 {
 
-    [SerializeField ]private float danyo = 2f;  
+    [SerializeField ]private float danyo = 2f;
+
+    [SerializeField] private AudioClip audioSwing;
+    [SerializeField] private AudioClip audioHit;
+    [SerializeField] private AudioClip audioFocus;
+
     private Animator animator;
+    private AudioSource audioSource;
+
     private bool puedeAtacar;
     private bool atacando;
  
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         puedeAtacar = true;
         atacando = false;
         animator = GetComponent<Animator>(); 
@@ -28,6 +37,8 @@ public class Espada : MonoBehaviour
 
     public void Atacar()
     {
+        audioSource.clip = audioSwing;
+        audioSource.Play();
         atacando = true;
         puedeAtacar = false;
         animator.SetTrigger("Atacar");
@@ -35,8 +46,11 @@ public class Espada : MonoBehaviour
 
     private void OnTriggerEnter(Collider objeto)
     {
+        audioSource.Stop();
         if (objeto.CompareTag("Enemigo") && atacando)
         {
+            audioSource.clip = audioHit;
+            audioSource.Play();
             objeto.GetComponent<SaludEnemigoController>().RecibirDanyo(danyo);
         }
     }

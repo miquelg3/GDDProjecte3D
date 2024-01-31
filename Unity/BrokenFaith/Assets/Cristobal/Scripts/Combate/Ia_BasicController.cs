@@ -12,18 +12,17 @@ public class Ia_BasicController : MonoBehaviour
 
     [Header("MoviemientoYAcciones")]
     [SerializeField] private float velocidadMovimiento = 10f;
-    [SerializeField] private float distanciaSeguimiento = 0f;
     [SerializeField] private float distanciaAtaque = 0f;
 
     private GameObject jugador;
 
     private Animator animator;
 
-    private bool atacando;
+    private bool detectado;
 
     void Start()
     {
-        atacando = false;
+        detectado = false;
         jugador = GameObject.FindGameObjectWithTag("Player").gameObject;
         layermaskJugador = jugador.layer;
     }
@@ -31,14 +30,14 @@ public class Ia_BasicController : MonoBehaviour
     void Update()
     {
         if (RangoDeVision())
-        {
-            Debug.Log("JugadorDetectado");
-        } 
+            detectado = true;
         else
-        {
             Debug.Log("No lo Detecta");
-        }
-            
+
+
+        if (detectado) PerseguirJugador();
+
+
     }
 
     private bool RangoDeVision()
@@ -52,6 +51,7 @@ public class Ia_BasicController : MonoBehaviour
             if(Physics.Raycast(transform.position, direccionJugador.normalized, out hit, rangoMaximo, layermaskJugador)  &&
                 !Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, objetosMask))
             {
+                Debug.Log("Jugador en rango de visión");
                 return true;
             }
         }
@@ -60,6 +60,23 @@ public class Ia_BasicController : MonoBehaviour
     }
 
     private void PerseguirJugador()
+    {
+        float distancia = Vector3.Distance(transform.position, jugador.transform.position);
+        Vector3 posicion = transform.position;
+
+        if(distancia > distanciaAtaque)
+        {
+            transform.position = Vector3.MoveTowards(posicion, posicion - jugador.transform.position, velocidadMovimiento * Time.deltaTime);
+        }
+
+        if(distancia < distanciaAtaque)
+        {
+            Debug.Log("Atacando");
+            Atacar();
+        }
+    }
+
+    private void Atacar()
     {
 
     }
