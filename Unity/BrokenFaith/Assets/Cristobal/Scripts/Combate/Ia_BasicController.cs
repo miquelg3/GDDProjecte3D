@@ -7,7 +7,7 @@ public class Ia_BasicController : MonoBehaviour
     [Header("Vision")]
     [SerializeField] private float rangoMaximo = 10f;
     [SerializeField] private float anguloVision = 45f;
-    [SerializeField] private LayerMask objetosMask;
+    [SerializeField] private LayerMask layermaskObjeto;
     private LayerMask layermaskJugador;
 
     [Header("MoviemientoYAcciones")]
@@ -24,34 +24,37 @@ public class Ia_BasicController : MonoBehaviour
     {
         detectado = false;
         jugador = GameObject.FindGameObjectWithTag("Player").gameObject;
+        animator = GetComponent<Animator>();
         layermaskJugador = jugador.layer;
+        Debug.Log(jugador.layer);
     }
 
     void Update()
     {
+
         if (RangoDeVision())
-            detectado = true;
+            Debug.Log("lo Detecta");
         else
             Debug.Log("No lo Detecta");
 
 
-        if (detectado) PerseguirJugador();
-
-
+       //if (detectado) PerseguirJugador();
     }
 
     private bool RangoDeVision()
     {
         Vector3 direccionJugador = jugador.transform.position - transform.position;
-        float anguloEnemigoJugador = Vector3.Angle(transform.forward, direccionJugador);
+        float anguloEnemigoJugador = Vector3.Angle(transform.forward, direccionJugador.normalized);
 
         if(anguloEnemigoJugador < anguloVision * 0.5f && direccionJugador.magnitude <= rangoMaximo)
         {
-            RaycastHit hit; 
-            if(Physics.Raycast(transform.position, direccionJugador.normalized, out hit, rangoMaximo, layermaskJugador)  &&
-                !Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, objetosMask))
+            RaycastHit hit;
+
+            Debug.DrawRay(transform.position, direccionJugador.normalized, Color.blue, rangoMaximo);
+
+            if (Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskJugador)  &&
+                !Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskObjeto))
             {
-                Debug.Log("Jugador en rango de visión");
                 return true;
             }
         }
