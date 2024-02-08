@@ -1,38 +1,36 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class MovimientoJugador : MonoBehaviour
 {
-    public float speed = 5.0f;
-    public float sprintMultiplier = 2.0f;
+    private float velocidad = 5.0f;
+    private float multiplicadorSprint = 2.0f;
     private float yaw, pitch;
-    public float SpeedH = 3, SpeedV = 3;
+    private float VelocidadH = 3, VelocidadV = 3;
 
     private float bobbingSpeed = 10f;
     private float bobbingAmount = 0.1f;
     private float midpoint = 0.5f;
     private float timer = 0;
 
-    public Transform cameraTransform;
+    private Transform cameraTransform;
 
     private Rigidbody rb;
 
-    public TextMeshProUGUI objectNameText;
+    private TextMeshProUGUI textoNombreObjeto;
     private GameObject currentObject;
     private int score = 0;
-    public float distanceDetector = 5.0f;
+    private float distanciaDetector = 5.0f;
 
     public GameState gameState = new GameState(GameState.StateGame.inGame);
 
-    public GameObject Pausa;
-    public GameObject InventarioMenu;
+    private GameObject pausa;
+    private GameObject inventarioMenu;
 
     private float lerpTime = 0f;
 
@@ -42,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool pistaEncontrada;
 
-    public Sprite espadaImg;
-    public Sprite arcoImg;
-    public Sprite pistaImg;
+    private Sprite espadaImg;
+    private Sprite arcoImg;
+    private Sprite pistaImg;
 
     private int contInventario;
     private Transform panelInventory;
@@ -57,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        RecibirVariables();
         // PanelInventory GameObject
         panelInventory = GameObject.Find("Canvas").transform.Find("Inventario").transform.Find("PanelInventory");
         // Asignamos el script de poder soltar a todos los slots
@@ -70,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        Pausa.SetActive(false);
+        pausa.SetActive(false);
         rb = GetComponent<Rigidbody>();
         altura = transform.localScale;
         // Cuando queramos que haya deslizamiento, cambiamos esta variable
@@ -80,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             midpoint = cameraTransform.localPosition.y;
         }
         // Llenar inventario
-        InventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
+        inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
         LlenarInventario();
     }
 
@@ -93,36 +92,48 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && gameState.game == GameState.StateGame.inGame)
         {
             gameState.PauseGame();
-            Pausa.SetActive(true);
+            pausa.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            InventarioMenu.SetActive(false);
+            inventarioMenu.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && gameState.game == GameState.StateGame.pause)
         {
             gameState.ResumeGame();
-            Pausa.SetActive(false);
+            pausa.SetActive(false);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            InventarioMenu.SetActive(true);
+            inventarioMenu.SetActive(true);
         }
 
         // Mostrar inventario
         if (Input.GetKeyDown(KeyCode.Tab) && gameState.game == GameState.StateGame.inGame)
         {
             gameState.InventoryGame();
-            InventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 100;
+            inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 100;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && gameState.game == GameState.StateGame.inInventory)
         {
             gameState.ResumeGame();
-            InventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
+            inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
 
+    }
+
+    void RecibirVariables()
+    {
+        cameraTransform = ConfiguracionJuego.instance.cameraTransform;
+        textoNombreObjeto = ConfiguracionJuego.instance.nombreObjetoTexto;
+        pausa = ConfiguracionJuego.instance.pausa;
+        inventarioMenu = ConfiguracionJuego.instance.inventarioMenu;
+
+        espadaImg = ConfiguracionJuego.instance.espadaImg;
+        arcoImg = ConfiguracionJuego.instance.arcoImg;
+        pistaImg = ConfiguracionJuego.instance.pistaImg;
     }
 
     void MovimientoPersonaje()
@@ -130,17 +141,17 @@ public class PlayerMovement : MonoBehaviour
         float xMovement = Input.GetAxis("Horizontal");
         float zMovement = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(xMovement, 0.0f, zMovement) * speed * Time.deltaTime;
+        Vector3 movement = new Vector3(xMovement, 0.0f, zMovement) * velocidad * Time.deltaTime;
 
         // Esprintar
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            movement *= sprintMultiplier;
+            movement *= multiplicadorSprint;
         }
         // Agacharse
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            movement /= sprintMultiplier;
+            movement /= multiplicadorSprint;
             lerpTime += Time.deltaTime / 0.5f;
             //cameraTransform.position = Vector3.Lerp(altura, altura / 2, lerpTime);
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
@@ -153,12 +164,12 @@ public class PlayerMovement : MonoBehaviour
 
         transform.Translate(movement);
 
-        yaw += SpeedH * Input.GetAxis("Mouse X");
+        yaw += VelocidadH * Input.GetAxis("Mouse X");
         transform.eulerAngles = new Vector3(0f, yaw, 0f);
 
         if (cameraTransform != null)
         {
-            pitch -= SpeedV * Input.GetAxis("Mouse Y");
+            pitch -= VelocidadV * Input.GetAxis("Mouse Y");
             pitch = Mathf.Clamp(pitch, -90f, 90f);
             cameraTransform.localEulerAngles = new Vector3(pitch, 0f, 0f);
         }
@@ -189,24 +200,24 @@ public class PlayerMovement : MonoBehaviour
         {
             float distance = Vector3.Distance(Camera.main.transform.position, hit.transform.position);
             // Detectar el objeto y mostrar su nombre si estás lo suficientemente cerca
-            if (distance <= distanceDetector)
+            if (distance <= distanciaDetector)
             {
                 if (hit.transform.gameObject != currentObject)
                 {
                     currentObject = hit.transform.gameObject;
                     if (currentObject.name == "Objeto")
                     {
-                        objectNameText.text = $"Usar {currentObject.name}";
+                        textoNombreObjeto.text = $"Usar {currentObject.name}";
                         pistaEncontrada = false;
                     }
                     else if (currentObject.name == "Pista")
                     {
-                        objectNameText.text = $"Usar {currentObject.name}";
+                        textoNombreObjeto.text = $"Usar {currentObject.name}";
                         pistaEncontrada = true;
                     }
                     else
                     {
-                        objectNameText.text = "";
+                        textoNombreObjeto.text = "";
                         pistaEncontrada = false;
                     }
                 }
@@ -230,12 +241,12 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             else
-                objectNameText.text = "";
+                textoNombreObjeto.text = "";
         }
         else
         {
             // No hay objeto detectado, limpiar el texto
-            objectNameText.text = "";
+            textoNombreObjeto.text = "";
             currentObject = null;
         }
 
@@ -272,10 +283,10 @@ public class PlayerMovement : MonoBehaviour
     public void ResumeGame()
     {
         gameState.ResumeGame();
-        Pausa.SetActive(false);
+        pausa.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        InventarioMenu.SetActive(true);
+        inventarioMenu.SetActive(true);
     }
 
     void LlenarInventario ()

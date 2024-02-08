@@ -4913,6 +4913,7 @@ GameObject:
   - component: {fileID: 1181067391}
   - component: {fileID: 1181067395}
   - component: {fileID: 1181067396}
+  - component: {fileID: 1181067397}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -5021,18 +5022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c130181332f754243953b55f6286af8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  sprintMultiplier: 2
-  SpeedH: 3
-  SpeedV: 3
-  cameraTransform: {fileID: 1102323105}
-  objectNameText: {fileID: 805055086}
-  distanceDetector: 5
-  Pausa: {fileID: 1146684878}
-  InventarioMenu: {fileID: 1494018811}
-  espadaImg: {fileID: 21300000, guid: e6584142aa29e7c4a97860921a1b4adf, type: 3}
-  arcoImg: {fileID: 21300000, guid: 4818670356e82d44b9dc98b904aa28fc, type: 3}
-  pistaImg: {fileID: 21300000, guid: ba0873347bc8aa6469c0e2bcc38001e9, type: 3}
 --- !u!54 &1181067396
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5060,6 +5049,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1181067397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181067388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f72737d12dd0254f8c475da1096948e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 1102323105}
+  nombreObjetoTexto: {fileID: 805055086}
+  pausa: {fileID: 1146684878}
+  inventarioMenu: {fileID: 1494018811}
+  espadaImg: {fileID: 21300000, guid: e6584142aa29e7c4a97860921a1b4adf, type: 3}
+  arcoImg: {fileID: 21300000, guid: 4818670356e82d44b9dc98b904aa28fc, type: 3}
+  pistaImg: {fileID: 21300000, guid: ba0873347bc8aa6469c0e2bcc38001e9, type: 3}
 --- !u!1 &1181535518
 GameObject:
   m_ObjectHideFlags: 0
