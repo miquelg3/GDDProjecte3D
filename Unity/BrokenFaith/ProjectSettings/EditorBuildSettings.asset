@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Victor/Scenes/Escena Prueba VR_V.unity
+    guid: 30c57bff13a21454baa62ca6597771ab
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 05d367b5986cae0449ef9366028bfe0f,
       type: 2}
