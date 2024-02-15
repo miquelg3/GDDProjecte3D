@@ -13,6 +13,8 @@ public class Ia_BasicController : MonoBehaviour
     [Header("MoviemientoYAcciones")]
     [SerializeField] private float velocidadMovimiento = 10f;
     [SerializeField] private float distanciaAtaque = 0f;
+    private float RangoAudicion;
+    private float luminosidad;
 
     private GameObject jugador;
 
@@ -21,28 +23,26 @@ public class Ia_BasicController : MonoBehaviour
 
     void Start()
     {
+        RangoAudicion = 1000f;
         NivelDeAlerta = 0;
         jugador = GameObject.FindGameObjectWithTag("Player").gameObject;
         bool vision = jugador.GetComponent<PlayerMovement>().agachado;
         animator = GetComponent<Animator>();
-        //layermaskJugador = jugador.layer;
-        //Debug.Log(jugador.layer);
     }
 
     void Update()
     {
+        luminosidad = MeasureLightIntensity(jugador.transform.position);
+        Debug.Log(luminosidad);
         if (jugador.GetComponent<PlayerMovement>().agachado == true && rangoMaximo>5f)
             rangoMaximo /= 2;
         else if (jugador.GetComponent<PlayerMovement>().agachado == false && rangoMaximo != 10f)
             rangoMaximo = 10f;
 
-        if (RangoDeVision())
+       /** if (RangoDeVision())
             Debug.Log("lo Detecta");
         else
-            Debug.Log("No lo Detecta");
-
-        //Debug.Log(NivelDeAlerta);
-       //if (detectado) PerseguirJugador();
+            Debug.Log("No lo Detecta");*/
        if (NivelDeAlerta >= 10f)
             PerseguirJugador();
         
@@ -56,16 +56,19 @@ public class Ia_BasicController : MonoBehaviour
 
         if(anguloEnemigoJugador < anguloVision * 0.5f && direccionJugador.magnitude <= rangoMaximo)
         {
+            int layerMask = LayerMask.GetMask("Objeto", "Player");
             RaycastHit hit;
 
-            Debug.DrawRay(transform.position, direccionJugador.normalized, Color.blue, rangoMaximo);
-            if (Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskJugador)  &&
-                !Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskObjeto))
+            if(Physics.Raycast(transform.position, direccionJugador.normalized,out hit, rangoMaximo, layerMask))
             {
-                NivelDeAlerta += Time.deltaTime;
-                return true;
-               
+                if (hit.collider.gameObject.name.Equals("Player"))
+                {
+                    NivelDeAlerta += Time.deltaTime;
+                    return true;
+                }
             }
+                
+               
         }
         if(NivelDeAlerta>0)
         NivelDeAlerta -= Time.deltaTime;
@@ -107,5 +110,32 @@ public class Ia_BasicController : MonoBehaviour
 
         Gizmos.DrawLine(transform.position + principio, transform.position + final);
     }
+    private void OnEnable()
+    {
+        SoundEventManager.OnSoundEvent += OnSoundEvent;
+    }
+
+    private void OnDisable()
+    {
+        SoundEventManager.OnSoundEvent -= OnSoundEvent;
+    }
+
+    private void OnSoundEvent(SoundEvent soundEvent)
+    {
+        if (Vector3.Distance(transform.position, soundEvent.soundPosition) <= RangoAudicion)
+        {
+            Debug.Log("Enemigo escuchó un sonido proveniente de " + soundEvent.soundPosition);
+        }
+    }
+    float MeasureLightIntensity(Vector3 position)
+    {
+        float intensity = RenderSettings.ambientLight.grayscale; // Usa el nivel de luz ambiental como base
+                                                                 // Ajusta esta lógica para calcular la intensidad de otras fuentes de luz si es necesario
+
+        // Considera añadir aquí la lógica para calcular la intensidad de las fuentes de luz cercanas
+
+        return intensity;
+    }
+
 
 }

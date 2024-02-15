@@ -28,10 +28,12 @@ public class Arco : MonoBehaviour
 
     public delegate void CambiarFuerza(float fuerza);
     public static event CambiarFuerza cambiarFuerza;
+    private GameObject jugador;
     #endregion
 
     void Start()
     {
+        jugador = GameObject.FindWithTag("Player");
         audioSource = GetComponent<AudioSource>();
 
         cantidadDeFlechas?.Invoke(cantidadFlechas);
@@ -48,6 +50,7 @@ public class Arco : MonoBehaviour
             cargando = true;
             flechaActual.Cargar();
             ReproducirSonidoNuevo(audioCargar);
+            SoundEventManager.EmitSoundEvent(new SoundEvent(jugador.transform.position, 1500f));
         }
            
         if(cargando && fuerzaActual < fuerzaMaxima)
@@ -69,7 +72,8 @@ public class Arco : MonoBehaviour
     {
         Vector3 fuerzaLanzada = spawnFlechas.TransformDirection(Vector3.forward * fuerza);
         flechaActual.Lanzar(fuerzaLanzada);
-        ReproducirSonidoNuevo(audioCargar);
+        ReproducirSonidoNuevo(audioLanzar);
+        SoundEventManager.EmitSoundEvent(new SoundEvent(jugador.transform.position, 1500f));
 
         cantidadFlechas--;
         cantidadDeFlechas?.Invoke(cantidadFlechas);
