@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class MovimientoJugador : MonoBehaviour
 {
+    public static MovimientoJugador instance;
+
     private float velocidad = 5.0f;
     private float multiplicadorSprint = 2.0f;
     private float yaw, pitch;
@@ -60,50 +62,11 @@ public class MovimientoJugador : MonoBehaviour
         {
             midpoint = cameraTransform.localPosition.y;
         }
-        // Llenar inventario
-        inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
-        InventarioScript.instance.LlenarInventario();
     }
 
-    void Update()
+    void Awake()
     {
-        if (gameState.game == GameState.StateGame.inGame)
-            MovimientoPersonaje();
-
-        // Configuración de pausa
-        if (Input.GetKeyDown(KeyCode.Escape) && gameState.game == GameState.StateGame.inGame)
-        {
-            gameState.PauseGame();
-            pausa.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            inventarioMenu.SetActive(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && gameState.game == GameState.StateGame.pause)
-        {
-            gameState.ResumeGame();
-            pausa.SetActive(false);
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            inventarioMenu.SetActive(true);
-        }
-
-        // Mostrar inventario
-        if (Input.GetKeyDown(KeyCode.Tab) && gameState.game == GameState.StateGame.inGame)
-        {
-            gameState.InventoryGame();
-            inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 100;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else if (Input.GetKeyDown(KeyCode.Tab) && gameState.game == GameState.StateGame.inInventory)
-        {
-            gameState.ResumeGame();
-            inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
+        instance = this;
     }
 
     void RecibirVariables()
@@ -114,7 +77,7 @@ public class MovimientoJugador : MonoBehaviour
         inventarioMenu = ConfiguracionJuego.instance.inventarioMenu;
     }
 
-    void MovimientoPersonaje()
+    public void MovimientoPersonaje()
     {
         float movimientoH = Input.GetAxis("Horizontal");
         float movimientoV = Input.GetAxis("Vertical");

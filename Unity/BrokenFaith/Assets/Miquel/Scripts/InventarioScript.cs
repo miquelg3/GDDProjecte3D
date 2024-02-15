@@ -39,6 +39,7 @@ public class InventarioScript : MonoBehaviour
             slotTransform.AddComponent<DropSlot>();
         }
 
+        LlenarInventario();
 
     }
 
