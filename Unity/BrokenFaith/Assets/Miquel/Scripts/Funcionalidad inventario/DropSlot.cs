@@ -13,11 +13,14 @@ public class DropSlot : MonoBehaviour, IDropHandler
         {
             return;
         }
-
-        // Mover la imagen al slot
-        var image = eventData.pointerDrag.GetComponent<RectTransform>();
-        image.position = dropRectTransform.position;
-        image.SetParent(dropRectTransform);
+        if (dropRectTransform.parent.name == "PanelInventario")
+        {
+            // Mover la imagen al slot
+            Debug.Log("ChildCount" + dropRectTransform.childCount);
+            var image = eventData.pointerDrag.GetComponent<RectTransform>();
+            image.position = dropRectTransform.position;
+            image.SetParent(dropRectTransform);
+        }
     }
 }
 
