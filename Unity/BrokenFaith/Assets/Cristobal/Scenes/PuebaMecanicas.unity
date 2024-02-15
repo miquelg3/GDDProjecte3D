@@ -834,6 +834,7 @@ MonoBehaviour:
   distanceDetector: 5
   Pausa: {fileID: 43662058}
   InventarioMenu: {fileID: 1541842359}
+  agachado: 0
 --- !u!54 &102784785
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9680,7 +9681,7 @@ GameObject:
   - component: {fileID: 1945326634}
   - component: {fileID: 1945326633}
   - component: {fileID: 1945326632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "Muro peque\xF1o (5)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10079,6 +10080,11 @@ PrefabInstance:
       propertyPath: layermaskObjeto.m_Bits
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3353549485946119622, guid: e7c8cb543a33d964d99f392412854953,
+        type: 3}
+      propertyPath: layermaskJugador.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 5918995219998058163, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
       propertyPath: m_Name
@@ -10087,7 +10093,7 @@ PrefabInstance:
     - target: {fileID: 6444561345999830025, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.03
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 6444561345999830025, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
@@ -10097,7 +10103,7 @@ PrefabInstance:
     - target: {fileID: 6444561345999830025, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 38.67
+      value: 34.4
       objectReference: {fileID: 0}
     - target: {fileID: 6444561345999830025, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}

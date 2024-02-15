@@ -8,7 +8,7 @@ public class Ia_BasicController : MonoBehaviour
     [SerializeField] private float rangoMaximo = 10f;
     [SerializeField] private float anguloVision = 45f;
     [SerializeField] private LayerMask layermaskObjeto;
-    private LayerMask layermaskJugador;
+    [SerializeField] private LayerMask layermaskJugador;
 
     [Header("MoviemientoYAcciones")]
     [SerializeField] private float velocidadMovimiento = 10f;
@@ -17,28 +17,36 @@ public class Ia_BasicController : MonoBehaviour
     private GameObject jugador;
 
     private Animator animator;
-
-    private bool detectado;
+    private float NivelDeAlerta;
 
     void Start()
     {
-        detectado = false;
+        NivelDeAlerta = 0;
         jugador = GameObject.FindGameObjectWithTag("Player").gameObject;
+        bool vision = jugador.GetComponent<PlayerMovement>().agachado;
         animator = GetComponent<Animator>();
-        layermaskJugador = jugador.layer;
-        Debug.Log(jugador.layer);
+        //layermaskJugador = jugador.layer;
+        //Debug.Log(jugador.layer);
     }
 
     void Update()
     {
+        if (jugador.GetComponent<PlayerMovement>().agachado == true && rangoMaximo>5f)
+            rangoMaximo /= 2;
+        else if (jugador.GetComponent<PlayerMovement>().agachado == false && rangoMaximo != 10f)
+            rangoMaximo = 10f;
 
         if (RangoDeVision())
             Debug.Log("lo Detecta");
         else
             Debug.Log("No lo Detecta");
 
-
+        //Debug.Log(NivelDeAlerta);
        //if (detectado) PerseguirJugador();
+       if (NivelDeAlerta >= 10f)
+            PerseguirJugador();
+        
+        
     }
 
     private bool RangoDeVision()
@@ -51,14 +59,16 @@ public class Ia_BasicController : MonoBehaviour
             RaycastHit hit;
 
             Debug.DrawRay(transform.position, direccionJugador.normalized, Color.blue, rangoMaximo);
-
             if (Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskJugador)  &&
                 !Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskObjeto))
             {
+                NivelDeAlerta += Time.deltaTime;
                 return true;
+               
             }
         }
-
+        if(NivelDeAlerta>0)
+        NivelDeAlerta -= Time.deltaTime;
         return false;
     }
 
