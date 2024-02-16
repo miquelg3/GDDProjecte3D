@@ -220,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
 
     void LlenarInventario ()
     {
-        Municion flechas = new Municion("1", "Flechas", 3, TipoMunicion.Piedra, 5);
+        Municion flechas = new Municion("1", "Flechas",true, 3, TipoMunicion.Piedra, 5);
         Equipo arco = new Equipo("1", "Arco", TipoArma.Arco, flechas, 5);
 
         Equipo espada = new Equipo("2", "Espada", TipoArma.Espada, 5);

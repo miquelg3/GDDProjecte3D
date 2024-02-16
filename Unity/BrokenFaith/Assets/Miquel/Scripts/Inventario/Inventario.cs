@@ -32,9 +32,5 @@ public class Inventario : IInventario
         if ( Items.Count == 0 )
             Debug.Log("No hay nada en el inventario");
     }
-<<<<<<< HEAD
-=======
-
     public HashSet<Item> GetItems() { return Items; }
->>>>>>> Feature/Miquel
 }
