@@ -18,7 +18,7 @@ public class FovEnemigo : MonoBehaviour
 
     void Start()
     {
-        ObtenerDatosJugador();
+        jugador = GameObject.FindGameObjectWithTag("Player");
         detectado = false;
     }
 
@@ -35,8 +35,6 @@ public class FovEnemigo : MonoBehaviour
 
         if (anguloEnemigoJugador < anguloVision * 0.5f && direccionJugador.magnitude <= rangoMaximo)
         {
-            RaycastHit hit;
-
             Debug.DrawRay(transform.position, direccionJugador.normalized, Color.blue, rangoMaximo);
 
             if (Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskJugador) &&
@@ -47,12 +45,6 @@ public class FovEnemigo : MonoBehaviour
         }
 
         return false;
-    }
-
-    private void ObtenerDatosJugador()
-    {
-        jugador = GameObject.FindGameObjectWithTag("Player");
-        layermaskJugador = jugador.layer;
     }
 
     private void OnDrawGizmos()

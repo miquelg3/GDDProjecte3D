@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemigoBasico : MonoBehaviour
 {
     #region Variables
 
-        
+    [Header("Moviemiento")] 
     [SerializeField] private float velocidadMovimiento = 10f;        
     [SerializeField] private float distanciaAtaque = 0f;
 
+    [Header("Puntos")]
     [SerializeField] List<Vector3> puntos;
     private Vector3 posIncial;
     private int index;
+
+    private NavMeshAgent agente;
+
 
     private Animator animator;
     private FovEnemigo fovEnemigo;
@@ -25,6 +30,7 @@ public class EnemigoBasico : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         fovEnemigo = GetComponent<FovEnemigo>();
+        agente = GetComponent<NavMeshAgent>();
         jugador = jugador = GameObject.FindGameObjectWithTag("Player");
         posIncial = puntos[0];
     }
@@ -37,7 +43,7 @@ public class EnemigoBasico : MonoBehaviour
 
     private void PerseguirJugador()
     {
-      transform.position = Vector3.MoveTowards(transform.position,jugador.transform.position, velocidadMovimiento * Time.deltaTime);
+        agente.SetDestination(jugador.transform.position);
     }
 
     private void Patrullar()
