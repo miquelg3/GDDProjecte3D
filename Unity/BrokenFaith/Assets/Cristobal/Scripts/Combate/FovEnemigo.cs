@@ -9,7 +9,12 @@ public class FovEnemigo : MonoBehaviour
     [SerializeField] private float rangoMaximo = 10f;
     [SerializeField] private float anguloVision = 45f;
     [SerializeField] private LayerMask layermaskObjeto;
-    private LayerMask layermaskJugador;
+    [SerializeField] private LayerMask layermaskJugador;
+
+    private float NivelDeAlerta;
+    private float RangoAudicion;
+    private float luminosidad;
+
     private GameObject jugador;
 
     private bool detectado;
@@ -18,6 +23,8 @@ public class FovEnemigo : MonoBehaviour
 
     void Start()
     {
+        RangoAudicion = 1000f;
+        NivelDeAlerta = 0;
         jugador = GameObject.FindGameObjectWithTag("Player");
         detectado = false;
     }
@@ -25,6 +32,13 @@ public class FovEnemigo : MonoBehaviour
     
     void Update()
     {
+        luminosidad = MeasureLightIntensity(jugador.transform.position);
+        Debug.Log(luminosidad);
+        if (jugador.GetComponent<PlayerMovement>().agachado == true && rangoMaximo > 5f)
+            rangoMaximo /= 2;
+        else if (jugador.GetComponent<PlayerMovement>().agachado == false && rangoMaximo != 10f)
+            rangoMaximo = 10f;
+
         detectado = RangoDeVision();
     }
 
@@ -65,5 +79,15 @@ public class FovEnemigo : MonoBehaviour
     {
         return detectado;
     }
-    
+
+    float MeasureLightIntensity(Vector3 position)
+    {
+        float intensity = RenderSettings.ambientLight.grayscale; // Usa el nivel de luz ambiental como base
+                                                                 // Ajusta esta lógica para calcular la intensidad de otras fuentes de luz si es necesario
+
+        // Considera añadir aquí la lógica para calcular la intensidad de las fuentes de luz cercanas
+
+        return intensity;
+    }
+
 }

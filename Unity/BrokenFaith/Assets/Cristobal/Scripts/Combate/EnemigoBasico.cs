@@ -37,6 +37,7 @@ public class EnemigoBasico : MonoBehaviour
 
     void Update()
     {
+
         if (fovEnemigo.GetDetectado()) PerseguirJugador();
         else Patrullar();
     }
