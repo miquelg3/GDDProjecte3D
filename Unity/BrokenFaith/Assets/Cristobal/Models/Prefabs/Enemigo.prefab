@@ -88,6 +88,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0595aa36d1ac7114287c2e369db0789a,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3353549485946119622}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0595aa36d1ac7114287c2e369db0789a,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2697247287893186000}
   m_SourcePrefab: {fileID: 100100000, guid: 0595aa36d1ac7114287c2e369db0789a, type: 3}
 --- !u!1 &5918995219998058163 stripped
@@ -132,6 +136,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SaludBase: 2
+--- !u!114 &3353549485946119622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5918995219998058163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 315abc3bc72c90a42920bc9f9da1a745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangoMaximo: 10
+  anguloVision: 45
+  objetosMask:
+    serializedVersion: 2
+    m_Bits: 8
+  velocidadMovimiento: 10
+  distanciaSeguimiento: 0
+  distanciaAtaque: 0
 --- !u!54 &2697247287893186000
 Rigidbody:
   m_ObjectHideFlags: 0
