@@ -39,8 +39,7 @@ public class FovEnemigo : MonoBehaviour
         else if (jugador.GetComponent<PlayerMovement>().agachado == false && rangoMaximo != 10f)
             rangoMaximo = 10f;
 
-        if (NivelDeAlerta >= 10f)
-            detectado = true;
+        detectado = RangoDeVision();
     }
 
     private bool RangoDeVision()
@@ -50,21 +49,15 @@ public class FovEnemigo : MonoBehaviour
 
         if (anguloEnemigoJugador < anguloVision * 0.5f && direccionJugador.magnitude <= rangoMaximo)
         {
-            int layerMask = LayerMask.GetMask("Objeto", "Player");
-        
-            if (Physics.Raycast(transform.position, direccionJugador.normalized, out RaycastHit hit, rangoMaximo, layerMask))
+            Debug.DrawRay(transform.position, direccionJugador.normalized, Color.blue, rangoMaximo);
+
+            if (Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskJugador) &&
+                !Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskObjeto))
             {
-                if (hit.collider.gameObject.name.Equals("Player"))
-                {
-                    NivelDeAlerta += Time.deltaTime;
-                    return true;
-                }
+                return true;
             }
-
-
         }
-        if (NivelDeAlerta > 0)
-            NivelDeAlerta -= Time.deltaTime;
+
         return false;
     }
 

@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     private float timer = 0;
 
     public Transform cameraTransform;
-    public bool agachado;
 
     private Rigidbody rb;
 
@@ -113,13 +112,11 @@ public class PlayerMovement : MonoBehaviour
         {
             movement /= sprintMultiplier;
             lerpTime += Time.deltaTime / 0.5f;
-            agachado = true;
             //cameraTransform.position = Vector3.Lerp(altura, altura / 2, lerpTime);
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
         }
         else
         {
-            agachado = false;
             lerpTime = 0f;
             transform.localScale = altura;
         }
