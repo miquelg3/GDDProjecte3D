@@ -8,18 +8,8 @@ using UnityEngine;
 public class LectorCSV : MonoBehaviour
 {
 	[SerializeField] private TextAsset csvFile;
-	private List<string> lines = new List<string>();
 
-	private void Start()
-	{
-		lines = ReadCSVFile();
-
-		foreach (string row in lines)
-		{
-			Debug.Log($"{row}\n ");
-		}
-	}
-	public List<string> ReadCSVFile()
+	public string[] LeerCSV()
 	{
 		StringReader reader = new StringReader(csvFile.text);
 		StringBuilder sb = new StringBuilder();
@@ -29,7 +19,7 @@ public class LectorCSV : MonoBehaviour
 		{
 			sb.Append(line);
 		}
-		return sb.ToString().Split(',').ToList();
+		return sb.ToString().Split(',');
 	}
 
 }

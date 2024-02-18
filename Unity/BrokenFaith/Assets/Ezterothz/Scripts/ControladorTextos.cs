@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class ControladorTextos : MonoBehaviour
 {
-    [SerializeField] private List<TextMeshPro> listaTextoNotas;
-    [SerializeField] private List<string> textoNotas;
+    [SerializeField] private TextMeshPro[] listaTextoNotas;
+    [SerializeField] private LectorCSV lectorCSVNotas;
+    private string[] textoNotas;
+    
 
-    ControladorTextos instance;
+    public static ControladorTextos instance;
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,12 +18,17 @@ public class ControladorTextos : MonoBehaviour
     }
 	private void Start()
 	{
-		
+        textoNotas = lectorCSVNotas.LeerCSV();
+        EnlazarNotas();
 	}
-	// Update is called once per frame
-	void Update()
+
+    private void EnlazarNotas()
     {
-        
+        for (int i = 0; i < listaTextoNotas.Length; i++)
+        {
+            if (listaTextoNotas[i] != null  && textoNotas[i] != null) listaTextoNotas[i].text = textoNotas[i];
+
+		}
     }
 
 }
