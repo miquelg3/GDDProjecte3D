@@ -1,12 +1,11 @@
 public class Medicina : Item
 {
     public string Texto {  get; private set; }
-    public Medicina(string id, string nombre) : base(id, nombre)
+    public TipoMedicina TipoMedicina { get; private set; }
+    public Medicina(string id, string nombre, bool acumulable, TipoMedicina tipoMedicina, string texto) : base(id, nombre, acumulable)
     {
-    }
-    public Medicina(string id, string nombre,string texto) : base(id, nombre)
-    {
-        this.Texto = texto;
+        Texto = texto;
+        TipoMedicina = tipoMedicina;
     }
 }
 public enum TipoMedicina

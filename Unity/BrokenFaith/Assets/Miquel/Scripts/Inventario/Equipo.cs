@@ -8,17 +8,17 @@ public class Equipo : Item
     public TipoArma TipoArma { get; private set; }
     public Municion Municion { get; set; }
 
-    public Equipo(string id, string nombre, TipoArma tipoArma, float daño) : base(id, nombre)
+    public Equipo(string id, string nombre, TipoArma tipoArma, float daño) : base(id, nombre, false)
     {
         TipoArma = tipoArma;
         Daño = daño;
     }
-    public Equipo(string id, string nombre, TipoArma tipoArma, Municion municion) : base(id, nombre)
+    public Equipo(string id, string nombre, TipoArma tipoArma, Municion municion) : base(id, nombre, false)
     {
         TipoArma = tipoArma;
         Municion = municion;
     }
-    public Equipo(string id, string nombre, TipoArma tipoArma, Municion municion, float daño) : base(id, nombre)
+    public Equipo(string id, string nombre, TipoArma tipoArma, Municion municion, float daño) : base(id, nombre, false)
     {
         TipoArma = tipoArma;
         Municion = municion;
