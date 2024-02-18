@@ -1,6 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Unity/BrokenFaith/Assets/Cristobal/Models/Prefabs/Animaciones/IdleAtacarEspada.anim.meta
+<<<<<<<< HEAD:Unity/BrokenFaith/Assets/Guardado.json.meta
+guid: 271ab05c2c64e5d4e8106125f8507c00
+TextScriptImporter:
+========
+guid: 71690c2cbbd468b4fb8bfa0c15ffc1a1
+=======
 guid: 11c3dac98cb3c234ea0b6279569b9c9b
+>>>>>>> Feature/cristobal:Unity/BrokenFaith/Assets/Cristobal/Models/Prefabs/Animaciones/EspadaAtaque.anim.meta
 NativeFormatImporter:
+>>>>>>>> Feature/cristobal:Unity/BrokenFaith/Assets/Cristobal/Models/Prefabs/Animaciones/IdleAtacarEspada.anim.meta
   externalObjects: {}
   mainObjectFileID: 7400000
   userData: 

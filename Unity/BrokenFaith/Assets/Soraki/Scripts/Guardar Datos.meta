@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Unity/BrokenFaith/Assets/Soraki/Scripts/Guardar Datos.meta
 guid: b9ab90e3dac89b14bbc31da7f771301d
 folderAsset: yes
+========
+guid: eab87bf55430c6c4faf026fddb79e43d
+>>>>>>>> Feature/cristobal:Unity/BrokenFaith/Assets/Cristobal/Scenes/PrubaDeEspada.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
