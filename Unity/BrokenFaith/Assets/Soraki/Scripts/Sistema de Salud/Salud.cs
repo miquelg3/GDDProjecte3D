@@ -13,12 +13,10 @@ public abstract class Salud
     public float VidaActual { get; set; }
     public bool Sangrado { get; private set; }
     public bool Muerto { get; private set; }
-
     public float VIDA_MAX { get; set; }
     #endregion
     #region constructores
     public Salud(NivelSalud nivelSalud, bool infectado, int vidaActual, bool sangrado, int vIDA_MAX)
-
     {
         Lista = new List<Salud>();
         this.NivelSalud = nivelSalud;
@@ -27,17 +25,13 @@ public abstract class Salud
         this.Sangrado = sangrado;
         VIDA_MAX = vIDA_MAX;
     }
-
     public Salud(float vIDA_MAX)
-
     {
         Lista = new List<Salud>();
         VidaActual = vIDA_MAX;
         VIDA_MAX = vIDA_MAX;
     }
-
     public Salud()
-
     {
         Lista = new List<Salud>();
     }
@@ -185,8 +179,10 @@ public abstract class Salud
     {
         if (parte is Torso)
         {
-            parte.VidaActual += parte.VIDA_MAX;
+            parte.VidaActual = parte.VIDA_MAX;
+            CambiarNivelSalud(parte);
             ActualizarVidaMaxima((Torso)parte);
+
         }
         else
         {
@@ -201,7 +197,6 @@ public abstract class Salud
     {
         Torso pecho = (Torso)Lista[1];
         RecuperarGolpeParte((Torso)pecho);
-        ActualizarVidaMaxima(pecho);
         foreach (var parte in Lista)
         {
             if (parte is not Torso)
@@ -291,6 +286,7 @@ public abstract class Salud
     /// <param name="Parte">Parte a cambiar el estado de salud</param>
     public void CambiarNivelSalud(Salud Parte)
     {
+        int p = PlayerPrefs.GetInt("Cargar");
         float setenta = (Parte.VIDA_MAX * 70) / 100;
         float cincuenta = (Parte.VIDA_MAX * 50) / 100;
         float veinte = (Parte.VIDA_MAX * 20) / 100;
@@ -310,7 +306,15 @@ public abstract class Salud
         {
             Parte.NivelSalud = NivelSalud.Sano;
         }
-        Parte.Herida();
+        if (p == 1 && Parte is not Torso)
+        {
+            Parte.Herida();
+        }
+        else if(p == 0) 
+        {
+            Parte.Herida();
+        }
+        CambiarMaximoSaludPartes();
     }
     /// <summary>
     /// Este metodo es para comprobar si el numero del aleatorizador del repartir golpe ha cogido una extremidad de la lista, y que esta pueda recibir el golpe
@@ -386,10 +390,13 @@ public abstract class Salud
     /// <param name="pj">La lista de partes extraidas del archivo de guardado</param>
     public void CargarEstadoPartes(List<Salud> pj)
     {
+
+        VidaMaximaCargado(pj);
         ActualizarNivelSalud();
+        CargarLista(pj);
         ActualizarVidaMaxima((Torso)pj[1]);
         CambiarMaximoSaludPartes();
-        CargarLista(pj);
+
     }
     /// <summary>
     /// Este metodo Actualiza el estado de todas las partes despues del cargado
@@ -409,6 +416,12 @@ public abstract class Salud
     /// <param name="Pecho">El torso a evaluar el estado de salud</param>
     public void ActualizarVidaMaxima(Torso Pecho)
     {
+        if(Pecho.VidaActual > 200f)
+        {
+            Lista[1].VIDA_MAX = 200f;
+            Lista[1].VidaActual = 200f;
+
+        }
 
         foreach (var parte in Lista)
         {
@@ -472,6 +485,20 @@ public abstract class Salud
         {
             Lista[i].VidaActual = pj[i].VidaActual;
         }
+        VidaMaximaCargado(pj);
+    }
+    /// <summary>
+    /// Añadirle a la lista que pasamos por parametro la salud maxima
+    /// </summary>
+    /// <param name="s">la lista del cargado</param>
+    public void VidaMaximaCargado(List<Salud> s)
+    {
+        Lista[0].VIDA_MAX = 200f;
+        Lista[1].VIDA_MAX = 200f;
+        Lista[2].VIDA_MAX = 100f;
+        Lista[3].VIDA_MAX = 100f;
+        Lista[4].VIDA_MAX = 100f;
+        Lista[5].VIDA_MAX = 100f;
     }
     #endregion
 }

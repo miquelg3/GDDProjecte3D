@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Arco : MonoBehaviour
 {
+    #region variables
     [SerializeField] private Transform spawnFlechas;
     [SerializeField] private Flecha flechaPrefab;
 
@@ -27,13 +28,17 @@ public class Arco : MonoBehaviour
 
     public delegate void CambiarFuerza(float fuerza);
     public static event CambiarFuerza cambiarFuerza;
-
+    private GameObject jugador;
+    #endregion
 
     void Start()
     {
+        jugador = GameObject.FindWithTag("Player");
         audioSource = GetComponent<AudioSource>();
 
         cantidadDeFlechas?.Invoke(cantidadFlechas);
+
+        //CAmbiar esto para cuando este listo lo de inventario, Saber a que tengo que acceder
         if (cantidadFlechas > 0)
             CrearFlecha();
     }
@@ -44,8 +49,8 @@ public class Arco : MonoBehaviour
         {
             cargando = true;
             flechaActual.Cargar();
-            audioSource.clip = audioCargar;
-            audioSource.Play(); 
+            ReproducirSonidoNuevo(audioCargar);
+            SoundEventManager.EmitSoundEvent(new SoundEvent(jugador.transform.position, 1500f));
         }
            
         if(cargando && fuerzaActual < fuerzaMaxima)
@@ -56,7 +61,6 @@ public class Arco : MonoBehaviour
             
         if (cargando && Input.GetMouseButtonUp(0))
         {
-            audioSource.Stop();
             Disparar(fuerzaActual * fuerzaBase);
             cargando = false;
             fuerzaActual = 0;
@@ -68,20 +72,28 @@ public class Arco : MonoBehaviour
     {
         Vector3 fuerzaLanzada = spawnFlechas.TransformDirection(Vector3.forward * fuerza);
         flechaActual.Lanzar(fuerzaLanzada);
-
-        audioSource.clip = audioLanzar;
-        audioSource.Play();
+        ReproducirSonidoNuevo(audioLanzar);
+        SoundEventManager.EmitSoundEvent(new SoundEvent(jugador.transform.position, 1500f));
 
         cantidadFlechas--;
         cantidadDeFlechas?.Invoke(cantidadFlechas);
 
-        if (cantidadFlechas > 0)
-            CrearFlecha();            
+        CrearFlecha();        
+    }
+
+    public void ReproducirSonidoNuevo(AudioClip nuevoAudio)
+    {
+        audioSource.Stop();
+        audioSource.clip = nuevoAudio;
+        audioSource.Play();
     }
 
     private void CrearFlecha()
     {
-        flechaActual = Instantiate(flechaPrefab, spawnFlechas);
-        flechaActual.transform.localPosition = Vector3.zero;
+        if (cantidadFlechas > 0)
+        {
+            flechaActual = Instantiate(flechaPrefab, spawnFlechas);
+            flechaActual.transform.localPosition = Vector3.zero;
+        }
     }
 }

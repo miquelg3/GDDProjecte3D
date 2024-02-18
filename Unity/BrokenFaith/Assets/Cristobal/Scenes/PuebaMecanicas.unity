@@ -834,6 +834,7 @@ MonoBehaviour:
   distanceDetector: 5
   Pausa: {fileID: 43662058}
   InventarioMenu: {fileID: 1541842359}
+  agachado: 0
 --- !u!54 &102784785
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7738,7 +7739,7 @@ Transform:
   m_GameObject: {fileID: 1506209207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.72, y: 0.23, z: -35.63}
+  m_LocalPosition: {x: -0.38, y: 0.23, z: -35.63}
   m_LocalScale: {x: 0.84, y: 1, z: 0.32}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9680,7 +9681,7 @@ GameObject:
   - component: {fileID: 1945326634}
   - component: {fileID: 1945326633}
   - component: {fileID: 1945326632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "Muro peque\xF1o (5)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9917,7 +9918,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -9937,7 +9938,7 @@ Transform:
   m_GameObject: {fileID: 1953134056}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 12.3, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10079,6 +10080,11 @@ PrefabInstance:
       propertyPath: layermaskObjeto.m_Bits
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3353549485946119622, guid: e7c8cb543a33d964d99f392412854953,
+        type: 3}
+      propertyPath: layermaskJugador.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 5918995219998058163, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
       propertyPath: m_Name
@@ -10087,7 +10093,7 @@ PrefabInstance:
     - target: {fileID: 6444561345999830025, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.03
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6444561345999830025, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
@@ -10097,7 +10103,7 @@ PrefabInstance:
     - target: {fileID: 6444561345999830025, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 38.67
+      value: 36.4
       objectReference: {fileID: 0}
     - target: {fileID: 6444561345999830025, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}

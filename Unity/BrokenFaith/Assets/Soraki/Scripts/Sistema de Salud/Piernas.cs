@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Piernas : Salud
 {
-    // La variable velocidad se encarga de controlar a la velocidad que ira nuestro personaje y el valor sera cambiado cuando resulte herido
+    // La variable Vida se encarga de controlar a la Vida que ira nuestro personaje y el valor sera cambiado cuando resulte herido
     private float Velocidad { get; set; }
     public Piernas(int vidaActual, float Velocidad) : base(vidaActual)
     {
