@@ -65,4 +65,19 @@ public class ControlJuego : MonoBehaviour
         pausa = ConfiguracionJuego.instance.pausa;
         inventarioMenu = ConfiguracionJuego.instance.inventarioMenu;
     }
+
+    public void ResumeGame()
+    {
+        gameState.ResumeGame();
+        pausa.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        inventarioMenu.SetActive(true);
+    }
+
+    public void GuardarPartida()
+    {
+
+    }
+
 }
