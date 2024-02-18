@@ -26,8 +26,12 @@ public class ControladorTextos : MonoBehaviour
     {
         for (int i = 0; i < listaTextoNotas.Length; i++)
         {
-            if (listaTextoNotas[i] != null  && textoNotas[i] != null) listaTextoNotas[i].text = textoNotas[i];
-
+            //Comprobamos si quedan textos que asignar
+            if (i < textoNotas.Length)
+            {
+                //Comprobacion de seguridad
+				if (listaTextoNotas[i] != null && textoNotas[i] != null) listaTextoNotas[i].text = textoNotas[i];
+			}
 		}
     }
 
