@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Unity/BrokenFaith/Assets/Ezterothz/Models/3DModel/SM_ChurchBench_a01.fbx.meta
 guid: 7167d8fae9b0b904f8cf6b736daeea1c
+=======
+guid: a77d106bb272d1644a810cf5dd057e17
+>>>>>>> Develop/Produccion:Unity/BrokenFaith/Assets/Ezterothz/Models/3DModel/5_10_scaleman.FBX.meta
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
