@@ -7,12 +7,11 @@ public abstract class Item
 {
    public string Id { get; private set; }
    public string Nombre { get; private set; }
-   protected Item(string id, string nombre)
+   public bool acumulable { get; private set; }
+   protected Item(string id, string nombre, bool acumulable)
     {
         Id = id;
         Nombre = nombre;
-    }
-    public void AgregarItem() 
-    {
+        this.acumulable = acumulable;
     }
 }

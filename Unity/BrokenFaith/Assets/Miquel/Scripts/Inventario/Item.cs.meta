@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 2f988e6356e2efd45b3dae55353d8f29
+=======
+guid: c257897a9ebf2ff4da6317aa2e634122
+>>>>>>> Feature/Miquel
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

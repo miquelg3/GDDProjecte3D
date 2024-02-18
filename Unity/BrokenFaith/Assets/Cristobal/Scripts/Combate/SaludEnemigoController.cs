@@ -8,14 +8,9 @@ public class SaludEnemigoController : MonoBehaviour
 {
     [SerializeField] float SaludBase = 100f;
 
-    private Transform transform { get; set; }
-
     private Animator animator;
-    private CapsuleCollider collider;
-
-    private Ia_BasicController ia_controller;
-
-    private bool muerto { get; set; }
+    private new CapsuleCollider collider;
+    private bool muerto;
 
     void Start()
     {
@@ -34,7 +29,6 @@ public class SaludEnemigoController : MonoBehaviour
     {
         muerto = true;
         collider.enabled = false;
-        //ia_controller.enabled = false;
         animator.SetTrigger("Muerto");
     }
 }
