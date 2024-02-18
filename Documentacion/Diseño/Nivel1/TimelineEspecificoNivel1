@@ -1,0 +1,247 @@
+<mxfile host="app.diagrams.net" modified="2023-12-14T19:02:51.627Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 OPR/104.0.0.0" etag="NCVzPZmJCOeMw3I_j8yy" version="22.1.9" type="google">
+  <diagram name="Page-1" id="d9b1e647-80fa-b4a2-5024-87a742678bcc">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="57fe6abec08f04cb-1" target="Snty4n7Q-Sf3PinRbk9C-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="57fe6abec08f04cb-1" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Sotano Ermita&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0080FF;fontColor=#FFFFFF;strokeColor=none;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="-80" y="180" width="250" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="57fe6abec08f04cb-3" target="57fe6abec08f04cb-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="57fe6abec08f04cb-3" value="Viga" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0067CC;fontColor=#FFFFFF;strokeColor=none;size=0.25;" vertex="1" parent="1">
+          <mxGeometry x="185" y="180" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="57fe6abec08f04cb-5" target="57fe6abec08f04cb-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="57fe6abec08f04cb-5" value="Puente" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0059B0;fontColor=#FFFFFF;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="360" y="180" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="57fe6abec08f04cb-7" value="Nivel1 Pasadizo" style="text;html=1;strokeColor=none;fillColor=#61BAFF;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=54;fontStyle=1;fontColor=#004D99;" vertex="1" parent="1">
+          <mxGeometry x="-80" width="3380" height="163.7" as="geometry" />
+        </mxCell>
+        <mxCell id="57fe6abec08f04cb-8" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Habitación cerrada donde poder moverse dentro con libertad, hay una puerta cerrada que debe abrirse mediante una llave presente en la sala. Enseñando conceptos como el movimiento, recoger objetos y uso de objetos desde el inventario.&lt;/span&gt;&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="400" width="210" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="57fe6abec08f04cb-9" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;En mitad del pasillo se topa con una viga que se ha venido abajo forzando al jugador a aprender a agacharse&lt;/span&gt;&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="200" y="295" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="57fe6abec08f04cb-12" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;El jugador se topa con un puente/tablones que al pasar se rompen bajo tus pies, tu arma se rompe en la&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;caída&lt;/span&gt;&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="375" y="280" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-2" target="Snty4n7Q-Sf3PinRbk9C-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-2" target="Snty4n7Q-Sf3PinRbk9C-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-2" value="Rio Subterraneo" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0059B0;fontColor=#FFFFFF;strokeColor=none;size=0.08333333333333333;" vertex="1" parent="1">
+          <mxGeometry x="530" y="180" width="260" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-3" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Después&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;de haber sido herido en la caída&amp;nbsp;se topa con un esqueleto de un antiguo caballero. De el recoges un arco, flechas&amp;nbsp;y algunos materiales para hacer un entablillado a la pierna&lt;/span&gt;&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="567.5" y="540" width="175" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-4" target="57fe6abec08f04cb-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-4" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Llave&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#f8cecc;strokeColor=#b85450;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="-25" y="280" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-11" target="Snty4n7Q-Sf3PinRbk9C-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-11" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Espada&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#f8cecc;strokeColor=#b85450;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="550" y="360" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-16" target="Snty4n7Q-Sf3PinRbk9C-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-16" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Material cura&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#f8cecc;strokeColor=#b85450;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="680" y="360" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-19" target="Snty4n7Q-Sf3PinRbk9C-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-19" value="Calaveras" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0059B0;fontColor=#FFFFFF;strokeColor=none;size=0.16;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="180" width="250" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-20" target="Snty4n7Q-Sf3PinRbk9C-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-20" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Puzzle 2&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#d5e8d4;strokeColor=#82b366;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="1527.5" y="305" width="135" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-22" value="&lt;div style=&quot;text-align: justify;&quot;&gt;Al avanzar se topa con la aparición de varios montones de calaveras apiladas como indicaba la nota del esqueleto, también da pistas sobre como resolverlo. Que es disparando a las dianas/palancas/x en un orden especifico siguiendo el orden delas columnas apiladas. Al hacerlo baja una escalera que te permite avanzar. Necesitas el arco para avanzar.&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1507.5" y="450" width="175" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-23" target="Snty4n7Q-Sf3PinRbk9C-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-23" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Nota&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Calaveras&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#f8cecc;strokeColor=#b85450;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="1222.5" y="305" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-31" target="Snty4n7Q-Sf3PinRbk9C-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-31" value="Backtracking maderero" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0059B0;fontColor=#FFFFFF;strokeColor=none;size=0.08333333333333333;" vertex="1" parent="1">
+          <mxGeometry x="820" y="180" width="270" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-33" target="Snty4n7Q-Sf3PinRbk9C-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-33" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px;&quot;&gt;Puzzle1&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#d5e8d4;strokeColor=#82b366;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="887.5" y="305" width="135" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-34" value="&lt;div style=&quot;text-align: justify;&quot;&gt;En la zona del rio hay un tablón, que podría servir para volver a tener un puente funcional (spoiler: esta para eso). También hay un montón de tablones enmohecidos que pueden ser destruidos con tu nueva espada, los tablones ocultan un pasadizo que lleva (mediante escaleras/montacargas...) de nuevo a la zona justo antes del puente pasando por una puerta que puedes abrir desde tu lado. Una vez abierto el camino solo queda llevar tu nuevo puente hasta su sitio.&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="867.5" y="425" width="175" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-36" target="Snty4n7Q-Sf3PinRbk9C-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-36" target="Snty4n7Q-Sf3PinRbk9C-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-36" target="Snty4n7Q-Sf3PinRbk9C-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-36" value="Almacen" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0059B0;fontColor=#FFFFFF;strokeColor=none;size=0.08333333333333333;" vertex="1" parent="1">
+          <mxGeometry x="1162.5" y="180" width="260" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-37" target="Snty4n7Q-Sf3PinRbk9C-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-37" value="&lt;div style=&quot;&quot;&gt;Enemigo1&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="305" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-40" value="&lt;div style=&quot;text-align: justify;&quot;&gt;Llegas a un almacén en el que ves al primer enemigo. Anti ti se te abren dos posibilidades:&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;enfrentarte al infectado directamente o escabullirte por un agujero que hay frente al jugador para darle la vuelta y coger un arco y flechas que servirán a lo largo de la aventura.&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1205" y="450" width="175" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-41" target="Snty4n7Q-Sf3PinRbk9C-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-41" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px;&quot;&gt;Arco y flechas&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#f8cecc;strokeColor=#b85450;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="1362.5" y="305" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-55" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-56" target="Snty4n7Q-Sf3PinRbk9C-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-56" value="Zona Sigilo" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0059B0;fontColor=#FFFFFF;strokeColor=none;size=0.16;" vertex="1" parent="1">
+          <mxGeometry x="1710" y="180" width="310" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-57" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-58" target="Snty4n7Q-Sf3PinRbk9C-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-58" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Enemigo1 x6&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="1715" y="305" width="135" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-59" value="&lt;div style=&quot;text-align: justify;&quot;&gt;Hay que idear una forma de forzar al jugador a que opte por el sigilo. Con un infectado que vigile una cosa y que grite cuando te ve porque no puede acceder a ti pero avisa a otros infectados que no te miraban que si pueden llegar hasta ti.&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;Correr siempre es una opción.&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;Detrás del grupo de infectados hay una de las notas de investigación.&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1767.5" y="450" width="175" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-60" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-61" target="Snty4n7Q-Sf3PinRbk9C-63">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-69" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-61" target="Snty4n7Q-Sf3PinRbk9C-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-70" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-61" target="Snty4n7Q-Sf3PinRbk9C-65">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-61" value="Zona segura" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0059B0;fontColor=#FFFFFF;strokeColor=none;size=0.16;" vertex="1" parent="1">
+          <mxGeometry x="2020" y="180" width="380" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-62" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-63" target="Snty4n7Q-Sf3PinRbk9C-64">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-63" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Mesa de trabajo&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#e1d5e7;strokeColor=#9673a6;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="2010" y="305" width="135" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-64" value="&lt;div style=&quot;text-align: justify;&quot;&gt;Zona segura donde poder craftear, guardar y demás.&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;A partir de aqui podríamos abrir un poco mas el mapa en cuanto a distintos caminos que converjan en la sala delante del Boss que sea accesible desde aqui o muy cerca.&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2122.5" y="440" width="175" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-71" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-65" target="Snty4n7Q-Sf3PinRbk9C-64">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-65" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Punto de guardado&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#e1d5e7;strokeColor=#9673a6;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="2142.5" y="305" width="135" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-66" target="Snty4n7Q-Sf3PinRbk9C-64">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-66" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Cofre General&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#e1d5e7;strokeColor=#9673a6;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="2277.5" y="305" width="135" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-74" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-73" target="Snty4n7Q-Sf3PinRbk9C-56">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-75" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-73" target="Snty4n7Q-Sf3PinRbk9C-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-73" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px;&quot;&gt;Materiales raras&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#f8cecc;strokeColor=#b85450;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="1850" y="305" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-77" value="Laberinto de salas" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0059B0;fontColor=#FFFFFF;strokeColor=none;size=0.16;" vertex="1" parent="1">
+          <mxGeometry x="2412.5" y="180" width="537.5" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-84" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-78" target="Snty4n7Q-Sf3PinRbk9C-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-78" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Llave&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;&amp;nbsp;boss&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#f8cecc;strokeColor=#b85450;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="2615" y="305" width="135" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-83" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-79" target="Snty4n7Q-Sf3PinRbk9C-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-79" target="Snty4n7Q-Sf3PinRbk9C-81">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-79" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Materiales varios&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#f8cecc;strokeColor=#b85450;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="2470" y="305" width="135" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-85" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-80" target="Snty4n7Q-Sf3PinRbk9C-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-80" target="Snty4n7Q-Sf3PinRbk9C-81">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-80" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Enemigos varios&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="2770" y="305" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-86" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-81" target="Snty4n7Q-Sf3PinRbk9C-78">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-81" value="&lt;div style=&quot;text-align: justify;&quot;&gt;Aqui hay que permitir al jugador que explore libre un poco y se familiarice con las diversas mecánicas, lo mejor seria que lo que encuentre aqui le permita alternar entre los distintos acercamientos a los enemigos y encontrar materiales suficientes como para hacer algo en la mesa de trabajo. Además en algún lugar debe hallarse la llave que da acceso al boss.&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2595" y="440" width="175" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-95" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-89" target="Snty4n7Q-Sf3PinRbk9C-91">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-89" target="Snty4n7Q-Sf3PinRbk9C-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-89" value="Boss1" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#0059B0;fontColor=#FFFFFF;strokeColor=none;size=0.16;" vertex="1" parent="1">
+          <mxGeometry x="2940" y="180" width="330" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-90" target="Snty4n7Q-Sf3PinRbk9C-92">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-90" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Boss&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;size=0.12;" vertex="1" parent="1">
+          <mxGeometry x="3110" y="305" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-93" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Snty4n7Q-Sf3PinRbk9C-91" target="Snty4n7Q-Sf3PinRbk9C-92">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-91" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px;&quot;&gt;Nota investigacion&lt;/span&gt;&lt;/div&gt;" style="shape=step;whiteSpace=wrap;html=1;fontSize=28;fillColor=#f8cecc;strokeColor=#b85450;align=center;size=0.058823529411764705;" vertex="1" parent="1">
+          <mxGeometry x="2940" y="305" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Snty4n7Q-Sf3PinRbk9C-92" value="&lt;div style=&quot;text-align: justify;&quot;&gt;El boss es un enemigo rápido que tratara de esquivar tus ataques y golpearte cuando no te lo esperes. Puedes derrotarle de 5 disparos al cuerpo o 3 a la cabeza. Al ser derrotado encuentras una nota en su haber sobre lo que ocurre en el lugar y al derrotarlo da acceso al siguiente nivel&lt;/div&gt;" style="text;spacingTop=-5;fillColor=#ffffff;whiteSpace=wrap;html=1;align=left;fontSize=12;fontFamily=Helvetica;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="3017.5" y="420" width="175" height="180" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -16,9 +16,11 @@ public class Espada : MonoBehaviour
 
     private bool puedeAtacar;
     private bool atacando;
- 
+    private GameObject jugador;
     void Start()
     {
+        jugador = GameObject.FindWithTag("Player");
+
         audioSource = GetComponent<AudioSource>();
 
         puedeAtacar = true;
@@ -42,6 +44,7 @@ public class Espada : MonoBehaviour
         atacando = true;
         puedeAtacar = false;
         animator.SetTrigger("Atacar");
+        SoundEventManager.EmitSoundEvent(new SoundEvent(jugador.transform.position, 1500f));
     }
 
     private void OnTriggerEnter(Collider objeto)

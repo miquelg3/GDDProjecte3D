@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     public Inventario inventario = new Inventario();
 
     private bool pistaEncontrada;
+    public bool agachado;
 
     void Start()
     {
@@ -114,11 +115,13 @@ public class PlayerMovement : MonoBehaviour
             lerpTime += Time.deltaTime / 0.5f;
             //cameraTransform.position = Vector3.Lerp(altura, altura / 2, lerpTime);
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
+            agachado = true;
         }
         else
         {
             lerpTime = 0f;
             transform.localScale = altura;
+            agachado = false;
         }
 
         transform.Translate(movement);
