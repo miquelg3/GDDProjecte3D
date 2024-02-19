@@ -7,14 +7,10 @@ public class EnemigoBasico : MonoBehaviour
 {
     #region Variables
 
-    [Header("Moviemiento")] 
-    [SerializeField] private float velocidadMovimiento = 10f;        
-    [SerializeField] private float distanciaAtaque = 0f;
-
-    [Header("Puntos")]
-    [SerializeField] List<Vector3> puntos;
-    private Vector3 posIncial;
-    private int index;
+    [Header("Movieminto")]
+    [SerializeField] private float rangoMovimiento = 10f;
+    private Vector3 puntosPatrullaje;
+    private bool llegoADestino;
 
     private NavMeshAgent agente;
 
@@ -32,38 +28,42 @@ public class EnemigoBasico : MonoBehaviour
         fovEnemigo = GetComponent<FovEnemigo>();
         agente = GetComponent<NavMeshAgent>();
         jugador = jugador = GameObject.FindGameObjectWithTag("Player");
-        posIncial = puntos[0];
+        llegoADestino = true; ;
     }
 
     void Update()
     {
         if (fovEnemigo.GetDetectado()) PerseguirJugador();
-        else Patrullar();
+        else Patrullar();       
     }
 
     private void PerseguirJugador()
     {
         agente.SetDestination(jugador.transform.position);
+
+        transform.LookAt(jugador.transform);
     }
 
     private void Patrullar()
     {
-        if(puntos != null)
-        {
-            index = 0;
+        if (!llegoADestino) agente.SetDestination(puntosPatrullaje);
+        if (llegoADestino) CrearPuntoNuevo();
+        if (Vector3.Distance(transform.position, puntosPatrullaje) < 3f) llegoADestino = true;
+    }
 
-            if (index > 0)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, jugador.transform.position, velocidadMovimiento * Time.deltaTime);
+    private void CrearPuntoNuevo()
+    {
+        float x = Random.Range(-rangoMovimiento, rangoMovimiento);
+        float z = Random.Range(-rangoMovimiento, rangoMovimiento);
 
-                if (Vector3.Distance(transform.position, puntos[index]) < 0.1f) index = (index + 1) % puntos.Count;
-            }
-            else transform.position = Vector3.MoveTowards(transform.position, posIncial, velocidadMovimiento * Time.deltaTime);
-        }
+        puntosPatrullaje = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+
+        llegoADestino = false;
+
     }
 
     private void Atacar()
     {
-
+        Debug.Log("Atacando");
     }
 }
