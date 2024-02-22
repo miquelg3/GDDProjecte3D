@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [Serializable]
 public class SaludEnemigoController : MonoBehaviour
@@ -26,6 +27,8 @@ public class SaludEnemigoController : MonoBehaviour
     public void Muerte()
     {
         collider.enabled = false;
+        GetComponent<EnemigoBasico>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
         animator.SetTrigger("Muerto");
     }
 }

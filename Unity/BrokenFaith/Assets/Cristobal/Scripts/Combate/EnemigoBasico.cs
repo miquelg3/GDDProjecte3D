@@ -70,6 +70,7 @@ public class EnemigoBasico : MonoBehaviour
         if (indexPuntos == 0)
         {
             agente.SetDestination(puntosNavegacion[indexPuntos]);
+            animator.SetBool("estaCaminando", true);
         }
             
         if (Vector3.Distance(transform.position, puntosNavegacion[indexPuntos]) < 1f) 
@@ -79,6 +80,7 @@ public class EnemigoBasico : MonoBehaviour
                 tiempoEsperado = tiempoEspera;
             } else
             {
+                
                 tiempoEsperado -= Time.deltaTime;
             }
     }
@@ -87,6 +89,7 @@ public class EnemigoBasico : MonoBehaviour
     {
         indexPuntos = (indexPuntos + 1) % puntosNavegacion.Length;
         agente.SetDestination(puntosNavegacion[indexPuntos]);
+        animator.SetBool("estaCaminando", true);
     }
 
     private void CrearPuntoNuevo()
