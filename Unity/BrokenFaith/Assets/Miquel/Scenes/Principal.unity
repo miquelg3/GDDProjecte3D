@@ -1133,7 +1133,7 @@ MonoBehaviour:
   SliderA: {fileID: 28695244}
   TextoAudio: {fileID: 1862263113}
   Volumen: 0
-  siguienteEscena: {fileID: 102900000, guid: 194bccf4a97557148a3e3e54b4e66568, type: 3}
+  siguienteEscena: {fileID: 102900000, guid: 48509604997407740b7d843d9ca47994, type: 3}
 --- !u!1 &512653905
 GameObject:
   m_ObjectHideFlags: 0

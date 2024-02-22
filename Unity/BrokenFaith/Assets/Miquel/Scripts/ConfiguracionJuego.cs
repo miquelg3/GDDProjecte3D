@@ -19,6 +19,9 @@ public class ConfiguracionJuego : MonoBehaviour
     public Sprite arcoImg;
     public Sprite pistaImg;
 
+    // Ambiente
+    public float gravedad = -9.81f;
+    public float alturaSalto = 5f;
 
 
     void Awake()

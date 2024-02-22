@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Miquel/Scenes/Principal.unity
     guid: affb43768a88f0a48bd61e19731997f7
   - enabled: 1
-    path: Assets/Miquel/Scenes/PruebaCristobal.unity
-    guid: 194bccf4a97557148a3e3e54b4e66568
+    path: Assets/Victor/Scenes/Blocking+ Mapa1.unity
+    guid: 48509604997407740b7d843d9ca47994
   m_configObjects:
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 704fab20f39788a439fbe4a27bd83407,
       type: 2}
