@@ -9,8 +9,15 @@ public class EnemigoBasico : MonoBehaviour
 
     [Header("Movieminto")]
     [SerializeField] private float rangoMovimiento = 10f;
-    private Vector3 puntosPatrullaje;
+    private Vector3 puntoPatrullaje;
     private bool llegoADestino;
+
+    [SerializeField] private bool porPuntos;
+    [SerializeField] Vector3[] puntosNavegacion;
+    [SerializeField] private float tiempoEspera = 5f;
+    private float tiempoEsperado = 0f ;
+    private int indexPuntos = 0;
+
 
     private NavMeshAgent agente;
 
@@ -28,7 +35,7 @@ public class EnemigoBasico : MonoBehaviour
         fovEnemigo = GetComponent<FovEnemigo>();
         agente = GetComponent<NavMeshAgent>();
         jugador = jugador = GameObject.FindGameObjectWithTag("Player");
-        llegoADestino = true; ;
+        llegoADestino = true; 
     }
 
     void Update()
@@ -46,9 +53,40 @@ public class EnemigoBasico : MonoBehaviour
 
     private void Patrullar()
     {
-        if (!llegoADestino) agente.SetDestination(puntosPatrullaje);
-        if (llegoADestino) CrearPuntoNuevo();
-        if (Vector3.Distance(transform.position, puntosPatrullaje) < 3f) llegoADestino = true;
+        if (!porPuntos)
+        {
+            if (!llegoADestino) agente.SetDestination(puntoPatrullaje);
+            if (llegoADestino) CrearPuntoNuevo();
+            if (Vector3.Distance(transform.position, puntoPatrullaje) < 3f) llegoADestino = true;
+        }
+
+        if (porPuntos) PatrullajeDesignado();
+    }
+
+    private void PatrullajeDesignado()
+    {
+        if (puntosNavegacion == null) return;
+
+        if (indexPuntos == 0)
+        {
+            agente.SetDestination(puntosNavegacion[indexPuntos]);
+        }
+            
+        if (Vector3.Distance(transform.position, puntosNavegacion[indexPuntos]) < 1f) 
+           if(tiempoEsperado <= 0)
+            {
+                CambiarPuntoPatrullaje();
+                tiempoEsperado = tiempoEspera;
+            } else
+            {
+                tiempoEsperado -= Time.deltaTime;
+            }
+    }
+
+    private void CambiarPuntoPatrullaje()
+    {
+        indexPuntos = (indexPuntos + 1) % puntosNavegacion.Length;
+        agente.SetDestination(puntosNavegacion[indexPuntos]);
     }
 
     private void CrearPuntoNuevo()
@@ -56,7 +94,7 @@ public class EnemigoBasico : MonoBehaviour
         float x = Random.Range(-rangoMovimiento, rangoMovimiento);
         float z = Random.Range(-rangoMovimiento, rangoMovimiento);
 
-        puntosPatrullaje = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+        puntoPatrullaje = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
 
         llegoADestino = false;
 
