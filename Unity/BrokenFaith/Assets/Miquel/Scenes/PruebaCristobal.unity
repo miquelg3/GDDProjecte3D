@@ -3992,6 +3992,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984356676}
   m_CullTransparentMesh: 1
+--- !u!1 &985656513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985656515}
+  - component: {fileID: 985656514}
+  m_Layer: 0
+  m_Name: ConfiguracionJuego
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &985656514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985656513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a58ecda52a78680439b23a7d333779ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 1102323105}
+  nombreObjetoTexto: {fileID: 805055086}
+  pausa: {fileID: 1146684878}
+  inventarioMenu: {fileID: 1494018811}
+  espadaImg: {fileID: 21300000, guid: e6584142aa29e7c4a97860921a1b4adf, type: 3}
+  arcoImg: {fileID: 21300000, guid: 4818670356e82d44b9dc98b904aa28fc, type: 3}
+  pistaImg: {fileID: 21300000, guid: ba0873347bc8aa6469c0e2bcc38001e9, type: 3}
+--- !u!4 &985656515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985656513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.377833, y: 3.6853719, z: -0.20398378}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &996833093
 GameObject:
   m_ObjectHideFlags: 0
@@ -4594,11 +4645,10 @@ GameObject:
   - component: {fileID: 1181067393}
   - component: {fileID: 1181067392}
   - component: {fileID: 1181067391}
-  - component: {fileID: 1181067395}
   - component: {fileID: 1181067396}
-  - component: {fileID: 1181067399}
   - component: {fileID: 1181067398}
   - component: {fileID: 1181067400}
+  - component: {fileID: 1181067401}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -4695,18 +4745,6 @@ Transform:
   - {fileID: 1102323105}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1181067395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181067388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c130181332f754243953b55f6286af8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1181067396
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4746,25 +4784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c223d863288f31645aa559a7c4e0fddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1181067399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181067388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f72737d12dd0254f8c475da1096948e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 1102323105}
-  nombreObjetoTexto: {fileID: 805055086}
-  pausa: {fileID: 1146684878}
-  inventarioMenu: {fileID: 1494018811}
-  espadaImg: {fileID: 21300000, guid: e6584142aa29e7c4a97860921a1b4adf, type: 3}
-  arcoImg: {fileID: 21300000, guid: 4818670356e82d44b9dc98b904aa28fc, type: 3}
-  pistaImg: {fileID: 21300000, guid: ba0873347bc8aa6469c0e2bcc38001e9, type: 3}
 --- !u!114 &1181067400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4777,6 +4796,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74032ece85f2f694e8a62c1de549e290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1181067401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181067388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09db9b9a15ce849408321525d36fcf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agachado: 0
 --- !u!1 &1181535518
 GameObject:
   m_ObjectHideFlags: 0
@@ -9296,6 +9328,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 985656515}
   - {fileID: 366369486}
   - {fileID: 1181067394}
   - {fileID: 113524982}

@@ -46,6 +46,7 @@ public class MovimientoJugador : MonoBehaviour
     private float anguloMaximo = 20f;
     private float inclinacionActual = 0f;
     private bool estaInclinando = false;
+    public bool agachado;
 
     void Start()
     {
@@ -96,11 +97,13 @@ public class MovimientoJugador : MonoBehaviour
             lerpTime += Time.deltaTime / 0.5f;
             //cameraTransform.position = Vector3.Lerp(altura, altura / 2, lerpTime);
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
+            agachado = true;
         }
         else
         {
             lerpTime = 0f;
             transform.localScale = altura;
+            agachado = false;
         }
 
         transform.Translate(movimiento);
