@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Cristobal/Scenes/VRPrueba.unity
+    guid: c1271a520475aa141b47e7d0bad73b71
   m_configObjects:
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 704fab20f39788a439fbe4a27bd83407,
       type: 2}
