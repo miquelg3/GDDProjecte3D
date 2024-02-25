@@ -6,6 +6,8 @@ public class Piernas : Salud
 {
     // La variable Vida se encarga de controlar a la Vida que ira nuestro personaje y el valor sera cambiado cuando resulte herido
     private float Velocidad { get; set; }
+    // Añadido el constructor sin parámetros por Miquel Grau el 25/02/24
+    public Piernas() { }
     public Piernas(int vidaActual, float Velocidad) : base(vidaActual)
     {
         this.Velocidad = Velocidad;

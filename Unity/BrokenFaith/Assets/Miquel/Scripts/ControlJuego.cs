@@ -6,6 +6,8 @@ using static UnityEditor.ShaderData;
 public class ControlJuego : MonoBehaviour
 {
     public GameState gameState = new GameState(GameState.StateGame.inGame);
+    public Progreso progreso = new Progreso();
+    private Salud personaje;
 
     private Transform cameraTransform;
     private GameObject pausa;
@@ -15,6 +17,7 @@ public class ControlJuego : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        personaje = new Cuerpo();
         RecibirVariables();
         inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
     }
@@ -75,9 +78,10 @@ public class ControlJuego : MonoBehaviour
         inventarioMenu.SetActive(true);
     }
 
-    public void GuardarPartida()
+    public void LlamarGuardarPartida()
     {
-
+        Debug.Log("Guarando...");
+        progreso.GuardarPartida(personaje.ListaSalud, InventarioScript.instance.EnviarInventario(), transform.position);
     }
 
 }

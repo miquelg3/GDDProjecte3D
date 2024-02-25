@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Pista : Item
 {
-    public string Contenido { get; private set; }
+    public string Contenido { get; set; }
+    public Pista() { }
     public Pista(string id, string nombre, string contenido) : base(id, nombre, false)
     {
         Contenido = contenido;

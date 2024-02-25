@@ -5,6 +5,8 @@ using UnityEngine;
 public class Brazos : Salud
 {    // La variable fuerza sera lo que determina la fuerza de el ataque, multiplicando este por el daño del arma
     public float Fuerza { get; private set; }
+    // Añadido el constructor sin parámetros por Miquel Grau el 25/02/24
+    public Brazos() { }
     public Brazos(int vidaActual,float fuerza) : base(vidaActual)
     {
         this.Fuerza = fuerza;

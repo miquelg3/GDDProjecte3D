@@ -175,4 +175,9 @@ public class InventarioScript : MonoBehaviour
         }
         return slotParent;
     }
+    public List<Item> EnviarInventario()
+    {
+        List<Item> list = new List<Item>(inventario.GetItems());
+        return list;
+    }
 }

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Equipo : Item
 {
-    public float Daño { get; private set; }
-    public TipoArma TipoArma { get; private set; }
+    public float Daño { get; set; }
+    public TipoArma TipoArma { get; set; }
     public Municion Municion { get; set; }
+
+    public Equipo() { }
 
     public Equipo(string id, string nombre, TipoArma tipoArma, float daño) : base(id, nombre, false)
     {

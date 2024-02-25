@@ -10,9 +10,10 @@ public class Municion : Item
     private TipoMunicion piedra;
     private int v4;
 
-    public int Cantidad {  get; private set; }
-    public TipoMunicion TipoMunicion { get; private set; }
-    public int Daño {  get; private set; }
+    public int Cantidad {  get; set; }
+    public TipoMunicion TipoMunicion { get; set; }
+    public int Daño {  get; set; }
+    public Municion() { }
     public Municion(string id, string nombre, bool acumulable, int cantidad, TipoMunicion tipoMunicion, int daño) : base(id, nombre, acumulable)
     {
         Cantidad = cantidad;
