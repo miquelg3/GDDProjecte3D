@@ -12,8 +12,8 @@ public class PrimaryButtonWatcher : MonoBehaviour
     #region Variables
     public PrimaryButtonEvent primaryButtonPress;
 
-    private bool lastButtonState = false;
-    private List<InputDevice> devicesWithPrimaryButton;
+    //private bool lastButtonState = false;
+    //private List<InputDevice> devicesWithPrimaryButton;
     #endregion
 
     void Awake()
@@ -23,12 +23,12 @@ public class PrimaryButtonWatcher : MonoBehaviour
             primaryButtonPress = new PrimaryButtonEvent();
         }
 
-        devicesWithPrimaryButton = new List<InputDevice>();
+        //devicesWithPrimaryButton = new List<InputDevice>();
     }
 
     private void OnEnable()
     {
-        List<InputDevice> allDevices = new List<InputDevice>();
+        //List<InputDevice> allDevices = new List<InputDevice>();
      }
     void Start()
     {
