@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using static UnityEditor.ShaderData;
 
@@ -20,6 +21,11 @@ public class ControlJuego : MonoBehaviour
         personaje = new Cuerpo();
         RecibirVariables();
         inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
+        string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
+        if (File.Exists(ruta))
+        {
+            LlamarCargarPartida();
+        }
     }
 
     // Update is called once per frame
@@ -80,8 +86,18 @@ public class ControlJuego : MonoBehaviour
 
     public void LlamarGuardarPartida()
     {
-        Debug.Log("Guarando...");
+        Debug.Log("Guardando...");
         progreso.GuardarPartida(personaje.ListaSalud, InventarioScript.instance.EnviarInventario(), transform.position);
+    }
+
+    public void LlamarCargarPartida()
+    {
+        Debug.Log("Cargando...");
+
+        Partida partidaCargada = progreso.CargarPartida();
+        Vector3 position = new Vector3(partidaCargada.Position.X, partidaCargada.Position.Y, partidaCargada.Position.Z);
+        List<Item> inventario = partidaCargada.Inventario;
+        InventarioScript.instance.LlenarInventario(inventario);
     }
 
 }

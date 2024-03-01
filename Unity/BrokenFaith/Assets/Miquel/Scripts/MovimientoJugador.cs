@@ -96,7 +96,7 @@ public class MovimientoJugador : MonoBehaviour
         controlador.Move(velocidadJugador * Time.deltaTime);
 
         //salto
-        if (Input.GetKeyDown(KeyCode.Space) && controlador.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
             velocidadJugador.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
 
         // Esprintar
@@ -236,6 +236,18 @@ public class MovimientoJugador : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
         transform.localRotation = targetRotation;
 
+    }
+
+    bool IsGrounded()
+    {
+        RaycastHit hit;
+        float distance = 1.2f;
+        Vector3 dir = new Vector3(0, -1, 0);
+        if (Physics.Raycast(transform.position, dir, out hit, distance))
+        {
+            return true;
+        }
+        return false;
     }
 
 }

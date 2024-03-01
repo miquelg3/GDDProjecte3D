@@ -32,7 +32,7 @@ public class ControladorInicio : MonoBehaviour
         SliderA.value = 100;
         CInicio.gameObject.SetActive(true);
         COpciones.gameObject.SetActive(false);
-        string ruta = Path.Combine(Application.dataPath, "Guardado.json");
+        string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
         if (File.Exists(ruta))
         {
             Cargar.interactable = true;
@@ -90,7 +90,8 @@ public class ControladorInicio : MonoBehaviour
         Cargado = 1;
         PlayerPrefs.SetInt("Vida", Vida);
         PlayerPrefs.SetInt("Cargar", Cargado);
-        SceneManager.LoadScene("Salud");
+        // Añadido por Miquel Grau el 22/02/24
+        SceneManager.LoadScene(siguienteEscena.name);
     }
     void CambiarTextoVolumen (float Actual)
     {

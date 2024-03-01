@@ -39,15 +39,15 @@ public class InventarioScript : MonoBehaviour
             slotTransform.AddComponent<DropSlot>();
         }
 
-        LlenarInventario();
+        //LlenarInventario();
 
     }
 
     // Aquí se recogería el inventario guardado
-    public void LlenarInventario()
+    public void LlenarInventario(List<Item> inventarioGuardado)
     {
         // Aquí cargaremos los objetos que tendrá el jugador en el inventario al principio del todo
-        Municion flechas = new Municion("1", "Flechas", true, 3, TipoMunicion.Piedra, 5);
+        /*Municion flechas = new Municion("1", "Flechas", true, 3, TipoMunicion.Piedra, 5);
         Equipo arco = new Equipo("1", "Arco", TipoArma.Arco, flechas, 5);
 
         Equipo espada = new Equipo("2", "Espada", TipoArma.Espada, 5);
@@ -55,7 +55,15 @@ public class InventarioScript : MonoBehaviour
         inventario.AgregarItem(arco);
         inventario.AgregarItem(espada);
 
-        inventario.MostrarInventario();
+        inventario.MostrarInventario();*/
+
+        
+        foreach (Item item in inventarioGuardado)
+        {
+            Debug.Log("Agregado item " + item.Nombre);
+            inventario.AgregarItem(item);
+        }
+
         LlenarPanelInventario(1);
     }
 

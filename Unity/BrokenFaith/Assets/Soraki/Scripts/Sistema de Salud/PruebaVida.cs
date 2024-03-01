@@ -19,7 +19,7 @@ public class PruebaVida : MonoBehaviour
         int cargar = PlayerPrefs.GetInt("Cargar");
         if (File.Exists(ruta) && cargar == 1)
         {
-              Personaje.CargarEstadoPartes(Progreso.SacarDatos(Personaje.ListaSalud,Progreso.CargarPartida()));
+              //Personaje.CargarEstadoPartes(Progreso.SacarDatos(Personaje.ListaSalud,Progreso.CargarPartida()));
         }
         //Ejemplo cabeza
         /**foreach (var Parte in Personaje.Lista)

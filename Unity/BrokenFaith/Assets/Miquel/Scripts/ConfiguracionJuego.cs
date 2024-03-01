@@ -21,7 +21,7 @@ public class ConfiguracionJuego : MonoBehaviour
 
     // Ambiente
     public float gravedad = -9.81f;
-    public float alturaSalto = 5f;
+    public float alturaSalto = 1f;
 
 
     void Awake()
