@@ -69,8 +69,8 @@ public class InventarioScript : MonoBehaviour
 
     public bool GuardarPista()
     {
-        Pista pista = new Pista("1", "Pista", "I think human consciousnes was a tragic mistep in evolution. We became too self-aware; nature created an aspect of nature separte from itself: we are creatures that should not exist by natural law");
-        inventario.AgregarItem(pista);
+        /*Pista pista = new Pista("1", "Pista", "I think human consciousnes was a tragic mistep in evolution. We became too self-aware; nature created an aspect of nature separte from itself: we are creatures that should not exist by natural law");
+        inventario.AgregarItem(pista);*/
         Transform slotTransform = panelInventario.Find($"Slot ({contInventario})");
         newSlots.Add(slotTransform);
         LlenarPanelInventario(2);

@@ -15,7 +15,7 @@ public class Partida
 
     [XmlArray("Inventario")]
     [XmlArrayItem("Clave", typeof(Clave))]
-    [XmlArrayItem("Equipo", typeof(Equipo))]
+    [XmlArrayItem("Equipo", typeof(Arma))]
     [XmlArrayItem("Item", typeof(Item))]
     [XmlArrayItem("Material", typeof(Material))]
     [XmlArrayItem("Medicina", typeof(Medicina))]

@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 [XmlInclude(typeof(Clave))]
-[XmlInclude(typeof(Equipo))]
+[XmlInclude(typeof(Arma))]
 [XmlInclude(typeof(Inventario))]
 [XmlInclude(typeof(Material))]
 [XmlInclude(typeof(Medicina))]
@@ -18,16 +18,16 @@ public abstract class Item
 {
     public string Id { get; set; }
     public string Nombre { get; set; }
-    public bool acumulable { get; set; }
+    public string Descripcion { get; set; }
 
     // Constructor sin parámetro para poder serializar la clase abstracta
     protected Item() { }
 
-    protected Item(string id, string nombre, bool acumulable)
+    protected Item(string id, string nombre, string descripcion)
     {
         Id = id;
         Nombre = nombre;
-        this.acumulable = acumulable;
+        Descripcion = descripcion;
     }
 
     public override bool Equals(object obj)
