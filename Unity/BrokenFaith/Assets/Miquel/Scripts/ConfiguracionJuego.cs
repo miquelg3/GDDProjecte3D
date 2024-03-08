@@ -13,6 +13,7 @@ public class ConfiguracionJuego : MonoBehaviour
     public TextMeshProUGUI nombreObjetoTexto;
     public GameObject pausa;
     public GameObject inventarioMenu;
+    public Transform panelInventario;
 
     // Imágenes inventario
     public Sprite espadaImg;

@@ -26,7 +26,7 @@ public class InventarioScript : MonoBehaviour
 
     void Start()
     {
-        panelInventario = GameObject.Find("Canvas").transform.Find("Inventario").transform.Find("PanelInventario");
+        panelInventario = ConfiguracionJuego.instance.panelInventario;
         espadaImg = ConfiguracionJuego.instance.espadaImg;
         arcoImg = ConfiguracionJuego.instance.arcoImg;
         pistaImg = ConfiguracionJuego.instance.pistaImg;
@@ -80,17 +80,17 @@ public class InventarioScript : MonoBehaviour
     public void LlenarPanelInventario(int modo)
     {
         HashSet<Item> items = inventario.GetItems();
-        Transform slotTranform;
+        Transform slotTransform;
         GameObject slot;
         if (modo == 1)
         {
             foreach (Item item in items)
             {
-                slotTranform = panelInventario.Find($"Slot ({contInventario})");
-                slot = slotTranform.gameObject;
-                if (slot != null)
+                slotTransform = panelInventario.Find($"Slot ({contInventario})");
+                if (slotTransform != null)
                 {
-                    Transform newSlot = Instantiate(slotTranform, slotTranform.parent);
+                    slot = slotTransform.gameObject;
+                    Transform newSlot = Instantiate(slotTransform, slotTransform.parent);
                     newSlot.name = $"Slot ({90 + contInventario})";
                     Debug.Log("Slot encontrado " + contInventario);
                     newSlot.GetComponent<Image>().type = Image.Type.Simple;
@@ -120,12 +120,12 @@ public class InventarioScript : MonoBehaviour
         else if (modo == 2)
         {
             Item item = items.Last();
-            slotTranform = SlotSinHijo();
-            slot = slotTranform.gameObject;
+            slotTransform = SlotSinHijo();
+            slot = slotTransform.gameObject;
             if (slot != null)
             {
                 Debug.Log($"Apunto de instanciar como padre el Slot ({contInventario})");
-                Transform newSlot = Instantiate(slotTranform, panelInventario);
+                Transform newSlot = Instantiate(slotTransform, panelInventario);
                 newSlot.name = $"Slot ({90 + contInventario})";
                 Debug.Log("Slot encontrado " + contInventario);
                 newSlot.GetComponent<Image>().type = Image.Type.Simple;
