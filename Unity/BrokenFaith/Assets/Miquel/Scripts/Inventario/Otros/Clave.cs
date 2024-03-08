@@ -6,7 +6,7 @@ public class Clave : Otros
 
     public Clave() { }
 
-    public Clave(string id, string nombre, string descripcion, GameObject triggerer) : base(id, nombre, descripcion)
+    public Clave(string id, string nombre, string descripcion, float escala, GameObject triggerer) : base(id, nombre, descripcion, escala)
     {
         Triggerer = triggerer;
     }

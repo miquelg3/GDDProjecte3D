@@ -8,7 +8,7 @@ public abstract class Medicinas : Item
 
     public Medicinas() { }
 
-    public Medicinas(string id, string nombre, int cantidad, string descripcion) : base(id, nombre, descripcion)
+    public Medicinas(string id, string nombre, string descripcion, float escala, int cantidad) : base(id, nombre, descripcion, escala)
     {
         Cantidad = cantidad;
     }

@@ -7,7 +7,7 @@ public class Municion : Equipo
     public int Cantidad {  get; set; }
     public TipoMunicion TipoMunicion { get; set; }
     public Municion() { }
-    public Municion(string id, string nombre, string descripcion, float daño, int cantidad, TipoMunicion tipoMunicion) : base(id, nombre, descripcion, daño)
+    public Municion(string id, string nombre, string descripcion, float escala, float daño, int cantidad, TipoMunicion tipoMunicion) : base(id, nombre, descripcion, escala, daño)
     {
         Cantidad = cantidad;
         TipoMunicion = tipoMunicion;

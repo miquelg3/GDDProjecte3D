@@ -8,7 +8,7 @@ public class Equipo : Item
 
     public Equipo() { }
     
-    public Equipo(string id, string nombre, string descripcion, float daño) : base(id, nombre, descripcion)
+    public Equipo(string id, string nombre, string descripcion, float escala, float daño) : base(id, nombre, descripcion, escala)
     {
         Daño = daño;
     }

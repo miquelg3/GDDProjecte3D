@@ -19,15 +19,17 @@ public abstract class Item
     public string Id { get; set; }
     public string Nombre { get; set; }
     public string Descripcion { get; set; }
+    public float Escala { get; set; }
 
     // Constructor sin parámetro para poder serializar la clase abstracta
     protected Item() { }
 
-    protected Item(string id, string nombre, string descripcion)
+    protected Item(string id, string nombre, string descripcion, float escala)
     {
         Id = id;
         Nombre = nombre;
         Descripcion = descripcion;
+        Escala = escala;
     }
 
     public override bool Equals(object obj)
