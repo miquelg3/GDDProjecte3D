@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Partida xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Inventario>
-    <Equipo>
+    <Arma>
       <Id>1</Id>
-      <Nombre>Arco</Nombre>
-      <acumulable>false</acumulable>
-      <Daño>5</Daño>
-      <TipoArma>Arco</TipoArma>
-      <Municion>
-        <Id>1</Id>
-        <Nombre>Flechas</Nombre>
-        <acumulable>true</acumulable>
-        <Cantidad>3</Cantidad>
-        <TipoMunicion>Piedra</TipoMunicion>
-        <Daño>5</Daño>
-      </Municion>
-    </Equipo>
-    <Equipo>
-      <Id>2</Id>
       <Nombre>Espada</Nombre>
-      <acumulable>false</acumulable>
-      <Daño>5</Daño>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
       <TipoArma>Espada</TipoArma>
-    </Equipo>
+    </Arma>
   </Inventario>
   <Position>
     <X>-32.6770172</X>

@@ -14,14 +14,17 @@ public class Partida
     public List<Salud> Salud { get; set; }*/
 
     [XmlArray("Inventario")]
-    [XmlArrayItem("Clave", typeof(Clave))]
-    [XmlArrayItem("Equipo", typeof(Arma))]
     [XmlArrayItem("Item", typeof(Item))]
+    [XmlArrayItem("Arma", typeof(Arma))]
+    [XmlArrayItem("Equipo", typeof(Equipo))]
+    [XmlArrayItem("Municion", typeof(Municion))]
     [XmlArrayItem("Material", typeof(Material))]
     [XmlArrayItem("Medicina", typeof(Medicina))]
-    [XmlArrayItem("Municion", typeof(Municion))]
-    [XmlArrayItem("Pieza", typeof(Pieza))]
+    [XmlArrayItem("Medicinas", typeof(Medicinas))]
     [XmlArrayItem("Pista", typeof(Pista))]
+    [XmlArrayItem("Clave", typeof(Clave))]
+    [XmlArrayItem("Otros", typeof(Otros))]
+    [XmlArrayItem("Pieza", typeof(Pieza))]
     public List<Item> Inventario { get; set; }
 
     [XmlElement("Position")]

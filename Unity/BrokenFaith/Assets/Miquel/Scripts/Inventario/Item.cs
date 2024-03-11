@@ -5,14 +5,17 @@ using System.Xml.Serialization;
 using UnityEngine;
 
 
-[XmlInclude(typeof(Clave))]
-[XmlInclude(typeof(Arma))]
 [XmlInclude(typeof(Inventario))]
+[XmlInclude(typeof(Arma))]
+[XmlInclude(typeof(Equipo))]
+[XmlInclude(typeof(Municion))]
 [XmlInclude(typeof(Material))]
 [XmlInclude(typeof(Medicina))]
-[XmlInclude(typeof(Municion))]
-[XmlInclude(typeof(Pieza))]
+[XmlInclude(typeof(Medicinas))]
+[XmlInclude(typeof(Clave))]
 [XmlInclude(typeof(Pista))]
+[XmlInclude(typeof(Otros))]
+[XmlInclude(typeof(Pieza))]
 
 public abstract class Item 
 {

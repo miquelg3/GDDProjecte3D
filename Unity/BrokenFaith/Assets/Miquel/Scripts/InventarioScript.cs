@@ -24,6 +24,11 @@ public class InventarioScript : MonoBehaviour
         instance = this;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L)) GuardarPista();
+    }
+
     void Start()
     {
         panelInventario = ConfiguracionJuego.instance.panelInventario;
@@ -71,6 +76,8 @@ public class InventarioScript : MonoBehaviour
     {
         /*Pista pista = new Pista("1", "Pista", "I think human consciousnes was a tragic mistep in evolution. We became too self-aware; nature created an aspect of nature separte from itself: we are creatures that should not exist by natural law");
         inventario.AgregarItem(pista);*/
+        Arma arma = new Arma("1", "Espada", "Espada de Jaime I", 0.25f, 3f, TipoArma.Espada);
+        inventario.AgregarItem(arma);
         Transform slotTransform = panelInventario.Find($"Slot ({contInventario})");
         newSlots.Add(slotTransform);
         LlenarPanelInventario(2);

@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
+[XmlInclude(typeof(Equipo))]
+[XmlInclude(typeof(Municion))]
 public class Arma : Equipo
 {
     public TipoArma TipoArma { get; set; }
