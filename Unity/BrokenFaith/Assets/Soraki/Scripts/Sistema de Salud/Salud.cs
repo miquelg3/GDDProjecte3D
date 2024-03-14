@@ -1,13 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
 
+
+// Añadido por Miquel Grau el 25/02/24
+[XmlInclude(typeof(Brazos))]
+[XmlInclude(typeof(Cabeza))]
+[XmlInclude(typeof(Cuerpo))]
+[XmlInclude(typeof(Piernas))]
+[XmlInclude(typeof(Torso))]
 public abstract class Salud
 {
     #region variables
-    public List<Salud> Lista { get; set; }
+    // Cambiado por Miquel Grau el 24/02/24 cambiado el nombre de la variable pública Lista a ListaSalud
+    public List<Salud> ListaSalud { get; set; }
     public NivelSalud NivelSalud { get; set; }
     public bool Infectado { get; private set; }
     public float VidaActual { get; set; }
@@ -18,7 +27,7 @@ public abstract class Salud
     #region constructores
     public Salud(NivelSalud nivelSalud, bool infectado, int vidaActual, bool sangrado, int vIDA_MAX)
     {
-        Lista = new List<Salud>();
+        ListaSalud = new List<Salud>();
         this.NivelSalud = nivelSalud;
         this.Infectado = infectado;
         VidaActual = vidaActual;
@@ -27,13 +36,13 @@ public abstract class Salud
     }
     public Salud(float vIDA_MAX)
     {
-        Lista = new List<Salud>();
+        ListaSalud = new List<Salud>();
         VidaActual = vIDA_MAX;
         VIDA_MAX = vIDA_MAX;
     }
     public Salud()
     {
-        Lista = new List<Salud>();
+        ListaSalud = new List<Salud>();
     }
     #endregion
     #region Metodos Abstractos
@@ -82,13 +91,13 @@ public abstract class Salud
     public void RepartirGolpe(float danyo)
     {
         bool PartesOpcionales = false;
-        int aleatorizador = Random.Range(0, Lista.Count);
+        int aleatorizador = Random.Range(0, ListaSalud.Count);
         while (!PuedeGolpearExtremidades(aleatorizador) && HayExtremidadesSanas())
         {
-            aleatorizador = Random.Range(0, Lista.Count);
+            aleatorizador = Random.Range(0, ListaSalud.Count);
         }
 
-        Salud Parte = Lista[aleatorizador];
+        Salud Parte = ListaSalud[aleatorizador];
         if (PuedeGolpearExtremidades(aleatorizador) && HayExtremidadesSanas())
         {
             RecibirGolpe(danyo, Parte);
@@ -103,21 +112,21 @@ public abstract class Salud
             {
                 float residual = danyo;
 
-                if (Lista[0].VidaActual > 1)
+                if (ListaSalud[0].VidaActual > 1)
                 {
-                    RecibirGolpe(danyo, Lista[0]);
-                    residual -= Lista[0].VidaActual - 1;
-                    if (Lista[0].VidaActual - danyo > 1)
+                    RecibirGolpe(danyo, ListaSalud[0]);
+                    residual -= ListaSalud[0].VidaActual - 1;
+                    if (ListaSalud[0].VidaActual - danyo > 1)
                     {
                         break;
                     }
                 }
                 else AUno++;
-                if (Lista[1].VidaActual > 1)
+                if (ListaSalud[1].VidaActual > 1)
                 {
-                    RecibirGolpe(danyo, Lista[1]);
-                    residual -= Lista[1].VidaActual - 1;
-                    if (Lista[1].VidaActual - danyo > 1)
+                    RecibirGolpe(danyo, ListaSalud[1]);
+                    residual -= ListaSalud[1].VidaActual - 1;
+                    if (ListaSalud[1].VidaActual - danyo > 1)
                     {
                         break;
                     }
@@ -195,9 +204,9 @@ public abstract class Salud
     /// </summary>
     public void RecuperarGolpesTotales()
     {
-        Torso pecho = (Torso)Lista[1];
+        Torso pecho = (Torso)ListaSalud[1];
         RecuperarGolpeParte((Torso)pecho);
-        foreach (var parte in Lista)
+        foreach (var parte in ListaSalud)
         {
             if (parte is not Torso)
             {
@@ -214,7 +223,7 @@ public abstract class Salud
     {
         if (ComprobarParte(Parte))
         {
-            Lista.Add(Parte);
+            ListaSalud.Add(Parte);
         }
     }
     /// <summary>
@@ -223,11 +232,11 @@ public abstract class Salud
     /// <param name="Parte">La parte a eliminar</param>
     public void EliminarParte(Salud Parte)
     {
-        foreach (var parte in Lista)
+        foreach (var parte in ListaSalud)
         {
             if (parte == Parte)
             {
-                Lista.Remove(Parte);
+                ListaSalud.Remove(Parte);
             }
         }
     }
@@ -238,7 +247,7 @@ public abstract class Salud
     /// <returns></returns>
     public bool ComprobarParte(Salud Parte)
     {
-        foreach (var parte in Lista)
+        foreach (var parte in ListaSalud)
         {
             if ((parte is Cabeza && Parte is Cabeza) || (parte is Torso && Parte is Torso))
             {
@@ -263,7 +272,7 @@ public abstract class Salud
     {
         int CuentaPiernas = 0;
         int CuentaBrazos = 0;
-        foreach (var parte in Lista)
+        foreach (var parte in ListaSalud)
         {
             if (parte is Brazos && Parte is Brazos)
             {
@@ -323,7 +332,7 @@ public abstract class Salud
     /// <returns></returns>
     public bool PuedeGolpearExtremidades(int index)
     {
-        if (Lista[index].VidaActual > 0 && Lista[index] is not Cabeza && Lista[index] is not Torso)
+        if (ListaSalud[index].VidaActual > 0 && ListaSalud[index] is not Cabeza && ListaSalud[index] is not Torso)
         {
             return true;
         }
@@ -338,7 +347,7 @@ public abstract class Salud
     /// <returns></returns>
     public bool HayExtremidadesSanas()
     {
-        foreach (var Extremidad in Lista)
+        foreach (var Extremidad in ListaSalud)
         {
             if (Extremidad.VidaActual > 0 && Extremidad is not Cabeza && Extremidad is not Torso)
             {
@@ -352,8 +361,8 @@ public abstract class Salud
     /// </summary>
     public void CambiarMaximoSaludPartes()
     {
-        Torso pecho = (Torso)Lista[1];
-        foreach (var parte in Lista)
+        Torso pecho = (Torso)ListaSalud[1];
+        foreach (var parte in ListaSalud)
         {
             if (parte is not Torso)
             {
@@ -373,7 +382,7 @@ public abstract class Salud
     public bool ComprobarMuerto(float danyo)
     {
         float Vida = 0f;
-        foreach (var item in Lista)
+        foreach (var item in ListaSalud)
         {
             Vida += item.VidaActual;
         }
@@ -403,12 +412,12 @@ public abstract class Salud
     /// </summary>
     public void ActualizarNivelSalud()
     {
-        CambiarNivelSalud(Lista[0]);
-        CambiarNivelSalud(Lista[1]);
-        CambiarNivelSalud(Lista[2]);
-        CambiarNivelSalud(Lista[3]);
-        CambiarNivelSalud(Lista[4]);
-        CambiarNivelSalud(Lista[5]);
+        CambiarNivelSalud(ListaSalud[0]);
+        CambiarNivelSalud(ListaSalud[1]);
+        CambiarNivelSalud(ListaSalud[2]);
+        CambiarNivelSalud(ListaSalud[3]);
+        CambiarNivelSalud(ListaSalud[4]);
+        CambiarNivelSalud(ListaSalud[5]);
     }
     /// <summary>
     /// Metodo para actualizar la vida maxima despues de que el Torso haya sido curado o cargado
@@ -418,12 +427,12 @@ public abstract class Salud
     {
         if(Pecho.VidaActual > 200f)
         {
-            Lista[1].VIDA_MAX = 200f;
-            Lista[1].VidaActual = 200f;
+            ListaSalud[1].VIDA_MAX = 200f;
+            ListaSalud[1].VidaActual = 200f;
 
         }
 
-        foreach (var parte in Lista)
+        foreach (var parte in ListaSalud)
         {
             if (parte is not Torso)
             {
@@ -483,7 +492,7 @@ public abstract class Salud
     {
         for (int i = 0; i < 6; i++)
         {
-            Lista[i].VidaActual = pj[i].VidaActual;
+            ListaSalud[i].VidaActual = pj[i].VidaActual;
         }
         VidaMaximaCargado(pj);
     }
@@ -493,12 +502,12 @@ public abstract class Salud
     /// <param name="s">la lista del cargado</param>
     public void VidaMaximaCargado(List<Salud> s)
     {
-        Lista[0].VIDA_MAX = 200f;
-        Lista[1].VIDA_MAX = 200f;
-        Lista[2].VIDA_MAX = 100f;
-        Lista[3].VIDA_MAX = 100f;
-        Lista[4].VIDA_MAX = 100f;
-        Lista[5].VIDA_MAX = 100f;
+        ListaSalud[0].VIDA_MAX = 200f;
+        ListaSalud[1].VIDA_MAX = 200f;
+        ListaSalud[2].VIDA_MAX = 100f;
+        ListaSalud[3].VIDA_MAX = 100f;
+        ListaSalud[4].VIDA_MAX = 100f;
+        ListaSalud[5].VIDA_MAX = 100f;
     }
     #endregion
 }

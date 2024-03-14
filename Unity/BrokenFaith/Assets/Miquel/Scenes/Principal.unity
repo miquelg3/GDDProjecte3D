@@ -956,13 +956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f72737d12dd0254f8c475da1096948e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 0}
-  nombreObjetoTexto: {fileID: 0}
-  pausa: {fileID: 0}
-  inventarioMenu: {fileID: 0}
-  espadaImg: {fileID: 21300000, guid: e6584142aa29e7c4a97860921a1b4adf, type: 3}
-  arcoImg: {fileID: 21300000, guid: 4818670356e82d44b9dc98b904aa28fc, type: 3}
-  pistaImg: {fileID: 21300000, guid: ba0873347bc8aa6469c0e2bcc38001e9, type: 3}
 --- !u!1 &500500005
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +969,7 @@ GameObject:
   - component: {fileID: 500500006}
   - component: {fileID: 500500009}
   - component: {fileID: 500500010}
+  - component: {fileID: 500500011}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1113,13 +1107,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e27fd91fea2384eaa1f386f7ffeddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &500500011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500500005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80914baae27ab804aaa10db389dee7a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   Empezar: {fileID: 1988877847}
   Cargar: {fileID: 215037897}
   Opciones: {fileID: 203948437}
   Volver: {fileID: 866122142}
   COpciones: {fileID: 2002769862}
   CInicio: {fileID: 1044724033}
-  TextoVida: {fileID: 538746207}
+  TextoVida: {fileID: 1283277865}
   SliderV: {fileID: 1919485426}
   Vida: 0
   Cargado: 0
@@ -1127,7 +1133,7 @@ MonoBehaviour:
   SliderA: {fileID: 28695244}
   TextoAudio: {fileID: 1862263113}
   Volumen: 0
-  siguienteEscena: {fileID: 102900000, guid: 194bccf4a97557148a3e3e54b4e66568, type: 3}
+  siguienteEscena: {fileID: 102900000, guid: 48509604997407740b7d843d9ca47994, type: 3}
 --- !u!1 &512653905
 GameObject:
   m_ObjectHideFlags: 0

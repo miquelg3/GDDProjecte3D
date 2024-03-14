@@ -21,8 +21,8 @@ public class MovimientoJugador : MonoBehaviour
     private float timer = 0;
 
     private Transform cameraTransform;
-
-    private Rigidbody rb;
+    private CharacterController controlador;
+    private Vector3 velocidadJugador;
 
     private TextMeshProUGUI textoNombreObjeto;
     private GameObject currentObject;
@@ -46,6 +46,10 @@ public class MovimientoJugador : MonoBehaviour
     private float anguloMaximo = 20f;
     private float inclinacionActual = 0f;
     private bool estaInclinando = false;
+    public bool agachado;
+
+    private float gravedad;
+    private float alturaSalto;
 
     void Start()
     {
@@ -54,14 +58,14 @@ public class MovimientoJugador : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pausa.SetActive(false);
-        rb = GetComponent<Rigidbody>();
         altura = transform.localScale;
-        // Cuando queramos que haya deslizamiento, cambiamos esta variable
-        // rb.drag = 0;
         if (cameraTransform != null)
         {
             midpoint = cameraTransform.localPosition.y;
         }
+
+        controlador = GetComponent<CharacterController>();
+        
     }
 
     void Awake()
@@ -75,14 +79,25 @@ public class MovimientoJugador : MonoBehaviour
         textoNombreObjeto = ConfiguracionJuego.instance.nombreObjetoTexto;
         pausa = ConfiguracionJuego.instance.pausa;
         inventarioMenu = ConfiguracionJuego.instance.inventarioMenu;
+        gravedad = ConfiguracionJuego.instance.gravedad;
+        alturaSalto = ConfiguracionJuego.instance.alturaSalto;
     }
 
     public void MovimientoPersonaje()
     {
-        float movimientoH = Input.GetAxis("Horizontal");
-        float movimientoV = Input.GetAxis("Vertical");
 
-        Vector3 movimiento = new Vector3(movimientoH, 0.0f, movimientoV) * velocidad * Time.deltaTime;
+        float movimientoX = Input.GetAxis("Horizontal");
+        float movimientoZ = Input.GetAxis("Vertical");
+        Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
+
+        //gravedad
+        if (controlador.isGrounded && velocidadJugador.y < 0) velocidadJugador.y = 0f;
+        velocidadJugador.y += gravedad * Time.deltaTime;
+        controlador.Move(velocidadJugador * Time.deltaTime);
+
+        //salto
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+            velocidadJugador.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
 
         // Esprintar
         if (Input.GetKey(KeyCode.LeftShift))
@@ -96,14 +111,14 @@ public class MovimientoJugador : MonoBehaviour
             lerpTime += Time.deltaTime / 0.5f;
             //cameraTransform.position = Vector3.Lerp(altura, altura / 2, lerpTime);
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
+            agachado = true;
         }
         else
         {
             lerpTime = 0f;
             transform.localScale = altura;
+            agachado = false;
         }
-
-        transform.Translate(movimiento);
 
         yaw += VelocidadH * Input.GetAxis("Mouse X");
         transform.eulerAngles = new Vector3(0f, yaw, 0f);
@@ -115,13 +130,15 @@ public class MovimientoJugador : MonoBehaviour
             cameraTransform.localEulerAngles = new Vector3(pitch, 0f, 0f);
         }
 
+        controlador.Move(movimiento * velocidad * Time.deltaTime);
+
 
         // Simulador de que se está moviendo
-        if (Mathf.Abs(movimientoH) > 0.1f || Mathf.Abs(movimientoV) > 0.1f)
+        if (Mathf.Abs(movimientoX) > 0.1f || Mathf.Abs(movimientoZ) > 0.1f)
         {
             timer += Time.deltaTime * bobbingSpeed;
             float waveslice = Mathf.Sin(timer);
-            float totalAxes = Mathf.Abs(movimientoH) + Mathf.Abs(movimientoV);
+            float totalAxes = Mathf.Abs(movimientoX) + Mathf.Abs(movimientoZ);
             totalAxes = Mathf.Clamp(totalAxes, 0f, 0.5f);
             float translateChange = totalAxes * waveslice * bobbingAmount;
 
@@ -219,6 +236,18 @@ public class MovimientoJugador : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
         transform.localRotation = targetRotation;
 
+    }
+
+    bool IsGrounded()
+    {
+        RaycastHit hit;
+        float distance = 1.2f;
+        Vector3 dir = new Vector3(0, -1, 0);
+        if (Physics.Raycast(transform.position, dir, out hit, distance))
+        {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -13,12 +13,16 @@ public class ConfiguracionJuego : MonoBehaviour
     public TextMeshProUGUI nombreObjetoTexto;
     public GameObject pausa;
     public GameObject inventarioMenu;
+    public Transform panelInventario;
 
     // Imágenes inventario
     public Sprite espadaImg;
     public Sprite arcoImg;
     public Sprite pistaImg;
 
+    // Ambiente
+    public float gravedad = -9.81f;
+    public float alturaSalto = 1f;
 
 
     void Awake()
