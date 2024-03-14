@@ -36,9 +36,9 @@ public class FovEnemigo : MonoBehaviour
     void Update()
     {
         luminosidad = MeasureLightIntensity(jugador.transform.position);
-        if (jugador.GetComponent<PlayerMovement>().agachado == true && rangoMaximo > 5f)
+        if (jugador.GetComponent<MovimientoJugador>().agachado == true && rangoMaximo > 5f)
             rangoMaximo /= 2;
-        else if (jugador.GetComponent<PlayerMovement>().agachado == false && rangoMaximo != 10f)
+        else if (jugador.GetComponent<MovimientoJugador>().agachado == false && rangoMaximo != 10f)
             rangoMaximo = 20f;
         Debug.Log(detectado);
 

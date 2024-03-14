@@ -22,7 +22,8 @@ public class ItemDeInventario : MonoBehaviour
 
     void CrearItem()
     {
-        item = new Municion("0","El Flechas", true, 0, TipoMunicion.Metal, 1);
+        
+
     }
 
     void Cojer()
