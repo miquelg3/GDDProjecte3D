@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InventarioScript : MonoBehaviour
 {
@@ -91,38 +92,7 @@ public class InventarioScript : MonoBehaviour
         GameObject slot;
         if (modo == 1)
         {
-            foreach (Item item in items)
-            {
-                slotTransform = panelInventario.Find($"Slot ({contInventario})");
-                if (slotTransform != null)
-                {
-                    slot = slotTransform.gameObject;
-                    Transform newSlot = Instantiate(slotTransform, slotTransform.parent);
-                    newSlot.name = $"Slot ({90 + contInventario})";
-                    Debug.Log("Slot encontrado " + contInventario);
-                    newSlot.GetComponent<Image>().type = Image.Type.Simple;
-                    if (item.Nombre == "Espada")
-                    {
-                        newSlot.GetComponent<Image>().sprite = espadaImg;
-                    }
-                    else if (item.Nombre == "Arco")
-                    {
-                        newSlot.GetComponent<Image>().sprite = arcoImg;
-                    }
-                    else if (item.Nombre == "Pista")
-                    {
-                        newSlot.GetComponent<Image>().sprite = pistaImg;
-                    }
-                    newSlot.AddComponent<Draggable>();
-                    newSlots.Add(newSlot);
-                    StartCoroutine(SlotParent(newSlot, modo));
-                    contInventario++;
-                }
-                else
-                {
-                    Debug.Log($"Slot no encontrado: Slot ({contInventario})");
-                }
-            }
+            StartCoroutine(CargarInventario(modo));
         }
         else if (modo == 2)
         {
@@ -174,6 +144,46 @@ public class InventarioScript : MonoBehaviour
         }
         slot.SetParent(slotParent);
         slot.position = slotParent.position;
+    }
+    // Otra corrutina porque en la ui hay que tener pacience
+    IEnumerator CargarInventario(int modo)
+    {
+        yield return null;
+        HashSet<Item> items = inventario.GetItems();
+        Transform slotTransform;
+        GameObject slot;
+        foreach (Item item in items)
+        {
+            slotTransform = panelInventario.Find($"Slot ({contInventario})");
+            if (slotTransform != null)
+            {
+                slot = slotTransform.gameObject;
+                Transform newSlot = Instantiate(slotTransform, slotTransform.parent);
+                newSlot.name = $"Slot ({90 + contInventario})";
+                Debug.Log("Slot encontrado " + contInventario);
+                newSlot.GetComponent<Image>().type = Image.Type.Simple;
+                if (item.Nombre == "Espada")
+                {
+                    newSlot.GetComponent<Image>().sprite = espadaImg;
+                }
+                else if (item.Nombre == "Arco")
+                {
+                    newSlot.GetComponent<Image>().sprite = arcoImg;
+                }
+                else if (item.Nombre == "Pista")
+                {
+                    newSlot.GetComponent<Image>().sprite = pistaImg;
+                }
+                newSlot.AddComponent<Draggable>();
+                newSlots.Add(newSlot);
+                StartCoroutine(SlotParent(newSlot, modo));
+                contInventario++;
+            }
+            else
+            {
+                Debug.Log($"Slot no encontrado: Slot ({contInventario})");
+            }
+        }
     }
     Transform SlotSinHijo()
     {
