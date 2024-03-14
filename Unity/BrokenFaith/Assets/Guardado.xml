@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Partida xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Inventario>
+    <Arma>
+      <Id>1</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+  </Inventario>
+  <Position>
+    <X>-32.6770172</X>
+    <Y>1.09196687</Y>
+    <Z>0.5665407</Z>
+  </Position>
+</Partida>

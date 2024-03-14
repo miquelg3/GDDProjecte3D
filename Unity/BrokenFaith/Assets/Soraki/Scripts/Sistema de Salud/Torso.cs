@@ -6,6 +6,8 @@ public class Torso : Salud
 {
     // La variable integridad del cuerpo controla cuanto porcentaje de vida total tendran las otras partes del cuerpo, si resulta herido cambiara la vida maxima de las otras partes
     public float IntegridadCuerpo { get; private set; }
+    // Añadido el constructor sin parámetros por Miquel Grau el 25/02/24
+    public Torso() { }
     public Torso(int vidaActual) : base(vidaActual)
     {
         IntegridadCuerpo = 1f;
