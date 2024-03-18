@@ -51,10 +51,13 @@ public class MovimientoJugador : MonoBehaviour
     private float gravedad;
     private float alturaSalto;
 
+    private Animator animator;
+
     void Start()
     {
         RecibirVariables();
 
+        animator = GetComponent<Animator>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pausa.SetActive(false);
@@ -90,6 +93,11 @@ public class MovimientoJugador : MonoBehaviour
         float movimientoZ = Input.GetAxis("Vertical");
         Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
 
+        // Cambio Cristobal
+        animator.SetFloat("MovimientoX", movimientoX);
+        animator.SetFloat("MovimientoZ", movimientoZ);
+        //Fin Cambio 16-03-2024
+
         //gravedad
         if (controlador.isGrounded && velocidadJugador.y < 0) velocidadJugador.y = 0f;
         velocidadJugador.y += gravedad * Time.deltaTime;
@@ -103,6 +111,11 @@ public class MovimientoJugador : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             movimiento *= multiplicadorSprint;
+
+            // Cambio Cristobal
+            animator.SetFloat("MovimientoX", movimientoX * multiplicadorSprint);
+            animator.SetFloat("MovimientoZ", movimientoZ * multiplicadorSprint);
+            //Fin Cambio 16-03-2024
         }
         // Agacharse
         if (Input.GetKey(KeyCode.LeftControl))

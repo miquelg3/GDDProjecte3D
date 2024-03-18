@@ -35,6 +35,7 @@ public class Flecha : MonoBehaviour
         } 
         else 
         {
+            Debug.Log($"Colisione con algo: {objeto.name}");
             joint.connectedBody = objeto.GetComponent<Rigidbody>();
             joint.breakForce = Mathf.Infinity;
             joint.breakTorque = Mathf.Infinity;

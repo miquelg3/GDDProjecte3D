@@ -29,12 +29,15 @@ public class Arco : MonoBehaviour
     public delegate void CambiarFuerza(float fuerza);
     public static event CambiarFuerza cambiarFuerza;
     private GameObject jugador;
+    private Animator animator;
     #endregion
 
     void Start()
     {
         jugador = GameObject.FindWithTag("Player");
         audioSource = GetComponent<AudioSource>();
+        animator = jugador.gameObject.GetComponent<Animator>();
+        animator.SetBool("Arco", true);
 
         cantidadDeFlechas?.Invoke(cantidadFlechas);
 
@@ -48,6 +51,7 @@ public class Arco : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && cantidadFlechas > 0)
         {
             cargando = true;
+            animator.SetBool("Tensar", cargando);
             flechaActual.Cargar();
             ReproducirSonidoNuevo(audioCargar);
             SoundEventManager.EmitSoundEvent(new SoundEvent(jugador.transform.position, 1500f));
@@ -63,6 +67,7 @@ public class Arco : MonoBehaviour
         {
             Disparar(fuerzaActual * fuerzaBase);
             cargando = false;
+            animator.SetBool("Tensar",cargando);
             fuerzaActual = 0;
             cambiarFuerza?.Invoke(fuerzaActual);
         }           
