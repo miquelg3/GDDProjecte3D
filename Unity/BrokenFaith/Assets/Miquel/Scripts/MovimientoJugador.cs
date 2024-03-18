@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MovimientoJugador : MonoBehaviour
 {
@@ -53,6 +48,8 @@ public class MovimientoJugador : MonoBehaviour
 
     private Animator animator;
 
+
+
     void Start()
     {
         RecibirVariables();
@@ -68,6 +65,10 @@ public class MovimientoJugador : MonoBehaviour
         }
 
         controlador = GetComponent<CharacterController>();
+
+        float initiaPitch = cameraTransform.localEulerAngles.x;
+
+        transform.localEulerAngles = new Vector3(initiaPitch, transform.position.y, transform.position.z);
         
     }
 
@@ -88,6 +89,8 @@ public class MovimientoJugador : MonoBehaviour
 
     public void MovimientoPersonaje()
     {
+
+        
 
         float movimientoX = Input.GetAxis("Horizontal");
         float movimientoZ = Input.GetAxis("Vertical");
@@ -246,8 +249,13 @@ public class MovimientoJugador : MonoBehaviour
         }
 
         // Aplica la rotación
-        Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
-        transform.localRotation = targetRotation;
+        //Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
+        //transform.localRotation = targetRotation;
+
+        float picth = cameraTransform.localEulerAngles.x * VelocidadV;
+
+        if(cameraTransform.localEulerAngles.x <= 90 && cameraTransform.localEulerAngles.x >= -90)
+            transform.localEulerAngles = new Vector3(picth, transform.localEulerAngles.y, transform.localEulerAngles.z);
 
     }
 
