@@ -5,6 +5,8 @@ public class MovimientoJugador : MonoBehaviour
 {
     public static MovimientoJugador instance;
 
+    [SerializeField] private GameObject spine;
+
     private float velocidad = 5.0f;
     private float multiplicadorSprint = 2.0f;
     private float yaw, pitch;
@@ -252,10 +254,12 @@ public class MovimientoJugador : MonoBehaviour
         //Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
         //transform.localRotation = targetRotation;
 
-        float picth = cameraTransform.localEulerAngles.x * VelocidadV;
+        //Cambio Cristobal
+        float picth = cameraTransform.localEulerAngles.x;
 
-        if(cameraTransform.localEulerAngles.x <= 90 && cameraTransform.localEulerAngles.x >= -90)
-            transform.localEulerAngles = new Vector3(picth, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        spine.transform.localEulerAngles = 
+            new Vector3(picth, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        //Fin Cambio 21-03-2024
 
     }
 
