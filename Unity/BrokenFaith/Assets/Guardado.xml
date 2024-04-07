@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Partida xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Inventario />
-  <Position>
-    <X>-27.3492889</X>
-    <Y>1.09196687</Y>
-    <Z>1.54245961</Z>
-  </Position>
-</Partida>

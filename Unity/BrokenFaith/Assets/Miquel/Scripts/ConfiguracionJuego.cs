@@ -24,6 +24,12 @@ public class ConfiguracionJuego : MonoBehaviour
     public float gravedad = -9.81f;
     public float alturaSalto = 1f;
 
+    // Movimiento jugador
+    public float velocidad = 3.0f;
+    public float multiplicadorSprint = 1.5f;
+
+    public GameObject linternaJugador;
+
 
     void Awake()
     {

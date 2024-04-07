@@ -10,8 +10,8 @@ public class MovimientoJugador : MonoBehaviour
 {
     public static MovimientoJugador instance;
 
-    private float velocidad = 5.0f;
-    private float multiplicadorSprint = 2.0f;
+    private float velocidad;
+    private float multiplicadorSprint;
     private float yaw, pitch;
     private float VelocidadH = 3, VelocidadV = 3;
 
@@ -33,6 +33,7 @@ public class MovimientoJugador : MonoBehaviour
 
     private GameObject pausa;
     private GameObject inventarioMenu;
+    public GameObject linterna;
 
     private float lerpTime = 0f;
 
@@ -81,6 +82,9 @@ public class MovimientoJugador : MonoBehaviour
         inventarioMenu = ConfiguracionJuego.instance.inventarioMenu;
         gravedad = ConfiguracionJuego.instance.gravedad;
         alturaSalto = ConfiguracionJuego.instance.alturaSalto;
+        velocidad = ConfiguracionJuego.instance.velocidad;
+        multiplicadorSprint = ConfiguracionJuego.instance.multiplicadorSprint;
+        linterna = ConfiguracionJuego.instance.linternaJugador;
     }
 
     public void MovimientoPersonaje()
@@ -97,10 +101,12 @@ public class MovimientoJugador : MonoBehaviour
 
         //salto
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        {
             velocidadJugador.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
+        }
 
         // Esprintar
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && !agachado && IsGrounded())
         {
             movimiento *= multiplicadorSprint;
         }
@@ -113,13 +119,18 @@ public class MovimientoJugador : MonoBehaviour
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
             agachado = true;
         }
-        else
+        else if (!TechoEncima())
         {
             lerpTime = 0f;
             transform.localScale = altura;
             agachado = false;
         }
-
+        // Encender linterna
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (linterna.active) linterna.SetActive(false);
+            else linterna.SetActive(true);
+        }
         yaw += VelocidadH * Input.GetAxis("Mouse X");
         transform.eulerAngles = new Vector3(0f, yaw, 0f);
 
@@ -243,6 +254,18 @@ public class MovimientoJugador : MonoBehaviour
         RaycastHit hit;
         float distance = 1.2f;
         Vector3 dir = new Vector3(0, -1, 0);
+        if (Physics.Raycast(transform.position, dir, out hit, distance))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    bool TechoEncima()
+    {
+        RaycastHit hit;
+        float distance = 1f;
+        Vector3 dir = new Vector3(0, 1, 0);
         if (Physics.Raycast(transform.position, dir, out hit, distance))
         {
             return true;
