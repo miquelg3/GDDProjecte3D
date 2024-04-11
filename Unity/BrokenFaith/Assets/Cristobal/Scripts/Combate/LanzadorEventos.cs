@@ -1,18 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class LanzadorEventos : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Variables
+    [SerializeField] private AudioClip audioClip;
+    [SerializeField] private Camera camaraJugador;
+    [SerializeField] private EnemigoBasico enemigoBasico;
+    #endregion
+
+    private void Reproducir()
     {
-        
+        camaraJugador.GetComponent<AudioSource>().clip = audioClip;
+        camaraJugador.GetComponent<AudioSource>().volume = .5f;
+        camaraJugador.GetComponent<AudioSource>().Play();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Destruir()
     {
-        
+
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+       if (other.CompareTag("Player"))
+        {
+            Reproducir();
+            Destruir();
+        }
     }
 }
