@@ -14,18 +14,18 @@ public class Prueba : MonoBehaviour
     {
         if(other.tag == "Player" && mostrarArco)
         {
-            txtCant.active = true;
-            txtFuerza.active = true;
-            crosshair.active = true;
-            espada.active = false;
-            arco.active = true;
+            txtCant.SetActive(true);
+            txtFuerza.SetActive(true);
+            crosshair.SetActive(true);
+            espada.SetActive(false);
+            arco.SetActive(false);
         } else if (other.tag == "Player" && mostrarEspada)
         {
-            txtCant.active = false;
-            txtFuerza.active = false;
-            crosshair.active = false;
-            espada.active = true;
-            arco.active = false;
+            txtCant.SetActive(false);
+            txtFuerza.SetActive(false);
+            crosshair.SetActive(false);
+            espada.SetActive(true);
+            arco.SetActive(false);
         }
     }
    

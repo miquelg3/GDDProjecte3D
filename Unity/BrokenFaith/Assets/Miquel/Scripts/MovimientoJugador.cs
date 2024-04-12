@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MovimientoJugador : MonoBehaviour
 {
     public static MovimientoJugador instance;
 
-    private float velocidad;
-    private float multiplicadorSprint;
+    [SerializeField] private GameObject spine;
+
+    private float velocidad = 5.0f;
+    private float multiplicadorSprint = 2.0f;
     private float yaw, pitch;
     private float VelocidadH = 3, VelocidadV = 3;
 
@@ -33,7 +30,6 @@ public class MovimientoJugador : MonoBehaviour
 
     private GameObject pausa;
     private GameObject inventarioMenu;
-    public GameObject linterna;
 
     private float lerpTime = 0f;
 
@@ -52,10 +48,15 @@ public class MovimientoJugador : MonoBehaviour
     private float gravedad;
     private float alturaSalto;
 
+    private Animator animator;
+
+
+
     void Start()
     {
         RecibirVariables();
 
+        animator = GetComponent<Animator>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pausa.SetActive(false);
@@ -66,6 +67,10 @@ public class MovimientoJugador : MonoBehaviour
         }
 
         controlador = GetComponent<CharacterController>();
+
+        float initiaPitch = cameraTransform.localEulerAngles.x;
+
+        transform.localEulerAngles = new Vector3(initiaPitch, transform.position.y, transform.position.z);
         
     }
 
@@ -82,17 +87,21 @@ public class MovimientoJugador : MonoBehaviour
         inventarioMenu = ConfiguracionJuego.instance.inventarioMenu;
         gravedad = ConfiguracionJuego.instance.gravedad;
         alturaSalto = ConfiguracionJuego.instance.alturaSalto;
-        velocidad = ConfiguracionJuego.instance.velocidad;
-        multiplicadorSprint = ConfiguracionJuego.instance.multiplicadorSprint;
-        linterna = ConfiguracionJuego.instance.linternaJugador;
     }
 
     public void MovimientoPersonaje()
     {
 
+        
+
         float movimientoX = Input.GetAxis("Horizontal");
         float movimientoZ = Input.GetAxis("Vertical");
         Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
+
+        // Cambio Cristobal
+        animator.SetFloat("MovimientoX", movimientoX);
+        animator.SetFloat("MovimientoZ", movimientoZ);
+        //Fin Cambio 16-03-2024
 
         //gravedad
         if (controlador.isGrounded && velocidadJugador.y < 0) velocidadJugador.y = 0f;
@@ -101,14 +110,17 @@ public class MovimientoJugador : MonoBehaviour
 
         //salto
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
-        {
             velocidadJugador.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
-        }
 
         // Esprintar
-        if (Input.GetKey(KeyCode.LeftShift) && !agachado && IsGrounded())
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             movimiento *= multiplicadorSprint;
+
+            // Cambio Cristobal
+            animator.SetFloat("MovimientoX", movimientoX * multiplicadorSprint);
+            animator.SetFloat("MovimientoZ", movimientoZ * multiplicadorSprint);
+            //Fin Cambio 16-03-2024
         }
         // Agacharse
         if (Input.GetKey(KeyCode.LeftControl))
@@ -119,18 +131,13 @@ public class MovimientoJugador : MonoBehaviour
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
             agachado = true;
         }
-        else if (!TechoEncima())
+        else
         {
             lerpTime = 0f;
             transform.localScale = altura;
             agachado = false;
         }
-        // Encender linterna
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (linterna.active) linterna.SetActive(false);
-            else linterna.SetActive(true);
-        }
+
         yaw += VelocidadH * Input.GetAxis("Mouse X");
         transform.eulerAngles = new Vector3(0f, yaw, 0f);
 
@@ -244,8 +251,15 @@ public class MovimientoJugador : MonoBehaviour
         }
 
         // Aplica la rotación
-        Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
-        transform.localRotation = targetRotation;
+        //Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
+        //transform.localRotation = targetRotation;
+
+        //Cambio Cristobal
+        float picth = cameraTransform.localEulerAngles.x;
+
+        spine.transform.localEulerAngles = 
+            new Vector3(picth, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        //Fin Cambio 21-03-2024
 
     }
 
@@ -254,18 +268,6 @@ public class MovimientoJugador : MonoBehaviour
         RaycastHit hit;
         float distance = 1.2f;
         Vector3 dir = new Vector3(0, -1, 0);
-        if (Physics.Raycast(transform.position, dir, out hit, distance))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    bool TechoEncima()
-    {
-        RaycastHit hit;
-        float distance = 1f;
-        Vector3 dir = new Vector3(0, 1, 0);
         if (Physics.Raycast(transform.position, dir, out hit, distance))
         {
             return true;
