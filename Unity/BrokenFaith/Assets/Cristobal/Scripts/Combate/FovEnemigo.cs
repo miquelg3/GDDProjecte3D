@@ -6,10 +6,17 @@ public class FovEnemigo : MonoBehaviour
 {
     #region Variables
 
+
+    [Header("Configuracion Del Fov")]
     [SerializeField] private float rangoMaximo = 10f;
     [SerializeField] private float anguloVision = 45f;
     [SerializeField] private LayerMask layermaskObjeto;
-    private LayerMask layermaskJugador;
+    [SerializeField] private LayerMask layermaskJugador;
+
+    private float rangoAudicion;
+    private float luminosidad;
+    private float nivelDeAlerta;
+
     private GameObject jugador;
 
     private bool detectado;
@@ -18,13 +25,23 @@ public class FovEnemigo : MonoBehaviour
 
     void Start()
     {
+        rangoAudicion = 1000;
+        nivelDeAlerta = 0;
         jugador = GameObject.FindGameObjectWithTag("Player");
         detectado = false;
+ 
     }
 
     
     void Update()
     {
+        luminosidad = MeasureLightIntensity(jugador.transform.position);
+        if (jugador.GetComponent<MovimientoJugador>().agachado == true && rangoMaximo > 5f)
+            rangoMaximo /= 2;
+        else if (jugador.GetComponent<MovimientoJugador>().agachado == false && rangoMaximo != 10f)
+            rangoMaximo = 20f;
+        Debug.Log(detectado);
+
         detectado = RangoDeVision();
     }
 
@@ -35,15 +52,20 @@ public class FovEnemigo : MonoBehaviour
 
         if (anguloEnemigoJugador < anguloVision * 0.5f && direccionJugador.magnitude <= rangoMaximo)
         {
-            Debug.DrawRay(transform.position, direccionJugador.normalized, Color.blue, rangoMaximo);
+            int layerMask = LayerMask.GetMask("Objeto", "Player");
 
-            if (Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskJugador) &&
-                !Physics.Raycast(transform.position, direccionJugador.normalized, rangoMaximo, layermaskObjeto))
+            if (Physics.Raycast(transform.position, direccionJugador.normalized, out RaycastHit hit, rangoMaximo, layerMask))
             {
-                return true;
+                if (hit.collider.gameObject.name.Equals("Player"))
+                {
+                    nivelDeAlerta += Time.deltaTime;
+                    return true;
+                }
             }
-        }
 
+
+        }
+        if (nivelDeAlerta > 0) nivelDeAlerta -= Time.deltaTime;
         return false;
     }
 
@@ -65,5 +87,33 @@ public class FovEnemigo : MonoBehaviour
     {
         return detectado;
     }
-    
+
+    private void OnEnable()
+    {
+        SoundEventManager.OnSoundEvent += OnSoundEvent;
+    }
+
+    private void OnDisable()
+    {
+        SoundEventManager.OnSoundEvent -= OnSoundEvent;
+    }
+
+    private void OnSoundEvent(SoundEvent soundEvent)
+    {
+        if (Vector3.Distance(transform.position, soundEvent.soundPosition) <= rangoAudicion)
+        {
+            Debug.Log("Enemigo escuchó un sonido proveniente de " + soundEvent.soundPosition);
+        }
+    }
+    float MeasureLightIntensity(Vector3 position)
+    {
+        float intensity = RenderSettings.ambientLight.grayscale; // Usa el nivel de luz ambiental como base
+                                                                 // Ajusta esta lógica para calcular la intensidad de otras fuentes de luz si es necesario
+
+        // Considera añadir aquí la lógica para calcular la intensidad de las fuentes de luz cercanas
+
+        return intensity;
+    }
+
+
 }

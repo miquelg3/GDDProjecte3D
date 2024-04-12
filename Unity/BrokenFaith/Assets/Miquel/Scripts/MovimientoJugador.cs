@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MovimientoJugador : MonoBehaviour
 {
     public static MovimientoJugador instance;
+
+    [SerializeField] private GameObject spine;
 
     private float velocidad = 5.0f;
     private float multiplicadorSprint = 2.0f;
@@ -51,10 +48,15 @@ public class MovimientoJugador : MonoBehaviour
     private float gravedad;
     private float alturaSalto;
 
+    private Animator animator;
+
+
+
     void Start()
     {
         RecibirVariables();
 
+        animator = GetComponent<Animator>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pausa.SetActive(false);
@@ -65,6 +67,10 @@ public class MovimientoJugador : MonoBehaviour
         }
 
         controlador = GetComponent<CharacterController>();
+
+        float initiaPitch = cameraTransform.localEulerAngles.x;
+
+        transform.localEulerAngles = new Vector3(initiaPitch, transform.position.y, transform.position.z);
         
     }
 
@@ -86,9 +92,16 @@ public class MovimientoJugador : MonoBehaviour
     public void MovimientoPersonaje()
     {
 
+        
+
         float movimientoX = Input.GetAxis("Horizontal");
         float movimientoZ = Input.GetAxis("Vertical");
         Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
+
+        // Cambio Cristobal
+        animator.SetFloat("MovimientoX", movimientoX);
+        animator.SetFloat("MovimientoZ", movimientoZ);
+        //Fin Cambio 16-03-2024
 
         //gravedad
         if (controlador.isGrounded && velocidadJugador.y < 0) velocidadJugador.y = 0f;
@@ -103,6 +116,11 @@ public class MovimientoJugador : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             movimiento *= multiplicadorSprint;
+
+            // Cambio Cristobal
+            animator.SetFloat("MovimientoX", movimientoX * multiplicadorSprint);
+            animator.SetFloat("MovimientoZ", movimientoZ * multiplicadorSprint);
+            //Fin Cambio 16-03-2024
         }
         // Agacharse
         if (Input.GetKey(KeyCode.LeftControl))
@@ -233,8 +251,15 @@ public class MovimientoJugador : MonoBehaviour
         }
 
         // Aplica la rotación
-        Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
-        transform.localRotation = targetRotation;
+        //Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
+        //transform.localRotation = targetRotation;
+
+        //Cambio Cristobal
+        float picth = cameraTransform.localEulerAngles.x;
+
+        spine.transform.localEulerAngles = 
+            new Vector3(picth, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        //Fin Cambio 21-03-2024
 
     }
 
