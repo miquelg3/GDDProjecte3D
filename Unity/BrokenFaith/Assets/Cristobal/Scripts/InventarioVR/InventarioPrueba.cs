@@ -52,7 +52,6 @@ public class InventarioPrueba : MonoBehaviour
                         estaCojido = false;
                     }
                 }
-                Debug.Log(hit.collider.gameObject.GetComponent<ItemDeInventario>()?.GetName());
             }
         }
     }

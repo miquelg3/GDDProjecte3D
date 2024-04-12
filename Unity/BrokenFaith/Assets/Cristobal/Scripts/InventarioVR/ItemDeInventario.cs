@@ -22,8 +22,8 @@ public class ItemDeInventario : MonoBehaviour
 
     void CrearItem()
     {
-        
 
+        item = new Municion("0","El flechas", "Hola si", 1f, 1f, 1, TipoMunicion.Piedra);
     }
 
     void Cojer()
@@ -45,7 +45,7 @@ public class ItemDeInventario : MonoBehaviour
 
     public string GetName()
     {
-        return item.Nombre;
+         return item.Nombre;
     }
     #endregion
 
