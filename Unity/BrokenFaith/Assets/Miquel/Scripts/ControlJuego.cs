@@ -87,7 +87,7 @@ public class ControlJuego : MonoBehaviour
     public void LlamarGuardarPartida()
     {
         Debug.Log("Guardando...");
-        progreso.GuardarPartida(personaje.ListaSalud, InventarioScript.instance.EnviarInventario(), transform.position);
+        progreso.GuardarPartida(personaje.ListaSalud, InventarioScript.instance.RecibirInventario(), transform.position);
     }
 
     public void LlamarCargarPartida()
@@ -98,6 +98,13 @@ public class ControlJuego : MonoBehaviour
         Vector3 position = new Vector3(partidaCargada.Position.X, partidaCargada.Position.Y, partidaCargada.Position.Z);
         List<Item> inventario = partidaCargada.Inventario;
         InventarioScript.instance.LlenarInventario(inventario);
+        StartCoroutine(Posicionar(position));
+    }
+
+    IEnumerator Posicionar(Vector3 position)
+    {
+        yield return null;
+        transform.position = position;
     }
 
 }

@@ -51,7 +51,16 @@ public class ConfiguracionJuego : MonoBehaviour
     [SerializeField] private float gravedad = -9.81f;
     [SerializeField] private float alturaSalto = 1f;
 
+<<<<<<< HEAD
     #endregion
+=======
+    // Movimiento jugador
+    public float velocidad = 3.0f;
+    public float multiplicadorSprint = 1.5f;
+
+    public GameObject linternaJugador;
+
+>>>>>>> Develop/Produccion
 
     void Awake()
     {

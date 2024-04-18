@@ -9,6 +9,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private Vector3 startPosition;
     private Transform startParent;
 
+    public Item item;
+
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -37,6 +39,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+    }
+
+    public void SetItem(Item item)
+    {
+        Debug.Log("Item recibido");
+        this.item = item;
     }
 }
 

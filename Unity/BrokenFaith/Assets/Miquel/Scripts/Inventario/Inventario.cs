@@ -42,12 +42,17 @@ public class Inventario : IInventario
     {
         foreach (var item in Items)
         {
-            Debug.Log($"Nombre del item: {item.Nombre}\n");
+            Debug.Log($"ID del item: {item.Id}\n");
         }
         if ( Items.Count == 0 )
             Debug.Log("No hay nada en el inventario");
     }
-    public HashSet<Item> GetItems() { return Items; }
+    public HashSet<Item> GetItems() 
+    {
+        foreach (var item in Items)
+            Debug.Log("Intentando guardar el item: " + item.Id);
+        return Items; 
+    }
 
     public void SerializarInventario(Inventario inventario)
     {
