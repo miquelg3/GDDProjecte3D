@@ -66,8 +66,7 @@ public class FovEnemigo : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        float halfFOV = ConfiguracionJuego.instance.AnguloVision
-            * 0.5f;
+        float halfFOV = ConfiguracionJuego.instance.AnguloVision * 0.5f;
 
         Vector3 principio = Quaternion.Euler(0, -halfFOV, 0) 
             * transform.forward * ConfiguracionJuego.instance.RangoMaximo;
