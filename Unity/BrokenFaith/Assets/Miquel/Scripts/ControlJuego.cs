@@ -70,9 +70,9 @@ public class ControlJuego : MonoBehaviour
     }
     void RecibirVariables()
     {
-        cameraTransform = ConfiguracionJuego.instance.cameraTransform;
-        pausa = ConfiguracionJuego.instance.pausa;
-        inventarioMenu = ConfiguracionJuego.instance.inventarioMenu;
+        cameraTransform = ConfiguracionJuego.instance.CamaraTransform;
+        pausa = ConfiguracionJuego.instance.PanelPausa;
+        inventarioMenu = ConfiguracionJuego.instance.InventarioMenu;
     }
 
     public void ResumeGame()

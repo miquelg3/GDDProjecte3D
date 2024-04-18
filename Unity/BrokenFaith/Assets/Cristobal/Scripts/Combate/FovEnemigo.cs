@@ -5,27 +5,17 @@ using UnityEngine;
 public class FovEnemigo : MonoBehaviour
 {
     #region Variables
-
-
-    [Header("Configuracion Del Fov")]
-    [SerializeField] private float rangoMaximo = 10f;
-    [SerializeField] private float anguloVision = 45f;
-    [SerializeField] private LayerMask layermaskObjeto;
-    [SerializeField] private LayerMask layermaskJugador;
-
-    private float rangoAudicion;
     private float luminosidad;
     private float nivelDeAlerta;
 
     private GameObject jugador;
 
     private bool detectado;
-
     #endregion
 
     void Start()
     {
-        rangoAudicion = 1000;
+        ConfiguracionJuego.instance.RangoAudicion = 1000;
         nivelDeAlerta = 0;
         jugador = GameObject.FindGameObjectWithTag("Player");
         detectado = false;
@@ -36,12 +26,13 @@ public class FovEnemigo : MonoBehaviour
     void Update()
     {
         luminosidad = MeasureLightIntensity(jugador.transform.position);
-        if (jugador.GetComponent<MovimientoJugador>().agachado == true && rangoMaximo > 5f)
-            rangoMaximo /= 2;
-        else if (jugador.GetComponent<MovimientoJugador>().agachado == false && rangoMaximo != 10f)
-            rangoMaximo = 20f;
-        Debug.Log(detectado);
+        if (jugador.GetComponent<MovimientoJugador>().agachado == true && ConfiguracionJuego.instance.RangoMaximo > 5f)
+            ConfiguracionJuego.instance.RangoMaximo /= 2;
+        else if (jugador.GetComponent<MovimientoJugador>().agachado == false 
+            && ConfiguracionJuego.instance.RangoMaximo != 10f)
+            ConfiguracionJuego.instance.RangoMaximo = 20f;
 
+        Debug.Log(detectado);
         detectado = RangoDeVision();
     }
 
@@ -50,11 +41,13 @@ public class FovEnemigo : MonoBehaviour
         Vector3 direccionJugador = jugador.transform.position - transform.position;
         float anguloEnemigoJugador = Vector3.Angle(transform.forward, direccionJugador.normalized);
 
-        if (anguloEnemigoJugador < anguloVision * 0.5f && direccionJugador.magnitude <= rangoMaximo)
+        if (anguloEnemigoJugador < ConfiguracionJuego.instance.AnguloVision * 0.5f 
+            && direccionJugador.magnitude <= ConfiguracionJuego.instance.RangoMaximo)
         {
             int layerMask = LayerMask.GetMask("Objeto", "Player");
 
-            if (Physics.Raycast(transform.position, direccionJugador.normalized, out RaycastHit hit, rangoMaximo, layerMask))
+            if (Physics.Raycast(transform.position, direccionJugador.normalized, 
+                out RaycastHit hit, ConfiguracionJuego.instance.RangoMaximo, layerMask))
             {
                 if (hit.collider.gameObject.name.Equals("Player"))
                 {
@@ -73,9 +66,11 @@ public class FovEnemigo : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        float halfFOV = anguloVision * 0.5f;
-        Vector3 principio = Quaternion.Euler(0, -halfFOV, 0) * transform.forward * rangoMaximo;
-        Vector3 final = Quaternion.Euler(0, halfFOV, 0) * transform.forward * rangoMaximo;
+        float halfFOV = ConfiguracionJuego.instance.AnguloVision * 0.5f;
+        Vector3 principio = Quaternion.Euler(0, -halfFOV, 0) 
+            * transform.forward * ConfiguracionJuego.instance.RangoMaximo;
+        Vector3 final = Quaternion.Euler(0, halfFOV, 0) 
+            * transform.forward * ConfiguracionJuego.instance.RangoMaximo;
 
         Gizmos.DrawLine(transform.position, transform.position + principio);
         Gizmos.DrawLine(transform.position, transform.position + final);
@@ -100,7 +95,8 @@ public class FovEnemigo : MonoBehaviour
 
     private void OnSoundEvent(SoundEvent soundEvent)
     {
-        if (Vector3.Distance(transform.position, soundEvent.soundPosition) <= rangoAudicion)
+        if (Vector3.Distance(transform.position, soundEvent.soundPosition) 
+            <= ConfiguracionJuego.instance.RangoAudicion)
         {
             Debug.Log("Enemigo escuchó un sonido proveniente de " + soundEvent.soundPosition);
         }
