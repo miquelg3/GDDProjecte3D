@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Victor/Scenes/Blocking+ Mapa1.unity
     guid: 48509604997407740b7d843d9ca47994
+  - enabled: 0
+    path: Assets/Cristobal/Scenes/Blocking + NavMesh  Mapa1.unity
+    guid: bc2f38c6af8ba9d4c8643c05a7569357
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 384319fd4ab37284f83f572f23b23db6,
       type: 2}

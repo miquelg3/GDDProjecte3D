@@ -99,8 +99,11 @@ public class MovimientoJugador : MonoBehaviour
         Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
 
         // Cambio Cristobal
-        animator.SetFloat("MovimientoX", movimientoX);
-        animator.SetFloat("MovimientoZ", movimientoZ);
+        if (animator != null)
+        {
+            animator?.SetFloat("MovimientoX", movimientoX);
+            animator?.SetFloat("MovimientoZ", movimientoZ);
+        }
         //Fin Cambio 16-03-2024
 
         //gravedad
@@ -118,8 +121,11 @@ public class MovimientoJugador : MonoBehaviour
             movimiento *= multiplicadorSprint;
 
             // Cambio Cristobal
-            animator.SetFloat("MovimientoX", movimientoX * multiplicadorSprint);
-            animator.SetFloat("MovimientoZ", movimientoZ * multiplicadorSprint);
+            if (animator != null)
+            {
+                animator.SetFloat("MovimientoX", movimientoX * multiplicadorSprint);
+                animator.SetFloat("MovimientoZ", movimientoZ * multiplicadorSprint);
+            }
             //Fin Cambio 16-03-2024
         }
         // Agacharse
@@ -255,10 +261,13 @@ public class MovimientoJugador : MonoBehaviour
         //transform.localRotation = targetRotation;
 
         //Cambio Cristobal
-        float picth = cameraTransform.localEulerAngles.x;
+        if ( animator != null)
+        {
+            float picth = cameraTransform.localEulerAngles.x;
 
-        spine.transform.localEulerAngles = 
-            new Vector3(picth, transform.localEulerAngles.y, transform.localEulerAngles.z);
+            spine.transform.localEulerAngles = 
+                new Vector3(picth, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        }
         //Fin Cambio 21-03-2024
 
     }
