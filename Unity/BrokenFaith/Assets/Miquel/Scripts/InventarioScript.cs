@@ -33,10 +33,10 @@ public class InventarioScript : MonoBehaviour
 
     void Start()
     {
-        panelInventario = ConfiguracionJuego.instance.panelInventario;
-        espadaImg = ConfiguracionJuego.instance.espadaImg;
-        arcoImg = ConfiguracionJuego.instance.arcoImg;
-        pistaImg = ConfiguracionJuego.instance.pistaImg;
+        panelInventario = ConfiguracionJuego.instance.TransformPanelIntario;
+        espadaImg = ConfiguracionJuego.instance.EspadaImg;
+        arcoImg = ConfiguracionJuego.instance.ArcoImg;
+        pistaImg = ConfiguracionJuego.instance.PistaImg;
 
         // Asignamos el script de poder soltar a todos los slots
         Transform slotTransform;

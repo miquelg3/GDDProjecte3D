@@ -6,6 +6,7 @@ public class LanzadorEventos : MonoBehaviour
     #region Variables
     [SerializeField] private AudioClip audioClip;
     [SerializeField] private Camera camaraJugador;
+    [SerializeField] private MovimientoJugador jugadorMov;
     [SerializeField] private EnemigoBasico enemigoBasico;
     #endregion
 
@@ -16,9 +17,9 @@ public class LanzadorEventos : MonoBehaviour
         camaraJugador.GetComponent<AudioSource>().Play();
     }
 
-    private void Destruir()
+    private void MoverEnemigo()
     {
-
+        
     }
 
 
@@ -27,7 +28,9 @@ public class LanzadorEventos : MonoBehaviour
        if (other.CompareTag("Player"))
         {
             Reproducir();
-            Destruir();
+            MoverEnemigo();
+
+            Destroy(this);
         }
     }
 }
