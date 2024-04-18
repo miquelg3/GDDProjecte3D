@@ -80,6 +80,8 @@ public class ControladorInicio : MonoBehaviour
     public void CambiarEscena()
     {
         Cargado = 0;
+        string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
+        File.Delete(ruta);
         PlayerPrefs.SetInt("Vida",Vida);
         PlayerPrefs.SetInt("Cargar", Cargado);
         // Añadido por Miquel Grau el 22/02/24

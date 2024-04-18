@@ -28,6 +28,7 @@ public class InventarioScript : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.L)) GuardarPista();
+        if (Input.GetKeyDown(KeyCode.R)) inventario.MostrarInventario();
     }
 
     void Start()
@@ -77,7 +78,7 @@ public class InventarioScript : MonoBehaviour
     {
         /*Pista pista = new Pista("1", "Pista", "I think human consciousnes was a tragic mistep in evolution. We became too self-aware; nature created an aspect of nature separte from itself: we are creatures that should not exist by natural law");
         inventario.AgregarItem(pista);*/
-        Arma arma = new Arma("1", "Espada", "Espada de Jaime I", 0.25f, 3f, TipoArma.Espada);
+        Arma arma = new Arma("3", "Espada", "Espada de Jaime I", 0.25f, 3f, TipoArma.Espada);
         inventario.AgregarItem(arma);
         Transform slotTransform = panelInventario.Find($"Slot ({contInventario})");
         newSlots.Add(slotTransform);
@@ -118,9 +119,9 @@ public class InventarioScript : MonoBehaviour
                 {
                     newSlot.GetComponent<Image>().sprite = pistaImg;
                 }
-                newSlot.AddComponent<Draggable>();
-                newSlots.Add(newSlot);
-                StartCoroutine(SlotParent(newSlot, modo));
+                Draggable draggableItem = newSlot.AddComponent<Draggable>();
+                draggableItem.SetItem(item);
+                StartCoroutine(SlotParent(newSlot, modo, item));
                 contInventario++;
             }
             else
@@ -130,13 +131,14 @@ public class InventarioScript : MonoBehaviour
         }
     }
     // Es una corrutina porque con la ui hay que tener paciencia
-    IEnumerator SlotParent(Transform slot, int modo)
+    IEnumerator SlotParent(Transform slot, int modo, Item item)
     {
         yield return null;
         Transform slotParent = null;
         if (modo == 1)
         {
-            slotParent = panelInventario.Find($"Slot ({newSlots.IndexOf(slot)})");
+            slotParent = panelInventario.Find($"Slot ({item.Id})");
+            Debug.Log($"Intentando guardar en {item.Id}");
         }
         else if (modo == 2)
         {
@@ -154,13 +156,14 @@ public class InventarioScript : MonoBehaviour
         GameObject slot;
         foreach (Item item in items)
         {
-            slotTransform = panelInventario.Find($"Slot ({contInventario})");
+            slotTransform = panelInventario.Find($"Slot ({item.Id})");
+            Debug.Log($"Slot encontrado en {item.Id}");
             if (slotTransform != null)
             {
                 slot = slotTransform.gameObject;
                 Transform newSlot = Instantiate(slotTransform, slotTransform.parent);
-                newSlot.name = $"Slot ({90 + contInventario})";
-                Debug.Log("Slot encontrado " + contInventario);
+                newSlot.name = $"Slot ({90 + item.Id})";
+                Debug.Log("Slot encontrado " + item.Id);
                 newSlot.GetComponent<Image>().type = Image.Type.Simple;
                 if (item.Nombre == "Espada")
                 {
@@ -174,14 +177,15 @@ public class InventarioScript : MonoBehaviour
                 {
                     newSlot.GetComponent<Image>().sprite = pistaImg;
                 }
-                newSlot.AddComponent<Draggable>();
+                Draggable draggableItem = newSlot.AddComponent<Draggable>();
+                draggableItem.SetItem(item);
                 newSlots.Add(newSlot);
-                StartCoroutine(SlotParent(newSlot, modo));
-                contInventario++;
+                StartCoroutine(SlotParent(newSlot, modo, item));
+                //contInventario++;
             }
             else
             {
-                Debug.Log($"Slot no encontrado: Slot ({contInventario})");
+                Debug.Log($"Slot no encontrado: Slot ({item.Id})");
             }
         }
     }
@@ -200,9 +204,13 @@ public class InventarioScript : MonoBehaviour
         }
         return slotParent;
     }
-    public List<Item> EnviarInventario()
+    public List<Item> RecibirInventario()
     {
         List<Item> list = new List<Item>(inventario.GetItems());
+        foreach (Item item in list)
+        {
+            Debug.Log("Intentando guardar: " + item.Id);
+        }
         return list;
     }
 }
