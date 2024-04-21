@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class ConfiguracionJuego : MonoBehaviour
 {
@@ -51,6 +53,12 @@ public class ConfiguracionJuego : MonoBehaviour
     [SerializeField] private float gravedad = -9.81f;
     [SerializeField] private float alturaSalto = 1f;
 
+    //Sonido
+    [Header("Musica y Efectos de Sonido Configuracion")]
+    [SerializeField] private AudioMixer mixer;
+    [SerializeField] private Slider sliderMusica;
+    [SerializeField] private Slider sliderSFX;
+
     public GameObject linternaJugador;
 
     #endregion
@@ -58,7 +66,20 @@ public class ConfiguracionJuego : MonoBehaviour
     void Awake()
     {
         instance = this;
+        sliderMusica.onValueChanged.AddListener(CambiarVolumenMusica);
+        sliderSFX.onValueChanged.AddListener(CambiarVolumenSFX);
     }
+
+    private void CambiarVolumenMusica(float valor)
+    {
+        mixer.SetFloat("MixerMusica", Mathf.Log10(valor) * 20);
+    }
+
+    private void CambiarVolumenSFX(float valor)
+    {
+        mixer.SetFloat("MixerSFX", Mathf.Log10(valor) * 20);
+    }
+
 
     // Para MovimientoJugador.cs
     // Descomentar si queremos que las variables sean privadas
