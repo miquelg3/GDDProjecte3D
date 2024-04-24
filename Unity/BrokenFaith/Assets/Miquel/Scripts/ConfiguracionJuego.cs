@@ -66,10 +66,13 @@ public class ConfiguracionJuego : MonoBehaviour
     void Awake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
         sliderMusica.onValueChanged.AddListener(CambiarVolumenMusica);
         sliderSFX.onValueChanged.AddListener(CambiarVolumenSFX);
     }
-
     private void CambiarVolumenMusica(float valor)
     {
         mixer.SetFloat("MixerMusica", Mathf.Log10(valor) * 20);
