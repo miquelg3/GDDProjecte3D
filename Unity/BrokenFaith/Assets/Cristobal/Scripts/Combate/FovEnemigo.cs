@@ -7,6 +7,8 @@ public class FovEnemigo : MonoBehaviour
     #region Variables
     private float luminosidad;
     private float nivelDeAlerta;
+    private float anguloVision;
+    private float rangoMaximo;
 
     private GameObject jugador;
 
@@ -16,6 +18,8 @@ public class FovEnemigo : MonoBehaviour
     void Start()
     {
         ConfiguracionJuego.instance.RangoAudicion = 1000;
+        anguloVision = ConfiguracionJuego.instance.AnguloVision;
+        rangoMaximo = ConfiguracionJuego.instance.RangoMaximo;
         nivelDeAlerta = 0;
         jugador = GameObject.FindGameObjectWithTag("Player");
         detectado = false;
@@ -66,12 +70,12 @@ public class FovEnemigo : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        float halfFOV = ConfiguracionJuego.instance.AnguloVision * 0.5f;
+        float halfFOV = anguloVision * 0.5f;
 
         Vector3 principio = Quaternion.Euler(0, -halfFOV, 0) 
-            * transform.forward * ConfiguracionJuego.instance.RangoMaximo;
+            * transform.forward * rangoMaximo;
         Vector3 final = Quaternion.Euler(0, halfFOV, 0) 
-            * transform.forward * ConfiguracionJuego.instance.RangoMaximo;
+            * transform.forward * rangoMaximo;
 
         Gizmos.DrawLine(transform.position, transform.position + principio);
         Gizmos.DrawLine(transform.position, transform.position + final);

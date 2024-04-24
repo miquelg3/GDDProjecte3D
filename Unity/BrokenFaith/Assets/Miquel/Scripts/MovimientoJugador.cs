@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class MovimientoJugador : MonoBehaviour
@@ -33,7 +34,13 @@ public class MovimientoJugador : MonoBehaviour
     private bool estaInclinando = false;
     public bool agachado;
 
+
+    //Configuracions animacion.
+    //Cambio Cristobal
     private Animator animator;
+    [SerializeField] private AnimatorController espadaAnimatorController;
+    [SerializeField] private AnimatorController arcoAnimatorController;
+    //Fin del Cambio 24/04/2024fix
 
     #endregion
 
