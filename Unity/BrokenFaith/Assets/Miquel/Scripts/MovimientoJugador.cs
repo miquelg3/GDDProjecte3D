@@ -1,28 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MovimientoJugador : MonoBehaviour
 {
+    #region Variables
     public static MovimientoJugador instance;
 
-    private float velocidad = 5.0f;
-    private float multiplicadorSprint = 2.0f;
     private float yaw, pitch;
-    private float VelocidadH = 3, VelocidadV = 3;
-
-    private float bobbingSpeed = 10f;
-    private float bobbingAmount = 0.1f;
-    private float midpoint = 0.5f;
-    private float timer = 0;
 
     private Transform cameraTransform;
-
-    private Rigidbody rb;
+    private CharacterController controlador;
+    private Vector3 velocidadJugador;
 
     private TextMeshProUGUI textoNombreObjeto;
     private GameObject currentObject;
@@ -32,7 +20,6 @@ public class MovimientoJugador : MonoBehaviour
     public GameState gameState = new GameState(GameState.StateGame.inGame);
 
     private GameObject pausa;
-    private GameObject inventarioMenu;
 
     private float lerpTime = 0f;
 
@@ -42,96 +29,130 @@ public class MovimientoJugador : MonoBehaviour
 
     private bool pistaEncontrada;
 
-    private float velocidadPeek = 40f;
-    private float anguloMaximo = 20f;
     private float inclinacionActual = 0f;
     private bool estaInclinando = false;
+    public bool agachado;
 
-    void Start()
-    {
-        RecibirVariables();
+    private Animator animator;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        pausa.SetActive(false);
-        rb = GetComponent<Rigidbody>();
-        altura = transform.localScale;
-        // Cuando queramos que haya deslizamiento, cambiamos esta variable
-        // rb.drag = 0;
-        if (cameraTransform != null)
-        {
-            midpoint = cameraTransform.localPosition.y;
-        }
-    }
+    #endregion
 
     void Awake()
     {
         instance = this;
     }
 
+    void Start()
+    {
+        RecibirVariables();
+
+        animator = GetComponent<Animator>();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        pausa.SetActive(false);
+        altura = transform.localScale;
+        if (cameraTransform != null)
+        {
+            ConfiguracionJuego.instance.MidPoint = cameraTransform.localPosition.y;
+        }
+
+        controlador = GetComponent<CharacterController>();
+
+        float initiaPitch = cameraTransform.localEulerAngles.x;
+
+        transform.localEulerAngles = new Vector3(initiaPitch, transform.position.y, transform.position.z);
+        
+    }
+
+
+
     void RecibirVariables()
     {
-        cameraTransform = ConfiguracionJuego.instance.cameraTransform;
-        textoNombreObjeto = ConfiguracionJuego.instance.nombreObjetoTexto;
-        pausa = ConfiguracionJuego.instance.pausa;
-        inventarioMenu = ConfiguracionJuego.instance.inventarioMenu;
+        cameraTransform = ConfiguracionJuego.instance.CamaraTransform;
+        textoNombreObjeto = ConfiguracionJuego.instance.NombreObjetoTexto;
+        pausa = ConfiguracionJuego.instance.PanelPausa;
     }
 
     public void MovimientoPersonaje()
     {
-        float movimientoH = Input.GetAxis("Horizontal");
-        float movimientoV = Input.GetAxis("Vertical");
+        float movimientoX = Input.GetAxis("Horizontal");
+        float movimientoZ = Input.GetAxis("Vertical");
+        Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
 
-        Vector3 movimiento = new Vector3(movimientoH, 0.0f, movimientoV) * velocidad * Time.deltaTime;
+        // Cambio Cristobal
+        animator.SetFloat("MovimientoX", movimientoX);
+        animator.SetFloat("MovimientoZ", movimientoZ);
+        //Fin Cambio 16-03-2024
+
+        //gravedad
+        if (controlador.isGrounded && velocidadJugador.y < 0) velocidadJugador.y = 0f;
+        velocidadJugador.y += ConfiguracionJuego.instance.Gravedad * Time.deltaTime;
+        controlador.Move(velocidadJugador * Time.deltaTime);
+
+        //salto
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+            velocidadJugador.y = 
+                Mathf.Sqrt(ConfiguracionJuego.instance.AlturaSalto * -2f * ConfiguracionJuego.instance.Gravedad);
 
         // Esprintar
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            movimiento *= multiplicadorSprint;
+            movimiento *= ConfiguracionJuego.instance.MultiplicadorSprint;
+
+            // Cambio Cristobal
+            animator.SetFloat("MovimientoX", movimientoX * ConfiguracionJuego.instance.MultiplicadorSprint);
+            animator.SetFloat("MovimientoZ", movimientoZ * ConfiguracionJuego.instance.MultiplicadorSprint);
+            //Fin Cambio 16-03-2024
         }
         // Agacharse
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            movimiento /= multiplicadorSprint;
+            movimiento /= ConfiguracionJuego.instance.MultiplicadorSprint;
             lerpTime += Time.deltaTime / 0.5f;
             //cameraTransform.position = Vector3.Lerp(altura, altura / 2, lerpTime);
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
+            agachado = true;
         }
         else
         {
             lerpTime = 0f;
             transform.localScale = altura;
+            agachado = false;
         }
 
-        transform.Translate(movimiento);
-
-        yaw += VelocidadH * Input.GetAxis("Mouse X");
+        yaw += ConfiguracionJuego.instance.VelocidadH * Input.GetAxis("Mouse X");
         transform.eulerAngles = new Vector3(0f, yaw, 0f);
 
         if (cameraTransform != null)
         {
-            pitch -= VelocidadV * Input.GetAxis("Mouse Y");
+            pitch -= ConfiguracionJuego.instance.VelocidadV * Input.GetAxis("Mouse Y");
             pitch = Mathf.Clamp(pitch, -90f, 90f);
             cameraTransform.localEulerAngles = new Vector3(pitch, 0f, 0f);
         }
 
+        controlador.Move(movimiento * ConfiguracionJuego.instance.Velocidad * Time.deltaTime);
+
 
         // Simulador de que se está moviendo
-        if (Mathf.Abs(movimientoH) > 0.1f || Mathf.Abs(movimientoV) > 0.1f)
+        if (Mathf.Abs(movimientoX) > 0.1f || Mathf.Abs(movimientoZ) > 0.1f)
         {
-            timer += Time.deltaTime * bobbingSpeed;
-            float waveslice = Mathf.Sin(timer);
-            float totalAxes = Mathf.Abs(movimientoH) + Mathf.Abs(movimientoV);
+            ConfiguracionJuego.instance.Timer += Time.deltaTime * ConfiguracionJuego.instance.BobbingSpeed;
+            float waveslice = Mathf.Sin(ConfiguracionJuego.instance.Timer);
+            float totalAxes = Mathf.Abs(movimientoX) + Mathf.Abs(movimientoZ);
             totalAxes = Mathf.Clamp(totalAxes, 0f, 0.5f);
-            float translateChange = totalAxes * waveslice * bobbingAmount;
+            float translateChange = totalAxes * waveslice * ConfiguracionJuego.instance.BobbingAmount;
 
-            float totalY = midpoint + translateChange;
-            cameraTransform.localPosition = new Vector3(cameraTransform.localPosition.x, totalY, cameraTransform.localPosition.z);
+            float totalY = ConfiguracionJuego.instance.MidPoint + translateChange;
+            cameraTransform.localPosition = 
+                new Vector3(cameraTransform.localPosition.x, totalY, cameraTransform.localPosition.z);
         }
         else
         {
-            timer = 0;
-            cameraTransform.localPosition = new Vector3(cameraTransform.localPosition.x, Mathf.Lerp(cameraTransform.localPosition.y, midpoint, Time.deltaTime * bobbingSpeed), cameraTransform.localPosition.z);
+            ConfiguracionJuego.instance.Timer = 0;
+            cameraTransform.localPosition = 
+                new Vector3(cameraTransform.localPosition.x, 
+                Mathf.Lerp(cameraTransform.localPosition.y, ConfiguracionJuego.instance.MidPoint, 
+                Time.deltaTime * ConfiguracionJuego.instance.BobbingSpeed), cameraTransform.localPosition.z);
         }
 
         // Apuntar
@@ -195,20 +216,21 @@ public class MovimientoJugador : MonoBehaviour
         if (Input.GetKey(KeyCode.Q))
         {
             estaInclinando = true;
-            inclinacionActual += Time.deltaTime * velocidadPeek; // Aumenta la inclinación gradualmente
-            inclinacionActual = Mathf.Min(inclinacionActual, anguloMaximo); // Limita la inclinación al máximo
+            inclinacionActual += Time.deltaTime * ConfiguracionJuego.instance.VelocidadPeek; // Aumenta la inclinación gradualmente
+            inclinacionActual = Mathf.Min(inclinacionActual, ConfiguracionJuego.instance.AnguloMaximo); // Limita la inclinación al máximo
         }
         // Inclinarse hacia el otro lado con E
         else if (Input.GetKey(KeyCode.E))
         {
             estaInclinando = true;
-            inclinacionActual -= Time.deltaTime * velocidadPeek; // Aumenta la inclinación gradualmente
-            inclinacionActual = Mathf.Max(inclinacionActual, -anguloMaximo); // Limita la inclinación al máximo en la otra dirección
+            inclinacionActual -= Time.deltaTime * ConfiguracionJuego.instance.VelocidadPeek; // Aumenta la inclinación gradualmente
+            inclinacionActual = Mathf.Max(inclinacionActual, ConfiguracionJuego.instance.AnguloMaximo); // Limita la inclinación al máximo en la otra dirección
         }
         // Al soltar la tecla, vuelve gradualmente a la posición original
         else if (estaInclinando)
         {
-            inclinacionActual = Mathf.MoveTowards(inclinacionActual, 0f, Time.deltaTime * velocidadPeek);
+            inclinacionActual = 
+                Mathf.MoveTowards(inclinacionActual, 0f, Time.deltaTime * ConfiguracionJuego.instance.VelocidadPeek);
             if (inclinacionActual == 0f)
             {
                 estaInclinando = false;
@@ -216,9 +238,21 @@ public class MovimientoJugador : MonoBehaviour
         }
 
         // Aplica la rotación
-        Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
-        transform.localRotation = targetRotation;
+        //Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
+        //transform.localRotation = targetRotation;
 
+    }
+
+    bool IsGrounded()
+    {
+        RaycastHit hit;
+        float distance = 1.2f;
+        Vector3 dir = new Vector3(0, -1, 0);
+        if (Physics.Raycast(transform.position, dir, out hit, distance))
+        {
+            return true;
+        }
+        return false;
     }
 
 }

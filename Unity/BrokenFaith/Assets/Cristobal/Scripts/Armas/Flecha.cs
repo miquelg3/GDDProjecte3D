@@ -9,7 +9,7 @@ public class Flecha : MonoBehaviour
     [SerializeField] private float torque = 5f;
 
 
-    [SerializeField]private Rigidbody rigidbody;
+    [SerializeField]private new Rigidbody rigidbody;
     private FixedJoint joint;
 
     public void Lanzar(Vector3 fuerza)
@@ -35,6 +35,7 @@ public class Flecha : MonoBehaviour
         } 
         else 
         {
+            Debug.Log($"Colisione con algo: {objeto.name}");
             joint.connectedBody = objeto.GetComponent<Rigidbody>();
             joint.breakForce = Mathf.Infinity;
             joint.breakTorque = Mathf.Infinity;

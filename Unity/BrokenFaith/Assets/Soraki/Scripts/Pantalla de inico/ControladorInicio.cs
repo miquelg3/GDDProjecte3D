@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography;
 using TMPro;
-using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,6 +21,8 @@ public class ControladorInicio : MonoBehaviour
     public Slider SliderA;
     public TextMeshProUGUI TextoAudio;
     public float Volumen;
+    // Añadido por Miquel Grau el 22/02/24 para que la escena no sea una específica y se pueda elegir a través de una variable
+    public SceneAsset siguienteEscena;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +32,7 @@ public class ControladorInicio : MonoBehaviour
         SliderA.value = 100;
         CInicio.gameObject.SetActive(true);
         COpciones.gameObject.SetActive(false);
-        string ruta = Path.Combine(Application.dataPath, "Guardado.json");
+        string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
         if (File.Exists(ruta))
         {
             Cargar.interactable = true;
@@ -81,16 +80,20 @@ public class ControladorInicio : MonoBehaviour
     public void CambiarEscena()
     {
         Cargado = 0;
+        string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
+        File.Delete(ruta);
         PlayerPrefs.SetInt("Vida",Vida);
         PlayerPrefs.SetInt("Cargar", Cargado);
-        SceneManager.LoadScene("Salud");
+        // Añadido por Miquel Grau el 22/02/24
+        SceneManager.LoadScene(siguienteEscena.name);
     }
     public void CargarEscena()
     {
         Cargado = 1;
         PlayerPrefs.SetInt("Vida", Vida);
         PlayerPrefs.SetInt("Cargar", Cargado);
-        SceneManager.LoadScene("Salud");
+        // Añadido por Miquel Grau el 22/02/24
+        SceneManager.LoadScene(siguienteEscena.name);
     }
     void CambiarTextoVolumen (float Actual)
     {

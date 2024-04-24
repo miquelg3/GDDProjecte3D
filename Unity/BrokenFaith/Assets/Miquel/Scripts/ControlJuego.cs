@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using static UnityEditor.ShaderData;
 
 public class ControlJuego : MonoBehaviour
 {
     public GameState gameState = new GameState(GameState.StateGame.inGame);
+    public Progreso progreso = new Progreso();
+    private Salud personaje;
 
     private Transform cameraTransform;
     private GameObject pausa;
@@ -15,8 +18,14 @@ public class ControlJuego : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        personaje = new Cuerpo();
         RecibirVariables();
         inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
+        string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
+        if (File.Exists(ruta))
+        {
+            LlamarCargarPartida();
+        }
     }
 
     // Update is called once per frame
@@ -61,9 +70,9 @@ public class ControlJuego : MonoBehaviour
     }
     void RecibirVariables()
     {
-        cameraTransform = ConfiguracionJuego.instance.cameraTransform;
-        pausa = ConfiguracionJuego.instance.pausa;
-        inventarioMenu = ConfiguracionJuego.instance.inventarioMenu;
+        cameraTransform = ConfiguracionJuego.instance.CamaraTransform;
+        pausa = ConfiguracionJuego.instance.PanelPausa;
+        inventarioMenu = ConfiguracionJuego.instance.InventarioMenu;
     }
 
     public void ResumeGame()
@@ -75,9 +84,27 @@ public class ControlJuego : MonoBehaviour
         inventarioMenu.SetActive(true);
     }
 
-    public void GuardarPartida()
+    public void LlamarGuardarPartida()
     {
+        Debug.Log("Guardando...");
+        progreso.GuardarPartida(personaje.ListaSalud, InventarioScript.instance.RecibirInventario(), transform.position);
+    }
 
+    public void LlamarCargarPartida()
+    {
+        Debug.Log("Cargando...");
+
+        Partida partidaCargada = progreso.CargarPartida();
+        Vector3 position = new Vector3(partidaCargada.Position.X, partidaCargada.Position.Y, partidaCargada.Position.Z);
+        List<Item> inventario = partidaCargada.Inventario;
+        InventarioScript.instance.LlenarInventario(inventario);
+        StartCoroutine(Posicionar(position));
+    }
+
+    IEnumerator Posicionar(Vector3 position)
+    {
+        yield return null;
+        transform.position = position;
     }
 
 }

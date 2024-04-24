@@ -12,6 +12,8 @@ public class Cabeza : Salud
     private Vignette vig;
     // Vision es la variable que controla la intensidad del viñeteado usado para que el personaje se quede ciego cuando recibe heridas en la cabeza
     public float Vision { get; private set; }
+    // Añadido el constructor sin parámetros por Miquel Grau el 25/02/24
+    public Cabeza() { }
     public Cabeza(int vidaActual, float Vision) : base(vidaActual)
     {
         vol = Camera.main.GetComponent<Volume>();
@@ -22,7 +24,7 @@ public class Cabeza : Salud
     {
         Vision = 0.25f;
         vol = Camera.main.GetComponent<Volume>();
-        vol.profile.TryGet<Vignette>(out vig);
+        //vol.profile.TryGet<Vignette>(out vig);
     }
 
    

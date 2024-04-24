@@ -1,11 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventario : IInventario
 {
     private HashSet<Item> Items;
+
+    public List<Item> ItemsList { get; set; } = new List<Item>();
+
     public Inventario()
     {
         Items = new HashSet<Item>();
@@ -20,17 +26,41 @@ public class Inventario : IInventario
 
     public void EliminarItem(Item ObjetoAEliminar)
     {
-        throw new System.NotImplementedException();
+        bool resultado = Items.Remove(ObjetoAEliminar);
+
+        if (resultado)
+        {
+            Debug.Log("El item fue eliminado exitosamente");
+        }
+        else
+        {
+            Debug.Log("El item no se encontró en el HashSet");
+        }
     }
 
     public void MostrarInventario()
     {
         foreach (var item in Items)
         {
-            Debug.Log($"Nombre del item: {item.Nombre}\n");
+            Debug.Log($"ID del item: {item.Id}\n");
         }
         if ( Items.Count == 0 )
             Debug.Log("No hay nada en el inventario");
     }
-    public HashSet<Item> GetItems() { return Items; }
+    public HashSet<Item> GetItems() 
+    {
+        foreach (var item in Items)
+            Debug.Log("Intentando guardar el item: " + item.Id);
+        return Items; 
+    }
+
+    public void SerializarInventario(Inventario inventario)
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(Inventario));
+        using (TextWriter writer = new StreamWriter(@"Inventario.xml"))
+        {
+            serializer.Serialize(writer, inventario);
+        }
+    }
+
 }

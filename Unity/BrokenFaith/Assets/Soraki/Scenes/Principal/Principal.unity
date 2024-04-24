@@ -872,10 +872,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1044724034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 631, y: 355}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &361654984
 MonoBehaviour:
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 500500005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49571cacc1102244e9ba96fdaad1882b, type: 3}
+  m_Script: {fileID: 11500000, guid: 80914baae27ab804aaa10db389dee7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Empezar: {fileID: 1988877847}
@@ -1068,14 +1068,15 @@ MonoBehaviour:
   Volver: {fileID: 866122142}
   COpciones: {fileID: 2002769862}
   CInicio: {fileID: 1044724033}
-  TextoVida: {fileID: 538746207}
+  TextoVida: {fileID: 1283277865}
   SliderV: {fileID: 1919485426}
   Vida: 0
   Cargado: 0
   Intro: {fileID: 1039116757}
   SliderA: {fileID: 28695244}
-  TextoAudio: {fileID: 1862263113}
+  TextoAudio: {fileID: 1276940824}
   Volumen: 0
+  siguienteEscena: {fileID: 102900000, guid: 48509604997407740b7d843d9ca47994, type: 3}
 --- !u!1 &512653905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,10 +2677,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2002769863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 631, y: 355}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422523169
 MonoBehaviour:
