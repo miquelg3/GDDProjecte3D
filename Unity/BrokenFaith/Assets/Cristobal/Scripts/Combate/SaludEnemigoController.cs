@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [Serializable]
 public class SaludEnemigoController : MonoBehaviour
@@ -10,13 +11,11 @@ public class SaludEnemigoController : MonoBehaviour
 
     private Animator animator;
     private new CapsuleCollider collider;
-    private bool muerto;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         collider = GetComponent<CapsuleCollider>();
-        muerto = false;
     }
 
     public void RecibirDanyo(float danyo)
@@ -27,8 +26,9 @@ public class SaludEnemigoController : MonoBehaviour
 
     public void Muerte()
     {
-        muerto = true;
         collider.enabled = false;
+        GetComponent<EnemigoBasico>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
         animator.SetTrigger("Muerto");
     }
 }

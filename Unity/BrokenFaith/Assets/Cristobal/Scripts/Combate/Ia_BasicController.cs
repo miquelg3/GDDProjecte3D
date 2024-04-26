@@ -26,7 +26,7 @@ public class Ia_BasicController : MonoBehaviour
         RangoAudicion = 1000f;
         NivelDeAlerta = 0;
         jugador = GameObject.FindGameObjectWithTag("Player").gameObject;
-        bool vision = jugador.GetComponent<PlayerMovement>().agachado;
+        bool vision = jugador.GetComponent<MovimientoJugador>().agachado;
         animator = GetComponent<Animator>();
     }
 
@@ -34,9 +34,9 @@ public class Ia_BasicController : MonoBehaviour
     {
         luminosidad = MeasureLightIntensity(jugador.transform.position);
         Debug.Log(luminosidad);
-        if (jugador.GetComponent<PlayerMovement>().agachado == true && rangoMaximo>5f)
+        if (jugador.GetComponent<MovimientoJugador>().agachado == true && rangoMaximo>5f)
             rangoMaximo /= 2;
-        else if (jugador.GetComponent<PlayerMovement>().agachado == false && rangoMaximo != 10f)
+        else if (jugador.GetComponent<MovimientoJugador>().agachado == false && rangoMaximo != 10f)
             rangoMaximo = 10f;
 
        /** if (RangoDeVision())

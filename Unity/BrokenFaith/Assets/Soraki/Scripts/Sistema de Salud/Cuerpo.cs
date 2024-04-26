@@ -32,7 +32,7 @@ public class Cuerpo : Salud
             Partes.Add(BrazoD);
             Partes.Add(PiernaD);
             Partes.Add(PiernaI);
-            Lista = Partes;
+            ListaSalud = Partes;
         
     }
 

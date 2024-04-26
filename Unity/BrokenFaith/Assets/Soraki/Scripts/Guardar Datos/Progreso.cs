@@ -2,30 +2,58 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class Progreso
 {
     EstadoJugador Estado;
-
-    public void GuardarPartida(List<Salud> pj)
+    // Cambiado por Miquel Grau el 24/02/24 para que se guarden las cosas adecuadas, aún hay más cosas que se podrían guardar a medida que desarrollemos el juego. Ahora se guarda en xml porque es más fácil guardar objetos seriializables
+    public void GuardarPartida(List<Salud> salud, List<Item> inventario, Vector3 position)
     {
-        string ruta = Path.Combine(Application.dataPath, "Guardado.json");
+        /*string ruta = Path.Combine(Application.dataPath, "Guardado.json");
         Estado = new EstadoJugador();
-        ObtenerDatos(pj);
+        ObtenerDatos(salud);
         ContenedorDeSalud contenedor = new ContenedorDeSalud
         {
             Salud = Estado
         };
         string datosJson = JsonUtility.ToJson(contenedor);
         File.WriteAllText(ruta, datosJson);
-        Debug.Log(datosJson);
+        Debug.Log(datosJson);*/
+
+        // Convertir HashSet<Item> a una lista compatible con XmlSerializer
+        List<Item> listaInventario = inventario.ToList();
+        foreach (Item item in listaInventario)
+        {
+            Debug.Log($"Guardado: {item.Id}");
+        }
+
+
+        // Preparar el objeto a serializar que incluye salud, inventario y posición
+        var partida = new Partida()
+        {
+            //Salud = salud,
+            Inventario = listaInventario,
+            Position = new Vector3Serializable(position)
+        };
+
+        string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
+
+        XmlSerializer serializer = new XmlSerializer(typeof(Partida));
+        using (StreamWriter writer = new StreamWriter(ruta))
+        {
+            serializer.Serialize(writer, partida);
+        }
+
+        Debug.Log("Guardado en " + ruta);
 
     }
-    public ContenedorDeSalud CargarPartida()
+    public Partida CargarPartida()
     {
-        string ruta = Path.Combine(Application.dataPath, "Guardado.json");
+        /*string ruta = Path.Combine(Application.dataPath, "Guardado.json");
         if (File.Exists(ruta))
         {
             string datosGuardados = File.ReadAllText(ruta);
@@ -33,7 +61,14 @@ public class Progreso
             string datosJson = JsonUtility.ToJson(progresoCargado);
             return progresoCargado;
         }
-        return null;
+        return null;*/
+
+        string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
+        XmlSerializer serializer = new XmlSerializer(typeof(Partida));
+        using (StreamReader reader = new StreamReader(ruta))
+        {
+            return (Partida)serializer.Deserialize(reader);
+        }
     }
     public void ObtenerDatos(List<Salud> pj)
     {
