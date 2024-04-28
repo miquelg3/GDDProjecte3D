@@ -3,19 +3,10 @@ using UnityEngine;
 
 public class MovimientoJugador : MonoBehaviour
 {
+    #region Variables
     public static MovimientoJugador instance;
 
-    [SerializeField] private GameObject spine;
-
-    private float velocidad = 5.0f;
-    private float multiplicadorSprint = 2.0f;
     private float yaw, pitch;
-    private float VelocidadH = 3, VelocidadV = 3;
-
-    private float bobbingSpeed = 10f;
-    private float bobbingAmount = 0.1f;
-    private float midpoint = 0.5f;
-    private float timer = 0;
 
     private Transform cameraTransform;
     private CharacterController controlador;
@@ -29,7 +20,6 @@ public class MovimientoJugador : MonoBehaviour
     public GameState gameState = new GameState(GameState.StateGame.inGame);
 
     private GameObject pausa;
-    private GameObject inventarioMenu;
 
     private float lerpTime = 0f;
 
@@ -39,18 +29,18 @@ public class MovimientoJugador : MonoBehaviour
 
     private bool pistaEncontrada;
 
-    private float velocidadPeek = 40f;
-    private float anguloMaximo = 20f;
     private float inclinacionActual = 0f;
     private bool estaInclinando = false;
     public bool agachado;
 
-    private float gravedad;
-    private float alturaSalto;
-
     private Animator animator;
 
+    #endregion
 
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -63,7 +53,7 @@ public class MovimientoJugador : MonoBehaviour
         altura = transform.localScale;
         if (cameraTransform != null)
         {
-            midpoint = cameraTransform.localPosition.y;
+            ConfiguracionJuego.instance.MidPoint = cameraTransform.localPosition.y;
         }
 
         controlador = GetComponent<CharacterController>();
@@ -74,64 +64,50 @@ public class MovimientoJugador : MonoBehaviour
         
     }
 
-    void Awake()
-    {
-        instance = this;
-    }
+
 
     void RecibirVariables()
     {
-        cameraTransform = ConfiguracionJuego.instance.cameraTransform;
-        textoNombreObjeto = ConfiguracionJuego.instance.nombreObjetoTexto;
-        pausa = ConfiguracionJuego.instance.pausa;
-        inventarioMenu = ConfiguracionJuego.instance.inventarioMenu;
-        gravedad = ConfiguracionJuego.instance.gravedad;
-        alturaSalto = ConfiguracionJuego.instance.alturaSalto;
+        cameraTransform = ConfiguracionJuego.instance.CamaraTransform;
+        textoNombreObjeto = ConfiguracionJuego.instance.NombreObjetoTexto;
+        pausa = ConfiguracionJuego.instance.PanelPausa;
     }
 
     public void MovimientoPersonaje()
     {
-
-        
-
         float movimientoX = Input.GetAxis("Horizontal");
         float movimientoZ = Input.GetAxis("Vertical");
         Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
 
         // Cambio Cristobal
-        if (animator != null)
-        {
-            animator?.SetFloat("MovimientoX", movimientoX);
-            animator?.SetFloat("MovimientoZ", movimientoZ);
-        }
+        animator.SetFloat("MovimientoX", movimientoX);
+        animator.SetFloat("MovimientoZ", movimientoZ);
         //Fin Cambio 16-03-2024
 
         //gravedad
         if (controlador.isGrounded && velocidadJugador.y < 0) velocidadJugador.y = 0f;
-        velocidadJugador.y += gravedad * Time.deltaTime;
+        velocidadJugador.y += ConfiguracionJuego.instance.Gravedad * Time.deltaTime;
         controlador.Move(velocidadJugador * Time.deltaTime);
 
         //salto
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
-            velocidadJugador.y = Mathf.Sqrt(alturaSalto * -2f * gravedad);
+            velocidadJugador.y = 
+                Mathf.Sqrt(ConfiguracionJuego.instance.AlturaSalto * -2f * ConfiguracionJuego.instance.Gravedad);
 
         // Esprintar
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            movimiento *= multiplicadorSprint;
+            movimiento *= ConfiguracionJuego.instance.MultiplicadorSprint;
 
             // Cambio Cristobal
-            if (animator != null)
-            {
-                animator.SetFloat("MovimientoX", movimientoX * multiplicadorSprint);
-                animator.SetFloat("MovimientoZ", movimientoZ * multiplicadorSprint);
-            }
+            animator.SetFloat("MovimientoX", movimientoX * ConfiguracionJuego.instance.MultiplicadorSprint);
+            animator.SetFloat("MovimientoZ", movimientoZ * ConfiguracionJuego.instance.MultiplicadorSprint);
             //Fin Cambio 16-03-2024
         }
         // Agacharse
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            movimiento /= multiplicadorSprint;
+            movimiento /= ConfiguracionJuego.instance.MultiplicadorSprint;
             lerpTime += Time.deltaTime / 0.5f;
             //cameraTransform.position = Vector3.Lerp(altura, altura / 2, lerpTime);
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
@@ -144,35 +120,39 @@ public class MovimientoJugador : MonoBehaviour
             agachado = false;
         }
 
-        yaw += VelocidadH * Input.GetAxis("Mouse X");
+        yaw += ConfiguracionJuego.instance.VelocidadH * Input.GetAxis("Mouse X");
         transform.eulerAngles = new Vector3(0f, yaw, 0f);
 
         if (cameraTransform != null)
         {
-            pitch -= VelocidadV * Input.GetAxis("Mouse Y");
+            pitch -= ConfiguracionJuego.instance.VelocidadV * Input.GetAxis("Mouse Y");
             pitch = Mathf.Clamp(pitch, -90f, 90f);
             cameraTransform.localEulerAngles = new Vector3(pitch, 0f, 0f);
         }
 
-        controlador.Move(movimiento * velocidad * Time.deltaTime);
+        controlador.Move(movimiento * ConfiguracionJuego.instance.Velocidad * Time.deltaTime);
 
 
         // Simulador de que se está moviendo
         if (Mathf.Abs(movimientoX) > 0.1f || Mathf.Abs(movimientoZ) > 0.1f)
         {
-            timer += Time.deltaTime * bobbingSpeed;
-            float waveslice = Mathf.Sin(timer);
+            ConfiguracionJuego.instance.Timer += Time.deltaTime * ConfiguracionJuego.instance.BobbingSpeed;
+            float waveslice = Mathf.Sin(ConfiguracionJuego.instance.Timer);
             float totalAxes = Mathf.Abs(movimientoX) + Mathf.Abs(movimientoZ);
             totalAxes = Mathf.Clamp(totalAxes, 0f, 0.5f);
-            float translateChange = totalAxes * waveslice * bobbingAmount;
+            float translateChange = totalAxes * waveslice * ConfiguracionJuego.instance.BobbingAmount;
 
-            float totalY = midpoint + translateChange;
-            cameraTransform.localPosition = new Vector3(cameraTransform.localPosition.x, totalY, cameraTransform.localPosition.z);
+            float totalY = ConfiguracionJuego.instance.MidPoint + translateChange;
+            cameraTransform.localPosition = 
+                new Vector3(cameraTransform.localPosition.x, totalY, cameraTransform.localPosition.z);
         }
         else
         {
-            timer = 0;
-            cameraTransform.localPosition = new Vector3(cameraTransform.localPosition.x, Mathf.Lerp(cameraTransform.localPosition.y, midpoint, Time.deltaTime * bobbingSpeed), cameraTransform.localPosition.z);
+            ConfiguracionJuego.instance.Timer = 0;
+            cameraTransform.localPosition = 
+                new Vector3(cameraTransform.localPosition.x, 
+                Mathf.Lerp(cameraTransform.localPosition.y, ConfiguracionJuego.instance.MidPoint, 
+                Time.deltaTime * ConfiguracionJuego.instance.BobbingSpeed), cameraTransform.localPosition.z);
         }
 
         // Apuntar
@@ -236,20 +216,21 @@ public class MovimientoJugador : MonoBehaviour
         if (Input.GetKey(KeyCode.Q))
         {
             estaInclinando = true;
-            inclinacionActual += Time.deltaTime * velocidadPeek; // Aumenta la inclinación gradualmente
-            inclinacionActual = Mathf.Min(inclinacionActual, anguloMaximo); // Limita la inclinación al máximo
+            inclinacionActual += Time.deltaTime * ConfiguracionJuego.instance.VelocidadPeek; // Aumenta la inclinación gradualmente
+            inclinacionActual = Mathf.Min(inclinacionActual, ConfiguracionJuego.instance.AnguloMaximo); // Limita la inclinación al máximo
         }
         // Inclinarse hacia el otro lado con E
         else if (Input.GetKey(KeyCode.E))
         {
             estaInclinando = true;
-            inclinacionActual -= Time.deltaTime * velocidadPeek; // Aumenta la inclinación gradualmente
-            inclinacionActual = Mathf.Max(inclinacionActual, -anguloMaximo); // Limita la inclinación al máximo en la otra dirección
+            inclinacionActual -= Time.deltaTime * ConfiguracionJuego.instance.VelocidadPeek; // Aumenta la inclinación gradualmente
+            inclinacionActual = Mathf.Max(inclinacionActual, ConfiguracionJuego.instance.AnguloMaximo); // Limita la inclinación al máximo en la otra dirección
         }
         // Al soltar la tecla, vuelve gradualmente a la posición original
         else if (estaInclinando)
         {
-            inclinacionActual = Mathf.MoveTowards(inclinacionActual, 0f, Time.deltaTime * velocidadPeek);
+            inclinacionActual = 
+                Mathf.MoveTowards(inclinacionActual, 0f, Time.deltaTime * ConfiguracionJuego.instance.VelocidadPeek);
             if (inclinacionActual == 0f)
             {
                 estaInclinando = false;
@@ -259,16 +240,6 @@ public class MovimientoJugador : MonoBehaviour
         // Aplica la rotación
         //Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
         //transform.localRotation = targetRotation;
-
-        //Cambio Cristobal
-        if ( animator != null)
-        {
-            float picth = cameraTransform.localEulerAngles.x;
-
-            spine.transform.localEulerAngles = 
-                new Vector3(picth, transform.localEulerAngles.y, transform.localEulerAngles.z);
-        }
-        //Fin Cambio 21-03-2024
 
     }
 
