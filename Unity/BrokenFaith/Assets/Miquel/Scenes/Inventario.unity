@@ -259,6 +259,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1658200165}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &713811673 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8846316109687472148, guid: 1f98be55689607d409216b1240b4a1c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1925256657}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &825737167
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +465,16 @@ PrefabInstance:
       objectReference: {fileID: 1583526485}
     - target: {fileID: 2431904553428241967, guid: 66bbca4779791f042bbe93d60d74e508,
         type: 3}
+      propertyPath: bobbingSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2431904553428241967, guid: 66bbca4779791f042bbe93d60d74e508,
+        type: 3}
+      propertyPath: bobbingAmount
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2431904553428241967, guid: 66bbca4779791f042bbe93d60d74e508,
+        type: 3}
       propertyPath: inventarioMenu
       value: 
       objectReference: {fileID: 2053485355}
@@ -482,6 +498,11 @@ PrefabInstance:
       propertyPath: nombreObjetoTexto
       value: 
       objectReference: {fileID: 244532875}
+    - target: {fileID: 2431904553428241967, guid: 66bbca4779791f042bbe93d60d74e508,
+        type: 3}
+      propertyPath: panelInventarioExterno
+      value: 
+      objectReference: {fileID: 713811673}
     - target: {fileID: 4235187106957268215, guid: 66bbca4779791f042bbe93d60d74e508,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1524,6 +1545,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460122553340005352, guid: 1f98be55689607d409216b1240b4a1c7,
+        type: 3}
+      propertyPath: m_Name
+      value: PanelInventarioExterno
       objectReference: {fileID: 0}
     - target: {fileID: 3468845488328958984, guid: 1f98be55689607d409216b1240b4a1c7,
         type: 3}

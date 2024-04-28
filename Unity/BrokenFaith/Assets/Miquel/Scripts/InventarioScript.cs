@@ -11,6 +11,7 @@ public class InventarioScript : MonoBehaviour
     public static InventarioScript instance;
 
     private Transform panelInventario;
+    private Transform panelInventarioExterno;
     private List<Transform> newSlots = new List<Transform>();
     private int contInventario;
     private Sprite espadaImg;
@@ -33,7 +34,8 @@ public class InventarioScript : MonoBehaviour
 
     void Start()
     {
-        panelInventario = ConfiguracionJuego.instance.TransformPanelIntario;
+        panelInventario = ConfiguracionJuego.instance.TransformPanelInventario;
+        panelInventarioExterno = ConfiguracionJuego.instance.TransformPanelInventarioExterno;
         espadaImg = ConfiguracionJuego.instance.EspadaImg;
         arcoImg = ConfiguracionJuego.instance.ArcoImg;
         pistaImg = ConfiguracionJuego.instance.PistaImg;
@@ -43,6 +45,11 @@ public class InventarioScript : MonoBehaviour
         for (int i = 0; i < 90; i++)
         {
             slotTransform = panelInventario.Find($"Slot ({i})");
+            slotTransform.AddComponent<DropSlot>();
+        }
+        for (int i = 90; i < 93; i++)
+        {
+            slotTransform = panelInventarioExterno.Find($"Slot ({i})");
             slotTransform.AddComponent<DropSlot>();
         }
 
@@ -104,7 +111,7 @@ public class InventarioScript : MonoBehaviour
             {
                 Debug.Log($"Apunto de instanciar como padre el Slot ({contInventario})");
                 Transform newSlot = Instantiate(slotTransform, panelInventario);
-                newSlot.name = $"Slot ({90 + contInventario})";
+                newSlot.name = $"Slot ({92 + contInventario})";
                 Debug.Log("Slot encontrado " + contInventario);
                 newSlot.GetComponent<Image>().type = Image.Type.Simple;
                 if (item.Nombre == "Espada")
@@ -137,7 +144,10 @@ public class InventarioScript : MonoBehaviour
         Transform slotParent = null;
         if (modo == 1)
         {
-            slotParent = panelInventario.Find($"Slot ({item.Id})");
+            if (int.Parse(item.Id) < 90)
+                slotParent = panelInventario.Find($"Slot ({item.Id})");
+            else if (int.Parse(item.Id) >= 90 && int.Parse(item.Id) < 93)
+                slotParent = panelInventarioExterno.Find($"Slot ({item.Id})");
             Debug.Log($"Intentando guardar en {item.Id}");
         }
         else if (modo == 2)
@@ -147,22 +157,27 @@ public class InventarioScript : MonoBehaviour
         slot.SetParent(slotParent);
         slot.position = slotParent.position;
     }
-    // Otra corrutina porque en la ui hay que tener pacience
+    // Otra corrutina porque en la ui hay que tener paciencia
     IEnumerator CargarInventario(int modo)
     {
         yield return null;
         HashSet<Item> items = inventario.GetItems();
-        Transform slotTransform;
+        Transform slotTransform = null;
         GameObject slot;
         foreach (Item item in items)
         {
-            slotTransform = panelInventario.Find($"Slot ({item.Id})");
+            if (int.Parse(item.Id) < 90)
+                slotTransform = panelInventario.Find($"Slot ({item.Id})");
+            else if (int.Parse(item.Id) >= 90 && int.Parse(item.Id) < 93)
+                slotTransform = panelInventarioExterno.Find($"Slot ({item.Id})");
+            else
+                Debug.LogError($"Slot {item.Nombre} tiene un Id incorrecto ({item.Id})");
             Debug.Log($"Slot encontrado en {item.Id}");
             if (slotTransform != null)
             {
                 slot = slotTransform.gameObject;
                 Transform newSlot = Instantiate(slotTransform, slotTransform.parent);
-                newSlot.name = $"Slot ({90 + item.Id})";
+                newSlot.name = $"Slot ({92 + item.Id})";
                 Debug.Log("Slot encontrado " + item.Id);
                 newSlot.GetComponent<Image>().type = Image.Type.Simple;
                 if (item.Nombre == "Espada")
