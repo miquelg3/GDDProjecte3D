@@ -87,8 +87,11 @@ public class MovimientoJugador : MonoBehaviour
         Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
 
         // Cambio Cristobal
-        animator.SetFloat("MovimientoX", movimientoX);
-        animator.SetFloat("MovimientoZ", movimientoZ);
+        if (animator != null)
+        {
+            animator.SetFloat("MovimientoX", movimientoX);
+            animator.SetFloat("MovimientoZ", movimientoZ);
+        }
         //Fin Cambio 16-03-2024
 
         //gravedad
