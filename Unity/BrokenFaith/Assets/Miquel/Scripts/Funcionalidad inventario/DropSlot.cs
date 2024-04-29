@@ -13,7 +13,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         {
             return;
         }
-        if (dropRectTransform.parent.name == "PanelInventario")
+        if (dropRectTransform.parent.name == "PanelInventario" || dropRectTransform.parent.name == "PanelInventarioExterno")
         {
             // Mover la imagen al slot
             Debug.Log("ChildCount" + dropRectTransform.childCount);
@@ -25,7 +25,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
             if (draggable != null && draggable.item != null)
             {
                 string slotName = dropRectTransform.name;
-                int newId = ExtraerId(slotName); // Necesitas implementar este método según tu esquema de nombramiento
+                int newId = ExtraerId(slotName);
 
                 // Actualizar el ID del Item
                 draggable.item.Id = newId.ToString();
@@ -36,13 +36,12 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
     int ExtraerId(string slotName)
     {
-        // Extracción básica asumiendo que el nombre es "Slot (X)"
         string idPart = slotName.Substring(slotName.IndexOf('(') + 1, slotName.IndexOf(')') - slotName.IndexOf('(') - 1);
         if (int.TryParse(idPart, out int id))
         {
             return id;
         }
-        return -1; // ID no válido o error
+        return -1;
     }
 }
 
