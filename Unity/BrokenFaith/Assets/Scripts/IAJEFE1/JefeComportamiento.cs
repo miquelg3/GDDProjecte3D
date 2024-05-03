@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class JefeComportamiento : MonoBehaviour
+public class JefeComportamiento:MonoBehaviour
 {
     private NavMeshAgent Agent;
     private Transform Jugador;
