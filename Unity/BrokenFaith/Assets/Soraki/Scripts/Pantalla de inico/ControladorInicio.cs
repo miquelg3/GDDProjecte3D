@@ -1,6 +1,9 @@
+using System.Collections;
 using System.IO;
 using TMPro;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,14 +24,19 @@ public class ControladorInicio : MonoBehaviour
     public Slider SliderA;
     public TextMeshProUGUI TextoAudio;
     public float Volumen;
+#if UNITY_EDITOR
     // Añadido por Miquel Grau el 22/02/24 para que la escena no sea una específica y se pueda elegir a través de una variable
-    public SceneAsset siguienteEscena;
+    [SerializeField]
+    private string nombreSiguienteEscena;
+#else
+    private Scene currentScene = SceneManager.GetActiveScene();
+#endif
 
     // Start is called before the first frame update
     void Start()
     {
         TextoVida.SetText("200"); Vida = 200;
-        TextoAudio.SetText("100");Volumen = 100;
+        TextoAudio.SetText("100"); Volumen = 100;
         SliderA.value = 100;
         CInicio.gameObject.SetActive(true);
         COpciones.gameObject.SetActive(false);
@@ -47,12 +55,6 @@ public class ControladorInicio : MonoBehaviour
         Empezar.onClick.AddListener(CambiarEscena);
         Cargar.onClick.AddListener(CargarEscena);
         SliderA.onValueChanged.AddListener(CambiarTextoVolumen);
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-       
     }
 
     void MostrarOpciones()
@@ -82,22 +84,53 @@ public class ControladorInicio : MonoBehaviour
         Cargado = 0;
         string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
         File.Delete(ruta);
-        PlayerPrefs.SetInt("Vida",Vida);
+        PlayerPrefs.SetInt("Vida", Vida);
         PlayerPrefs.SetInt("Cargar", Cargado);
-        // Añadido por Miquel Grau el 22/02/24
-        SceneManager.LoadScene(siguienteEscena.name);
+        StartCoroutine(LoadNextScene());
     }
     public void CargarEscena()
     {
         Cargado = 1;
         PlayerPrefs.SetInt("Vida", Vida);
         PlayerPrefs.SetInt("Cargar", Cargado);
-        // Añadido por Miquel Grau el 22/02/24
-        SceneManager.LoadScene(siguienteEscena.name);
+        StartCoroutine(LoadNextScene());
     }
-    void CambiarTextoVolumen (float Actual)
+
+    private IEnumerator LoadNextScene()
     {
-        float Valor = Actual/100;
+        // The Application loads the Scene in the background as the current Scene runs.
+        // This is particularly good for creating loading screens.
+        // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
+        // a sceneBuildIndex of 1 as shown in Build Settings.
+
+#if UNITY_EDITOR
+        // Añadido por Miquel Grau el 22/02/24
+        AsyncOperation loadingOperation = SceneManager.LoadSceneAsync(nombreSiguienteEscena);
+        // Wait until the asynchronous scene fully loads
+        while (!loadingOperation.isDone)
+        {
+            //Here you can show a message or a progress bar with "loadingOperation.progress.ToString()" and wait until finish the charge
+            yield return null;
+        }
+#else
+        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCount)
+        {
+            AsyncOperation loadingOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+
+            // Wait until the asynchronous scene fully loads
+            while (!loadingOperation.isDone)
+            {
+                //Here you can show a message or a progress bar with "loadingOperation.progress.ToString()" and wait until finish the charge
+                yield return null;
+            }
+        }
+#endif
+
+    }
+
+    void CambiarTextoVolumen(float Actual)
+    {
+        float Valor = Actual / 100;
         int texto = (int)Actual;
         TextoAudio.SetText($"{texto}");
         Volumen = Valor;
