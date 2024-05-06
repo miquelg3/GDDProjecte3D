@@ -2,7 +2,7 @@
 <Partida xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Inventario>
     <Arma>
-      <Id>90</Id>
+      <Id>53</Id>
       <Nombre>Espada</Nombre>
       <Descripcion>Espada de Jaime I</Descripcion>
       <Escala>0.25</Escala>
@@ -10,9 +10,17 @@
       <TipoArma>Espada</TipoArma>
     </Arma>
   </Inventario>
+  <Salud>
+    <Cabeza>200</Cabeza>
+    <Torso>200</Torso>
+    <BrazoIzquierdo>100</BrazoIzquierdo>
+    <BrazoDerecho>100</BrazoDerecho>
+    <PieIzquierdo>100</PieIzquierdo>
+    <PieDerecho>100</PieDerecho>
+  </Salud>
   <Position>
-    <X>-25.2979527</X>
-    <Y>1.74997842</Y>
-    <Z>0.642876744</Z>
+    <X>-28.6142559</X>
+    <Y>0.741966963</Y>
+    <Z>0.277844846</Z>
   </Position>
 </Partida>

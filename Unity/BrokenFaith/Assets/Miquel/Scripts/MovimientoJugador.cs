@@ -103,8 +103,11 @@ public class MovimientoJugador : MonoBehaviour
             movimiento *= ConfiguracionJuego.instance.MultiplicadorSprint;
 
             // Cambio Cristobal
-            animator.SetFloat("MovimientoX", movimientoX * ConfiguracionJuego.instance.MultiplicadorSprint);
-            animator.SetFloat("MovimientoZ", movimientoZ * ConfiguracionJuego.instance.MultiplicadorSprint);
+            if (animator != null)
+            {
+                animator.SetFloat("MovimientoX", movimientoX * ConfiguracionJuego.instance.MultiplicadorSprint);
+                animator.SetFloat("MovimientoZ", movimientoZ * ConfiguracionJuego.instance.MultiplicadorSprint);
+            }
             //Fin Cambio 16-03-2024
         }
         // Agacharse

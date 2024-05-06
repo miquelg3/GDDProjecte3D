@@ -28,7 +28,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        if (transform.parent.parent.name == "PanelInventario")
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        else if (transform.parent.parent.name == "PanelInventarioExterno")
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor * 5;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -39,6 +42,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+        Debug.Log(rectTransform.anchoredPosition);
     }
 
     public void SetItem(Item item)
