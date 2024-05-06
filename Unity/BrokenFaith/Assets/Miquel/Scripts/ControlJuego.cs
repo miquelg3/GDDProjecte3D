@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
+#if UNITY_EDITOR
 using static UnityEditor.ShaderData;
+#endif
 
 public class ControlJuego : MonoBehaviour
 {
@@ -14,8 +15,6 @@ public class ControlJuego : MonoBehaviour
     private Transform cameraTransform;
     private GameObject pausa;
     private GameObject inventarioMenu;
-    private Transform transformInventarioExterno;
-    private Color colorCuadradoSlot;
 
 
     // Start is called before the first frame update
@@ -29,8 +28,6 @@ public class ControlJuego : MonoBehaviour
         {
             LlamarCargarPartida();
         }
-        transformInventarioExterno.Find("Slot (90)").GetComponent<Image>().color = Color.black;
-        colorCuadradoSlot = transformInventarioExterno.Find("Slot (91)").GetComponent<Image>().color;
     }
 
     // Update is called once per frame
@@ -72,35 +69,12 @@ public class ControlJuego : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
-
-        // Seleccionar slot 1
-        if (Input.GetKeyDown(KeyCode.Alpha1) && gameState.game == GameState.StateGame.inGame)
-        {
-            transformInventarioExterno.Find("Slot (90)").GetComponent<Image>().color = Color.black;
-            transformInventarioExterno.Find("Slot (91)").GetComponent<Image>().color = colorCuadradoSlot;
-            transformInventarioExterno.Find("Slot (92)").GetComponent<Image>().color = colorCuadradoSlot;
-        }
-        // Seleccionar slot 2
-        if (Input.GetKeyDown(KeyCode.Alpha2) && gameState.game == GameState.StateGame.inGame)
-        {
-            transformInventarioExterno.Find("Slot (90)").GetComponent<Image>().color = colorCuadradoSlot;
-            transformInventarioExterno.Find("Slot (91)").GetComponent<Image>().color = Color.black;
-            transformInventarioExterno.Find("Slot (92)").GetComponent<Image>().color = colorCuadradoSlot;
-        }
-        // Seleccionar slot 3
-        if (Input.GetKeyDown(KeyCode.Alpha3) && gameState.game == GameState.StateGame.inGame)
-        {
-            transformInventarioExterno.Find("Slot (90)").GetComponent<Image>().color = colorCuadradoSlot;
-            transformInventarioExterno.Find("Slot (91)").GetComponent<Image>().color = colorCuadradoSlot;
-            transformInventarioExterno.Find("Slot (92)").GetComponent<Image>().color = Color.black;
-        }
     }
     void RecibirVariables()
     {
         cameraTransform = ConfiguracionJuego.instance.CamaraTransform;
         pausa = ConfiguracionJuego.instance.PanelPausa;
         inventarioMenu = ConfiguracionJuego.instance.InventarioMenu;
-        transformInventarioExterno = ConfiguracionJuego.instance.TransformPanelInventarioExterno;
     }
 
     public void ResumeGame()
