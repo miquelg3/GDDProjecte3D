@@ -16,6 +16,7 @@ public class ConfiguracionJuego : MonoBehaviour
     [SerializeField] private GameObject pausa;
     [SerializeField] private GameObject inventarioMenu;
     [SerializeField] private Transform panelInventario;
+    [SerializeField] private Transform panelInventarioExterno;
 
     [Header("Movimiento jugador")]
     [SerializeField] private float velocidad = 5.0f;
@@ -40,7 +41,7 @@ public class ConfiguracionJuego : MonoBehaviour
     [SerializeField] private float velocidadPeek = 40f;
     [SerializeField] private float anguloMaximo = 20f;
 
-    // Imágenes inventarioç
+    // Imágenes inventario
     [Header("Imagenes Inventario")]
     [SerializeField] private Sprite espadaImg;
     [SerializeField] private Sprite arcoImg;
@@ -115,9 +116,14 @@ public class ConfiguracionJuego : MonoBehaviour
         get { return inventarioMenu;}
     }
 
-    public Transform TransformPanelIntario
+    public Transform TransformPanelInventario
     {
         get { return panelInventario; }
+    }
+
+    public Transform TransformPanelInventarioExterno
+    {
+        get { return panelInventarioExterno;}
     }
 
     public float Gravedad
