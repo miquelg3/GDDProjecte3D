@@ -24,11 +24,11 @@ public class ControlJuego : MonoBehaviour
         RecibirVariables();
         inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
         string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
-        /*
+
         if (File.Exists(ruta))
         {
             LlamarCargarPartida();
-        }*/
+        }
     }
 
     // Update is called once per frame
