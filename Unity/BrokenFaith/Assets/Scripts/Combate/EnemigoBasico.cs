@@ -100,6 +100,7 @@ public class EnemigoBasico : MonoBehaviour
         puntoPatrullaje = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
 
         llegoADestino = false;
+        animator.SetBool("estaCaminando", true);
     }
 
     private void Atacar()

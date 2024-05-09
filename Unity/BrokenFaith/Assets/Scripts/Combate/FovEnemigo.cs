@@ -5,7 +5,7 @@ using UnityEngine;
 public class FovEnemigo : MonoBehaviour
 {
     #region Variables
-    private float luminosidad;
+
     private float nivelDeAlerta;
     private float anguloVision;
     private float rangoMaximo;
@@ -29,7 +29,6 @@ public class FovEnemigo : MonoBehaviour
     
     void Update()
     {
-        luminosidad = MeasureLightIntensity(jugador.transform.position);
         if (jugador.GetComponent<MovimientoJugador>().agachado == true && ConfiguracionJuego.instance.RangoMaximo > 5f)
             ConfiguracionJuego.instance.RangoMaximo /= 2;
         else if (jugador.GetComponent<MovimientoJugador>().agachado == false 
@@ -106,15 +105,5 @@ public class FovEnemigo : MonoBehaviour
             Debug.Log("Enemigo escuchó un sonido proveniente de " + soundEvent.soundPosition);
         }
     }
-    float MeasureLightIntensity(Vector3 position)
-    {
-        float intensity = RenderSettings.ambientLight.grayscale; // Usa el nivel de luz ambiental como base
-                                                                 // Ajusta esta lógica para calcular la intensidad de otras fuentes de luz si es necesario
-
-        // Considera añadir aquí la lógica para calcular la intensidad de las fuentes de luz cercanas
-
-        return intensity;
-    }
-
 
 }
