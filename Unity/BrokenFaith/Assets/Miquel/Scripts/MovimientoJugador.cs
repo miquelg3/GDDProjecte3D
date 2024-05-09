@@ -80,6 +80,11 @@ public class MovimientoJugador : MonoBehaviour
         pausa = ConfiguracionJuego.instance.PanelPausa;
     }
 
+    public void EliminarCapaDeCullingMask()
+    {
+        
+    }
+
     public void MovimientoPersonaje()
     {
         float movimientoX = Input.GetAxis("Horizontal");

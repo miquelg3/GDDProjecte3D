@@ -24,10 +24,11 @@ public class ControlJuego : MonoBehaviour
         RecibirVariables();
         inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
         string ruta = Path.Combine(Application.dataPath, "Guardado.xml");
+        /*
         if (File.Exists(ruta))
         {
             LlamarCargarPartida();
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -99,6 +100,7 @@ public class ControlJuego : MonoBehaviour
         Partida partidaCargada = progreso.CargarPartida();
         Vector3 position = new Vector3(partidaCargada.Position.X, partidaCargada.Position.Y, partidaCargada.Position.Z);
         List<Item> inventario = partidaCargada.Inventario;
+
         InventarioScript.instance.LlenarInventario(inventario);
         StartCoroutine(Posicionar(position));
     }
