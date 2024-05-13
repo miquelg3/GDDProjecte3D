@@ -35,7 +35,7 @@ public class FovEnemigo : MonoBehaviour
             && ConfiguracionJuego.instance.RangoMaximo != 10f)
             ConfiguracionJuego.instance.RangoMaximo = 20f;
 
-        Debug.Log(detectado);
+        //Debug.Log(detectado);
         detectado = RangoDeVision();
     }
 

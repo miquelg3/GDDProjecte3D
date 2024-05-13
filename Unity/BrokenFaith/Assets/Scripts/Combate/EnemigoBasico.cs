@@ -9,18 +9,16 @@ public class EnemigoBasico : MonoBehaviour
 
     [Header("Movieminto")]
     [SerializeField] private float rangoMovimiento = 10f;
-    private Vector3 puntoPatrullaje;
-    private bool llegoADestino;
-
     [SerializeField] private bool porPuntos;
     [SerializeField] Vector3[] puntosNavegacion;
     [SerializeField] private float tiempoEspera = 5f;
-    private float tiempoEsperado = 0f ;
+
+    private bool llegoADestino = false;
+    private bool estaCaminando = false;
+
     private int indexPuntos = 0;
 
-
     private NavMeshAgent agente;
-
 
     private Animator animator;
     private FovEnemigo fovEnemigo;
@@ -34,77 +32,101 @@ public class EnemigoBasico : MonoBehaviour
         animator = GetComponent<Animator>();
         fovEnemigo = GetComponent<FovEnemigo>();
         agente = GetComponent<NavMeshAgent>();
-        jugador = jugador = GameObject.FindGameObjectWithTag("Player");
-        llegoADestino = true; 
+        jugador = ConfiguracionJuego.instance.Jugador;
+        IniciarPatrullaje();
     }
 
     void Update()
     {
         if (fovEnemigo.GetDetectado()) PerseguirJugador();
-        else Patrullar();       
+
+        if (!llegoADestino)
+        {
+            if (porPuntos)
+                PatrullajePorPuntos();
+            else
+                PatrullajeLibre();
+        }
+        Debug.Log(estaCaminando);
+        animator.SetBool("caminando", estaCaminando);
     }
 
     private void PerseguirJugador()
     {
         agente.SetDestination(jugador.transform.position);
-
-        transform.LookAt(jugador.transform);
+        estaCaminando = true;
+        animator.SetBool("atacando", false);
     }
 
-    private void Patrullar()
+    private void PatrullajePorPuntos()
     {
-        if (!porPuntos)
+        animator.SetBool("atacando", false);
+        if (puntosNavegacion.Length == 0) return;
+
+        if (Vector3.Distance(transform.position, puntosNavegacion[indexPuntos]) < 1f)
         {
-            if (!llegoADestino) agente.SetDestination(puntoPatrullaje);
-            if (llegoADestino) CrearPuntoNuevo();
-            if (Vector3.Distance(transform.position, puntoPatrullaje) < 3f) llegoADestino = true;
+            if (!llegoADestino)
+            {
+                llegoADestino = true;
+                estaCaminando = false;
+                Invoke("CambiarPuntoPatrullaje", tiempoEspera);
+            }
         }
-
-        if (porPuntos) PatrullajeDesignado();
-    }
-
-    private void PatrullajeDesignado()
-    {
-        if (puntosNavegacion == null) return;
-
-        if (indexPuntos == 0)
+        else
         {
             agente.SetDestination(puntosNavegacion[indexPuntos]);
-            animator.SetBool("estaCaminando", true);
+            estaCaminando = true;
         }
-            
-        if (Vector3.Distance(transform.position, puntosNavegacion[indexPuntos]) < 1f) 
-           if(tiempoEsperado <= 0)
+    }
+
+    private void PatrullajeLibre()
+    {
+        animator.SetBool("atacando", false);
+        if (Vector3.Distance(transform.position, agente.destination) < 1f)
+        {
+            if (!llegoADestino)
             {
-                CambiarPuntoPatrullaje();
-                tiempoEsperado = tiempoEspera;
-            } else
-            {
-                
-                tiempoEsperado -= Time.deltaTime;
+                llegoADestino = true;
+                estaCaminando = false;
+                Invoke("BuscarNuevoDestino", tiempoEspera);
             }
+        }
+    }
+
+    private void BuscarNuevoDestino()
+    {
+        llegoADestino = false;
+        Vector3 randomDirection = Random.insideUnitSphere * rangoMovimiento;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, rangoMovimiento, 1);
+        Vector3 finalPosition = hit.position;
+        agente.SetDestination(finalPosition);
+        estaCaminando = true;
+    }
+
+    private void IniciarPatrullaje()
+    {
+        estaCaminando = true;
+        if (porPuntos && puntosNavegacion.Length > 0)
+        {
+            agente.SetDestination(puntosNavegacion[indexPuntos]);
+        }
+        else
+        {
+            BuscarNuevoDestino();
+        }
     }
 
     private void CambiarPuntoPatrullaje()
     {
-        indexPuntos = (indexPuntos + 1) % puntosNavegacion.Length;
-        agente.SetDestination(puntosNavegacion[indexPuntos]);
-        animator.SetBool("estaCaminando", true);
-    }
-
-    private void CrearPuntoNuevo()
-    {
-        float x = Random.Range(-rangoMovimiento, rangoMovimiento);
-        float z = Random.Range(-rangoMovimiento, rangoMovimiento);
-
-        puntoPatrullaje = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
-
         llegoADestino = false;
-        animator.SetBool("estaCaminando", true);
+        indexPuntos = (indexPuntos + 1) % puntosNavegacion.Length;
     }
 
     private void Atacar()
     {
+        animator.SetBool("atacando", true);
         Debug.Log("Atacando");
     }
 }

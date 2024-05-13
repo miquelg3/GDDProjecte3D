@@ -11,11 +11,13 @@ public class SaludEnemigoController : MonoBehaviour
 
     private Animator animator;
     private new CapsuleCollider collider;
+    private NavMeshAgent agente;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         collider = GetComponent<CapsuleCollider>();
+        agente = GetComponent <NavMeshAgent>();
     }
 
     public void RecibirDanyo(float danyo)
@@ -26,9 +28,10 @@ public class SaludEnemigoController : MonoBehaviour
 
     public void Muerte()
     {
+        agente.isStopped = true;
         collider.enabled = false;
         GetComponent<EnemigoBasico>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
-        animator.SetTrigger("Muerto");
+        animator.SetTrigger("muerto");
     }
 }

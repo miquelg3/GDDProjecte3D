@@ -72,7 +72,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: ece1e26f3ce01bf408a854a237e89f8a, type: 2}
+      objectReference: {fileID: 9100000, guid: 3f81b70cc1a61384b8680b124932820c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -183,11 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a70d3809059a70b4e9786ac263975897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangoMaximo: 10
-  anguloVision: 45
-  layermaskObjeto:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &7704620433016019962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,9 +195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cb358a1b4dee741a8f3adab9d6bb90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadMovimiento: 10
-  distanciaAtaque: 0
-  puntos: []
+  rangoMovimiento: 10
+  porPuntos: 0
+  puntosNavegacion: []
+  tiempoEspera: 5
 --- !u!195 &-8345025882292037542
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -460,7 +460,7 @@ PrefabInstance:
     - target: {fileID: -8345025882292037542, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
       propertyPath: m_Speed
-      value: 2
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: -8345025882292037542, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
@@ -471,6 +471,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AngularSpeed
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121258536558765683, guid: e7c8cb543a33d964d99f392412854953,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3f81b70cc1a61384b8680b124932820c, type: 2}
+    - target: {fileID: 2697247287893186000, guid: e7c8cb543a33d964d99f392412854953,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 5918995219998058163, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
@@ -530,7 +540,12 @@ PrefabInstance:
     - target: {fileID: 7704620433016019962, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
       propertyPath: porPuntos
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704620433016019962, guid: e7c8cb543a33d964d99f392412854953,
+        type: 3}
+      propertyPath: tiempoEspera
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7704620433016019962, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
@@ -540,7 +555,7 @@ PrefabInstance:
     - target: {fileID: 7704620433016019962, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
       propertyPath: puntosNavegacion.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7704620433016019962, guid: e7c8cb543a33d964d99f392412854953,
         type: 3}
@@ -1033,6 +1048,7 @@ MonoBehaviour:
   inventarioMenu: {fileID: 1545296690}
   panelInventario: {fileID: 1545296689}
   panelInventarioExterno: {fileID: 1545296688}
+  jugador: {fileID: 0}
   velocidad: 5
   multiplicadorSprint: 2
   velocidadH: 3

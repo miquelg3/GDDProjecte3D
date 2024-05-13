@@ -21,6 +21,7 @@ public class ConfiguracionJuego : MonoBehaviour
     [SerializeField] private Transform panelInventarioExterno;
 
     [Header("Movimiento jugador")]
+    [SerializeField] private GameObject jugador;
     [SerializeField] private float velocidad = 5.0f;
     [SerializeField] private float multiplicadorSprint = 2.0f;
     [SerializeField] private float velocidadH = 3;
@@ -123,6 +124,11 @@ public class ConfiguracionJuego : MonoBehaviour
     }
 
     #region Getter and Setters
+
+    public GameObject Jugador
+    {
+        get { return jugador; }
+    }
 
     public Transform CamaraTransform
     {
