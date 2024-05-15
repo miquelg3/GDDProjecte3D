@@ -17,6 +17,7 @@ public class ConfiguracionJuego : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nombreObjetoTexto;
     [SerializeField] private GameObject pausa;
     [SerializeField] private GameObject inventarioMenu;
+    [SerializeField] private GameObject inventarioMenuExterno;
     [SerializeField] private Transform panelInventario;
     [SerializeField] private Transform panelInventarioExterno;
 
@@ -148,6 +149,11 @@ public class ConfiguracionJuego : MonoBehaviour
     public GameObject InventarioMenu
     {
         get { return inventarioMenu;}
+    }
+
+    public GameObject InventarioMenuExterno
+    {
+        get { return inventarioMenuExterno; }
     }
 
     public Transform TransformPanelInventario
