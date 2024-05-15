@@ -35,13 +35,11 @@ public class MovimientoJugador : MonoBehaviour
     public bool agachado;
 
 
-    //Configuracions animacion.
-    //Cambio Cristobal
     private Animator animator;
     [SerializeField] private AnimatorController espadaAnimatorController;
     [SerializeField] private AnimatorController arcoAnimatorController;
-    //Fin del Cambio 24/04/2024fix
 
+    [SerializeField] private Camera camaraJugador;
     #endregion
 
     void Awake()
@@ -68,9 +66,10 @@ public class MovimientoJugador : MonoBehaviour
         float initiaPitch = cameraTransform.localEulerAngles.x;
 
         transform.localEulerAngles = new Vector3(initiaPitch, transform.position.y, transform.position.z);
+
+        EliminarCapaDeCullingMask();
         
     }
-
 
 
     void RecibirVariables()
@@ -82,7 +81,8 @@ public class MovimientoJugador : MonoBehaviour
 
     public void EliminarCapaDeCullingMask()
     {
-        
+        int capa = LayerMask.NameToLayer("PalyerModelo");
+        camaraJugador.cullingMask &= ~(1 << capa);
     }
 
     public void MovimientoPersonaje()
