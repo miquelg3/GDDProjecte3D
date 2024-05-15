@@ -18,12 +18,12 @@ public class Inventario : IInventario
     {
         Items = new HashSet<Item>();
     }
-    public void AgregarItem(Item ObjetoAAñadir)
+    public void AgregarItem(Item ObjetoAAnadir)
     {
         /*if (ObjetoAAñadir is ICantidad )
         {
         }*/
-        Items.Add(ObjetoAAñadir);
+        Items.Add(ObjetoAAnadir);
     }
 
     public void EliminarItem(Item ObjetoAEliminar)

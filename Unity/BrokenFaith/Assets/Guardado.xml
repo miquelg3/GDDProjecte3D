@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Partida xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Inventario>
+    <Arma>
+      <Id>66</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>70</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>1</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>2</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>0</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>3</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>4</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>5</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>6</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>7</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>8</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>9</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>10</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>11</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>12</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>13</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>14</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>15</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>16</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>17</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>18</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>19</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>90</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>21</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>22</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>23</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>24</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>25</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>26</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>27</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>28</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>20</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>29</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>30</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>31</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>32</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>33</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>34</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>35</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>36</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>37</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>38</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>39</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>40</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>41</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>42</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>43</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>44</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>45</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>46</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>47</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>48</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>49</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>50</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>51</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>52</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>53</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>54</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>55</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>56</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>57</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>58</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>59</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>60</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>61</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>62</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>63</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>64</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>65</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>67</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>68</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>69</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>71</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>72</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>73</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>74</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>75</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>76</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>77</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>78</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>79</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>80</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>81</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>82</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>83</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>84</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>85</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>86</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>87</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>92</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>91</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>88</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+    <Arma>
+      <Id>89</Id>
+      <Nombre>Espada</Nombre>
+      <Descripcion>Espada de Jaime I</Descripcion>
+      <Escala>0.25</Escala>
+      <Daño>3</Daño>
+      <TipoArma>Espada</TipoArma>
+    </Arma>
+  </Inventario>
+  <Salud>
+    <Cabeza>0</Cabeza>
+    <Torso>0</Torso>
+    <BrazoIzquierdo>0</BrazoIzquierdo>
+    <BrazoDerecho>0</BrazoDerecho>
+    <PieIzquierdo>0</PieIzquierdo>
+    <PieDerecho>0</PieDerecho>
+  </Salud>
+  <Position>
+    <X>0</X>
+    <Y>0.7299957</Y>
+    <Z>1</Z>
+  </Position>
+</Partida>
