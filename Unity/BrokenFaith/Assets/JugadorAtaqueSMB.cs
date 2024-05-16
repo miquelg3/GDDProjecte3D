@@ -18,7 +18,7 @@ public class JugadorAtaqueSMB : StateMachineBehaviour
     
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameObject.FindGameObjectWithTag("Espada").GetComponent<Espada>().ResetAtaque();
+        GameObject.FindGameObjectWithTag("Espada").GetComponent<CombateEspada>().ResetAtaque();
     }
 
 }

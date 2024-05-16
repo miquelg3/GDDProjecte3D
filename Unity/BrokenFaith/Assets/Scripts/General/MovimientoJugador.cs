@@ -114,6 +114,7 @@ public class MovimientoJugador : MonoBehaviour
             controlador.height = 1f;
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
             agachado = true;
+            animator.SetBool("Agachado", agachado);
         }
         else
         {
@@ -121,6 +122,7 @@ public class MovimientoJugador : MonoBehaviour
             lerpTime = 0f;
             transform.localScale = altura;
             agachado = false;
+            animator.SetBool("Agachado", agachado);
         }
 
         yaw += ConfiguracionJuego.instance.VelocidadH * Input.GetAxis("Mouse X");
