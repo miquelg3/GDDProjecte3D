@@ -15,6 +15,7 @@ public class EnemigoBasico : MonoBehaviour
 
     private bool llegoADestino = false;
     private bool estaCaminando = false;
+    private bool perseguir = false;
 
     private int indexPuntos = 0;
 
@@ -38,30 +39,48 @@ public class EnemigoBasico : MonoBehaviour
 
     void Update()
     {
-        if (fovEnemigo.GetDetectado()) PerseguirJugador();
-
-        if (!llegoADestino)
+        if (fovEnemigo.GetDetectado())
         {
-            if (porPuntos)
-                PatrullajePorPuntos();
-            else
-                PatrullajeLibre();
+            perseguir = true;
+            PerseguirJugador();
         }
-        Debug.Log(estaCaminando);
+        
+        if (!fovEnemigo.GetDetectado() && !perseguir)
+        {
+            if (!llegoADestino)
+            {
+                if (porPuntos)
+                    PatrullajePorPuntos();
+                else
+                    PatrullajeLibre();
+            }
+
+        }
+           
         animator.SetBool("caminando", estaCaminando);
     }
 
     private void PerseguirJugador()
     {
+        transform.LookAt(jugador.transform.position);
+
         Debug.Log("PERSIGUE");
+
         agente.SetDestination(jugador.transform.position);
         estaCaminando = true;
-        animator.SetBool("atacando", false);
 
         if (Vector3.Distance(transform.position, jugador.transform.position) < 1f)
+        {
+            Debug.Log("Ataca");
             animator.SetBool("atacando", true);
+            agente.velocity = Vector3.zero;
+        }
         else
+        {
             animator.SetBool("atacando", false);
+            agente.SetDestination(jugador.transform.position);
+        }
+            
 
     }
 

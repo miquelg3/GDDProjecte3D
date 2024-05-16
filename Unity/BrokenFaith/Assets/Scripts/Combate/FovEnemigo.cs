@@ -52,6 +52,7 @@ public class FovEnemigo : MonoBehaviour
             if (Physics.Raycast(transform.position, direccionJugador.normalized, 
                 out RaycastHit hit, ConfiguracionJuego.instance.RangoMaximo, layerMask))
             {
+                Debug.Log("Entra persigue");
                 if (hit.collider.gameObject == jugador)
                 {
                     Debug.Log("Entra persigue");
