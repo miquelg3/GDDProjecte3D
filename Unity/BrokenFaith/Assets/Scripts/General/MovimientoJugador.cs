@@ -34,10 +34,7 @@ public class MovimientoJugador : MonoBehaviour
     private bool estaInclinando = false;
     public bool agachado;
 
-
-    private Animator animator;
-    [SerializeField] private AnimatorController espadaAnimatorController;
-    [SerializeField] private AnimatorController arcoAnimatorController;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private Camera camaraJugador;
     #endregion
@@ -51,7 +48,6 @@ public class MovimientoJugador : MonoBehaviour
     {
         RecibirVariables();
 
-        animator = GetComponent<Animator>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pausa.SetActive(false);
@@ -67,8 +63,6 @@ public class MovimientoJugador : MonoBehaviour
 
         transform.localEulerAngles = new Vector3(initiaPitch, transform.position.y, transform.position.z);
 
-        EliminarCapaDeCullingMask();
-        
     }
 
 
@@ -77,12 +71,6 @@ public class MovimientoJugador : MonoBehaviour
         cameraTransform = ConfiguracionJuego.instance.CamaraTransform;
         textoNombreObjeto = ConfiguracionJuego.instance.NombreObjetoTexto;
         pausa = ConfiguracionJuego.instance.PanelPausa;
-    }
-
-    public void EliminarCapaDeCullingMask()
-    {
-        int capa = LayerMask.NameToLayer("PalyerModelo");
-        camaraJugador.cullingMask &= ~(1 << capa);
     }
 
     public void MovimientoPersonaje()
@@ -104,10 +92,6 @@ public class MovimientoJugador : MonoBehaviour
         velocidadJugador.y += ConfiguracionJuego.instance.Gravedad * Time.deltaTime;
         controlador.Move(velocidadJugador * Time.deltaTime);
 
-        //salto
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
-            velocidadJugador.y = 
-                Mathf.Sqrt(ConfiguracionJuego.instance.AlturaSalto * -2f * ConfiguracionJuego.instance.Gravedad);
 
         // Esprintar
         if (Input.GetKey(KeyCode.LeftShift))
