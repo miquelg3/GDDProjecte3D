@@ -109,12 +109,17 @@ public class MovimientoJugador : MonoBehaviour
         // Agacharse
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            movimiento /= ConfiguracionJuego.instance.MultiplicadorSprint;                
+            movimiento /= ConfiguracionJuego.instance.MultiplicadorSprint;
+            lerpTime += Time.deltaTime / 0.5f;
+            controlador.height = 1f;
+            transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
             agachado = true;
-            animator.SetBool("Agachado", agachado);
         }
         else
         {
+            controlador.height = 2f;
+            lerpTime = 0f;
+            transform.localScale = altura;
             agachado = false;
         }
 

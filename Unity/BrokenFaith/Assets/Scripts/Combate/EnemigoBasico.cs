@@ -129,4 +129,5 @@ public class EnemigoBasico : MonoBehaviour
         animator.SetBool("atacando", true);
         Debug.Log("Atacando");
     }
+
 }
