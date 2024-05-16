@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Espada : MonoBehaviour
 {
-
+    [Header("Configuracion")]
     [SerializeField ]private float danyo = 2f;
-
     [SerializeField] private AudioClip audioSwing;
     [SerializeField] private AudioClip audioHit;
     [SerializeField] private AudioClip audioFocus;
@@ -15,16 +14,14 @@ public class Espada : MonoBehaviour
     private AudioSource audioSource;
 
     private bool puedeAtacar;
-    private bool atacando;
     private GameObject jugador;
+
+
     void Start()
     {
-        jugador = GameObject.FindWithTag("Player");
-
+        jugador = ConfiguracionJuego.instance.Jugador;
         audioSource = GetComponent<AudioSource>();
-
         puedeAtacar = true;
-        atacando = false;
         animator = GetComponent<Animator>(); 
     }
 
@@ -41,16 +38,14 @@ public class Espada : MonoBehaviour
     {
         audioSource.clip = audioSwing;
         audioSource.Play();
-        atacando = true;
         puedeAtacar = false;
         animator.SetTrigger("Atacar");
-        SoundEventManager.EmitSoundEvent(new SoundEvent(jugador.transform.position, 1500f));
     }
 
     private void OnTriggerEnter(Collider objeto)
     {
         audioSource.Stop();
-        if (objeto.CompareTag("Enemigo") && atacando)
+        if (objeto.CompareTag("Enemigo"))
         {
             audioSource.clip = audioHit;
             audioSource.Play();
@@ -61,7 +56,6 @@ public class Espada : MonoBehaviour
     public void ResetAtaque()
     {
         puedeAtacar = true;
-        atacando = false;
     }
 
 }
