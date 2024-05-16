@@ -21,7 +21,7 @@ public class FovEnemigo : MonoBehaviour
         anguloVision = ConfiguracionJuego.instance.AnguloVision;
         rangoMaximo = ConfiguracionJuego.instance.RangoMaximo;
         nivelDeAlerta = 0;
-        jugador = GameObject.FindGameObjectWithTag("Player");
+        jugador = ConfiguracionJuego.instance.Jugador;
         detectado = false;
  
     }
@@ -52,13 +52,13 @@ public class FovEnemigo : MonoBehaviour
             if (Physics.Raycast(transform.position, direccionJugador.normalized, 
                 out RaycastHit hit, ConfiguracionJuego.instance.RangoMaximo, layerMask))
             {
-                if (hit.collider.gameObject.name.Equals("Player"))
+                if (hit.collider.gameObject == jugador)
                 {
+                    Debug.Log("Entra persigue");
                     nivelDeAlerta += Time.deltaTime;
                     return true;
                 }
             }
-
 
         }
         if (nivelDeAlerta > 0) nivelDeAlerta -= Time.deltaTime;

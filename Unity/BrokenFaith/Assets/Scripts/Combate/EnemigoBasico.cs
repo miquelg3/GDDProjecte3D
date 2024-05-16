@@ -53,9 +53,16 @@ public class EnemigoBasico : MonoBehaviour
 
     private void PerseguirJugador()
     {
+        Debug.Log("PERSIGUE");
         agente.SetDestination(jugador.transform.position);
         estaCaminando = true;
         animator.SetBool("atacando", false);
+
+        if (Vector3.Distance(transform.position, jugador.transform.position) < 1f)
+            animator.SetBool("atacando", true);
+        else
+            animator.SetBool("atacando", false);
+
     }
 
     private void PatrullajePorPuntos()
@@ -124,10 +131,5 @@ public class EnemigoBasico : MonoBehaviour
         indexPuntos = (indexPuntos + 1) % puntosNavegacion.Length;
     }
 
-    private void Atacar()
-    {
-        animator.SetBool("atacando", true);
-        Debug.Log("Atacando");
-    }
 
 }
