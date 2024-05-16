@@ -7,11 +7,12 @@ public class EnemigoBasico : MonoBehaviour
 {
     #region Variables
 
-    [Header("Movieminto")]
+    [Header("Movimiento")]
     [SerializeField] private float rangoMovimiento = 10f;
     [SerializeField] private bool porPuntos;
     [SerializeField] Vector3[] puntosNavegacion;
     [SerializeField] private float tiempoEspera = 5f;
+    private Animator animator;
 
     private bool llegoADestino = false;
     private bool estaCaminando = false;
@@ -21,19 +22,18 @@ public class EnemigoBasico : MonoBehaviour
 
     private NavMeshAgent agente;
 
-    private Animator animator;
     private FovEnemigo fovEnemigo;
 
-    private GameObject jugador;
+    private Transform jugador;
 
     #endregion
 
     void Start()
     {
-        animator = GetComponent<Animator>();
         fovEnemigo = GetComponent<FovEnemigo>();
         agente = GetComponent<NavMeshAgent>();
-        jugador = ConfiguracionJuego.instance.Jugador;
+        animator = GetComponent<Animator>();
+        jugador = ConfiguracionJuego.instance.Jugador.transform;
         IniciarPatrullaje();
     }
 
@@ -44,7 +44,7 @@ public class EnemigoBasico : MonoBehaviour
             perseguir = true;
             PerseguirJugador();
         }
-        
+
         if (!fovEnemigo.GetDetectado() && !perseguir)
         {
             if (!llegoADestino)
@@ -56,37 +56,33 @@ public class EnemigoBasico : MonoBehaviour
             }
 
         }
-           
+
         animator.SetBool("caminando", estaCaminando);
+
     }
 
     private void PerseguirJugador()
     {
-        transform.LookAt(jugador.transform.position);
-
         Debug.Log("PERSIGUE");
-
-        agente.SetDestination(jugador.transform.position);
         estaCaminando = true;
 
-        if (Vector3.Distance(transform.position, jugador.transform.position) < 1f)
+        if (Vector3.Distance(transform.position, jugador.position) < 2)
         {
             Debug.Log("Ataca");
             animator.SetBool("atacando", true);
-            agente.velocity = Vector3.zero;
+            estaCaminando = false;
         }
         else
         {
+            estaCaminando = true;
             animator.SetBool("atacando", false);
-            agente.SetDestination(jugador.transform.position);
+            agente.SetDestination(jugador.position);
         }
-            
-
+        
     }
 
     private void PatrullajePorPuntos()
     {
-        animator.SetBool("atacando", false);
         if (puntosNavegacion.Length == 0) return;
 
         if (Vector3.Distance(transform.position, puntosNavegacion[indexPuntos]) < 1f)
@@ -107,7 +103,6 @@ public class EnemigoBasico : MonoBehaviour
 
     private void PatrullajeLibre()
     {
-        animator.SetBool("atacando", false);
         if (Vector3.Distance(transform.position, agente.destination) < 1f)
         {
             if (!llegoADestino)
@@ -149,6 +144,5 @@ public class EnemigoBasico : MonoBehaviour
         llegoADestino = false;
         indexPuntos = (indexPuntos + 1) % puntosNavegacion.Length;
     }
-
 
 }

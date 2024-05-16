@@ -6,6 +6,7 @@ public class FovEnemigo : MonoBehaviour
 {
     #region Variables
 
+
     private float nivelDeAlerta;
     private float anguloVision;
     private float rangoMaximo;
@@ -13,6 +14,7 @@ public class FovEnemigo : MonoBehaviour
     private GameObject jugador;
 
     private bool detectado;
+
     #endregion
 
     void Start()
@@ -35,7 +37,6 @@ public class FovEnemigo : MonoBehaviour
             && ConfiguracionJuego.instance.RangoMaximo != 10f)
             ConfiguracionJuego.instance.RangoMaximo = 20f;
 
-        //Debug.Log(detectado);
         detectado = RangoDeVision();
     }
 
