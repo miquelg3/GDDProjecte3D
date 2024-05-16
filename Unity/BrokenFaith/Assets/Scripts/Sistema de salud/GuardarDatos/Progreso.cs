@@ -26,6 +26,7 @@ public class Progreso
 
         // Convertir HashSet<Item> a una lista compatible con XmlSerializer
         List<Item> listaInventario = inventario.ToList();
+        List<Salud> listaSalud = salud.ToList();
         foreach (Item item in listaInventario)
         {
             Debug.Log($"Guardado: {item.Id}");
@@ -35,7 +36,7 @@ public class Progreso
         // Preparar el objeto a serializar que incluye salud, inventario y posición
         var partida = new Partida()
         {
-            //Salud = salud,
+            ListaSalud = new SaludSerializable(salud),
             Inventario = listaInventario,
             Position = new Vector3Serializable(position)
         };
