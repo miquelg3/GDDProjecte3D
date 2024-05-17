@@ -35,7 +35,8 @@ public class SaludJugador : MonoBehaviour
     {
         int ParteARecibirElDanyo = NumeroPonderado(NumeroPartes,Probabilidades);
         EstadoJugador.RecibirGolpe(Danyo, EstadoJugador.ListaSalud[ParteARecibirElDanyo]);
-        Debug.Log(EstadoJugador.ListaSalud[ParteARecibirElDanyo].VidaActual);
+        Debug.Log($"Vida de {EstadoJugador.ListaSalud[ParteARecibirElDanyo]} = {EstadoJugador.ListaSalud[ParteARecibirElDanyo].VidaActual}");
+        Debug.Log($"Estado de {EstadoJugador.ListaSalud[ParteARecibirElDanyo]} = {EstadoJugador.ListaSalud[ParteARecibirElDanyo].NivelSalud}");
 
 
     }

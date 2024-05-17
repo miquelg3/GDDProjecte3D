@@ -11,6 +11,7 @@ public class EnemigoBasico : MonoBehaviour
     [SerializeField] private float rangoMovimiento = 10f;
     [SerializeField] private bool porPuntos;
     [SerializeField] Vector3[] puntosNavegacion;
+    [SerializeField] private float rangoAtaque = 3f;
     [SerializeField] private float tiempoEspera = 5f;
     private Animator animator;
 
@@ -25,6 +26,10 @@ public class EnemigoBasico : MonoBehaviour
     private FovEnemigo fovEnemigo;
 
     private Transform jugador;
+    // Cambios añadidos por Javier Calabuig el dia 17/5/2024 para el funcionamiento de el sistema de salud creando eventos
+
+    public delegate void EventoAtaque(float Danyo);
+    public static event EventoAtaque RecibirDanyoJugador;
 
     #endregion
 
@@ -66,11 +71,13 @@ public class EnemigoBasico : MonoBehaviour
         Debug.Log("PERSIGUE");
         estaCaminando = true;
 
-        if (Vector3.Distance(transform.position, jugador.position) < 2)
+        if (Vector3.Distance(transform.position, jugador.position) < rangoAtaque)
         {
             Debug.Log("Ataca");
             animator.SetBool("atacando", true);
             estaCaminando = false;
+            float DanyoRecibido = Random.Range(10f, 100f);
+            RecibirDanyoJugador?.Invoke(DanyoRecibido);
         }
         else
         {

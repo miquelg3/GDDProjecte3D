@@ -307,7 +307,7 @@ public abstract class Salud
         {
             Parte.NivelSalud = NivelSalud.Roto;
         }
-        else if (Parte.VidaActual < veinte)
+        else if (Parte.VidaActual < veinte || VidaActual == 0)
         {
             Parte.NivelSalud = NivelSalud.Destruido;
         }

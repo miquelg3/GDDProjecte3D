@@ -9,8 +9,18 @@ public class Cuerpo : Salud
     private int v, ve;
     public Cuerpo()
     { 
+        if(PlayerPrefs.GetInt("Vida").Equals(null) || PlayerPrefs.GetInt("Vida") == 0)
+        {
+            v = 200;
+            ve = v / 2;
+        }
+        else
+        {
             v = PlayerPrefs.GetInt("Vida");
             ve = v / 2;
+        }
+            
+
             Partes = new List<Salud>();
             /** Salud Cabeza = new Cabeza(200);
              Salud Torso = new Torso(200);
