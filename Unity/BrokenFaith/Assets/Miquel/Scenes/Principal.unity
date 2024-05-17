@@ -968,7 +968,6 @@ GameObject:
   - component: {fileID: 500500007}
   - component: {fileID: 500500006}
   - component: {fileID: 500500009}
-  - component: {fileID: 500500010}
   - component: {fileID: 500500011}
   m_Layer: 0
   m_Name: Main Camera
@@ -1095,18 +1094,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &500500010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500500005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51e27fd91fea2384eaa1f386f7ffeddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &500500011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,7 +1120,7 @@ MonoBehaviour:
   SliderA: {fileID: 28695244}
   TextoAudio: {fileID: 1862263113}
   Volumen: 0
-  siguienteEscena: {fileID: 102900000, guid: 48509604997407740b7d843d9ca47994, type: 3}
+  nombreSiguienteEscena: Blocking+ Mapa1
 --- !u!1 &512653905
 GameObject:
   m_ObjectHideFlags: 0
