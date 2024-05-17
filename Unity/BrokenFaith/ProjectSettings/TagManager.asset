@@ -8,7 +8,7 @@ TagManager:
   - Objeto
   - CinemachineTarget
   - Inventario
-  - Hand
+  - Espada
   layers:
   - Default
   - TransparentFX
@@ -17,9 +17,9 @@ TagManager:
   - Water
   - UI
   - Arrow
-  - Player
+  - PlayerModel
   - Inventory
-  - 
+  - Player
   - 
   - 
   - 
