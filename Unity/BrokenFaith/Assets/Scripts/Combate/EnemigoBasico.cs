@@ -26,11 +26,7 @@ public class EnemigoBasico : MonoBehaviour
     private FovEnemigo fovEnemigo;
 
     private Transform jugador;
-    // Cambios añadidos por Javier Calabuig el dia 17/5/2024 para el funcionamiento de el sistema de salud creando eventos
-
-    public delegate void EventoAtaque(float Danyo);
-    public static event EventoAtaque RecibirDanyoJugador;
-
+ 
     #endregion
 
     void Start()
@@ -71,13 +67,13 @@ public class EnemigoBasico : MonoBehaviour
         Debug.Log("PERSIGUE");
         estaCaminando = true;
 
-        if (Vector3.Distance(transform.position, jugador.position) < rangoAtaque)
+        Debug.Log(Vector3.Distance(transform.position, jugador.position));
+
+        if (Vector3.Distance(transform.position, jugador.position) <= rangoAtaque)
         {
             Debug.Log("Ataca");
             animator.SetBool("atacando", true);
             estaCaminando = false;
-            float DanyoRecibido = Random.Range(10f, 100f);
-            RecibirDanyoJugador?.Invoke(DanyoRecibido);
         }
         else
         {

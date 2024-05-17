@@ -24,11 +24,11 @@ public class SaludJugador : MonoBehaviour
     }
     private void OnEnable()
     {
-        EnemigoBasico.RecibirDanyoJugador += RestarVida;
+        MovimientoJugador.RecibirDanyoJugador += RestarVida;
     }
     private void OnDisable()
     {
-        EnemigoBasico.RecibirDanyoJugador += RestarVida;
+        MovimientoJugador.RecibirDanyoJugador += RestarVida;
     }
 
     public void RestarVida(float Danyo)

@@ -37,6 +37,10 @@ public class MovimientoJugador : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [SerializeField] private Camera camaraJugador;
+
+    // Cambios añadidos por Javier Calabuig el dia 17/5/2024 para el funcionamiento de el sistema de salud creando eventos
+    public delegate void EventoAtaque(float Danyo);
+    public static event EventoAtaque RecibirDanyoJugador;
     #endregion
 
     void Awake()
@@ -246,6 +250,15 @@ public class MovimientoJugador : MonoBehaviour
         //Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
         //transform.localRotation = targetRotation;
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ManoEnemigo"))
+        {
+            float DanyoRecibido = Random.Range(10f, 100f);
+            RecibirDanyoJugador?.Invoke(DanyoRecibido);
+        }
     }
 
     bool IsGrounded()
