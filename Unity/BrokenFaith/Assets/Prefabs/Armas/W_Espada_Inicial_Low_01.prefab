@@ -71,5 +71,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f9ae296e045a014f9fb918eb11e2c29,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5288565715505416035}
   m_SourcePrefab: {fileID: 100100000, guid: 7f9ae296e045a014f9fb918eb11e2c29, type: 3}
+--- !u!1 &7281665824784787046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f9ae296e045a014f9fb918eb11e2c29,
+    type: 3}
+  m_PrefabInstance: {fileID: 7623685617115405111}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5288565715505416035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281665824784787046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004baeed14014094e96ede15eb4847e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  danyo: 2
+  audioSwing: {fileID: 0}
+  audioHit: {fileID: 0}
+  audioFocus: {fileID: 0}

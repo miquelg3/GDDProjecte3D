@@ -71,5 +71,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c58c8f3f65aee364c9a0dc3f1d900e67,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5192045918936617454}
   m_SourcePrefab: {fileID: 100100000, guid: c58c8f3f65aee364c9a0dc3f1d900e67, type: 3}
+--- !u!1 &5780611674279669556 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c58c8f3f65aee364c9a0dc3f1d900e67,
+    type: 3}
+  m_PrefabInstance: {fileID: 6699582051209138789}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5192045918936617454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5780611674279669556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1cd71ffaeeed341bf2fec6abb7c5cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnFlechas: {fileID: 0}
+  flechaPrefab: {fileID: 0}
+  fuerzaBase: 2
+  cantidadFlechas: 10
+  fuerzaMaxima: 70
+  audioLanzar: {fileID: 0}
+  audioCargar: {fileID: 0}
