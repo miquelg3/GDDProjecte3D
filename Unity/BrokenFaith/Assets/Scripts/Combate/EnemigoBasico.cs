@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,10 @@ public class EnemigoBasico : MonoBehaviour
     [SerializeField] private bool porPuntos;
     [SerializeField] Vector3[] puntosNavegacion;
     [SerializeField] private float tiempoEspera = 5f;
+    //Añadiendo los eventos para que el enemigo pueda ejercer daño al enemigo Cambios realizados por Javier Calabuig Dia 16/05/2023
+    public delegate void EventoRealizarDanyo(float Danyo);
+    public static event EventoRealizarDanyo RecibirDanyoJugador;
+
 
     private bool llegoADestino = false;
     private bool estaCaminando = false;
@@ -128,5 +133,17 @@ public class EnemigoBasico : MonoBehaviour
     {
         animator.SetBool("atacando", true);
         Debug.Log("Atacando");
+      
+       
+        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            //Añadiendo los cambios para que el enemigo pueda ejercer daño al enemigo Cambios realizados por Javier Calabuig Dia 16/05/2023-
+            float DanyoRandom = Random.Range(10f, 100f);
+            RecibirDanyoJugador?.Invoke(DanyoRandom);
+        }
     }
 }

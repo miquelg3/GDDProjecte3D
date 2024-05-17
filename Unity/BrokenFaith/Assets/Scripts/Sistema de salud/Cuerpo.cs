@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class Cuerpo : Salud
 {
-    private Cuerpo Personaje;
     public List<Salud> Partes { get; private set; }
     private int v, ve;
-    Progreso Partida;
     public Cuerpo()
     { 
             v = PlayerPrefs.GetInt("Vida");

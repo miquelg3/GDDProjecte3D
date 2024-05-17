@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 3219439589596670223}
   - component: {fileID: 3544367906192027586}
   - component: {fileID: 3516152979919884486}
+  - component: {fileID: 2890548079805329232}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -406,5 +407,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09db9b9a15ce849408321525d36fcf23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spine: {fileID: 0}
   agachado: 0
+  espadaAnimatorController: {fileID: 0}
+  arcoAnimatorController: {fileID: 0}
+--- !u!114 &2890548079805329232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212661073410110158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea42cc68b133fa48ab9a69d87c56f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumeroPartes: 000000000100000002000000030000000400000005000000
+  Probabilidades:
+  - 0.1
+  - 0.1
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
