@@ -6,6 +6,7 @@ public class FovEnemigo : MonoBehaviour
 {
     #region Variables
 
+
     private float nivelDeAlerta;
     private float anguloVision;
     private float rangoMaximo;
@@ -13,6 +14,7 @@ public class FovEnemigo : MonoBehaviour
     private GameObject jugador;
 
     private bool detectado;
+
     #endregion
 
     void Start()
@@ -35,7 +37,6 @@ public class FovEnemigo : MonoBehaviour
             && ConfiguracionJuego.instance.RangoMaximo != 10f)
             ConfiguracionJuego.instance.RangoMaximo = 20f;
 
-        //Debug.Log(detectado);
         detectado = RangoDeVision();
     }
 
@@ -47,20 +48,19 @@ public class FovEnemigo : MonoBehaviour
         if (anguloEnemigoJugador < ConfiguracionJuego.instance.AnguloVision * 0.5f 
             && direccionJugador.magnitude <= ConfiguracionJuego.instance.RangoMaximo)
         {
-            int layerMask = LayerMask.GetMask("Objeto","Player");
+            int layerMask = LayerMask.GetMask("Objeto", "Player");
 
             if (Physics.Raycast(transform.position, direccionJugador.normalized, 
                 out RaycastHit hit, ConfiguracionJuego.instance.RangoMaximo, layerMask))
             {
-                
+                Debug.Log("Entra persigue");
                 if (hit.collider.gameObject == jugador)
                 {
-                    Debug.Log("Entro");
+                    Debug.Log("Entra persigue");
                     nivelDeAlerta += Time.deltaTime;
                     return true;
                 }
             }
-
 
         }
         if (nivelDeAlerta > 0) nivelDeAlerta -= Time.deltaTime;
