@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/0.Main.unity
     guid: 0ce0cab65430cff42a93151429c55af3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/1.Ermita.unity
     guid: 195f0213acae69d488c1f3b9440ee25f
   m_configObjects:
