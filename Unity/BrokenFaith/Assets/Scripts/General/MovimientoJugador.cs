@@ -1,5 +1,7 @@
 using TMPro;
+#if UNITY_EDITOR
 using UnityEditor.Animations;
+#endif
 using UnityEngine;
 
 public class MovimientoJugador : MonoBehaviour
