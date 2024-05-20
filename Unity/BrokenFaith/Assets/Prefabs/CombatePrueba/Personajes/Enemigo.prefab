@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemigo
       objectReference: {fileID: 0}
+    - target: {fileID: 2715566404302941441, guid: 0595aa36d1ac7114287c2e369db0789a,
+        type: 3}
+      propertyPath: m_TagString
+      value: ManoEnemigo
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 0595aa36d1ac7114287c2e369db0789a,
         type: 3}
       propertyPath: m_Controller
@@ -198,6 +203,7 @@ MonoBehaviour:
   rangoMovimiento: 0
   porPuntos: 0
   puntosNavegacion: []
+  rangoAtaque: 3
   tiempoEspera: 5
 --- !u!195 &-8345025882292037542
 NavMeshAgent:

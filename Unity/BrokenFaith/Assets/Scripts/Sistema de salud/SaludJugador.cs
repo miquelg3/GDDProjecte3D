@@ -6,20 +6,21 @@ using UnityEngine.UI;
 public class SaludJugador : MonoBehaviour
 {
     public Salud EstadoJugador;
-    public int[] NumeroPartes = { 0, 1, 2, 3, 4, 5 };
-    public float[] Probabilidades = { 0.1f, 0.1f, 0.2f, 0.2f, 0.2f,0.2f };
+    public List<int> NumeroPartes = new List<int> {2,3,4,5};
     // Start is called before the first frame update
     void Start()
     {
+        
         EstadoJugador = new Cuerpo();
+        MostrarVida();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(EstadoJugador.Muerto == true)
+        if (EstadoJugador.Muerto == true)
         {
-            Debug.Log("CTM");
+            Debug.Log("Has Muerto");
         }
     }
     private void OnEnable()
@@ -31,36 +32,27 @@ public class SaludJugador : MonoBehaviour
         MovimientoJugador.RecibirDanyoJugador += RestarVida;
     }
 
-    public void RestarVida(float Danyo)
+    public void RestarVida(int Danyo)
     {
-        int ParteARecibirElDanyo = NumeroPonderado(NumeroPartes,Probabilidades);
-        EstadoJugador.RecibirGolpe(Danyo, EstadoJugador.ListaSalud[ParteARecibirElDanyo]);
-        Debug.Log($"Vida de {EstadoJugador.ListaSalud[ParteARecibirElDanyo]} = {EstadoJugador.ListaSalud[ParteARecibirElDanyo].VidaActual}");
-        Debug.Log($"Estado de {EstadoJugador.ListaSalud[ParteARecibirElDanyo]} = {EstadoJugador.ListaSalud[ParteARecibirElDanyo].NivelSalud}");
 
+        int ParteARecibirElDanyo = NumeroPonderado();
+        EstadoJugador.RecibirGolpe(Danyo, EstadoJugador.ListaSalud[ParteARecibirElDanyo]);
+        MostrarVida();
 
     }
 
-    int NumeroPonderado(int[] Numeros, float[] Probabilidades)
+    int NumeroPonderado()
     {
-        if (Numeros.Length != Probabilidades.Length)
+            int NumeroRandom = Random.Range(0, NumeroPartes.Count);
+            return NumeroRandom;
+        
+    }
+    void MostrarVida()
+    {
+        foreach (var item in EstadoJugador.ListaSalud)
         {
-            Debug.LogError("La cantidad de números y probabilidades no coinciden.");
-            return -1;
+            Debug.Log($"Vida de {item} = {item.VidaActual}");
+            Debug.Log($"Estado de {item} = {item.NivelSalud}");
         }
-
-        float NumeroRandom = Random.Range(0f, 1f);
-
-        float ProbabilidadAcumulada = 0f;
-        for (int i = 0; i < Probabilidades.Length; i++)
-        {
-            ProbabilidadAcumulada += Probabilidades[i];
-            if (NumeroRandom < ProbabilidadAcumulada)
-            {
-                return Numeros[i];
-            }
-        }
-
-        return Numeros[Numeros.Length - 1];
     }
 }
