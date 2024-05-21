@@ -6,11 +6,10 @@ using UnityEngine.UI;
 public class SaludJugador : MonoBehaviour
 {
     public Salud EstadoJugador;
-    public List<int> NumeroPartes = new List<int> {2,3,4,5};
+    public List<int> NumeroPartes = new List<int> {0,1,2,3,4,5};
     // Start is called before the first frame update
     void Start()
     {
-        
         EstadoJugador = new Cuerpo();
         MostrarVida();
     }
@@ -21,6 +20,7 @@ public class SaludJugador : MonoBehaviour
         if (EstadoJugador.Muerto == true)
         {
             Debug.Log("Has Muerto");
+            GetComponent<ControlJuego>().LlamarFinPartida();
         }
     }
     private void OnEnable()
@@ -52,7 +52,6 @@ public class SaludJugador : MonoBehaviour
         foreach (var item in EstadoJugador.ListaSalud)
         {
             Debug.Log($"Vida de {item} = {item.VidaActual}");
-            Debug.Log($"Estado de {item} = {item.NivelSalud}");
         }
     }
 }

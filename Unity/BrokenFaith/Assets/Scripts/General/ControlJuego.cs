@@ -133,6 +133,12 @@ public class ControlJuego : MonoBehaviour
         InventarioScript.instance.LlenarInventario(inventario);
         StartCoroutine(Posicionar(position));
     }
+    public void LlamarFinPartida()
+    {
+        gameState.OverGame();
+        pausa.SetActive(true);
+        Cursor.visible = true;
+    }
 
     IEnumerator Posicionar(Vector3 position)
     {

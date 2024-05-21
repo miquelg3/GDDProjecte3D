@@ -90,89 +90,29 @@ public abstract class Salud
     /// <param name="danyo">El daño que no ha podido mitigar la parte</param>
     public void RepartirGolpe(int danyo)
     {
-        /**bool PartesOpcionales = false;
-        int aleatorizador = Random.Range(0, ListaSalud.Count);
-        while (!PuedeGolpearExtremidades(aleatorizador) && HayExtremidadesSanas())
+        if (ComprobarMuerto(danyo))
         {
-            aleatorizador = Random.Range(0, ListaSalud.Count);
+            Muerto = true;
         }
-
-        Salud Parte = ListaSalud[aleatorizador];
-        if (PuedeGolpearExtremidades(aleatorizador) && HayExtremidadesSanas())
+        else
         {
-            RecibirGolpe(danyo, Parte);
-            PartesOpcionales = true;
-
-        }
-
-        if (PartesOpcionales == false)
-        {
-            int AUno = 0;
-            while (!ComprobarMuerto(danyo))
-            {
-                float residual = danyo;
-
-                if (ListaSalud[0].VidaActual > 1)
-                {
-                    RecibirGolpe(danyo, ListaSalud[0]);
-                    residual -= ListaSalud[0].VidaActual - 1;
-                    if (ListaSalud[0].VidaActual - danyo > 1)
-                    {
-                        break;
-                    }
-                }
-                else AUno++;
-                if (ListaSalud[1].VidaActual > 1)
-                {
-                    RecibirGolpe(danyo, ListaSalud[1]);
-                    residual -= ListaSalud[1].VidaActual - 1;
-                    if (ListaSalud[1].VidaActual - danyo > 1)
-                    {
-                        break;
-                    }
-                }
-                else AUno++;
-
-                if (AUno == 2)
-                {
-                    Muerto = true;
-                    break;
-                }
-            }
-        }*/
-        if (danyo <= 0) return;
-
-        foreach (var parte in ListaSalud)
-        {
-            if (PuedeGolpearExtremidad(parte))
-            {
-                int vidaAnterior = parte.VidaActual;
-                RecibirGolpe(danyo, parte);
-                danyo -= vidaAnterior - parte.VidaActual;
-                if (danyo <= 0) break;
-            }
-        }
-
-        if (danyo > 0)
-        {
-            foreach (var parte in ListaSalud)
-            {
-                if (parte.VidaActual > 0)
-                {
-                    parte.VidaActual = Mathf.Max(0, parte.VidaActual - danyo);
-                    if (parte.VidaActual == 0)
-                    {
-                        Muerto = true;
-                    }
-                    danyo -= parte.VidaActual;
-                    if (danyo <= 0) break;
-                }
-            }
-        }
+            Salud parte = Aleatorio();
+            RecibirGolpe(danyo, parte);
+        } 
     }
-    private bool PuedeGolpearExtremidad(Salud parte)
+    private Salud Aleatorio()
     {
-        return parte.VidaActual > 0 && !(parte is Cabeza) && !(parte is Torso);
+        List<int> numero = new List<int>();
+        for (int i = 0; i < ListaSalud.Count; i++)
+        {
+            if (ListaSalud[i].VidaActual > 0)
+            {
+                numero.Add(i);
+            }
+        }
+        int aleatorizador = Random.Range(0, numero.Count);
+        return ListaSalud[aleatorizador];
+
     }
     /// <summary>
     /// Este metodo controla el golpe recibido en la cabeza o el torso no pudiendo superar 200 ya que su vida es 200 si supera 200 se llama al metodo repartir golpe
@@ -182,13 +122,13 @@ public abstract class Salud
     public void RecibirGolpeParteFundamental(Salud parte, int danyo)
     {
 
-        if (parte.VidaActual - danyo <= 0 && parte.VidaActual > 1)
+        if (parte.VidaActual - danyo <= 0 && parte.VidaActual > 0)
         {
-            danyo -= parte.VidaActual - 1;
-            parte.VidaActual = 1;
+            danyo -= parte.VidaActual;
+            parte.VidaActual = 0;
             RepartirGolpe(danyo);
         }
-        else if (parte.VidaActual - danyo >= 1)
+        else if (parte.VidaActual - danyo >= 0)
         {
             parte.VidaActual -= danyo;
         }
@@ -379,37 +319,6 @@ public abstract class Salud
             }
             CambiarMaximoSaludPartes();
         }
-    }
-    /// <summary>
-    /// Este metodo es para comprobar si el numero del aleatorizador del repartir golpe ha cogido una extremidad de la lista, y que esta pueda recibir el golpe
-    /// </summary>
-    /// <param name="index">Numero de la parte en la lista</param>
-    /// <returns></returns>
-    public bool PuedeGolpearExtremidades(int index)
-    {
-        if (ListaSalud[index].VidaActual > 0 && ListaSalud[index] is not Cabeza && ListaSalud[index] is not Torso)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    /// <summary>
-    /// Comprueba si se puede golpear extremidades, de lo contrario devuelve false y empezara el repartir golpe a las partes fundamentales
-    /// </summary>
-    /// <returns></returns>
-    public bool HayExtremidadesSanas()
-    {
-        foreach (var Extremidad in ListaSalud)
-        {
-            if (Extremidad.VidaActual > 0 && Extremidad is not Cabeza && Extremidad is not Torso)
-            {
-                return true;
-            }
-        }
-        return false;
     }
     /// <summary>
     /// Metodo que actualiza la vida maxima de cada parte dependiendo el nivel de salud del pecho, multiplicando la vida maxima de cada parte por la integridad del torso
