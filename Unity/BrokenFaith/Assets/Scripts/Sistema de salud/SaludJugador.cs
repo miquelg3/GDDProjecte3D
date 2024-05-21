@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class SaludJugador : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class SaludJugador : MonoBehaviour
     void Start()
     {
         EstadoJugador = new Cuerpo();
-        MostrarVida();
     }
 
     // Update is called once per frame
@@ -34,11 +34,10 @@ public class SaludJugador : MonoBehaviour
 
     public void RestarVida(int Danyo)
     {
-
+        Debug.Log(Danyo);
         int ParteARecibirElDanyo = NumeroPonderado();
         EstadoJugador.RecibirGolpe(Danyo, EstadoJugador.ListaSalud[ParteARecibirElDanyo]);
-        MostrarVida();
-
+        Debug.Log($"Vida de {EstadoJugador.ListaSalud[ParteARecibirElDanyo]} = {EstadoJugador.ListaSalud[ParteARecibirElDanyo].VidaActual}");
     }
 
     int NumeroPonderado()
@@ -46,12 +45,5 @@ public class SaludJugador : MonoBehaviour
             int NumeroRandom = Random.Range(0, NumeroPartes.Count);
             return NumeroRandom;
         
-    }
-    void MostrarVida()
-    {
-        foreach (var item in EstadoJugador.ListaSalud)
-        {
-            Debug.Log($"Vida de {item} = {item.VidaActual}");
-        }
     }
 }
