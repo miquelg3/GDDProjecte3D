@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemigo
       objectReference: {fileID: 0}
+    - target: {fileID: 2715566404302941441, guid: 0595aa36d1ac7114287c2e369db0789a,
+        type: 3}
+      propertyPath: m_TagString
+      value: ManoEnemigo
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 0595aa36d1ac7114287c2e369db0789a,
         type: 3}
       propertyPath: m_Controller
@@ -101,6 +106,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -8345025882292037542}
+    - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: 0595aa36d1ac7114287c2e369db0789a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5197185111411358415}
   m_SourcePrefab: {fileID: 100100000, guid: 0595aa36d1ac7114287c2e369db0789a, type: 3}
 --- !u!1 &5918995219998058163 stripped
 GameObject:
@@ -198,6 +207,7 @@ MonoBehaviour:
   rangoMovimiento: 0
   porPuntos: 0
   puntosNavegacion: []
+  rangoAtaque: 3
   tiempoEspera: 5
 --- !u!195 &-8345025882292037542
 NavMeshAgent:
@@ -221,3 +231,30 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!1 &8884113716686304995 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2715566404302941441, guid: 0595aa36d1ac7114287c2e369db0789a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6837897015023967202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &5197185111411358415
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884113716686304995}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.12705946
+  m_Center: {x: 0.0068968856, y: 0.07412157, z: 0.000000024285207}

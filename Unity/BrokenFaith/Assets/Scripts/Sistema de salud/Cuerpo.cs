@@ -5,14 +5,22 @@ using UnityEngine;
 
 public class Cuerpo : Salud
 {
-    private Cuerpo Personaje;
     public List<Salud> Partes { get; private set; }
     private int v, ve;
-    Progreso Partida;
     public Cuerpo()
     { 
+        if(PlayerPrefs.GetInt("Vida").Equals(null) || PlayerPrefs.GetInt("Vida") == 0)
+        {
+            v = 200;
+            ve = v / 2;
+        }
+        else
+        {
             v = PlayerPrefs.GetInt("Vida");
             ve = v / 2;
+        }
+            
+
             Partes = new List<Salud>();
             /** Salud Cabeza = new Cabeza(200);
              Salud Torso = new Torso(200);

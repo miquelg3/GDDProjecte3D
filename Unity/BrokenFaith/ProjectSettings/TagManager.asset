@@ -9,6 +9,11 @@ TagManager:
   - CinemachineTarget
   - Inventario
   - Espada
+  - Pared
+  - Suelo
+  - Palanca
+  - Puente
+  - ManoEnemigo
   layers:
   - Default
   - TransparentFX

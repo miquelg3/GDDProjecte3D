@@ -34,6 +34,11 @@ public class GameState
         game = StateGame.inInventory;
         Time.timeScale = 0;
     }
+    public void OverGame()
+    {
+        game = StateGame.gameOver;
+        Time.timeScale = 0;
+    }
 
 
 
