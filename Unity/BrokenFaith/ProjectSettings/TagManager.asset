@@ -9,6 +9,7 @@ TagManager:
   - CinemachineTarget
   - Inventario
   - Hand
+  - Hook
   layers:
   - Default
   - TransparentFX
