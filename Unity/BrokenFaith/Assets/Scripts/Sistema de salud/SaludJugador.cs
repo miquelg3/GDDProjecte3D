@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class SaludJugador : MonoBehaviour
 {
@@ -37,6 +36,8 @@ public class SaludJugador : MonoBehaviour
         Debug.Log(Danyo);
         int ParteARecibirElDanyo = NumeroPonderado();
         EstadoJugador.RecibirGolpe(Danyo, EstadoJugador.ListaSalud[ParteARecibirElDanyo]);
+        CambiarVelocidad();
+        Debug.Log($"Velocidad actual: {ConfiguracionJuego.instance.Velocidad}");
         Debug.Log($"Vida de {EstadoJugador.ListaSalud[ParteARecibirElDanyo]} = {EstadoJugador.ListaSalud[ParteARecibirElDanyo].VidaActual}");
     }
 
@@ -45,5 +46,22 @@ public class SaludJugador : MonoBehaviour
             int NumeroRandom = Random.Range(0, NumeroPartes.Count);
             return NumeroRandom;
         
+    }
+    public void CambiarVelocidad() 
+    {
+        float velocidadActual = ConfiguracionJuego.instance.Velocidad;
+        float velocidadObjetivo = 0f;
+        foreach (var Partes in EstadoJugador.ListaSalud)
+        {
+            if(Partes is Piernas)
+            {
+                Piernas Pierna = (Piernas) Partes;
+                velocidadObjetivo += Pierna.Velocidad;
+            }
+        }
+        if(velocidadActual != velocidadObjetivo)
+        {
+            ConfiguracionJuego.instance.Velocidad = velocidadObjetivo;
+        }
     }
 }

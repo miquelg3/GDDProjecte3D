@@ -4812,6 +4812,11 @@ PrefabInstance:
       objectReference: {fileID: 1701064350}
     - target: {fileID: 2431904553428241967, guid: 66bbca4779791f042bbe93d60d74e508,
         type: 3}
+      propertyPath: velocidad
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2431904553428241967, guid: 66bbca4779791f042bbe93d60d74e508,
+        type: 3}
       propertyPath: inventarioMenu
       value: 
       objectReference: {fileID: 1236714991}
