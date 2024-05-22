@@ -5,12 +5,12 @@ using UnityEngine;
 [Serializable]
 public class EstadoJugador 
 {
-    public float C;
-    public float T;
-    public float BI;
-    public float BD;
-    public float PI;
-    public float PD;
+    public int C;
+    public int T;
+    public int BI;
+    public int BD;
+    public int PI;
+    public int PD;
     public List<Salud> pj;
   
 }

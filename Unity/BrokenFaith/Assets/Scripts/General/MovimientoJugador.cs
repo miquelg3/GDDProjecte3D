@@ -1,5 +1,7 @@
 using TMPro;
+#if UNITY_EDITOR
 using UnityEditor.Animations;
+#endif
 using UnityEngine;
 
 public class MovimientoJugador : MonoBehaviour
@@ -39,7 +41,7 @@ public class MovimientoJugador : MonoBehaviour
     [SerializeField] private Camera camaraJugador;
 
     // Cambios añadidos por Javier Calabuig el dia 17/5/2024 para el funcionamiento de el sistema de salud creando eventos
-    public delegate void EventoAtaque(float Danyo);
+    public delegate void EventoAtaque(int Danyo);
     public static event EventoAtaque RecibirDanyoJugador;
     #endregion
 
@@ -255,9 +257,10 @@ public class MovimientoJugador : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ManoEnemigo"))
-        {
+        { 
             float DanyoRecibido = Random.Range(10f, 100f);
-            RecibirDanyoJugador?.Invoke(DanyoRecibido);
+            int DanyoEntero = Mathf.RoundToInt(DanyoRecibido);
+            RecibirDanyoJugador?.Invoke(DanyoEntero);
         }
     }
 

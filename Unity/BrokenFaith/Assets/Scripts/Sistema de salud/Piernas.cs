@@ -5,7 +5,7 @@ using UnityEngine;
 public class Piernas : Salud
 {
     // La variable Vida se encarga de controlar a la Vida que ira nuestro personaje y el valor sera cambiado cuando resulte herido
-    private float Velocidad { get; set; }
+    public float Velocidad { get; set; }
     // Añadido el constructor sin parámetros por Miquel Grau el 25/02/24
     public Piernas() { }
     public Piernas(int vidaActual, float Velocidad) : base(vidaActual)
@@ -14,7 +14,7 @@ public class Piernas : Salud
     }
     public Piernas(int vidaActual) : base(vidaActual)
     {
-        Velocidad = 5f;
+        Velocidad = 1.5f;
     }
 
 
@@ -24,11 +24,11 @@ public class Piernas : Salud
     {
         Velocidad = NivelSalud switch
         {
-            NivelSalud.Sano => 5f,
-            NivelSalud.Herido => 3.5f,
-            NivelSalud.Roto => 2f,
-            NivelSalud.Destruido => 1f,
-            _ => 5f,
+            NivelSalud.Sano => 1.5f,
+            NivelSalud.Herido => 1f,
+            NivelSalud.Roto => 0.8f,
+            NivelSalud.Destruido => 0.5f,
+            _ => 1.5f,
         };
     }
 
