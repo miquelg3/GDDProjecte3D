@@ -17,6 +17,7 @@ TagManager:
   - Hand
   - Puerta
   - Mueble
+  - Reja
   layers:
   - Default
   - TransparentFX
