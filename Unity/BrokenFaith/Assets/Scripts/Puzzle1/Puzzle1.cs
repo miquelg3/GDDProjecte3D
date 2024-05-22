@@ -6,7 +6,7 @@ using UnityEngine;
 public class Puzzle1 : MonoBehaviour
 {
     [SerializeField] public GameObject Puente;
-    public float rangoDeteccion = 2f;
+    public float rangoDeteccion = 3f;
     [SerializeField] private KeyCode Interactuar;
     private bool Reparado;
     private Vector3 PuenteCopia;

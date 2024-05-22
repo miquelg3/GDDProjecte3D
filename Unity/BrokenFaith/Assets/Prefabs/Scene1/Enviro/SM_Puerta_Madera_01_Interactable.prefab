@@ -8,6 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4807537441709659004, guid: 584cbfddbe396e34eb2ec51086afa60e,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807537441709659004, guid: 584cbfddbe396e34eb2ec51086afa60e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 68af8679939931d458071c6950a00330, type: 2}
     - target: {fileID: 5979901831283828755, guid: 584cbfddbe396e34eb2ec51086afa60e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -61,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 6464690373910409897, guid: 584cbfddbe396e34eb2ec51086afa60e,
         type: 3}
       propertyPath: m_Name
-      value: SM_Puerta_Madera_01 Variant
+      value: SM_Puerta_Madera_01_Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 6464690373910409897, guid: 584cbfddbe396e34eb2ec51086afa60e,
         type: 3}
