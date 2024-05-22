@@ -9,7 +9,7 @@ public class Flecha : MonoBehaviour
     [SerializeField] private float torque = 5f;
 
 
-    [SerializeField]private new Rigidbody rigidbody;
+    [SerializeField]private Rigidbody rigidbody;
     private FixedJoint joint;
 
     public void Lanzar(Vector3 fuerza)
