@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 7081124806474713617}
   - component: {fileID: 3120297068756768809}
   - component: {fileID: 4912875116468329008}
-  - component: {fileID: 505456541496116252}
+  - component: {fileID: 3575171525062587024}
   m_Layer: 9
   m_Name: Jugador
   m_TagString: Player
@@ -308,6 +308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09db9b9a15ce849408321525d36fcf23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonidoCaminar: {fileID: 8300000, guid: 965bc130ef448684d9ec36f48e470863, type: 3}
+  sonidoCorrer: {fileID: 8300000, guid: 64c902cfa2825a24fb2e9cbece9d415e, type: 3}
   agachado: 0
   animator: {fileID: 6101538224169866852}
   camaraJugador: {fileID: 8359602009526854056}
@@ -337,21 +339,103 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumeroPartes: 000000000100000002000000030000000400000005000000
---- !u!114 &505456541496116252
-MonoBehaviour:
+--- !u!82 &3575171525062587024
+AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7313320581464750074}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78de0816219ef6a4aa068639a808f8b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Puente: {fileID: 1781107374419473865, guid: db6abd7d049cc004085edee1d7e3adcc, type: 3}
-  rangoDeteccion: 2
-  Interactuar: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 4152398106597342744, guid: 41b1b2d8120fc3d45833d1990a69dcbf,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 965bc130ef448684d9ec36f48e470863, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 100
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1058901778655232633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -888,6 +972,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479357232516336144, guid: d15482c51360c3d49a25fa1555578c1e,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479357232516336144, guid: d15482c51360c3d49a25fa1555578c1e,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8580324089353556091, guid: d15482c51360c3d49a25fa1555578c1e,
         type: 3}
