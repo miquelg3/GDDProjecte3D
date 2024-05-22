@@ -1474,7 +1474,7 @@ PrefabInstance:
     - target: {fileID: 408528564185268377, guid: 540505a5443c48a49ab3bd0ed23127a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 31.975
+      value: 31.901
       objectReference: {fileID: 0}
     - target: {fileID: 408528564185268377, guid: 540505a5443c48a49ab3bd0ed23127a8,
         type: 3}
@@ -1484,37 +1484,37 @@ PrefabInstance:
     - target: {fileID: 408528564185268377, guid: 540505a5443c48a49ab3bd0ed23127a8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.24341334
+      value: 0.11172209
       objectReference: {fileID: 0}
     - target: {fileID: 408528564185268377, guid: 540505a5443c48a49ab3bd0ed23127a8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.29528627
+      value: 0.25925535
       objectReference: {fileID: 0}
     - target: {fileID: 408528564185268377, guid: 540505a5443c48a49ab3bd0ed23127a8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.58765775
+      value: 0.7128238
       objectReference: {fileID: 0}
     - target: {fileID: 408528564185268377, guid: 540505a5443c48a49ab3bd0ed23127a8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.71289164
+      value: -0.64201796
       objectReference: {fileID: 0}
     - target: {fileID: 408528564185268377, guid: 540505a5443c48a49ab3bd0ed23127a8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 101
+      value: 103.29001
       objectReference: {fileID: 0}
     - target: {fileID: 408528564185268377, guid: 540505a5443c48a49ab3bd0ed23127a8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 225
+      value: 49.048996
       objectReference: {fileID: 0}
     - target: {fileID: 408528564185268377, guid: 540505a5443c48a49ab3bd0ed23127a8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -100.32501
       objectReference: {fileID: 0}
     - target: {fileID: 1072052682458225187, guid: 540505a5443c48a49ab3bd0ed23127a8,
         type: 3}
