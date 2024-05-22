@@ -21,12 +21,12 @@ public class Espada : MonoBehaviour
 
     private void OnTriggerEnter(Collider objeto)
     {
-        audioSource.Stop();
-        audioSource.clip = audioHit;
-        audioSource.Play();
-
         if (objeto.CompareTag("Enemigo") && combateEspada.GetAtacando())
         {
+            audioSource.Stop();
+            audioSource.clip = audioHit;
+            audioSource.Play();
+
             objeto.GetComponent<SaludEnemigoController>().RecibirDanyo(danyo);
         }
     }
