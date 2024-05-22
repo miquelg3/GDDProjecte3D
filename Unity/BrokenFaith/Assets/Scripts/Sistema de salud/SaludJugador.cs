@@ -28,7 +28,7 @@ public class SaludJugador : MonoBehaviour
     }
     private void OnDisable()
     {
-        MovimientoJugador.RecibirDanyoJugador += RestarVida;
+        MovimientoJugador.RecibirDanyoJugador -= RestarVida;
     }
 
     public void RestarVida(int Danyo)
