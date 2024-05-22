@@ -10,7 +10,7 @@ public class SaludEnemigoController : MonoBehaviour
     [SerializeField] float SaludBase = 100f;
 
     private Animator animator;
-    private new CapsuleCollider collider;
+    private CapsuleCollider collider;
     private NavMeshAgent agente;
 
     void Start()
