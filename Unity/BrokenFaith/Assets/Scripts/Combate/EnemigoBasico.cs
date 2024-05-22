@@ -13,6 +13,9 @@ public class EnemigoBasico : MonoBehaviour
     [SerializeField] Vector3[] puntosNavegacion;
     [SerializeField] private float rangoAtaque = 3f;
     [SerializeField] private float tiempoEspera = 5f;
+
+    [SerializeField] GameObject Patas;
+
     private Animator animator;
 
     private bool llegoADestino = false;
@@ -56,6 +59,14 @@ public class EnemigoBasico : MonoBehaviour
                     PatrullajeLibre();
             }
 
+        }
+
+        if (estaCaminando)
+        {
+            Patas.GetComponent<AudioSource>().Play();
+        } else
+        {
+            Patas.GetComponent<AudioSource>().Stop();
         }
 
         animator.SetBool("caminando", estaCaminando);
