@@ -39,6 +39,10 @@ public class MovimientoJugador : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [SerializeField] private Camera camaraJugador;
+
+    // Cambios añadidos por Javier Calabuig el dia 17/5/2024 para el funcionamiento de el sistema de salud creando eventos
+    public delegate void EventoAtaque(int Danyo);
+    public static event EventoAtaque RecibirDanyoJugador;
     #endregion
 
     void Awake()
@@ -116,7 +120,7 @@ public class MovimientoJugador : MonoBehaviour
             controlador.height = 1f;
             transform.localScale = Vector3.Lerp(altura, new Vector3(altura.x, altura.y / 2, altura.z), lerpTime);
             agachado = true;
-            animator.SetBool("Agachado", agachado);
+            //animator.SetBool("Agachado", agachado);
         }
         else
         {
@@ -124,7 +128,7 @@ public class MovimientoJugador : MonoBehaviour
             lerpTime = 0f;
             transform.localScale = altura;
             agachado = false;
-            animator.SetBool("Agachado", agachado);
+            //animator.SetBool("Agachado", agachado);
         }
 
         yaw += ConfiguracionJuego.instance.VelocidadH * Input.GetAxis("Mouse X");
@@ -248,6 +252,16 @@ public class MovimientoJugador : MonoBehaviour
         //Quaternion targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, inclinacionActual);
         //transform.localRotation = targetRotation;
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ManoEnemigo"))
+        { 
+            float DanyoRecibido = Random.Range(10f, 100f);
+            int DanyoEntero = Mathf.RoundToInt(DanyoRecibido);
+            RecibirDanyoJugador?.Invoke(DanyoEntero);
+        }
     }
 
     bool IsGrounded()
