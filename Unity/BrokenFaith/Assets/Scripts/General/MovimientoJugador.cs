@@ -40,9 +40,14 @@ public class MovimientoJugador : MonoBehaviour
 
     [SerializeField] private Camera camaraJugador;
 
-    // Cambios añadidos por Javier Calabuig el dia 17/5/2024 para el funcionamiento de el sistema de salud creando eventos
+    // Cambios añadidos por Javier Calabuig el dia 17/5/2024 para el funcionamiento del sistema de salud creando eventos
     public delegate void EventoAtaque(int Danyo);
     public static event EventoAtaque RecibirDanyoJugador;
+    // Cambios añadidos por Javier Calabuig el dia 22/5/2024 para el funcionamiento de la interaccion con puertas y mueble
+    public delegate void EventoAbrirPuerta();
+    public static event EventoAbrirPuerta AbrirPuerta;
+    public delegate void EventoApartarMueble();
+    public static event EventoApartarMueble QuitarMueble;
     #endregion
 
     void Awake()
@@ -211,6 +216,15 @@ public class MovimientoJugador : MonoBehaviour
                         inventario.MostrarInventario();
                         Destroy(currentObject);
                     }
+                }
+                //Añadido el 22/05/2024 por Javier Calabuig Mateu para el funcionamiento de la interaccion con las puertas
+                if (hit.transform.gameObject.CompareTag("Puerta") && Input.GetKeyDown(KeyCode.E) && distance <= 2f)
+                {
+                    AbrirPuerta?.Invoke();
+                }
+                if (hit.transform.gameObject.CompareTag("Mueble") && Input.GetKeyDown(KeyCode.E) && distance <= 2f)
+                {
+                    QuitarMueble?.Invoke();
                 }
             }
             else
