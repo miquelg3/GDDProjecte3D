@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 #if UNITY_EDITOR
@@ -16,6 +17,7 @@ public class ControlJuego : MonoBehaviour
 
     private Transform cameraTransform;
     private GameObject pausa;
+    private GameObject muerto;
     private GameObject inventarioMenu;
     private Transform transformInventarioExterno;
     private Color colorCuadradoSlot;
@@ -103,6 +105,7 @@ public class ControlJuego : MonoBehaviour
     {
         cameraTransform = ConfiguracionJuego.instance.CamaraTransform;
         pausa = ConfiguracionJuego.instance.PanelPausa;
+        muerto = ConfiguracionJuego.instance.PanelMuerto;
         inventarioMenu = ConfiguracionJuego.instance.InventarioMenu;
         transformInventarioExterno = ConfiguracionJuego.instance.TransformPanelInventarioExterno;
     }
@@ -136,8 +139,19 @@ public class ControlJuego : MonoBehaviour
     public void LlamarFinPartida()
     {
         gameState.OverGame();
-        pausa.SetActive(true);
+        muerto.SetActive(true);
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void LlamarRecargarPartida()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void LlamarSalirPartida()
+    {
+        SceneManager.LoadScene(0);
     }
 
     IEnumerator Posicionar(Vector3 position)
