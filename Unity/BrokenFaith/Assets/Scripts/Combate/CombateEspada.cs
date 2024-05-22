@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CombateEspada : MonoBehaviour
@@ -11,6 +9,7 @@ public class CombateEspada : MonoBehaviour
     [SerializeField] private AudioClip audioSwing;
     private Animator animator;
     private bool puedeAtacar;
+    private bool atacando = false;
 
     #endregion
     void Start()
@@ -24,24 +23,38 @@ public class CombateEspada : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && puedeAtacar) Atacar();
 
-        if (Input.GetKeyDown(KeyCode.Mouse1)) Defensa();
+        Defensa();
     }
 
     public void Atacar()
     {
+        atacando = true;
         audioSource.clip = audioSwing;
         audioSource.Play();
         puedeAtacar = false;
         animator.SetTrigger("Atacar");
     }
 
+    public bool GetAtacando()
+    {
+        return atacando;
+    }
+
     public void Defensa()
     {
-        animator.SetBool("Defensa", true);
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            atacando = false;
+            animator.SetBool("Defensa", true);
+        } else
+        {
+            animator.SetBool("Defensa", false);
+        }        
     }
 
     public void ResetAtaque()
     {
+        atacando = false;
         puedeAtacar = true;
     }
 }
