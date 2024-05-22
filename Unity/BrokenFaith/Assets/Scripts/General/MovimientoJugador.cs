@@ -48,10 +48,14 @@ public class MovimientoJugador : MonoBehaviour
     public static event EventoAbrirPuerta AbrirPuerta;
     public delegate void EventoApartarMueble();
     public static event EventoApartarMueble QuitarMueble;
+    public bool Caido;
+    public delegate void EventoDesbloquearReja(bool PuedePasar);
+    public static event EventoDesbloquearReja PasarReja;
     #endregion
 
     void Awake()
     {
+        Caido = false;
         instance = this;
     }
 
@@ -226,6 +230,10 @@ public class MovimientoJugador : MonoBehaviour
                 {
                     QuitarMueble?.Invoke();
                 }
+                if (hit.transform.gameObject.CompareTag("Reja") && Input.GetKeyDown(KeyCode.E) && distance <= 2f)
+                {
+                    PasarReja?.Invoke(Caido);
+                }
             }
             else
                 textoNombreObjeto.text = "";
@@ -289,5 +297,17 @@ public class MovimientoJugador : MonoBehaviour
         }
         return false;
     }
-
+    //Cambios Javier Calabuig Mateu Dia 22/05/2024 Abrir reja despues de puzzle1
+    private void OnEnable()
+    {
+        Puzzle1.AbrirReja += HaCaido;
+    }
+    private void OnDisable()
+    {
+        Puzzle1.AbrirReja -= HaCaido;
+    }
+    public void HaCaido()
+    {
+        Caido = true;
+    }
 }
