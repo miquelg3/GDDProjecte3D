@@ -16,15 +16,15 @@ public class Cabeza : Salud
     public Cabeza() { }
     public Cabeza(int vidaActual, float Vision) : base(vidaActual)
     {
-        vol = Camera.main.GetComponent<Volume>();
+        vol = ConfiguracionJuego.instance.CamaraPrincipal.GetComponent<Volume>();
         this.Vision = Vision;
         vol.profile.TryGet<Vignette>(out vig);
     }
     public Cabeza(int vidaActual) : base(vidaActual)
     {
         Vision = 0.25f;
-        vol = Camera.main.GetComponent<Volume>();
-        //vol.profile.TryGet<Vignette>(out vig);
+        vol = ConfiguracionJuego.instance.CamaraPrincipal.GetComponent<Volume>();
+        vol.profile.TryGet<Vignette>(out vig);
     }
 
    
@@ -40,6 +40,7 @@ public class Cabeza : Salud
             _ => 0.25f,
         };
         vig.intensity.value = Vision;
+
 
 
     }
