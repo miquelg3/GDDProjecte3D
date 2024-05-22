@@ -13,6 +13,7 @@ public class ConfiguracionJuego : MonoBehaviour
 
     // Para MovimientoJugador.cs
     [Header("MovimientoJugador.cs")]
+    [SerializeField] private Camera camaraPrincipal;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private TextMeshProUGUI nombreObjetoTexto;
     [SerializeField] private GameObject pausa;
@@ -126,6 +127,10 @@ public class ConfiguracionJuego : MonoBehaviour
 
     #region Getter and Setters
 
+    public Camera CamaraPrincipal
+    {
+        get { return camaraPrincipal; }
+    }
     public GameObject Jugador
     {
         get { return jugador; }

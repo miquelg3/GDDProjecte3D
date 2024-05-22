@@ -11,6 +11,7 @@ public class EnemigoBasico : MonoBehaviour
     [SerializeField] private float rangoMovimiento = 10f;
     [SerializeField] private bool porPuntos;
     [SerializeField] Vector3[] puntosNavegacion;
+    [SerializeField] private float rangoAtaque = 3f;
     [SerializeField] private float tiempoEspera = 5f;
     private Animator animator;
 
@@ -25,7 +26,7 @@ public class EnemigoBasico : MonoBehaviour
     private FovEnemigo fovEnemigo;
 
     private Transform jugador;
-
+ 
     #endregion
 
     void Start()
@@ -66,7 +67,9 @@ public class EnemigoBasico : MonoBehaviour
         Debug.Log("PERSIGUE");
         estaCaminando = true;
 
-        if (Vector3.Distance(transform.position, jugador.position) < 2)
+        Debug.Log(Vector3.Distance(transform.position, jugador.position));
+
+        if (Vector3.Distance(transform.position, jugador.position) <= rangoAtaque)
         {
             Debug.Log("Ataca");
             animator.SetBool("atacando", true);
