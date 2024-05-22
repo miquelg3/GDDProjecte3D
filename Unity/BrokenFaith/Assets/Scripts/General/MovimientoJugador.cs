@@ -9,6 +9,10 @@ public class MovimientoJugador : MonoBehaviour
     #region Variables
     public static MovimientoJugador instance;
 
+    [SerializeField] private AudioClip sonidoCaminar;
+    [SerializeField] private AudioClip sonidoCorrer;
+    private AudioSource audioSource;
+
     private float yaw, pitch;
 
     private Transform cameraTransform;
@@ -86,6 +90,9 @@ public class MovimientoJugador : MonoBehaviour
         cameraTransform = ConfiguracionJuego.instance.CamaraTransform;
         textoNombreObjeto = ConfiguracionJuego.instance.NombreObjetoTexto;
         pausa = ConfiguracionJuego.instance.PanelPausa;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = sonidoCaminar;
+        audioSource.enabled = false;
     }
 
     public void MovimientoPersonaje()
@@ -93,6 +100,19 @@ public class MovimientoJugador : MonoBehaviour
         float movimientoX = Input.GetAxis("Horizontal");
         float movimientoZ = Input.GetAxis("Vertical");
         Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
+        
+
+        // Cambio Cristobal
+        if(movimientoX > 0 || movimientoZ > 0) 
+        {
+            audioSource.enabled = true;        
+        } else
+        {
+            audioSource.enabled = false;
+        }
+
+        //Fin Cambio 22-05-2024
+
 
         // Cambio Cristobal
         if (animator != null)
@@ -112,12 +132,14 @@ public class MovimientoJugador : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             movimiento *= ConfiguracionJuego.instance.MultiplicadorSprint;
+            Debug.Log(movimiento);
 
             // Cambio Cristobal
             if (animator != null)
             {
                 animator.SetFloat("MovimientoX", movimientoX * ConfiguracionJuego.instance.MultiplicadorSprint);
                 animator.SetFloat("MovimientoZ", movimientoZ * ConfiguracionJuego.instance.MultiplicadorSprint);
+
             }
             //Fin Cambio 16-03-2024
         }
