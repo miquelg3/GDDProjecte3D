@@ -19,6 +19,9 @@ public class InventarioScript : MonoBehaviour
     private Sprite espadaImg;
     private Sprite arcoImg;
     private Sprite pistaImg;
+    private GameObject espadaFPS;
+    private GameObject arcoFPS;
+    private Dictionary<string, Item> itemsDiccionario = new Dictionary<string, Item>();
 
 
     public Inventario inventario = new Inventario();
@@ -30,7 +33,8 @@ public class InventarioScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) GuardarPista();
+        if (Input.GetKeyDown(KeyCode.L)) GuardarEspada();
+        if (Input.GetKeyDown(KeyCode.P)) GuardarArco();
         if (Input.GetKeyDown(KeyCode.R)) inventario.MostrarInventario();
     }
 
@@ -41,6 +45,10 @@ public class InventarioScript : MonoBehaviour
         espadaImg = ConfiguracionJuego.instance.EspadaImg;
         arcoImg = ConfiguracionJuego.instance.ArcoImg;
         pistaImg = ConfiguracionJuego.instance.PistaImg;
+        espadaFPS = ConfiguracionJuego.instance.EspadaFPS;
+        arcoFPS = ConfiguracionJuego.instance.ArcoFPS;
+
+        DiccionarioInventario();
 
         // Asignamos el script de poder soltar a todos los slots
         Transform slotTransform;
@@ -91,6 +99,40 @@ public class InventarioScript : MonoBehaviour
         if (idArma >= 0)
         {
             Arma arma = new Arma(idArma.ToString(), "Espada", "Espada de Jaime I", 0.25f, 3f, TipoArma.Espada);
+            inventario.AgregarItem(arma);
+            Transform slotTransform = panelInventario.Find($"Slot ({contInventario})");
+            newSlots.Add(slotTransform);
+            LlenarPanelInventario(2);
+            return true;
+        }
+        return false;
+    }
+
+    public bool GuardarEspada()
+    {
+        /*Pista pista = new Pista("1", "Pista", "I think human consciousnes was a tragic mistep in evolution. We became too self-aware; nature created an aspect of nature separte from itself: we are creatures that should not exist by natural law");
+        inventario.AgregarItem(pista);*/
+        int idArma = IdLibre();
+        if (idArma >= 0)
+        {
+            Arma arma = new Arma(idArma.ToString(), "Espada", "Espada de Jaime I", 0.25f, 3f, TipoArma.Espada);
+            inventario.AgregarItem(arma);
+            Transform slotTransform = panelInventario.Find($"Slot ({contInventario})");
+            newSlots.Add(slotTransform);
+            LlenarPanelInventario(2);
+            return true;
+        }
+        return false;
+    }
+
+    public bool GuardarArco()
+    {
+        /*Pista pista = new Pista("1", "Pista", "I think human consciousnes was a tragic mistep in evolution. We became too self-aware; nature created an aspect of nature separte from itself: we are creatures that should not exist by natural law");
+        inventario.AgregarItem(pista);*/
+        int idArma = IdLibre();
+        if (idArma >= 0)
+        {
+            Arma arma = new Arma(idArma.ToString(), "Arco", "Arco de Noe", 0.25f, 3f, TipoArma.Arco);
             inventario.AgregarItem(arma);
             Transform slotTransform = panelInventario.Find($"Slot ({contInventario})");
             newSlots.Add(slotTransform);
@@ -239,6 +281,13 @@ public class InventarioScript : MonoBehaviour
         }
         return -1;
     }
+
+    private void DiccionarioInventario()
+    {
+        List<Item> inv = new List<Item>(inventario.GetItems());
+        itemsDiccionario = inv.ToDictionary(item => item.Id);
+    }
+
     public List<Item> RecibirInventario()
     {
         List<Item> list = new List<Item>(inventario.GetItems());
@@ -248,4 +297,36 @@ public class InventarioScript : MonoBehaviour
         }
         return list;
     }
+
+    public void EquiparObjeto(int numSlot)
+    {
+        List<Item> inv = new List<Item>(inventario.GetItems());
+        itemsDiccionario = inv.ToDictionary(item => item.Id);
+        string numItemStr = "9" + numSlot;
+        if (itemsDiccionario.TryGetValue(numItemStr, out Item itemBuscado))
+        {
+            Debug.Log("ItemEncontrado: " + itemBuscado.Nombre);
+            if (itemBuscado.Nombre == "Espada")
+            {
+                espadaFPS.SetActive(true);
+                arcoFPS.SetActive(false);
+            }
+            else if (itemBuscado.Nombre == "Arco")
+            {
+                arcoFPS.SetActive(true);
+                espadaFPS.SetActive(false);
+            }
+            else
+            {
+                espadaFPS.SetActive(false);
+                arcoFPS.SetActive(false);
+            }
+        }
+        else
+        {
+            espadaFPS.SetActive(false);
+            arcoFPS.SetActive(false);
+        }
+    }
+
 }

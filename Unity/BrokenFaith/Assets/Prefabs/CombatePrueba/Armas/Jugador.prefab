@@ -310,6 +310,7 @@ MonoBehaviour:
   agachado: 0
   animator: {fileID: 6101538224169866852}
   camaraJugador: {fileID: 8359602009526854056}
+  Caido: 0
 --- !u!114 &3120297068756768809
 MonoBehaviour:
   m_ObjectHideFlags: 0
