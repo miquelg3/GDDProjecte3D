@@ -31,7 +31,6 @@ public class SaludEnemigoController : MonoBehaviour
         agente.isStopped = true;
         collider.enabled = false;
         GetComponent<EnemigoBasico>().enabled = false;
-        GetComponent<NavMeshAgent>().enabled = false;
         animator.SetTrigger("muerto");
     }
 }
