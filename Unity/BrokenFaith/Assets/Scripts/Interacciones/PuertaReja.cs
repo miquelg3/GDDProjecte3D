@@ -37,18 +37,20 @@ public class PuertaReja : MonoBehaviour
     {
         if (puedePasar)
         {
-            if(Tabla.GetComponent<Rigidbody>().isKinematic == true)
+            if(Tabla != null && Tabla.GetComponent<Rigidbody>().isKinematic == true)
             Tabla.GetComponent<Rigidbody>().isKinematic = false;
 
 
-            if (!abriendo && transform.rotation.y <= 0)
+            if (!abriendo && !abierta)
             {
                 StopAllCoroutines();
                 StartCoroutine(AbrirCerrarPuerta(rotacionAbierta));
+                abierta = true;
             }
-            else if (!abriendo && transform.rotation.y > 0)
+            else if (!abriendo && abierta)
             {
                 StartCoroutine(AbrirCerrarPuerta(rotacionCerrada));
+                abierta = false;
             }
         }
     }
@@ -65,9 +67,11 @@ public class PuertaReja : MonoBehaviour
             tiempoTranscurrido += Time.deltaTime;
             yield return null;
         }
-        Destroy(Tabla);
+        if (Tabla != null)
+        {
+            Destroy(Tabla);
+        }
         transform.rotation = rotacionObjetivo;
         abriendo = false;
-        abierta = rotacionObjetivo == rotacionAbierta;
     }
 }
