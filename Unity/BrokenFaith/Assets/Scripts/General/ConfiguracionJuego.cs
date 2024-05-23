@@ -64,6 +64,11 @@ public class ConfiguracionJuego : MonoBehaviour
     [SerializeField] private Slider sliderMusica;
     [SerializeField] private Slider sliderSFX;
 
+    // Armas
+    [Header("Armas equipables")]
+    [SerializeField] private GameObject espadaFPS;
+    [SerializeField] private GameObject arcoFPS;
+
     public GameObject linternaJugador;
 
     #endregion
@@ -293,6 +298,17 @@ public class ConfiguracionJuego : MonoBehaviour
         get { return rangoAudiocion; }
         set { rangoAudiocion = value; }
     }
+
+    public GameObject EspadaFPS
+    {
+        get { return espadaFPS; }
+    }
+
+    public GameObject ArcoFPS
+    {
+        get { return arcoFPS; }
+    }
+
     #endregion
 
 }

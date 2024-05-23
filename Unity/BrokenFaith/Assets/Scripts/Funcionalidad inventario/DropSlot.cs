@@ -26,10 +26,23 @@ public class DropSlot : MonoBehaviour, IDropHandler
             {
                 string slotName = dropRectTransform.name;
                 int newId = ExtraerId(slotName);
+                string oldId = draggable.item.Id;
 
                 // Actualizar el ID del Item
                 draggable.item.Id = newId.ToString();
                 Debug.Log($"Item {draggable.item.Nombre} actualizado a {draggable.item.Id}");
+                if (draggable.item.Id == "90" || draggable.item.Id == "91" || draggable.item.Id == "92")
+                {
+                    InventarioScript.instance.EquiparObjeto(InventarioScript.instance.GetSlotSeleccionado());
+                }
+                if (oldId == "90" || oldId == "91" || oldId == "92")
+                {
+                    int segundoDigitoOldId = int.Parse(oldId[1].ToString());
+                    if (segundoDigitoOldId == InventarioScript.instance.GetSlotSeleccionado())
+                    {
+                        InventarioScript.instance.EquiparObjeto(InventarioScript.instance.GetSlotSeleccionado());
+                    }
+                }
             }
         }
     }

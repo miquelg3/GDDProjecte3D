@@ -21,7 +21,7 @@ public class CombateEspada : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && puedeAtacar) Atacar();
+        if (Input.GetKey(KeyCode.Mouse0) && puedeAtacar) Atacar();
 
         Defensa();
     }
