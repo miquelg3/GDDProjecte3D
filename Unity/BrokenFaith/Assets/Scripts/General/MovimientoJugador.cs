@@ -48,7 +48,7 @@ public class MovimientoJugador : MonoBehaviour
     public delegate void EventoAtaque(int Danyo);
     public static event EventoAtaque RecibirDanyoJugador;
     // Cambios añadidos por Javier Calabuig el dia 22/5/2024 para el funcionamiento de la interaccion con puertas y mueble
-    public delegate void EventoAbrirPuerta();
+    public delegate void EventoAbrirPuerta(Transform posicion);
     public static event EventoAbrirPuerta AbrirPuerta;
     public delegate void EventoApartarMueble();
     public static event EventoApartarMueble QuitarMueble;
@@ -246,7 +246,7 @@ public class MovimientoJugador : MonoBehaviour
                 //Añadido el 22/05/2024 por Javier Calabuig Mateu para el funcionamiento de la interaccion con las puertas
                 if (hit.transform.gameObject.CompareTag("Puerta") && Input.GetKeyDown(KeyCode.E) && distance <= 2f)
                 {
-                    AbrirPuerta?.Invoke();
+                    AbrirPuerta?.Invoke(hit.transform);
                 }
                 if (hit.transform.gameObject.CompareTag("Mueble") && Input.GetKeyDown(KeyCode.E) && distance <= 2f)
                 {
