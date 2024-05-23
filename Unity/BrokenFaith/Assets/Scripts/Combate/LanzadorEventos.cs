@@ -10,19 +10,38 @@ public class LanzadorEventos : MonoBehaviour
     private Camera camaraJugador;
     #endregion
 
-    private void Reproducir()
+    void Start()
     {
         camaraJugador = ConfiguracionJuego.instance.CamaraPrincipal;
+    }
+
+    private void ReproducirScreamer()
+    {
+        camaraJugador.GetComponent<AudioSource>().loop = false;
         camaraJugador.GetComponent<AudioSource>().clip = audioClip;
         camaraJugador.GetComponent<AudioSource>().volume = .5f;
         camaraJugador.GetComponent<AudioSource>().Play();
     }
 
+    private void ReproducirMusica()
+    {
+        camaraJugador.GetComponent<AudioSource>().loop = true;
+        camaraJugador.GetComponent<AudioSource>().clip = audioClip;
+        camaraJugador.GetComponent<AudioSource>().volume = .6f;
+        camaraJugador.GetComponent<AudioSource>().Play();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-       if (other.CompareTag("Player"))
+       if (other.CompareTag("Player") && this.CompareTag("Scream"))
         {
-            Reproducir();
+            ReproducirScreamer();
+            Destroy(this);
+        }
+
+        if (other.CompareTag("Player") && this.CompareTag("Musica"))
+        {
+            ReproducirMusica();
             Destroy(this);
         }
     }
