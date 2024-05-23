@@ -18,6 +18,9 @@ TagManager:
   - Puerta
   - Mueble
   - Reja
+  - Pilar
+  - Jugador
+  - Jefe1
   layers:
   - Default
   - TransparentFX

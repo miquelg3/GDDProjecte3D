@@ -55,10 +55,14 @@ public class MovimientoJugador : MonoBehaviour
     public bool Caido;
     public delegate void EventoDesbloquearReja(bool PuedePasar);
     public static event EventoDesbloquearReja PasarReja;
+    private bool JefeCargando;
+   
+    
     #endregion
 
     void Awake()
     {
+        JefeCargando = false;
         Caido = false;
         instance = this;
     }
@@ -301,13 +305,41 @@ public class MovimientoJugador : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ManoEnemigo"))
-        { 
+        {
+            Debug.Log("Entro daño");
             float DanyoRecibido = Random.Range(10f, 100f);
             int DanyoEntero = Mathf.RoundToInt(DanyoRecibido);
+            Debug.Log(DanyoEntero);
+            RecibirDanyoJugador?.Invoke(DanyoEntero);
+        }
+        if (other.gameObject.CompareTag("Jefe1"))
+        {
+            Debug.Log("Entro daño jefe");
+            float DanyoRecibido = Random.Range(10f, 100f) * 1.5f;
+            int DanyoEntero = Mathf.RoundToInt(DanyoRecibido);
+            Debug.Log(DanyoEntero);
             RecibirDanyoJugador?.Invoke(DanyoEntero);
         }
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("ManoEnemigo"))
+        {
+            Debug.Log("Entro daño");
+            float DanyoRecibido = Random.Range(10f, 100f);
+            int DanyoEntero = Mathf.RoundToInt(DanyoRecibido);
+            Debug.Log(DanyoEntero);
+            RecibirDanyoJugador?.Invoke(DanyoEntero);
+        }
+        if (collision.gameObject.CompareTag("Jefe1") && JefeCargando)
+        {
+            Debug.Log("Entro daño jefe");
+            float DanyoRecibido = Random.Range(10f, 100f) * 1.5f;
+            int DanyoEntero = Mathf.RoundToInt(DanyoRecibido);
+            Debug.Log(DanyoEntero);
+            RecibirDanyoJugador?.Invoke(DanyoEntero);
+        }
+    }
     bool IsGrounded()
     {
         RaycastHit hit;
@@ -320,16 +352,23 @@ public class MovimientoJugador : MonoBehaviour
         return false;
     }
     //Cambios Javier Calabuig Mateu Dia 22/05/2024 Abrir reja despues de puzzle1
+    //Cambios añadidos por Javier Calabuig el dia 23/5/2024 para el funcionamiento del Jefe
     private void OnEnable()
     {
         Puzzle1.AbrirReja += HaCaido;
+        JefeComportamiento.Danyo += JefeCarga;
     }
     private void OnDisable()
     {
         Puzzle1.AbrirReja -= HaCaido;
+        JefeComportamiento.Danyo -= JefeCarga;
     }
     public void HaCaido()
     {
         Caido = true;
+    }
+    public void JefeCarga(bool haCargado)
+    {
+        JefeCargando = haCargado;
     }
 }
