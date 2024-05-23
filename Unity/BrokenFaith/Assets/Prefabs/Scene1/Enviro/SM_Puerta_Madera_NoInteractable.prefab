@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Puerta_Madera_NoInteractable
       objectReference: {fileID: 0}
+    - target: {fileID: 6464690373910409897, guid: 584cbfddbe396e34eb2ec51086afa60e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3917775499846075860, guid: 584cbfddbe396e34eb2ec51086afa60e, type: 3}
     - {fileID: 74176855548799410, guid: 584cbfddbe396e34eb2ec51086afa60e, type: 3}
