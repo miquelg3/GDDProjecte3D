@@ -8,6 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2306524815653643547, guid: ad485a85f7ecd694597d28e992c07366,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2306524815653643547, guid: ad485a85f7ecd694597d28e992c07366,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 68af8679939931d458071c6950a00330, type: 2}
     - target: {fileID: 3479383405239950964, guid: ad485a85f7ecd694597d28e992c07366,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -61,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 4252119780313990350, guid: ad485a85f7ecd694597d28e992c07366,
         type: 3}
       propertyPath: m_Name
-      value: SM_Puerta_Rejas Variant
+      value: SM_Puerta_Rejas_InteractuableSinTablon
       objectReference: {fileID: 0}
     - target: {fileID: 4252119780313990350, guid: ad485a85f7ecd694597d28e992c07366,
         type: 3}

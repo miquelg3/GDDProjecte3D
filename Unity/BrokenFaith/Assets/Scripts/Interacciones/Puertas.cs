@@ -39,14 +39,16 @@ public class Puertas : MonoBehaviour
         if (transform.position == PosicionObjeto.position)
         {
             Debug.Log(transform.rotation.y);
-            if (!abriendo && transform.rotation.y <= 0)
+            if (!abriendo && !abierta)
             {
                 StopAllCoroutines();
                 StartCoroutine(AbrirCerrarPuerta(rotacionAbierta));
+                abierta = true;
             }
-            else if (!abriendo && transform.rotation.y > 0)
+            else if (!abriendo && abierta)
             {
                 StartCoroutine(AbrirCerrarPuerta(rotacionCerrada));
+                abierta = false;
             }
         }
         
