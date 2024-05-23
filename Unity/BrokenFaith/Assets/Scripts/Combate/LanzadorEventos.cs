@@ -7,11 +7,12 @@ public class LanzadorEventos : MonoBehaviour
 {
     #region Variables
     [SerializeField] private AudioClip audioClip;
-    [SerializeField] private Camera camaraJugador;
+    private Camera camaraJugador;
     #endregion
 
     private void Reproducir()
     {
+        camaraJugador = ConfiguracionJuego.instance.CamaraPrincipal;
         camaraJugador.GetComponent<AudioSource>().clip = audioClip;
         camaraJugador.GetComponent<AudioSource>().volume = .5f;
         camaraJugador.GetComponent<AudioSource>().Play();
