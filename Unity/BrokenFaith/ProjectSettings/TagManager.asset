@@ -18,9 +18,8 @@ TagManager:
   - Puerta
   - Mueble
   - Reja
-  - Pilar
-  - Jugador
-  - Jefe1
+  - Scream
+  - Musica
   layers:
   - Default
   - TransparentFX

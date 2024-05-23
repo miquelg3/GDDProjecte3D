@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Puerta
       objectReference: {fileID: 0}
+    - target: {fileID: 4252119780313990350, guid: ad485a85f7ecd694597d28e992c07366,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

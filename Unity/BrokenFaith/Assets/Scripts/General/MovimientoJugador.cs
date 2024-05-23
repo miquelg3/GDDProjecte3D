@@ -3,6 +3,7 @@ using TMPro;
 using UnityEditor.Animations;
 #endif
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MovimientoJugador : MonoBehaviour
 {
@@ -104,17 +105,10 @@ public class MovimientoJugador : MonoBehaviour
         float movimientoX = Input.GetAxis("Horizontal");
         float movimientoZ = Input.GetAxis("Vertical");
         Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
-        
 
         // Cambio Cristobal
-        if(movimientoX > 0 || movimientoZ > 0) 
-        {
-            audioSource.enabled = true;        
-        } else
-        {
-            audioSource.enabled = false;
-        }
-
+        if(movimientoX != 0 || movimientoZ != 0) audioSource.enabled = true;        
+        else audioSource.enabled = false;
         //Fin Cambio 22-05-2024
 
 
@@ -136,7 +130,6 @@ public class MovimientoJugador : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             movimiento *= ConfiguracionJuego.instance.MultiplicadorSprint;
-            Debug.Log(movimiento);
 
             // Cambio Cristobal
             if (animator != null)

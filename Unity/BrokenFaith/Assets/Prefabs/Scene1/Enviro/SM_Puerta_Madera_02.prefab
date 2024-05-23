@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Puerta_Madera_02
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d250200018b1ee74ebd33dd8a08926d9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
