@@ -34,16 +34,22 @@ public class Puertas : MonoBehaviour
     {
         MovimientoJugador.AbrirPuerta -= Abrir;
     }
-    private void Abrir()
+    private void Abrir(Transform PosicionObjeto)
     {
-        Debug.Log(transform.rotation.y);
-        if (!abriendo && transform.rotation.y <= 0) {
-            StopAllCoroutines();
-            StartCoroutine(AbrirCerrarPuerta(rotacionAbierta));
-        }
-        else if(!abriendo && transform.rotation.y > 0)
+        if (transform.position == PosicionObjeto.position)
         {
-            StartCoroutine(AbrirCerrarPuerta(rotacionCerrada));
+            Debug.Log(transform.rotation.y);
+            if (!abriendo && !abierta)
+            {
+                StopAllCoroutines();
+                StartCoroutine(AbrirCerrarPuerta(rotacionAbierta));
+                abierta = true;
+            }
+            else if (!abriendo && abierta)
+            {
+                StartCoroutine(AbrirCerrarPuerta(rotacionCerrada));
+                abierta = false;
+            }
         }
         
     }
