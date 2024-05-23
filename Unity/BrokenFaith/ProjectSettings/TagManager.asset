@@ -18,6 +18,8 @@ TagManager:
   - Puerta
   - Mueble
   - Reja
+  - Scream
+  - Musica
   layers:
   - Default
   - TransparentFX
