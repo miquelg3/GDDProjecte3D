@@ -291,6 +291,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerVR
       objectReference: {fileID: 0}
+    - target: {fileID: 4129365227763346225, guid: 2452f16123452d749a1d6c9a3c708e80,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5652807348568293897, guid: 2452f16123452d749a1d6c9a3c708e80,
         type: 3}
       propertyPath: m_TagString
@@ -1056,7 +1061,7 @@ Transform:
   m_GameObject: {fileID: 1895748732}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.07, y: 1, z: -0.054}
+  m_LocalPosition: {x: 2.07, y: 1, z: -0.064}
   m_LocalScale: {x: 0.2, y: 2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1127,18 +1132,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4873825176697271691, guid: 4763925b511ee93408b670a01095d0b3,
         type: 3}
+      propertyPath: m_UseMotor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873825176697271691, guid: 4763925b511ee93408b670a01095d0b3,
+        type: 3}
       propertyPath: m_UseLimits
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4873825176697271691, guid: 4763925b511ee93408b670a01095d0b3,
         type: 3}
+      propertyPath: m_UseSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873825176697271691, guid: 4763925b511ee93408b670a01095d0b3,
+        type: 3}
       propertyPath: m_Limits.max
-      value: 120
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4873825176697271691, guid: 4763925b511ee93408b670a01095d0b3,
         type: 3}
       propertyPath: m_Limits.min
-      value: -120
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873825176697271691, guid: 4763925b511ee93408b670a01095d0b3,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 4.626
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873825176697271691, guid: 4763925b511ee93408b670a01095d0b3,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873825176697271691, guid: 4763925b511ee93408b670a01095d0b3,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873825176697271691, guid: 4763925b511ee93408b670a01095d0b3,
+        type: 3}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5392229418278454223, guid: 4763925b511ee93408b670a01095d0b3,
         type: 3}
@@ -1150,6 +1185,16 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1697495758}
+    - target: {fileID: 8995127160140640266, guid: 4763925b511ee93408b670a01095d0b3,
+        type: 3}
+      propertyPath: m_DistanceCalculationMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995127160140640266, guid: 4763925b511ee93408b670a01095d0b3,
+        type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
