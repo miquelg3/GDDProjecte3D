@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camaraMain: {fileID: 870127218}
+  clipMusica: {fileID: 8300000, guid: 0391db55bd7898144bda2b983a21c7c9, type: 3}
 --- !u!1 &401656414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3565,8 +3566,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3575171525062587024, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
         type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575171525062587024, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
+        type: 3}
       propertyPath: MaxDistance
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575171525062587024, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7273878835314884260, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
         type: 3}
@@ -3658,7 +3669,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
