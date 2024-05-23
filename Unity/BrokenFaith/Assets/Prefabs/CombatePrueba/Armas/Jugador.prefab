@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 7081124806474713617}
   - component: {fileID: 3120297068756768809}
   - component: {fileID: 4912875116468329008}
+  - component: {fileID: 181079131574715733}
   - component: {fileID: 3575171525062587024}
   m_Layer: 9
   m_Name: Jugador
@@ -339,6 +340,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumeroPartes: 000000000100000002000000030000000400000005000000
+--- !u!114 &181079131574715733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7313320581464750074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c223d863288f31645aa559a7c4e0fddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &3575171525062587024
 AudioSource:
   m_ObjectHideFlags: 0
