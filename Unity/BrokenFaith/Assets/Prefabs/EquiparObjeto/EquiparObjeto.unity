@@ -2834,6 +2834,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6893103744956469550, guid: 1f98be55689607d409216b1240b4a1c7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1709476096}
+    - target: {fileID: 6893103744956469550, guid: 1f98be55689607d409216b1240b4a1c7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LlamarGuardarPartida
+      objectReference: {fileID: 0}
     - target: {fileID: 6918452561054459882, guid: 1f98be55689607d409216b1240b4a1c7,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4477,6 +4487,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1709476091}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1709476096 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3120297068756768809, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1709476091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709476092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74032ece85f2f694e8a62c1de549e290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1797457476
 GameObject:
   m_ObjectHideFlags: 0

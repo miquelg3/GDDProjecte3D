@@ -7401,6 +7401,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6501222632155304458, guid: 80efb77d84f4540459ce93113cd24ea2,
+        type: 3}
+      propertyPath: m_Name
+      value: PanelInventarioExterno
+      objectReference: {fileID: 0}
     - target: {fileID: 8616033993007433908, guid: 80efb77d84f4540459ce93113cd24ea2,
         type: 3}
       propertyPath: m_AnchorMax.y

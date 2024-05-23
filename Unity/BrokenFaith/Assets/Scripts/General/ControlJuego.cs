@@ -22,10 +22,16 @@ public class ControlJuego : MonoBehaviour
     private Transform transformInventarioExterno;
     private Color colorCuadradoSlot;
 
+    private int slotSeleccionado;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        // Para el item seleccionado
+        slotSeleccionado = 0;
+        InventarioScript.instance.EquiparObjeto(0);
+
         personaje = new Cuerpo();
         RecibirVariables();
         inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
