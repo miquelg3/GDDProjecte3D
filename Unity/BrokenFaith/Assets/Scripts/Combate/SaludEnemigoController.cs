@@ -8,6 +8,7 @@ using UnityEngine.AI;
 public class SaludEnemigoController : MonoBehaviour
 {
     [SerializeField] float SaludBase = 100f;
+    [SerializeField] private AudioClip muerte;
 
     private Animator animator;
     private CapsuleCollider collider;
@@ -26,8 +27,17 @@ public class SaludEnemigoController : MonoBehaviour
         if (SaludBase <= 0) Muerte();
     }
 
+    public void ReproducirMuerteAudio()
+    {
+        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().loop = false;
+        GetComponent<AudioSource>().clip = muerte;
+        GetComponent<AudioSource>().Play();
+    }
+
     public void Muerte()
     {
+        ReproducirMuerteAudio();
         agente.isStopped = true;
         collider.enabled = false;
         GetComponent<EnemigoBasico>().enabled = false;

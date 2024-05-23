@@ -68,6 +68,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Tablon_03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a25c7d717b1a8c542bba8ec053424f2b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a25c7d717b1a8c542bba8ec053424f2b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

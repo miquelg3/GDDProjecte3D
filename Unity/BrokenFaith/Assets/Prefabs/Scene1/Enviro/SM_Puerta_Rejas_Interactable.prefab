@@ -8,6 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2306524815653643547, guid: ad485a85f7ecd694597d28e992c07366,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2306524815653643547, guid: ad485a85f7ecd694597d28e992c07366,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 68af8679939931d458071c6950a00330, type: 2}
     - target: {fileID: 3479383405239950964, guid: ad485a85f7ecd694597d28e992c07366,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,6 +77,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Reja
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252119780313990350, guid: ad485a85f7ecd694597d28e992c07366,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -180,6 +195,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Reja
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329782898068386022, guid: 49a7ca4f09fca8046b9a5e81c14c9b63,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
