@@ -26,6 +26,9 @@ public class ControlJuego : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Para el item seleccionado
+        InventarioScript.instance.EquiparObjeto(0);
+
         personaje = new Cuerpo();
         RecibirVariables();
         inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
@@ -85,6 +88,7 @@ public class ControlJuego : MonoBehaviour
             transformInventarioExterno.Find("Slot (90)").GetComponent<Image>().color = Color.black;
             transformInventarioExterno.Find("Slot (91)").GetComponent<Image>().color = colorCuadradoSlot;
             transformInventarioExterno.Find("Slot (92)").GetComponent<Image>().color = colorCuadradoSlot;
+            InventarioScript.instance.EquiparObjeto(0);
         }
         // Seleccionar slot 2
         if (Input.GetKeyDown(KeyCode.Alpha2) && gameState.game == GameState.StateGame.inGame)
@@ -92,6 +96,7 @@ public class ControlJuego : MonoBehaviour
             transformInventarioExterno.Find("Slot (90)").GetComponent<Image>().color = colorCuadradoSlot;
             transformInventarioExterno.Find("Slot (91)").GetComponent<Image>().color = Color.black;
             transformInventarioExterno.Find("Slot (92)").GetComponent<Image>().color = colorCuadradoSlot;
+            InventarioScript.instance.EquiparObjeto(1);
         }
         // Seleccionar slot 3
         if (Input.GetKeyDown(KeyCode.Alpha3) && gameState.game == GameState.StateGame.inGame)
@@ -99,6 +104,7 @@ public class ControlJuego : MonoBehaviour
             transformInventarioExterno.Find("Slot (90)").GetComponent<Image>().color = colorCuadradoSlot;
             transformInventarioExterno.Find("Slot (91)").GetComponent<Image>().color = colorCuadradoSlot;
             transformInventarioExterno.Find("Slot (92)").GetComponent<Image>().color = Color.black;
+            InventarioScript.instance.EquiparObjeto(2);
         }
     }
     void RecibirVariables()
