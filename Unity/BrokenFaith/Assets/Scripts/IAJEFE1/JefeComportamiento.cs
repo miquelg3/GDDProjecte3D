@@ -25,6 +25,7 @@ public class JefeComportamiento:MonoBehaviour
     private bool estaCargando;
     public delegate void EventoDanyoJefe(bool Cargando);
     public static event EventoDanyoJefe Danyo;
+    [SerializeField] private float torque = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,7 @@ public class JefeComportamiento:MonoBehaviour
         Stun = 3f;
         Jugador = GameObject.FindGameObjectWithTag("Player").transform;
         Agent = GetComponent<NavMeshAgent>();
+
 
     }
 
@@ -141,6 +143,7 @@ public class JefeComportamiento:MonoBehaviour
                 if (rb != null)
                 {
                     rb.AddForce(direccion.normalized * 100f, ForceMode.Impulse);
+                    rb.AddTorque(transform.right * torque);
                 }
                 Destroy(cuchillo, 10f);
             }
