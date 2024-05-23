@@ -21,7 +21,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0595aa36d1ac7114287c2e369db0789a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -25.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0595aa36d1ac7114287c2e369db0789a,
         type: 3}
@@ -114,6 +114,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5197185111411358415}
+    - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: 0595aa36d1ac7114287c2e369db0789a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 766235690774385443}
     - targetCorrespondingSourceObject: {fileID: -7764487651825262745, guid: 0595aa36d1ac7114287c2e369db0789a,
         type: 3}
       insertIndex: -1
@@ -263,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3afa6e0ec6c5946876e7d124790183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaludBase: 2
+  SaludBase: 12
   muerte: {fileID: 8300000, guid: 93cb332148b8a30409e7b50856950e08, type: 3}
 --- !u!54 &2697247287893186000
 Rigidbody:
@@ -319,7 +323,7 @@ MonoBehaviour:
   rangoMovimiento: 0
   porPuntos: 0
   puntosNavegacion: []
-  rangoAtaque: 3
+  rangoAtaque: 2.3
   tiempoEspera: 5
   Patas: {fileID: 5394160638198629509}
 --- !u!195 &-8345025882292037542
@@ -468,3 +472,26 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.12705946
   m_Center: {x: 0.0068968856, y: 0.07412157, z: 0.000000024285207}
+--- !u!136 &766235690774385443
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884113716686304995}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.13
+  m_Height: 0.26000002
+  m_Direction: 1
+  m_Center: {x: 5.393979e-10, y: 0.06505937, z: 0.000000022265505}
