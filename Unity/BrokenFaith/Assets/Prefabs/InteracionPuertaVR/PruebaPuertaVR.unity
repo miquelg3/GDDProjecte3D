@@ -1193,7 +1193,7 @@ PrefabInstance:
     - target: {fileID: 8995127160140640266, guid: 4763925b511ee93408b670a01095d0b3,
         type: 3}
       propertyPath: m_InteractionLayers.m_Bits
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
