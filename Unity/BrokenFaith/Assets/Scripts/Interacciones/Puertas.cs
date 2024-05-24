@@ -11,10 +11,12 @@ public class Puertas : MonoBehaviour
     private bool abierta;
     private Quaternion rotacionCerrada;
     private Quaternion rotacionAbierta;
+    private bool Cerrado;
 
     // Start is called before the first frame update
     void Start()
     {
+        Cerrado = false;
         abierta = false;
         rotacionCerrada = transform.rotation;
         rotacionAbierta = rotacionCerrada * Quaternion.Euler(0, anguloApertura, 0);
@@ -29,10 +31,12 @@ public class Puertas : MonoBehaviour
     private void OnEnable()
     {
         MovimientoJugador.AbrirPuerta += Abrir;
+        ActivarJefe.ActivarBoss += CerrarJefe;
     }
     private void OnDisable()
     {
         MovimientoJugador.AbrirPuerta -= Abrir;
+        ActivarJefe.ActivarBoss -= CerrarJefe;
     }
     private void Abrir(Transform PosicionObjeto)
     {
@@ -47,13 +51,25 @@ public class Puertas : MonoBehaviour
             }
             else if (!abriendo && abierta)
             {
+                StopAllCoroutines();
                 StartCoroutine(AbrirCerrarPuerta(rotacionCerrada));
                 abierta = false;
             }
         }
         
     }
-
+    private void CerrarJefe(bool HaEntrado, Transform PosicionObjeto)
+    {
+        if (HaEntrado)
+        {
+            Cerrado = true;
+            if (transform.position == PosicionObjeto.position)
+            {
+                StartCoroutine(AbrirCerrarPuerta(rotacionCerrada));
+                abierta = false;
+            }
+        }
+    }
     private IEnumerator AbrirCerrarPuerta(Quaternion rotacionObjetivo)
     {
         abriendo = true;
@@ -70,5 +86,10 @@ public class Puertas : MonoBehaviour
         transform.rotation = rotacionObjetivo;
         abriendo = false;
         abierta = rotacionObjetivo == rotacionAbierta;
+        if (Cerrado == true)
+        {
+            GetComponent<Puertas>().enabled = false;
+        }
     }
+
 }

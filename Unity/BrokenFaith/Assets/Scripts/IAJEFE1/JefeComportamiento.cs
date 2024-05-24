@@ -26,9 +26,11 @@ public class JefeComportamiento:MonoBehaviour
     public delegate void EventoDanyoJefe(bool Cargando);
     public static event EventoDanyoJefe Danyo;
     [SerializeField] private float torque = 5f;
+    private bool Activado;
     // Start is called before the first frame update
     void Start()
     {
+        Activado = false;
         estaCargando = false;
         LanzandoCuchillos = false;
         intervalCuchillo = 2f;
@@ -48,26 +50,28 @@ public class JefeComportamiento:MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Agent.acceleration);
-        lanzarCuchilloTiempo += Time.deltaTime;
-        if(CuchilloGastado == 3)
+        if (Activado)
         {
-            Cooldown += Time.deltaTime;
-        }
-        if(Cooldown >= TiempoCuchillo)
-        {
-            CuchilloGastado = 0;
-            Cooldown = 0f;
-        }
-        if (Vector3.Distance(transform.position, Jugador.position) > 0.5f)
-        {
-            Agent.SetDestination(Jugador.transform.position);
-        }
-        ControlarCargado();
-        if (Vector3.Distance(transform.position, Jugador.position) > 2f && CuchilloGastado < 3 && lanzarCuchilloTiempo >= intervalCuchillo)
-        {
-            LanzarCuchillo();
-            lanzarCuchilloTiempo = 0;
+            lanzarCuchilloTiempo += Time.deltaTime;
+            if (CuchilloGastado == 3)
+            {
+                Cooldown += Time.deltaTime;
+            }
+            if (Cooldown >= TiempoCuchillo)
+            {
+                CuchilloGastado = 0;
+                Cooldown = 0f;
+            }
+            if (Vector3.Distance(transform.position, Jugador.position) > 0.5f)
+            {
+                Agent.SetDestination(Jugador.transform.position);
+            }
+            ControlarCargado();
+            if (Vector3.Distance(transform.position, Jugador.position) > 2f && CuchilloGastado < 3 && lanzarCuchilloTiempo >= intervalCuchillo)
+            {
+                LanzarCuchillo();
+                lanzarCuchilloTiempo = 0;
+            }
         }
     }
 
@@ -126,6 +130,7 @@ public class JefeComportamiento:MonoBehaviour
         Ray rayo = new Ray(transform.position,(Jugador.position - transform.position).normalized);
         if (Physics.Raycast(rayo, out hit, alcance))
         {
+            Debug.Log(hit.transform.gameObject.tag);
             if (hit.collider.CompareTag("Player") && !stuneado && !estaCargando)
             {
                 LanzandoCuchillos = true;
@@ -158,5 +163,18 @@ public class JefeComportamiento:MonoBehaviour
         yield return new WaitForSeconds(3f);
         LanzandoCuchillos = false;
         Agent.speed = 3f;
+    }
+    private void OnEnable()
+    {
+        ActivarJefe.ActivarBoss += JefeActivado;
+    }
+    private void OnDisable()
+    {
+        ActivarJefe.ActivarBoss -= JefeActivado;
+    }
+
+    private void JefeActivado(bool activar,Transform Puerta)
+    {
+        Activado = true;
     }
 }
