@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 #if UNITY_EDITOR
@@ -16,6 +17,7 @@ public class ControlJuego : MonoBehaviour
 
     private Transform cameraTransform;
     private GameObject pausa;
+    private GameObject muerto;
     private GameObject inventarioMenu;
     private Transform transformInventarioExterno;
     private Color colorCuadradoSlot;
@@ -24,6 +26,9 @@ public class ControlJuego : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Para el item seleccionado
+        InventarioScript.instance.EquiparObjeto(0);
+
         personaje = new Cuerpo();
         RecibirVariables();
         inventarioMenu.transform.GetComponent<CanvasGroup>().alpha = 0;
@@ -83,6 +88,7 @@ public class ControlJuego : MonoBehaviour
             transformInventarioExterno.Find("Slot (90)").GetComponent<Image>().color = Color.black;
             transformInventarioExterno.Find("Slot (91)").GetComponent<Image>().color = colorCuadradoSlot;
             transformInventarioExterno.Find("Slot (92)").GetComponent<Image>().color = colorCuadradoSlot;
+            InventarioScript.instance.EquiparObjeto(0);
         }
         // Seleccionar slot 2
         if (Input.GetKeyDown(KeyCode.Alpha2) && gameState.game == GameState.StateGame.inGame)
@@ -90,6 +96,7 @@ public class ControlJuego : MonoBehaviour
             transformInventarioExterno.Find("Slot (90)").GetComponent<Image>().color = colorCuadradoSlot;
             transformInventarioExterno.Find("Slot (91)").GetComponent<Image>().color = Color.black;
             transformInventarioExterno.Find("Slot (92)").GetComponent<Image>().color = colorCuadradoSlot;
+            InventarioScript.instance.EquiparObjeto(1);
         }
         // Seleccionar slot 3
         if (Input.GetKeyDown(KeyCode.Alpha3) && gameState.game == GameState.StateGame.inGame)
@@ -97,12 +104,14 @@ public class ControlJuego : MonoBehaviour
             transformInventarioExterno.Find("Slot (90)").GetComponent<Image>().color = colorCuadradoSlot;
             transformInventarioExterno.Find("Slot (91)").GetComponent<Image>().color = colorCuadradoSlot;
             transformInventarioExterno.Find("Slot (92)").GetComponent<Image>().color = Color.black;
+            InventarioScript.instance.EquiparObjeto(2);
         }
     }
     void RecibirVariables()
     {
         cameraTransform = ConfiguracionJuego.instance.CamaraTransform;
         pausa = ConfiguracionJuego.instance.PanelPausa;
+        muerto = ConfiguracionJuego.instance.PanelMuerto;
         inventarioMenu = ConfiguracionJuego.instance.InventarioMenu;
         transformInventarioExterno = ConfiguracionJuego.instance.TransformPanelInventarioExterno;
     }
@@ -136,8 +145,19 @@ public class ControlJuego : MonoBehaviour
     public void LlamarFinPartida()
     {
         gameState.OverGame();
-        pausa.SetActive(true);
+        muerto.SetActive(true);
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void LlamarRecargarPartida()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void LlamarSalirPartida()
+    {
+        SceneManager.LoadScene(0);
     }
 
     IEnumerator Posicionar(Vector3 position)

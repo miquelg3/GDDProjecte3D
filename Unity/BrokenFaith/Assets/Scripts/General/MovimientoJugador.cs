@@ -3,11 +3,16 @@ using TMPro;
 using UnityEditor.Animations;
 #endif
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MovimientoJugador : MonoBehaviour
 {
     #region Variables
     public static MovimientoJugador instance;
+
+    [SerializeField] private AudioClip sonidoCaminar;
+    [SerializeField] private AudioClip sonidoCorrer;
+    private AudioSource audioSource;
 
     private float yaw, pitch;
 
@@ -40,13 +45,22 @@ public class MovimientoJugador : MonoBehaviour
 
     [SerializeField] private Camera camaraJugador;
 
-    // Cambios añadidos por Javier Calabuig el dia 17/5/2024 para el funcionamiento de el sistema de salud creando eventos
+    // Cambios añadidos por Javier Calabuig el dia 17/5/2024 para el funcionamiento del sistema de salud creando eventos
     public delegate void EventoAtaque(int Danyo);
     public static event EventoAtaque RecibirDanyoJugador;
+    // Cambios añadidos por Javier Calabuig el dia 22/5/2024 para el funcionamiento de la interaccion con puertas y mueble
+    public delegate void EventoAbrirPuerta(Transform posicion);
+    public static event EventoAbrirPuerta AbrirPuerta;
+    public delegate void EventoApartarMueble();
+    public static event EventoApartarMueble QuitarMueble;
+    public bool Caido;
+    public delegate void EventoDesbloquearReja(bool PuedePasar);
+    public static event EventoDesbloquearReja PasarReja;
     #endregion
 
     void Awake()
     {
+        Caido = false;
         instance = this;
     }
 
@@ -77,6 +91,9 @@ public class MovimientoJugador : MonoBehaviour
         cameraTransform = ConfiguracionJuego.instance.CamaraTransform;
         textoNombreObjeto = ConfiguracionJuego.instance.NombreObjetoTexto;
         pausa = ConfiguracionJuego.instance.PanelPausa;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = sonidoCaminar;
+        audioSource.enabled = false;
     }
 
     public void MovimientoPersonaje()
@@ -84,6 +101,12 @@ public class MovimientoJugador : MonoBehaviour
         float movimientoX = Input.GetAxis("Horizontal");
         float movimientoZ = Input.GetAxis("Vertical");
         Vector3 movimiento = transform.right * movimientoX + transform.forward * movimientoZ;
+
+        // Cambio Cristobal
+        if(movimientoX != 0 || movimientoZ != 0) audioSource.enabled = true;        
+        else audioSource.enabled = false;
+        //Fin Cambio 22-05-2024
+
 
         // Cambio Cristobal
         if (animator != null)
@@ -109,6 +132,7 @@ public class MovimientoJugador : MonoBehaviour
             {
                 animator.SetFloat("MovimientoX", movimientoX * ConfiguracionJuego.instance.MultiplicadorSprint);
                 animator.SetFloat("MovimientoZ", movimientoZ * ConfiguracionJuego.instance.MultiplicadorSprint);
+
             }
             //Fin Cambio 16-03-2024
         }
@@ -212,6 +236,19 @@ public class MovimientoJugador : MonoBehaviour
                         Destroy(currentObject);
                     }
                 }
+                //Añadido el 22/05/2024 por Javier Calabuig Mateu para el funcionamiento de la interaccion con las puertas
+                if (hit.transform.gameObject.CompareTag("Puerta") && Input.GetKeyDown(KeyCode.E) && distance <= 2f)
+                {
+                    AbrirPuerta?.Invoke(hit.transform);
+                }
+                if (hit.transform.gameObject.CompareTag("Mueble") && Input.GetKeyDown(KeyCode.E) && distance <= 2f)
+                {
+                    QuitarMueble?.Invoke();
+                }
+                if (hit.transform.gameObject.CompareTag("Reja") && Input.GetKeyDown(KeyCode.E) && distance <= 2f)
+                {
+                    PasarReja?.Invoke(Caido);
+                }
             }
             else
                 textoNombreObjeto.text = "";
@@ -275,5 +312,17 @@ public class MovimientoJugador : MonoBehaviour
         }
         return false;
     }
-
+    //Cambios Javier Calabuig Mateu Dia 22/05/2024 Abrir reja despues de puzzle1
+    private void OnEnable()
+    {
+        Puzzle1.AbrirReja += HaCaido;
+    }
+    private void OnDisable()
+    {
+        Puzzle1.AbrirReja -= HaCaido;
+    }
+    public void HaCaido()
+    {
+        Caido = true;
+    }
 }

@@ -6,10 +6,12 @@ using UnityEngine;
 public class Puzzle1 : MonoBehaviour
 {
     [SerializeField] public GameObject Puente;
-    public float rangoDeteccion = 2f;
+    public float rangoDeteccion = 3f;
     [SerializeField] private KeyCode Interactuar;
     private bool Reparado;
     private Vector3 PuenteCopia;
+    public delegate void EventoAbrirReja();
+    public static event EventoAbrirReja AbrirReja;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +56,7 @@ public class Puzzle1 : MonoBehaviour
            
             //Puente.SetActive(false);
             Puente.GetComponent<Rigidbody>().isKinematic = false;
+            AbrirReja?.Invoke();
         }
 
     }

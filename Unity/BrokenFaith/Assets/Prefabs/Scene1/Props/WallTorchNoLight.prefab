@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallTorchNoLight
       objectReference: {fileID: 0}
+    - target: {fileID: 1731076674805793684, guid: bd9e4704024dfc44f95b0fa4ec558f20,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3958620553642795208, guid: bd9e4704024dfc44f95b0fa4ec558f20, type: 3}

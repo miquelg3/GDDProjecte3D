@@ -14,6 +14,12 @@ TagManager:
   - Palanca
   - Puente
   - ManoEnemigo
+  - Hand
+  - Puerta
+  - Mueble
+  - Reja
+  - Scream
+  - Musica
   layers:
   - Default
   - TransparentFX

@@ -68,8 +68,74 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_WoodChair_a01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 987216957089af8489ff2a507e7ded60,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 987216957089af8489ff2a507e7ded60,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 987216957089af8489ff2a507e7ded60,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1676934257557820107}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 987216957089af8489ff2a507e7ded60,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8851566087863247518}
   m_SourcePrefab: {fileID: 100100000, guid: 987216957089af8489ff2a507e7ded60, type: 3}
+--- !u!1 &1789545812806332142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 987216957089af8489ff2a507e7ded60,
+    type: 3}
+  m_PrefabInstance: {fileID: 1447018593846219711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1676934257557820107
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789545812806332142}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.45039213, y: 0.9453467, z: 0.05669859}
+  m_Center: {x: 0.22384596, y: 0.4726733, z: 0.47980475}
+--- !u!65 &8851566087863247518
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789545812806332142}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.45039213, y: 0.42978692, z: 0.45160502}
+  m_Center: {x: 0.22384596, y: 0.2148934, z: 0.22580251}
