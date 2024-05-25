@@ -1,70 +1,68 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BagInteractable : MonoBehaviour
 {
     public GameObject cubo;
-    public InputActionProperty triggerAction;
+    public InputActionProperty leftTriggerAction;
+    public InputActionProperty rightTriggerAction;
     public GameObject panelInventario;
-    private bool estaDentro;
+    public Transform leftHandTransform;
+    public Transform rightHandTransform;
+
+    private Quaternion panelRotation;
 
     private void Start()
     {
-        estaDentro = false;
-    }
+        leftTriggerAction.action.Enable();
+        rightTriggerAction.action.Enable();
 
-    private void Update()
-    {
-        transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - .5f, Camera.main.transform.position.z - .6f);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "RightHand Controller")
-        {
-            Debug.Log("Dentro de cubo");
-            estaDentro = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.name == "RightHand Controller")
-        {
-            estaDentro = false;
-        }
+        panelRotation = panelInventario.transform.rotation;
     }
 
     private void OnEnable()
     {
-        triggerAction.action.performed += OnTriggerPressed;
-        triggerAction.action.Enable();
+        leftTriggerAction.action.performed += OnLeftTriggerPressed;
+        rightTriggerAction.action.performed += OnRightTriggerPressed;
     }
 
     private void OnDisable()
     {
-        triggerAction.action.performed -= OnTriggerPressed;
-        triggerAction.action.Disable();
+        leftTriggerAction.action.performed -= OnLeftTriggerPressed;
+        rightTriggerAction.action.performed -= OnRightTriggerPressed;
     }
 
-    private void OnTriggerPressed(InputAction.CallbackContext context)
+    private void OnLeftTriggerPressed(InputAction.CallbackContext context)
     {
-        // Acción que deseas realizar cuando se pulsa el gatillo
-        Debug.Log("Gatillo pulsado");
-        if (estaDentro)
+        HandleTriggerPressed(leftHandTransform);
+    }
+
+    private void OnRightTriggerPressed(InputAction.CallbackContext context)
+    {
+        HandleTriggerPressed(rightHandTransform);
+    }
+
+    private void HandleTriggerPressed(Transform handTransform)
+    {
+        panelInventario.transform.SetParent(handTransform);
+        Debug.Log("PanelInventario parent name: " + panelInventario.transform.parent.name);
+        if (handTransform.name == "RightHand Controller")
+            panelInventario.transform.rotation = panelRotation;
+        else
+            panelInventario.transform.rotation = handTransform.rotation;
+        panelInventario.transform.position = handTransform.position;
+        Debug.Log("PanelInventario Después de la corrutina");
+        bool isActive = panelInventario.activeSelf;
+        Debug.Log("PanelInventario activeSelf before toggle: " + isActive);
+        if (isActive)
         {
-            Debug.Log("Dentro de cubo");
-            cubo.GetComponent<Renderer>().material.color = Color.red;
-            panelInventario.SetActive(true);
+            panelInventario.SetActive(false);
         }
         else
         {
-            Debug.Log("Fuera de cubo");
-            cubo.GetComponent<Renderer>().material.color = Color.green;
-            panelInventario.SetActive(false);
+            panelInventario.SetActive(true);
         }
+        Debug.Log("PanelInventario active: " + panelInventario.activeSelf);
     }
-
 }

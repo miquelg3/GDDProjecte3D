@@ -4,16 +4,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class CustomXRGrabInteractable : XRGrabInteractable
 {
     private Transform currentHook;
-    private bool wasGrabbed = false;
+    public Transform panelInventario;
 
     // Método para detectar colisiones con perchas
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand"))
-        {
-            wasGrabbed = true;
-        }
-        if (other.CompareTag("Hook") && wasGrabbed)
+        if (other.CompareTag("Hook"))
         {
             currentHook = other.transform;
         }
@@ -32,14 +28,15 @@ public class CustomXRGrabInteractable : XRGrabInteractable
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
-        if (wasGrabbed)
-            base.OnSelectExited(args);
+        base.OnSelectExited(args);
+
 
         if (currentHook != null)
         {
-            transform.SetParent(currentHook);
+            if (panelInventario.childCount > 0)
+            {
+                transform.SetParent(panelInventario.GetChild(0));
+            }
         }
-        
-        wasGrabbed = false;
     }
 }
