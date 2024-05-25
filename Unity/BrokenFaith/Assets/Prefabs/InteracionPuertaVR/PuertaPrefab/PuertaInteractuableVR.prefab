@@ -393,7 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 591110162046790625}
   m_Layer: 0
-  m_Name: PuertaInteractuable
+  m_Name: PuertaInteractuableVR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
