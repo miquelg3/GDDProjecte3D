@@ -6065,6 +6065,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rejas_01
       objectReference: {fileID: 0}
+    - target: {fileID: 8606235555033594245, guid: ea0b1da80eaa624469709e8e0effd977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 8945465040567100223, guid: ea0b1da80eaa624469709e8e0effd977,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11860,7 +11865,7 @@ PrefabInstance:
     - target: {fileID: 8570719147825069220, guid: 98c66a946a2c6404dac171045a3e32d5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.9981585
+      value: 3.7481585
       objectReference: {fileID: 0}
     - target: {fileID: 8570719147825069220, guid: 98c66a946a2c6404dac171045a3e32d5,
         type: 3}
@@ -15937,6 +15942,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rejas_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8606235555033594245, guid: ea0b1da80eaa624469709e8e0effd977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 8945465040567100223, guid: ea0b1da80eaa624469709e8e0effd977,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18749,6 +18759,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rejas_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8606235555033594245, guid: ea0b1da80eaa624469709e8e0effd977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 8945465040567100223, guid: ea0b1da80eaa624469709e8e0effd977,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19415,6 +19430,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rejas_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8606235555033594245, guid: ea0b1da80eaa624469709e8e0effd977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 8945465040567100223, guid: ea0b1da80eaa624469709e8e0effd977,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19488,6 +19508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Rejas_01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606235555033594245, guid: ea0b1da80eaa624469709e8e0effd977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 8945465040567100223, guid: ea0b1da80eaa624469709e8e0effd977,
         type: 3}
@@ -20465,6 +20490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Rejas_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606235555033594245, guid: ea0b1da80eaa624469709e8e0effd977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 8945465040567100223, guid: ea0b1da80eaa624469709e8e0effd977,
         type: 3}
@@ -24388,6 +24418,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rejas_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8606235555033594245, guid: ea0b1da80eaa624469709e8e0effd977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 8945465040567100223, guid: ea0b1da80eaa624469709e8e0effd977,
         type: 3}
       propertyPath: m_LocalScale.z
@@ -26854,6 +26889,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Rejas_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606235555033594245, guid: ea0b1da80eaa624469709e8e0effd977,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 8945465040567100223, guid: ea0b1da80eaa624469709e8e0effd977,
         type: 3}
