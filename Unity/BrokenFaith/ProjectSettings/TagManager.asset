@@ -8,8 +8,18 @@ TagManager:
   - Objeto
   - CinemachineTarget
   - Inventario
+  - Espada
+  - Pared
+  - Suelo
+  - Palanca
+  - Puente
+  - ManoEnemigo
   - Hand
-  - Hook
+  - Puerta
+  - Mueble
+  - Reja
+  - Scream
+  - Musica
   layers:
   - Default
   - TransparentFX
@@ -18,9 +28,9 @@ TagManager:
   - Water
   - UI
   - Arrow
-  - Player
+  - PlayerModel
   - Inventory
-  - 
+  - Player
   - 
   - 
   - 
