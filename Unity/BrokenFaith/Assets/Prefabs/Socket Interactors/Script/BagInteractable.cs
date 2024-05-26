@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class BagInteractable : MonoBehaviour
 {
-    public GameObject cubo;
     public InputActionProperty leftTriggerAction;
     public InputActionProperty rightTriggerAction;
     public GameObject panelInventario;
