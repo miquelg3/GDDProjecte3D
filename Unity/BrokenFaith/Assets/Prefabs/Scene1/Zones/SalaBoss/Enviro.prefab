@@ -441,7 +441,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5056646038305373062}
+  - {fileID: 892575417444593857}
   - {fileID: 3605895998993392020}
   - {fileID: 3000056672030461766}
   - {fileID: 8724913098482746705}
@@ -8984,69 +8984,69 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3730930313846459828}
     m_Modifications:
-    - target: {fileID: 7222336278885281357, guid: da8624fd09c358141ba3079d348c44a5,
-        type: 3}
-      propertyPath: m_Name
-      value: SM_Plano StoneWall
-      objectReference: {fileID: 0}
-    - target: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+    - target: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.99815845
       objectReference: {fileID: 0}
-    - target: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+    - target: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -3.340438
       objectReference: {fileID: 0}
-    - target: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+    - target: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -33.92491
       objectReference: {fileID: 0}
-    - target: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+    - target: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+    - target: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.00000003774895
       objectReference: {fileID: 0}
-    - target: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+    - target: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+    - target: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+    - target: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+    - target: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+    - target: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3347622371095454986, guid: 7e0432019a562bd41aaf6e8b207685b7,
+        type: 3}
+      propertyPath: m_Name
+      value: SM_Plano StoneWall Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: da8624fd09c358141ba3079d348c44a5, type: 3}
---- !u!4 &5056646038305373062 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 7e0432019a562bd41aaf6e8b207685b7, type: 3}
+--- !u!4 &892575417444593857 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8030257029558826231, guid: da8624fd09c358141ba3079d348c44a5,
+  m_CorrespondingSourceObject: {fileID: 2683851137319960496, guid: 7e0432019a562bd41aaf6e8b207685b7,
     type: 3}
   m_PrefabInstance: {fileID: 2980790313095532401}
   m_PrefabAsset: {fileID: 0}

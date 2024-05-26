@@ -58,16 +58,13 @@ public class Puertas : MonoBehaviour
         }
         
     }
-    private void CerrarJefe(bool HaEntrado, Transform PosicionObjeto)
+    private void CerrarJefe(bool HaEntrado)
     {
         if (HaEntrado)
         {
-            Cerrado = true;
-            if (transform.position == PosicionObjeto.position)
-            {
+                Cerrado = true;
                 StartCoroutine(AbrirCerrarPuerta(rotacionCerrada));
                 abierta = false;
-            }
         }
     }
     private IEnumerator AbrirCerrarPuerta(Quaternion rotacionObjetivo)

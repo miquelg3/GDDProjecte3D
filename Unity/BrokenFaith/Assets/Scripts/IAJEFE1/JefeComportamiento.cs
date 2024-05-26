@@ -173,7 +173,7 @@ public class JefeComportamiento:MonoBehaviour
         ActivarJefe.ActivarBoss -= JefeActivado;
     }
 
-    private void JefeActivado(bool activar,Transform Puerta)
+    private void JefeActivado(bool activar)
     {
         Activado = true;
     }

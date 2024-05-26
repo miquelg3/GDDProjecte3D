@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ActivarJefe : MonoBehaviour
 {
-    public delegate void EventoActivarJefe(bool Activo,Transform Puerta);
+    public delegate void EventoActivarJefe(bool Activo);
     public static event EventoActivarJefe ActivarBoss;
-    [SerializeField] private Transform PuertaJefe;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +21,7 @@ public class ActivarJefe : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            ActivarBoss?.Invoke(true,PuertaJefe);
+            ActivarBoss?.Invoke(true);
         }
     }
 
