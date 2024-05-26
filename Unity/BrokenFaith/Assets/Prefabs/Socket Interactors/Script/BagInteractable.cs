@@ -10,11 +10,14 @@ public class BagInteractable : MonoBehaviour
     public GameObject panelInventario;
     public Transform leftHandTransform;
     public Transform rightHandTransform;
+    public Transform posicionInventarioOculto;
 
     private Quaternion panelRotation;
+    private bool isActive;
 
     private void Start()
     {
+        isActive = true;
         leftTriggerAction.action.Enable();
         rightTriggerAction.action.Enable();
 
@@ -45,24 +48,31 @@ public class BagInteractable : MonoBehaviour
 
     private void HandleTriggerPressed(Transform handTransform)
     {
-        panelInventario.transform.SetParent(handTransform);
-        Debug.Log("PanelInventario parent name: " + panelInventario.transform.parent.name);
-        if (handTransform.name == "RightHand Controller")
-            panelInventario.transform.rotation = panelRotation;
-        else
-            panelInventario.transform.rotation = handTransform.rotation;
-        panelInventario.transform.position = handTransform.position;
-        Debug.Log("PanelInventario Después de la corrutina");
-        bool isActive = panelInventario.activeSelf;
         Debug.Log("PanelInventario activeSelf before toggle: " + isActive);
+
         if (isActive)
         {
-            panelInventario.SetActive(false);
+            MoveToHiddenPosition();
         }
         else
         {
-            panelInventario.SetActive(true);
+            panelInventario.transform.SetParent(handTransform);
+            if (handTransform.name == "RightHand Controller")
+                panelInventario.transform.rotation = panelRotation;
+            else
+                panelInventario.transform.rotation = handTransform.rotation;
+            panelInventario.transform.position = handTransform.position;
+            isActive = true;
         }
+
         Debug.Log("PanelInventario active: " + panelInventario.activeSelf);
+    }
+
+    private void MoveToHiddenPosition()
+    {
+        panelInventario.transform.SetParent(null);
+        panelInventario.transform.position = posicionInventarioOculto.position;
+        panelInventario.transform.rotation = posicionInventarioOculto.rotation;
+        isActive = false;
     }
 }
