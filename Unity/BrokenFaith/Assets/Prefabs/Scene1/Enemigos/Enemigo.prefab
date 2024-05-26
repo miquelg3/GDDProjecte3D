@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4442090740045973906}
   - component: {fileID: 8859602175315290762}
   - component: {fileID: 3090624142754165942}
+  - component: {fileID: 889553525455729077}
   m_Layer: 0
   m_Name: Enemigo
   m_TagString: Jefe1
@@ -124,6 +125,7 @@ MonoBehaviour:
     type: 3}
   puntoLanzamiento: {fileID: 919781637422339127}
   alcance: 100
+  torque: 5
 --- !u!54 &8859602175315290762
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,3 +175,17 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &889553525455729077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3307321926382385444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3afa6e0ec6c5946876e7d124790183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SaludBase: 30
+  muerte: {fileID: 8300000, guid: 93cb332148b8a30409e7b50856950e08, type: 3}
