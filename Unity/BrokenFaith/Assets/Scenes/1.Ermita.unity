@@ -5,11 +5,12 @@ OcclusionCullingSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_OcclusionBakeSettings:
-    smallestOccluder: 5
+    smallestOccluder: 3
     smallestHole: 0.25
-    backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+    backfaceThreshold: 75
+  m_SceneGUID: 195f0213acae69d488c1f3b9440ee25f
+  m_OcclusionCullingData: {fileID: 36300000, guid: da2b44f4f41647b47b6fae08e787300d,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -156,9 +157,19 @@ PrefabInstance:
       objectReference: {fileID: 779378518}
     - target: {fileID: 2431904553428241967, guid: 66bbca4779791f042bbe93d60d74e508,
         type: 3}
+      propertyPath: arcoFPS
+      value: 
+      objectReference: {fileID: 593887455}
+    - target: {fileID: 2431904553428241967, guid: 66bbca4779791f042bbe93d60d74e508,
+        type: 3}
       propertyPath: jugador
       value: 
       objectReference: {fileID: 1053401797}
+    - target: {fileID: 2431904553428241967, guid: 66bbca4779791f042bbe93d60d74e508,
+        type: 3}
+      propertyPath: espadaFPS
+      value: 
+      objectReference: {fileID: 897232843}
     - target: {fileID: 2431904553428241967, guid: 66bbca4779791f042bbe93d60d74e508,
         type: 3}
       propertyPath: sliderSFX
@@ -387,6 +398,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &593887455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2417631299177313089, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1053401796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &625590452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3349,6 +3366,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5558842979438109542}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &897232843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8670025293125143518, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1053401796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1053401796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3360,7 +3383,7 @@ PrefabInstance:
     - target: {fileID: 7273878835314884260, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7273878835314884260, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
         type: 3}
@@ -3370,7 +3393,7 @@ PrefabInstance:
     - target: {fileID: 7273878835314884260, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.2
+      value: -4.45
       objectReference: {fileID: 0}
     - target: {fileID: 7273878835314884260, guid: 0a58ca2609e8ef24d8191ba516ef7dd3,
         type: 3}
@@ -6406,6 +6429,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6275887434017983138, guid: 58481f5a7a10ece40b98448e2cb20496,
+        type: 3}
+      propertyPath: m_IsViewVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820164292030212917, guid: 58481f5a7a10ece40b98448e2cb20496,
+        type: 3}
+      propertyPath: m_IsViewVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8871329964538558704, guid: 58481f5a7a10ece40b98448e2cb20496,
         type: 3}
       propertyPath: m_Name
@@ -6557,6 +6590,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8430785218084538776, guid: e6f0e3fbf9f053f4b9d3701d91be0990,
+        type: 3}
+      propertyPath: m_IsViewVolume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6633,6 +6671,11 @@ PrefabInstance:
     - target: {fileID: 1577258538276556694, guid: 43f4630a578bfcf4dbd04d6ebbd3bbaa,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356964762651056374, guid: 43f4630a578bfcf4dbd04d6ebbd3bbaa,
+        type: 3}
+      propertyPath: m_IsViewVolume
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3171824088613580516, guid: 43f4630a578bfcf4dbd04d6ebbd3bbaa,
@@ -6794,6 +6837,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3306863362291261841, guid: 78a864f7d62d47a47a168fa17ed083cc,
+        type: 3}
+      propertyPath: m_IsViewVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5311460012929380688, guid: 78a864f7d62d47a47a168fa17ed083cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6857,6 +6905,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1900437478372578257, guid: 8509c0b4af6ea7a46b01b004b5e671c5,
+        type: 3}
+      propertyPath: m_IsViewVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2405838925297250534, guid: 8509c0b4af6ea7a46b01b004b5e671c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6990,6 +7043,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1204464474835174008, guid: e55fc65581d95db4cb31db739f30cf84,
+        type: 3}
+      propertyPath: m_IsViewVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2668223961866671236, guid: e55fc65581d95db4cb31db739f30cf84,
         type: 3}
       propertyPath: m_IsActive
@@ -7003,6 +7061,11 @@ PrefabInstance:
     - target: {fileID: 2752850688773838598, guid: e55fc65581d95db4cb31db739f30cf84,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383784146218879371, guid: e55fc65581d95db4cb31db739f30cf84,
+        type: 3}
+      propertyPath: m_IsViewVolume
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
