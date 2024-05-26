@@ -857,6 +857,16 @@ PrefabInstance:
       propertyPath: Interactuar
       value: 101
       objectReference: {fileID: 0}
+    - target: {fileID: 1139660646890679620, guid: 11507cc77666e2746873fbac9c2d3c9c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643285425188188698, guid: 11507cc77666e2746873fbac9c2d3c9c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3598712195125835951, guid: 11507cc77666e2746873fbac9c2d3c9c,
         type: 3}
       propertyPath: m_Layer
