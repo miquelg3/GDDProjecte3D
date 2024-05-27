@@ -23,9 +23,14 @@ public class JefeComportamiento:MonoBehaviour
     private GameObject cuchillo;
     private bool LanzandoCuchillos;
     private bool estaCargando;
+    public delegate void EventoDanyoJefe(bool Cargando);
+    public static event EventoDanyoJefe Danyo;
+    [SerializeField] private float torque = 5f;
+    private bool Activado;
     // Start is called before the first frame update
     void Start()
     {
+        Activado = false;
         estaCargando = false;
         LanzandoCuchillos = false;
         intervalCuchillo = 2f;
@@ -35,35 +40,43 @@ public class JefeComportamiento:MonoBehaviour
         stuneado = false;
         TiempoCooldown = 0f;
         CooldownCargar = 10f;
-        Stun = 20f;
-        Jugador = GameObject.FindGameObjectWithTag("Jugador").transform;
+        Stun = 3f;
+        Jugador = GameObject.FindGameObjectWithTag("Player").transform;
         Agent = GetComponent<NavMeshAgent>();
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Agent.acceleration);
-        lanzarCuchilloTiempo += Time.deltaTime;
-        if(CuchilloGastado == 3)
+        if (Activado)
         {
-            Cooldown += Time.deltaTime;
+            lanzarCuchilloTiempo += Time.deltaTime;
+            if (CuchilloGastado == 3)
+            {
+                Cooldown += Time.deltaTime;
+            }
+            if (Cooldown >= TiempoCuchillo)
+            {
+                CuchilloGastado = 0;
+                Cooldown = 0f;
+            }
+            if (Vector3.Distance(transform.position, Jugador.position) > 0.5f)
+            {
+                Agent.SetDestination(Jugador.transform.position);
+            }
+            ControlarCargado();
+            if (Vector3.Distance(transform.position, Jugador.position) > 2f && CuchilloGastado < 3 && lanzarCuchilloTiempo >= intervalCuchillo)
+            {
+                LanzarCuchillo();
+                lanzarCuchilloTiempo = 0;
+            }
         }
-        if(Cooldown >= TiempoCuchillo)
+
+        if (GetComponent<SaludEnemigoController>().EstaMuerto)
         {
-            CuchilloGastado = 0;
-            Cooldown = 0f;
-        }
-        if (Vector3.Distance(transform.position, Jugador.position) > 0.5f)
-        {
-            Agent.SetDestination(Jugador.transform.position);
-        }
-        ControlarCargado();
-        if (Vector3.Distance(transform.position, Jugador.position) > 2f && CuchilloGastado < 3 && lanzarCuchilloTiempo >= intervalCuchillo)
-        {
-            LanzarCuchillo();
-            lanzarCuchilloTiempo = 0;
+            Destroy(gameObject);
         }
     }
 
@@ -72,8 +85,9 @@ public class JefeComportamiento:MonoBehaviour
         if (!stuneado && !LanzandoCuchillos)
         {
             estaCargando = true;
-            Agent.speed = 1000.0f;
-            Agent.acceleration = 100f;
+            Danyo?.Invoke(estaCargando);
+            Agent.speed = 12.0f;
+            Agent.acceleration = 6f;
             Agent.SetDestination(transform.forward);
         }
     }
@@ -83,13 +97,15 @@ public class JefeComportamiento:MonoBehaviour
         {
             StartCoroutine(StunCoroutine());
             estaCargando = false;
+            Danyo?.Invoke(estaCargando);
         }
         else
         {
-            Agent.speed = 5f;
-            Agent.acceleration = 8f;
+            Agent.speed = 3f;
+            Agent.acceleration = 6f;
             Agent.SetDestination(Jugador.transform.position);
             estaCargando = false;
+            Danyo?.Invoke(estaCargando);
         }
     }
     private void ControlarCargado()
@@ -108,7 +124,7 @@ public class JefeComportamiento:MonoBehaviour
         Agent.speed = 0f;
 
         yield return new WaitForSeconds(Stun);
-        Agent.speed = 5f;
+        Agent.speed = 3f;
         stuneado = false;
         Agent.SetDestination(Jugador.transform.position);
     }
@@ -119,7 +135,8 @@ public class JefeComportamiento:MonoBehaviour
         Ray rayo = new Ray(transform.position,(Jugador.position - transform.position).normalized);
         if (Physics.Raycast(rayo, out hit, alcance))
         {
-            if (hit.collider.CompareTag("Jugador") && !stuneado && !estaCargando)
+            Debug.Log(hit.transform.gameObject.tag);
+            if (hit.collider.CompareTag("Player") && !stuneado && !estaCargando)
             {
                 LanzandoCuchillos = true;
 
@@ -136,7 +153,9 @@ public class JefeComportamiento:MonoBehaviour
                 if (rb != null)
                 {
                     rb.AddForce(direccion.normalized * 100f, ForceMode.Impulse);
+                    rb.AddTorque(transform.right * torque);
                 }
+                Destroy(cuchillo, 10f);
             }
         }
 
@@ -148,6 +167,19 @@ public class JefeComportamiento:MonoBehaviour
 
         yield return new WaitForSeconds(3f);
         LanzandoCuchillos = false;
-        Agent.speed = 5f;
+        Agent.speed = 3f;
+    }
+    private void OnEnable()
+    {
+        ActivarJefe.ActivarBoss += JefeActivado;
+    }
+    private void OnDisable()
+    {
+        ActivarJefe.ActivarBoss -= JefeActivado;
+    }
+
+    private void JefeActivado(bool activar)
+    {
+        Activado = true;
     }
 }

@@ -13,7 +13,7 @@ public class Mueble : MonoBehaviour
     {
         Desbloqueado = false;
         bloqueo = transform.position;
-        PasoAbierto = new Vector3(bloqueo.x, bloqueo.y, bloqueo.z - 1f);
+        PasoAbierto = new Vector3(bloqueo.x, bloqueo.y, bloqueo.z - 1.5f);
     }
 
     // Update is called once per frame
