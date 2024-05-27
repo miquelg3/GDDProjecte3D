@@ -73,6 +73,11 @@ public class JefeComportamiento:MonoBehaviour
                 lanzarCuchilloTiempo = 0;
             }
         }
+
+        if (GetComponent<SaludEnemigoController>().EstaMuerto)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Cargar()
