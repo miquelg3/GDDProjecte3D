@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2019953037617035377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8783388316016410226}
+  - component: {fileID: 5380403597609472068}
+  m_Layer: 0
+  m_Name: Controlador Inicio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8783388316016410226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019953037617035377}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 311.8283, y: 168.24951, z: -273.15497}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5380403597609472068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019953037617035377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80914baae27ab804aaa10db389dee7a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Empezar: {fileID: 0}
+  Cargar: {fileID: 0}
+  Opciones: {fileID: 0}
+  Volver: {fileID: 0}
+  COpciones: {fileID: 0}
+  CInicio: {fileID: 0}
+  TextoVida: {fileID: 0}
+  SliderV: {fileID: 0}
+  Vida: 0
+  Cargado: 0
+  Intro: {fileID: 0}
+  SliderA: {fileID: 0}
+  TextoAudio: {fileID: 0}
+  Volumen: 0
