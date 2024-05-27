@@ -168,13 +168,14 @@ GameObject:
   - component: {fileID: 7273878835314884260}
   - component: {fileID: 203825823461992582}
   - component: {fileID: 6887138179132689191}
+  - component: {fileID: 999768655786408366}
   - component: {fileID: 6836810892169602688}
   - component: {fileID: 7081124806474713617}
   - component: {fileID: 3120297068756768809}
   - component: {fileID: 4912875116468329008}
   - component: {fileID: 181079131574715733}
   - component: {fileID: 3575171525062587024}
-  - component: {fileID: 7837625992935608371}
+  - component: {fileID: 1470364495972480606}
   m_Layer: 9
   m_Name: Jugador
   m_TagString: Player
@@ -193,7 +194,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.120000005}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1617151312509318587}
   m_Father: {fileID: 0}
@@ -248,6 +249,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &999768655786408366
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7313320581464750074}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 5.033706
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5168453, z: 0}
 --- !u!143 &6836810892169602688
 CharacterController:
   m_ObjectHideFlags: 0
@@ -426,29 +450,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!136 &7837625992935608371
-CapsuleCollider:
+--- !u!114 &1470364495972480606
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7313320581464750074}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 5.033706
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78de0816219ef6a4aa068639a808f8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Puente: {fileID: 4974368877514920285, guid: 5f568791aa5d77342ad29f2400df3fe2, type: 3}
+  rangoDeteccion: 3
+  Interactuar: 101
 --- !u!1001 &1058901778655232633
 PrefabInstance:
   m_ObjectHideFlags: 0

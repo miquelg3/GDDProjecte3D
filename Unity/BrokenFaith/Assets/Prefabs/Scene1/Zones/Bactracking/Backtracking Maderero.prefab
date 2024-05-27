@@ -281,7 +281,8 @@ PrefabInstance:
       value: Enviro
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -2047502564858076866, guid: bf73d9353b618bd4bb1e7ee4abc7266a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf73d9353b618bd4bb1e7ee4abc7266a, type: 3}
