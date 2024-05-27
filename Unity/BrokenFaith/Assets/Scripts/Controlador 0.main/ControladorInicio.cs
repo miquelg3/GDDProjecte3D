@@ -24,13 +24,6 @@ public class ControladorInicio : MonoBehaviour
     public Slider SliderA;
     public TextMeshProUGUI TextoAudio;
     public float Volumen;
-#if UNITY_EDITOR
-    // Añadido por Miquel Grau el 22/02/24 para que la escena no sea una específica y se pueda elegir a través de una variable
-    [SerializeField]
-    private string nombreSiguienteEscena;
-#else
-    private Scene currentScene = SceneManager.GetActiveScene();
-#endif
 
     // Start is called before the first frame update
     void Start()
@@ -105,7 +98,7 @@ public class ControladorInicio : MonoBehaviour
 
 #if UNITY_EDITOR
         // Añadido por Miquel Grau el 22/02/24
-        AsyncOperation loadingOperation = SceneManager.LoadSceneAsync(nombreSiguienteEscena);
+        AsyncOperation loadingOperation = SceneManager.LoadSceneAsync(1);
         // Wait until the asynchronous scene fully loads
         while (!loadingOperation.isDone)
         {

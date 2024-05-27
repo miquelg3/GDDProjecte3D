@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Espada : MonoBehaviour
@@ -21,7 +19,7 @@ public class Espada : MonoBehaviour
 
     private void OnTriggerEnter(Collider objeto)
     {
-        if (objeto.CompareTag("Enemigo") && combateEspada.GetAtacando())
+        if (combateEspada.GetAtacando() && (objeto.CompareTag("Enemigo") || objeto.CompareTag("Jefe1")))
         {
             audioSource.Stop();
             audioSource.clip = audioHit;
