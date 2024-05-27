@@ -6,16 +6,19 @@ using UnityEngine;
 public class Puzzle1 : MonoBehaviour
 {
     [SerializeField] public GameObject Puente;
-    public float rangoDeteccion = 3f;
+    public float rangoDeteccion = 8f;
     [SerializeField] private KeyCode Interactuar;
     private bool Reparado;
     private Vector3 PuenteCopia;
     public delegate void EventoAbrirReja();
     public static event EventoAbrirReja AbrirReja;
+    private Quaternion PuenteCopiaRotacion;
     // Start is called before the first frame update
     void Start()
     {
         PuenteCopia = Puente.transform.position;
+        PuenteCopiaRotacion = Puente.transform.rotation;
+        Debug.Log(PuenteCopia);
         Reparado = false;
     }
 
@@ -43,6 +46,7 @@ public class Puzzle1 : MonoBehaviour
         if (Vector3.Distance(transform.position, PuenteCopia) < rangoDeteccion && Puente.activeSelf == false)
         {
             Puente.transform.position = PuenteCopia;
+            Puente.transform.rotation = PuenteCopiaRotacion;
             Puente.SetActive(true);
             Puente.GetComponent<Rigidbody>().isKinematic = true;
             Reparado = true;

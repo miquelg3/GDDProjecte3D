@@ -157,7 +157,12 @@ public class ControlJuego : MonoBehaviour
 
     public void LlamarSalirPartida()
     {
-        SceneManager.LoadScene(0);
+        // Esto solo funcionará en una compilación, no en el editor
+        Application.Quit();
+        // Si estás en el editor y quieres probar la funcionalidad, puedes usar:
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     IEnumerator Posicionar(Vector3 position)

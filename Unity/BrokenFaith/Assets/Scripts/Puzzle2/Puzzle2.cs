@@ -25,10 +25,14 @@ public class Puzzle2 : MonoBehaviour
     [SerializeField] private GameObject Jugador;
     [SerializeField] private KeyCode Interactuar;
     private bool Completado;
+    public delegate void EventoPasarRuinas(bool Activo);
+    public static event EventoPasarRuinas PasarPuzzle2;
+    private List<Transform> PalancasTiradas;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
+        PalancasTiradas = new List<Transform>();
         Completado = false;
         contadorArray = 0;
         Calaveras = new GameObject[4];
@@ -58,8 +62,8 @@ public class Puzzle2 : MonoBehaviour
         {
             if (ComprobarOrden())
             {
-                Debug.Log("Tu Mucho Listo eh????");
                 Completado = true;
+                PasarPuzzle2?.Invoke(Completado);
             }
             else
             {
@@ -81,9 +85,9 @@ public class Puzzle2 : MonoBehaviour
     public void AnyadirPosicionesPosiblesALaList()
     {
         posicionCalaveras.Add(0);
-        posicionCalaveras.Add(-3);
-        posicionCalaveras.Add(-6);
-        posicionCalaveras.Add(-9);
+        posicionCalaveras.Add(1);
+        posicionCalaveras.Add(2);
+        posicionCalaveras.Add(3);
     }
     public void AnyadirPalancasAlArray()
     {
@@ -108,14 +112,14 @@ public class Puzzle2 : MonoBehaviour
             {
                 case 0:
                     OrdenCorrecto[i] = 1; break;
-                case -3:
+                case 1:
                     OrdenCorrecto[i] = 2; break;
-                case -6:
+                case 2:
                     OrdenCorrecto[i] = 3; break;
-                case -9:
+                case 3:
                     OrdenCorrecto[i] = 4; break;
             }
-            Calaveras[i].transform.position = new Vector3(Calaveras[i].transform.position.x + Numero, Calaveras[i].transform.position.y, Calaveras[i].transform.position.z);
+            Calaveras[i].transform.position = new Vector3(Calaveras[i].transform.position.x, Calaveras[i].transform.position.y, Calaveras[i].transform.position.z + Numero);
         }
     }
     private void TirardelaPalanca()
@@ -130,10 +134,12 @@ public class Puzzle2 : MonoBehaviour
 
             if (hit.collider.gameObject.CompareTag("Palanca"))
             {
-                if (hit.collider.gameObject.transform.Find("Palanca").rotation.z < 25f)
+                if (hit.collider.gameObject.transform.Find("Palanca").rotation.z < 25f && !PalancaActivada(hit.collider.gameObject.transform))
                 {
+                    PalancasTiradas.Add(hit.collider.gameObject.transform);
                     hit.collider.gameObject.transform.Find("Palanca").Rotate(0, 0, 50f);
                     ActualizarListaJugador(hit.collider.gameObject);
+
                 }
                
             }
@@ -169,6 +175,25 @@ public class Puzzle2 : MonoBehaviour
             Palancas[i].transform.Find("Palanca").Rotate(0, 0, -50f);
         }
         contadorArray=0;
+        PalancasTiradas.Clear();
+    }
+    private bool PalancaActivada (Transform PalancaAAnalizar)
+    {
+        if(PalancasTiradas.Count == 0)
+        {
+            return false;
+        }
+        else
+        {
+            foreach (var Palanca in PalancasTiradas)
+            {
+                if (Palanca.transform == PalancaAAnalizar)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
 

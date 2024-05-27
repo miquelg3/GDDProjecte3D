@@ -9,7 +9,7 @@ public class Flecha : MonoBehaviour
     [SerializeField] private float torque = 5f;
 
 
-    [SerializeField]private Rigidbody rigidbody;
+    [SerializeField]private new Rigidbody rigidbody;
     private FixedJoint joint;
 
     public void Lanzar(Vector3 fuerza)
@@ -21,6 +21,11 @@ public class Flecha : MonoBehaviour
         transform.SetParent(null);
     }
 
+    public void DestruirFlecha()
+    {
+        Destroy(this.gameObject);
+    }
+
     public void Cargar()
     {       
         transform.position += transform.forward * carga;
@@ -29,7 +34,7 @@ public class Flecha : MonoBehaviour
     private void OnTriggerEnter(Collider objeto)
     {
         joint = gameObject.AddComponent<FixedJoint>();
-        if (objeto.CompareTag("Enemigo"))
+        if (objeto.CompareTag("Enemigo") || objeto.CompareTag("Jefe1"))
         {
             objeto.GetComponent<SaludEnemigoController>().RecibirDanyo(danyo);
         } 
@@ -40,6 +45,7 @@ public class Flecha : MonoBehaviour
             joint.breakForce = Mathf.Infinity;
             joint.breakTorque = Mathf.Infinity;
             rigidbody.useGravity = false;
+            Invoke("DestruirFlecha", 5f);
         }
 
     }
