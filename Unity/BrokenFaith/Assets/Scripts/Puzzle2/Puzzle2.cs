@@ -27,10 +27,12 @@ public class Puzzle2 : MonoBehaviour
     private bool Completado;
     public delegate void EventoPasarRuinas(bool Activo);
     public static event EventoPasarRuinas PasarPuzzle2;
+    private List<Transform> PalancasTiradas;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
+        PalancasTiradas = new List<Transform>();
         Completado = false;
         contadorArray = 0;
         Calaveras = new GameObject[4];
@@ -132,10 +134,12 @@ public class Puzzle2 : MonoBehaviour
 
             if (hit.collider.gameObject.CompareTag("Palanca"))
             {
-                if (hit.collider.gameObject.transform.Find("Palanca").rotation.z < 25f)
+                if (hit.collider.gameObject.transform.Find("Palanca").rotation.z < 25f && !PalancaActivada(hit.collider.gameObject.transform))
                 {
+                    PalancasTiradas.Add(hit.collider.gameObject.transform);
                     hit.collider.gameObject.transform.Find("Palanca").Rotate(0, 0, 50f);
                     ActualizarListaJugador(hit.collider.gameObject);
+
                 }
                
             }
@@ -171,6 +175,25 @@ public class Puzzle2 : MonoBehaviour
             Palancas[i].transform.Find("Palanca").Rotate(0, 0, -50f);
         }
         contadorArray=0;
+        PalancasTiradas.Clear();
+    }
+    private bool PalancaActivada (Transform PalancaAAnalizar)
+    {
+        if(PalancasTiradas.Count == 0)
+        {
+            return false;
+        }
+        else
+        {
+            foreach (var Palanca in PalancasTiradas)
+            {
+                if (Palanca.transform == PalancaAAnalizar)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
 
