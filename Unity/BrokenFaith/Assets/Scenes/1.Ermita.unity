@@ -6877,6 +6877,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1582557476627393346, guid: 78a864f7d62d47a47a168fa17ed083cc,
+        type: 3}
+      propertyPath: SaludBase
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3306863362291261841, guid: 78a864f7d62d47a47a168fa17ed083cc,
         type: 3}
       propertyPath: m_IsViewVolume
