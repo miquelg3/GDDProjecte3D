@@ -56,6 +56,8 @@ public class MovimientoJugador : MonoBehaviour
     public bool Caido;
     public delegate void EventoDesbloquearReja(bool PuedePasar);
     public static event EventoDesbloquearReja PasarReja;
+    public delegate void EventoRecogerNota(Transform nota);
+    public static event EventoRecogerNota RecogerNota;
     private bool JefeCargando;
    
     
@@ -252,6 +254,10 @@ public class MovimientoJugador : MonoBehaviour
                 if (hit.transform.gameObject.CompareTag("Reja") && Input.GetKeyDown(KeyCode.E) && distance <= 2f)
                 {
                     PasarReja?.Invoke(Caido);
+                }
+                if (hit.transform.gameObject.CompareTag("Nota") && Input.GetKeyDown(KeyCode.E) && distance <= 2f)
+                {
+                    RecogerNota?.Invoke(hit.transform);
                 }
             }
             else

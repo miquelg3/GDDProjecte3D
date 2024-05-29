@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,7 @@ public class InventarioScript : MonoBehaviour
     private GameObject arcoFPS;
     private Dictionary<string, Item> itemsDiccionario = new Dictionary<string, Item>();
     private int slotSeleccionado;
+    private GameObject pistaGOAnterior = null;
 
 
     public Inventario inventario = new Inventario();
@@ -156,6 +158,18 @@ public class InventarioScript : MonoBehaviour
         inventario.AgregarItem(arma);
         Transform slotTransform = panelInventarioExterno.Find($"Slot (91)");
         newSlots.Add(slotTransform);
+        LlenarObjeto(arma, slotTransform);
+        return true;
+    }
+
+    public bool GuardarNota(GameObject notaGO)
+    {
+        int id = IdLibre();
+        Pista nota = new Pista(id.ToString(), "Pista", "Nota", 0.25f, "Nota", notaGO);
+        inventario.AgregarItem(nota);
+        Transform slotTransform = panelInventario.Find($"Slot ({id})");
+        newSlots.Add(slotTransform);
+        LlenarObjeto(nota, slotTransform);
         return true;
     }
 
@@ -210,6 +224,40 @@ public class InventarioScript : MonoBehaviour
             }
         }
     }
+
+    public void LlenarObjeto(Item item, Transform slotTransform)
+    {
+        GameObject slot = slotTransform.gameObject;
+        if (slot != null)
+        {
+            Debug.Log($"Apunto de instanciar como padre el Slot ({item.Id})");
+            Transform newSlot;
+            if (item.Id == "90" || item.Id == "91" || item.Id == "92")
+                newSlot = Instantiate(slotTransform, panelInventarioExterno);
+            else
+                newSlot = Instantiate(slotTransform, panelInventario);
+            newSlot.name = $"Slot ({92 + contInventario})";
+            Debug.Log("Slot encontrado " + item.Id);
+            newSlot.GetComponent<Image>().type = Image.Type.Simple;
+            if (item.Nombre == "Espada")
+            {
+                newSlot.GetComponent<Image>().sprite = espadaImg;
+            }
+            else if (item.Nombre == "Arco")
+            {
+                newSlot.GetComponent<Image>().sprite = arcoImg;
+            }
+            else if (item.Nombre == "Pista")
+            {
+                newSlot.GetComponent<Image>().sprite = pistaImg;
+            }
+            Draggable draggableItem = newSlot.AddComponent<Draggable>();
+            draggableItem.SetItem(item);
+            StartCoroutine(SlotParent(newSlot, 2, item));
+            contInventario++;
+        }
+    }
+
     // Es una corrutina porque con la ui hay que tener paciencia
     IEnumerator SlotParent(Transform slot, int modo, Item item)
     {
@@ -341,29 +389,47 @@ public class InventarioScript : MonoBehaviour
     {
         DiccionarioInventario();
         string numItemStr = "9" + numSlot;
+        GameObject pistaGO = null;
         if (itemsDiccionario.TryGetValue(numItemStr, out Item itemBuscado))
         {
+            if (itemBuscado.Nombre == "Pista")
+            {
+                Pista pista = itemBuscado as Pista;
+                pistaGO = pista.Nota;
+            }
             Debug.Log("ItemEncontrado: " + itemBuscado.Nombre);
             if (itemBuscado.Nombre == "Espada")
             {
                 espadaFPS.SetActive(true);
                 arcoFPS.SetActive(false);
+                pistaGOAnterior?.SetActive(false);
             }
             else if (itemBuscado.Nombre == "Arco")
             {
                 arcoFPS.SetActive(true);
                 espadaFPS.SetActive(false);
+                pistaGOAnterior?.SetActive(false);
+            }
+            else if (itemBuscado.Nombre == "Pista")
+            {
+                pistaGOAnterior?.SetActive(false);
+                espadaFPS.SetActive(false);
+                arcoFPS.SetActive(false);
+                pistaGO?.SetActive(true);
+                pistaGOAnterior = pistaGO;
             }
             else
             {
                 espadaFPS.SetActive(false);
                 arcoFPS.SetActive(false);
+                pistaGOAnterior?.SetActive(false);
             }
         }
         else
         {
             espadaFPS.SetActive(false);
             arcoFPS.SetActive(false);
+            pistaGOAnterior?.SetActive(false);
         }
         SetSlotSeleccionado(numSlot);
     }
